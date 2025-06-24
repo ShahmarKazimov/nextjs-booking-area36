@@ -1,6 +1,6 @@
 import homes from '../data/homes';
 import { notFound } from 'next/navigation';
-import HomeDetails from '../components/HomeDetails/page';
+import HomeDetails from '../components/HomeDetails/HomeDetails';
 import { MapPin, Home, UserRound } from 'lucide-react';
 import Link from 'next/link';
 

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import StickyHeader from "./StickyHeader/page";
+import StickyHeader from "./StickyHeader/StickyHeader";
 import Image from "next/image";
 
 

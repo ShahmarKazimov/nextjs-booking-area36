@@ -1,9 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
-export default function HomeDetails({ images, title, description }) {
+export default function HomeDetails({ images = [], title = '', description = '' }) {
     const [selectedImage, setSelectedImage] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -27,6 +27,11 @@ export default function HomeDetails({ images, title, description }) {
         if (e.key === 'ArrowRight') navigate('next');
         if (e.key === 'ArrowLeft') navigate('prev');
     };
+
+    // Eğer images boşsa hiçbir şey render etme
+    if (!images || images.length === 0) {
+        return null;
+    }
 
     return (
         <>

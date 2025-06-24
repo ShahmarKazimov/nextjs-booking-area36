@@ -1,6 +1,6 @@
 import Carousel from "./components/ui/Carousel/Carousel";
-import Cards from "./components/Cards/AllCards/page";
-import HeroSection from "./components/HeroSection/page";
+import Cards from "./components/Cards/Cards";
+import HeroSection from "./components/HeroSection/HeroSection";
 
 // Homepage specific metadata
 export const metadata = {
