@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export default function StickyHeader() {
     const pathname = usePathname();
@@ -37,12 +38,13 @@ export default function StickyHeader() {
                         className="flex items-center group gap-x-2"
                     >
                         <figure className="flex items-center m-0">
-                            <img
+                            <Image
                                 src="/images/ui/area-logo.svg"
-                                alt="Area36 Logo - Premium Travel Brand"
+                                alt="Area36 Logo"
                                 width={65}
                                 height={65}
-                                loading="lazy"
+                                priority
+                                className="block"
                             />
                             <figcaption className="sr-only">Area36 Brand Logo</figcaption>
                         </figure>

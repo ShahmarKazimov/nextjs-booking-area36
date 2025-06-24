@@ -1,5 +1,7 @@
 import Link from "next/link";
-import StickyHeader from "../Header/StickyHeader";
+import StickyHeader from "./StickyHeader/StickyHeader";
+import Image from "next/image";
+
 
 export default function Header() {
     return (
@@ -17,12 +19,12 @@ export default function Header() {
                             className="flex items-center group gap-x-2"
                         >
                             <figure className="flex items-center flex-shrink-0">
-                                <img
+                                <Image
                                     src="/images/ui/area-logo.svg"
                                     alt="Area36 Logo"
                                     width={65}
                                     height={65}
-                                    loading="lazy"
+                                    priority    
                                     className="block"
                                 />
                             </figure>
