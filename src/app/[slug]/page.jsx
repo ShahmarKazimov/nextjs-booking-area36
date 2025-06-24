@@ -1,6 +1,6 @@
 import homes from '../data/homes';
 import { notFound } from 'next/navigation';
-import ImageGallery from '../components/HomeDetails/page';
+import HomeDetails from '../components/HomeDetails/page';
 import { MapPin, Home, UserRound } from 'lucide-react';
 import Link from 'next/link';
 
@@ -81,7 +81,7 @@ export default async function HomeDetailPage({ params }) {
                     </p>
                 </div>
 
-                <ImageGallery images={home.images} title={home.title} />
+                <HomeDetails images={home.images} title={home.title} />
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     <div className="lg:col-span-2">

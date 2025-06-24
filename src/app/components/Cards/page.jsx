@@ -1,6 +1,6 @@
 // app/cards/page.jsx
 import React from "react";
-import Cards from "./allCards/page  ";
+import AllCards from "./AllCards/page";
 
 export const metadata = {
     title: "Area36",
@@ -52,6 +52,6 @@ export const metadata = {
     }
 };
 
-export default function CardsPage() {
-    return <Cards />;
+export default function Cards() {
+    return <AllCards />;
 }

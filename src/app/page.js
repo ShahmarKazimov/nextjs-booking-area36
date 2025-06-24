@@ -1,5 +1,5 @@
 import Carousel from "./components/ui/Carousel/Carousel";
-import Cards from "./components/Cards/allCards/page";
+import Cards from "./components/Cards/AllCards/page";
 import HeroSection from "./components/HeroSection/page";
 
 // Homepage specific metadata

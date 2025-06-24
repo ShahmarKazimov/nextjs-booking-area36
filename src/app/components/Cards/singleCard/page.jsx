@@ -2,7 +2,7 @@ import React from "react";
 import Icons from "../../ui/icons/icons";
 import Link from "next/link";
 
-const Card = ({ property }) => {
+const SingleCard = ({ property }) => {
     return (
         <article className="border border-black/10 relative flex justify-between w-full flex-col rounded-xl bg-white text-gray-700 shadow-xl">
             <header>
@@ -40,4 +40,4 @@ const Card = ({ property }) => {
     );
 };
 
-export default Card;
+export default SingleCard;

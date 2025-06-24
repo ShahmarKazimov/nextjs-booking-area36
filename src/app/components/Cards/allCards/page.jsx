@@ -1,8 +1,8 @@
 import React from "react";
-import Card from "../singleCard/page";
+import SingleCard from "../SingleCard/page";
 import homes from "../../../data/homes";
 
-const Cards = () => {
+const AllCards = () => {
   return (
     <section
       aria-labelledby="featured-properties-title"
@@ -29,7 +29,7 @@ const Cards = () => {
           >
             {homes.map((property) => (
               <li key={property.id}>
-                <Card property={property} />
+                <SingleCard property={property} />
               </li>
             ))}
           </ul>
@@ -39,4 +39,4 @@ const Cards = () => {
   );
 };
 
-export default Cards;
+export default AllCards;
