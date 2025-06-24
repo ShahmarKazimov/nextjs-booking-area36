@@ -1,6 +1,6 @@
 import homes from '../data/homes';
 import { notFound } from 'next/navigation';
-import ImageGallery from '../components/HomeDetails/HomeDetails';
+import ImageGallery from '../components/HomeDetails/page';
 import { MapPin, Home, UserRound } from 'lucide-react';
 import Link from 'next/link';
 
@@ -10,8 +10,57 @@ export function generateStaticParams() {
     }));
 }
 
+// Dynamic metadata for each home
+export async function generateMetadata({ params }) {
+    const { slug } = await params;
+    const home = homes.find(h => h.slug === slug);
+
+    if (!home) {
+        return {
+            title: 'Home Not Found | Area36',
+            description: 'The requested property could not be found on Area36.'
+        };
+    }
+
+    return {
+        title: `${home.title} - Luxury ${home.type || 'Property'} in ${home.location} | Area36`,
+        description: `Book ${home.title} with Area36. ${home.description?.slice(0, 120)}... Located in ${home.location}. Premium accommodation with exceptional amenities.`,
+        keywords: [
+            'Area36',
+            home.title,
+            `${home.type || 'luxury property'} ${home.location}`,
+            `${home.location} vacation rental`,
+            `luxury accommodation ${home.location}`,
+            'Area36 booking',
+            home.owner && `${home.owner} property`
+        ].filter(Boolean),
+        openGraph: {
+            title: `${home.title} - Premium ${home.type || 'Property'} | Area36`,
+            description: `Experience luxury at ${home.title} in ${home.location}. Book this exceptional property with Area36 for an unforgettable stay.`,
+            url: `https://area36.com/${slug}`,
+            images: home.images?.length > 0 ? [
+                {
+                    url: home.images[0],
+                    width: 1200,
+                    height: 630,
+                    alt: `${home.title} - luxury property in ${home.location}`,
+                }
+            ] : [
+                {
+                    url: '/default-property.jpg',
+                    width: 1200,
+                    height: 630,
+                    alt: `${home.title} - Area36 luxury property`,
+                }
+            ],
+        },
+        alternates: {
+            canonical: `https://area36.com/${slug}`,
+        },
+    };
+}
+
 export default async function HomeDetailPage({ params }) {
-    // params'ı await et
     const { slug } = await params;
     const home = homes.find(h => h.slug === slug);
 
@@ -19,13 +68,17 @@ export default async function HomeDetailPage({ params }) {
 
     return (
         <div className="min-h-screen">
-            <div className="max-w-7xl mx-auto px-4 py-8">
+            <div className="max-w-7xl mx-auto p-4">
                 {/* Header */}
                 <div className="mb-8">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <h1 className="text-3xl font-bold text-gray-900 mb-4 flex items-center gap-2">
                         <Home size={24} />
                         {home.title}
-                    </h2>
+                    </h1>
+                    <p className="text-lg text-gray-600 flex items-center gap-2">
+                        <MapPin size={18} />
+                        {home.type && `${home.type} in `}{home.location}
+                    </p>
                 </div>
 
                 <ImageGallery images={home.images} title={home.title} />
@@ -33,8 +86,8 @@ export default async function HomeDetailPage({ params }) {
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     <div className="lg:col-span-2">
                         <div className="rounded-2xl shadow-sm p-8 mb-6">
-                            <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                                Description
+                            <h2 className="text-2xl font-bold text-gray-900 mb-4">
+                                About {home.title}
                             </h2>
                             <p className="text-gray-700 text-lg leading-relaxed">
                                 {home.description}
@@ -43,6 +96,9 @@ export default async function HomeDetailPage({ params }) {
 
                         {home.features && (
                             <div className="rounded-2xl shadow-sm p-8">
+                                <h3 className="text-xl font-bold text-gray-900 mb-4">
+                                    Property Features
+                                </h3>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     {home.features.map((feature, i) => (
                                         <div key={i} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
@@ -57,6 +113,7 @@ export default async function HomeDetailPage({ params }) {
 
                     <div className="lg:col-span-1">
                         <div className="bg-white rounded-2xl shadow-sm px-5 py-[1rem] sticky top-8">
+                            <h3 className="text-lg font-bold text-gray-900 mb-4">Property Details</h3>
                             <div className="mb-[0.6rem]">
                                 <div className="flex justify-between py-2 border-b border-gray-100">
                                     <div className="flex items-center gap-1 text-gray-600">
@@ -66,7 +123,6 @@ export default async function HomeDetailPage({ params }) {
                                     <span className="font-medium text-gray-900">{home.location}</span>
                                 </div>
                                 <div className="flex justify-between py-2 border-b border-gray-100">
-
                                     <div className="flex items-center gap-1 text-gray-600">
                                         <UserRound size={18} />
                                         <span className="text-gray-600">Owner</span>
@@ -86,6 +142,6 @@ export default async function HomeDetailPage({ params }) {
                     </div>
                 </div>
             </div>
-        </div >
+        </div>
     );
 }

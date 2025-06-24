@@ -1,6 +1,6 @@
 // app/cards/page.jsx
 import React from "react";
-import Cards from "../Cards/Cards";
+import Cards from "./allCards/page  ";
 
 export const metadata = {
     title: "Area36",

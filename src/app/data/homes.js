@@ -4,18 +4,11 @@ const homes = [
         id: "home-1",
         title: "Qafqaz Falcon Chalet",
         slug: "qafqaz-falcon-chalet",
+        type: "chalet",
         description: "A stylish and cozy chalet with 3 bedrooms and 3 bathrooms. Ideal for a peaceful and relaxing escape in the heart of nature.",
         rating: 5.0,
         location: "Gabala, Azerbaijan",
-        amenities: [
-            { icon: "camera", label: "Photography" },
-            { icon: "wifi", label: "WiFi" },
-            { icon: "home", label: "Cozy Interior" },
-            { icon: "tv", label: "Smart TV" },
-            { icon: "fire", label: "Fireplace" }
-        ],
         owner: "Ramil Mammadov",
-        extraAmenities: 20,
         images: [
             "../images/blog/Qafqaz Falcon Chalet/Qafqaz Falcon Chalet.jpg",
             "../images/blog/Qafqaz Falcon Chalet/Qafqaz Falcon Chalet-1.jpg",
@@ -33,18 +26,12 @@ const homes = [
     {
         id: "home-2",
         slug: "qafqaz-family-chalet",
+        type: "chalet",
         title: "Qafqaz Family Chalet",
         description: "A cozy chalet with 3 bedrooms, 2 bathrooms, and a heated pool. Perfect for a relaxing getaway in a tranquil natural setting.",
         rating: 4.8,
         location: "Gabala, Azerbaijan",
-        amenities: [
-            { icon: "camera", label: "Photography" },
-            { icon: "wifi", label: "WiFi" },
-            { icon: "tv", label: "Smart TV" },
-            { icon: "fire", label: "Pool Heating" }
-        ],
         owner: "Ramil Mammadov",
-        extraAmenities: 15,
         images: [
             "../images/blog/Qafqaz Family Chalet/Qafqaz Family Chalet.jpg",
             "../images/blog/Qafqaz Family Chalet/Qafqaz Family Chalet-1.jpg",
@@ -61,16 +48,11 @@ const homes = [
     {
         id: "home-3",
         slug: "qafqaz-luxury-chalet",
+        type: "chalet",
         title: "Qafqaz Luxury Chalet",
-        description: "A spacious and luxurious chalet with 5 bedrooms and 4 bathrooms. Features both indoor and outdoor pools for a comfortable and enjoyable stay.",
+        description: "A spacious chalet with 5 bedrooms and 4 bathrooms. Features both indoor and outdoor pools for a comfortable and enjoyable stay.",
         rating: 4.9,
         location: "Gabala, Azerbaijan",
-        amenities: [
-            { icon: "home", label: "Rustic Charm" },
-            { icon: "fire", label: "Wood Fireplace" },
-            { icon: "wifi", label: "WiFi" }
-        ],
-        extraAmenities: 8,
         owner: "Ramil Mammadov",
         images: [
             "../images/blog/Qafqaz Luxury Chalet/Qafqaz Luxury Chalet.jpg",
@@ -90,15 +72,9 @@ const homes = [
         id: "home-4",
         slug: "qafqaz-milano-deluxe",
         title: "Qafqaz Milano Deluxe",
-        description: "4 bedrooms, 2 bathrooms. Comfortable accommodation for up to 9 guests.",
+        description: "This home features 4 bedrooms and 2 bathrooms, offering comfortable accommodation for up to 9 guests.",
         rating: 4.9,
         location: "Gabala, Azerbaijan",
-        amenities: [
-            { icon: "home", label: "Modern Design" },
-            { icon: "fire", label: "Fireplace" },
-            { icon: "wifi", label: "WiFi" }
-        ],
-        extraAmenities: 10,
         owner: "Ramil Mammadov",
         images: [
             "../images/blog/Qafqaz Milano Deluxe/Qafqaz Milano Deluxe.jpg",
@@ -119,12 +95,6 @@ const homes = [
         description: "Comfortable chalet with 4 bedrooms and 2 bathrooms. Perfect for families or groups looking for a relaxing stay.",
         rating: 4.9,
         location: "Gabala, Azerbaijan",
-        amenities: [
-            { icon: "home", label: "Modern Design" },
-            { icon: "fire", label: "Fireplace" },
-            { icon: "wifi", label: "WiFi" }
-        ],
-        extraAmenities: 12,
         owner: "Ramil Mammadov",
         images: [
             "../images/blog/Qafqaz Modern Harmony/Qafqaz Modern Harmony.jpg",
@@ -145,12 +115,6 @@ const homes = [
         description: "Spacious and comfortable chalet with 4 bedrooms and 4 bathrooms. Features both indoor and outdoor pools for a unique experience.",
         rating: 4.9,
         location: "Gabala, Azerbaijan",
-        amenities: [
-            { icon: "home", label: "Rustic Charm" },
-            { icon: "fire", label: "Wood Fireplace" },
-            { icon: "wifi", label: "WiFi" }
-        ],
-        extraAmenities: 10,
         owner: "Ramil Mammadov",
         images: [
             "../images/blog/Qafqaz Rolling Bungalow/Qafqaz Rolling Bungalow.jpg",
@@ -169,16 +133,11 @@ const homes = [
     {
         id: "home-7",
         slug: "qafqaz-royal-chalet",
+        type: "chalet",
         title: "Qafqaz Royal Chalet",
         description: "A stylish chalet with 4 bedrooms, 3 bathrooms, a large pool, terrace, and stunning views. Perfect for up to 8 guests seeking comfort and relaxation.",
         rating: 4.9,
         location: "Gabala, Azerbaijan",
-        amenities: [
-            { icon: "home", label: "Rustic Charm" },
-            { icon: "fire", label: "Wood Fireplace" },
-            { icon: "wifi", label: "WiFi" }
-        ],
-        extraAmenities: 10,
         owner: "Ramil Mammadov",
         images: [
             "../images/blog/Qafqaz Royal Chalet/Qafqaz Royal Chalet.jpg",
@@ -200,16 +159,11 @@ const homes = [
     {
         id: "home-8",
         slug: "qafqaz-wooden-chalet",
+        type: "chalet",
         title: "Qafqaz Wooden Chalet",
         description: "A charming wooden chalet with 3 bedrooms and 2 bathrooms. Perfect for a cozy stay in the mountains.",
         rating: 4.8,
         location: "Gabala, Azerbaijan",
-        amenities: [
-            { icon: "home", label: "Rustic Charm" },
-            { icon: "fire", label: "Wood Fireplace" },
-            { icon: "wifi", label: "WiFi" }
-        ],
-        extraAmenities: 10,
         owner: "Ramil Mammadov",
         images: [
             "../images/blog/Qafqaz Wooden Chalet/Qafqaz Wooden Chalet.jpg",
