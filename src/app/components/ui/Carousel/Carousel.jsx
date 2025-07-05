@@ -13,7 +13,7 @@ const Carousel = () => {
       <main className="relative px-4 lg:px-0" role="main">
         <header className="text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-8 text-black relative">
-            Explore Our Featured Destinations
+            Discover Our Top Destinations
           </h2>
         </header>
 

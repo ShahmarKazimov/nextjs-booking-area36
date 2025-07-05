@@ -12,7 +12,7 @@ export function generateStaticParams() {
 
 // Dynamic metadata for each home
 export async function generateMetadata({ params }) {
-    const { slug } = await params;
+    const { slug } = params;
     const home = homes.find(h => h.slug === slug);
 
     if (!home) {
@@ -37,7 +37,7 @@ export async function generateMetadata({ params }) {
         openGraph: {
             title: `${home.title} - Premium ${home.type || 'Property'} | Area36`,
             description: `Experience luxury at ${home.title} in ${home.location}. Book this exceptional property with Area36 for an unforgettable stay.`,
-            url: `https://area36.com/${slug}`,
+            url: `https://area36.az/${slug}`,
             images: home.images?.length > 0 ? [
                 {
                     url: home.images[0],
@@ -55,13 +55,13 @@ export async function generateMetadata({ params }) {
             ],
         },
         alternates: {
-            canonical: `https://area36.com/${slug}`,
+            canonical: `https://area36.az/${slug}`,
         },
     };
 }
 
-export default async function HomeDetailPage({ params }) {
-    const { slug } = await params;
+export default function HomeDetailPage({ params }) {
+    const { slug } = params;
     const home = homes.find(h => h.slug === slug);
 
     if (!home) return notFound();
@@ -131,9 +131,10 @@ export default async function HomeDetailPage({ params }) {
                                 </div>
                             </div>
                             <Link
-                                href="https://wa.me/994504271987?text=Hello, I would like to get more information about this house."
+                                href="https://wa.me/994552904045?text=Hello, I would like to get more information about this house."
                                 target="_blank"
-                                rel="noopener noreferrer">
+                                rel="noopener noreferrer"
+                            >
                                 <button className="cursor-pointer w-full rounded-lg bg-gray-900 py-3.5 px-7 text-sm font-bold uppercase text-white shadow-md hover:shadow-lg transition-all">
                                     Contact
                                 </button>

@@ -24,7 +24,7 @@ export default function Header() {
                                     alt="Area36 Logo"
                                     width={65}
                                     height={65}
-                                    priority    
+                                    priority
                                     className="block"
                                 />
                             </figure>
@@ -36,7 +36,7 @@ export default function Header() {
                         </Link>
                     </div>
                     <Link
-                        href="https://wa.me/994504271987?text=Hello, I would like to get more information about this house."
+                        href="https://wa.me/994552904045?text=Hi, I'm interested in renting a place. Can you assist me with the options?"
                         target="_blank"
                         rel="noopener noreferrer">
                         <button className="cursor-pointer w-full rounded-lg py-3.5 text-sm font-semibold hover:text-white/75 uppercase text-white transition-all">
@@ -45,7 +45,6 @@ export default function Header() {
                     </Link>
                 </div>
             </header>
-
             <StickyHeader />
         </>
     );

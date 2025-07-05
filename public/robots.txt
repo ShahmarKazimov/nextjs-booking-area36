@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://area36.az
+
+# Sitemaps
+Sitemap: https://area36.az/sitemap.xml
