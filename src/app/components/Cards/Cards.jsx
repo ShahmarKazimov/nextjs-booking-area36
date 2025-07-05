@@ -11,44 +11,60 @@ export const metadata = {
         title: "Area36",
         description:
             "Explore stunning vacation homes like Qafqaz Falcon Chalet, Qafqaz Family Chalet, Qafqaz Luxury Chalet, Qafqaz Milano Deluxe, Qafqaz Modern Harmony, Qafqaz Rolling Bungalow, Qafqaz Royal Chalet, Qafqaz Wooden Chalet in Gabala, Azerbaijan.",
-        url: "https://yourdomain.com/", // TODO: After deployment, update this URL
+        url: "https://area36.az/",
         siteName: "Area36",
         images: [
             {
-                url: "http://localhost:3000/images/blog/Qafqaz%20Falcon%20Chalet/Qafqaz%20Falcon%20Chalet.jpg",
-                alt: "Qafqaz Falcon Chalet"
+                url: "https://area36.az/images/blog/Qafqaz%20Falcon%20Chalet/Qafqaz%20Falcon%20Chalet.jpg",
+                alt: "Qafqaz Falcon Chalet",
+                width: 1200,
+                height: 630,
             },
             {
-                url: "http://localhost:3000/images/blog/Qafqaz%20Family%20Chalet/Qafqaz%20Family%20Chalet-1.jpg",
-                alt: "Qafqaz Family Chalet"
+                url: "https://area36.az/images/blog/Qafqaz%20Family%20Chalet/Qafqaz%20Family%20Chalet-1.jpg",
+                alt: "Qafqaz Family Chalet",
+                width: 1200,
+                height: 630,
             },
             {
-                url: "http://localhost:3000/images/blog/Qafqaz%20Luxury%20Chalet/Qafqaz%20Luxury%20Chalet.jpg",
-                alt: "Qafqaz Luxury Chalet"
+                url: "https://area36.az/images/blog/Qafqaz%20Luxury%20Chalet/Qafqaz%20Luxury%20Chalet.jpg",
+                alt: "Qafqaz Luxury Chalet",
+                width: 1200,
+                height: 630,
             },
             {
-                url: "http://localhost:3000/images/blog/Qafqaz%20Milano%20Deluxe/Qafqaz%20Milano%20Deluxe.jpg",
-                alt: "Qafqaz Milano Deluxe"
+                url: "https://area36.az/images/blog/Qafqaz%20Milano%20Deluxe/Qafqaz%20Milano%20Deluxe.jpg",
+                alt: "Qafqaz Milano Deluxe",
+                width: 1200,
+                height: 630,
             },
             {
-                url: "http://localhost:3000/images/blog/Qafqaz%20Modern%20Harmony/Qafqaz%20Modern%20Harmony.jpg",
-                alt: "Qafqaz Modern Harmony"
+                url: "https://area36.az/images/blog/Qafqaz%20Modern%20Harmony/Qafqaz%20Modern%20Harmony.jpg",
+                alt: "Qafqaz Modern Harmony",
+                width: 1200,
+                height: 630,
             },
             {
-                url: "http://localhost:3000/images/blog/Qafqaz%20Rolling%20Bungalow/Qafqaz%20Rolling%20Bungalow.jpg",
-                alt: "Qafqaz Rolling Bungalow"
+                url: "https://area36.az/images/blog/Qafqaz%20Rolling%20Bungalow/Qafqaz%20Rolling%20Bungalow.jpg",
+                alt: "Qafqaz Rolling Bungalow",
+                width: 1200,
+                height: 630,
             },
             {
-                url: "http://localhost:3000/images/blog/Qafqaz%20Royal%20Chalet/Qafqaz%20Royal%20Chalet.jpg",
-                alt: "Qafqaz Royal Chalet"
+                url: "https://area36.az/images/blog/Qafqaz%20Royal%20Chalet/Qafqaz%20Royal%20Chalet.jpg",
+                alt: "Qafqaz Royal Chalet",
+                width: 1200,
+                height: 630,
             },
             {
-                url: "http://localhost:3000/images/blog/Qafqaz%20Wooden%20Chalet/Qafqaz%20Wooden%20Chalet.jpg",
-                alt: "Qafqaz Wooden Chalet"
-            }
+                url: "https://area36.az/images/blog/Qafqaz%20Wooden%20Chalet/Qafqaz%20Wooden%20Chalet.jpg",
+                alt: "Qafqaz Wooden Chalet",
+                width: 1200,
+                height: 630,
+            },
         ],
-        type: "website"
-    }
+        type: "website",
+    },
 };
 
 export default function Cards() {
@@ -63,11 +79,12 @@ export default function Cards() {
                         id="featured-properties-title"
                         className="text-2xl md:text-3xl font-bold text-black relative"
                     >
-                        Featured Properties
+                        Our Favorite Homes
                     </h1>
                     <p className="text-gray-600 text-base max-w-2xl mx-auto mt-4">
-                        Explore a curated list of premium homes with top-notch amenities, modern interiors,
-                        and prime locations. Your dream home is just a click away.
+                        Explore a curated list of premium homes with top-notch amenities,
+                        modern interiors, and prime locations. Your dream home is just a
+                        click away.
                     </p>
                 </header>
 
@@ -85,5 +102,5 @@ export default function Cards() {
                 </main>
             </div>
         </section>
-    )
+    );
 }

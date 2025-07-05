@@ -4,25 +4,31 @@ import HeroSection from "./components/HeroSection/HeroSection";
 
 // Homepage specific metadata
 export const metadata = {
-  title: 'Area36 – Luxury Resorts & Premium Vacation Rentals Worldwide',
-  description: 'Book luxury cabins, exclusive chalets, and premium villas with Area36. Discover handpicked accommodations with stunning views and world-class amenities for your perfect getaway with Area36.',
+  title: 'Area36 – Luxury Resorts & Premium Vacation Rentals',
+  description: 'Book luxury cabins, exclusive chalets, and premium villas worldwide with Area36. Discover handpicked accommodations with stunning views and world-class amenities for your perfect getaway.',
   keywords: [
     'Area36',
     'Area 36',
-    'Area36 booking',
+    'area 36',
+    'area36',
     'Area36 luxury resorts',
-    'luxury vacation rentals',
-    'premium cabins for rent',
+    'Area36 villa rental',
+    'luxury resorts',
+    'vacation rentals',
+    'premium cabins',
     'exclusive chalets',
-    'luxury villa bookings'
+    'luxury villas',
+    'luxury travel',
+    'premium getaways',
+    'luxury stays'
   ],
   openGraph: {
     title: 'Area36 – Book Luxury Resorts & Premium Vacation Rentals',
-    description: 'Area36 offers handpicked luxury accommodations worldwide. From mountain chalets to lakeside cabins, find your perfect premium getaway with Area36.',
-    url: 'https://area36.com',
+    description: 'Area36 offers handpicked luxury accommodations worldwide. From mountain chalets to lakeside cabins, find your perfect premium getaway.',
+    url: 'https://area36.az',
     images: [
       {
-        url: '/homepage-og.jpg',
+        url: '/images/ui/area-image-hero.webp',
         width: 1200,
         height: 630,
         alt: 'Area36 luxury resort destinations and premium vacation rentals',
@@ -30,6 +36,7 @@ export const metadata = {
     ],
   },
 };
+
 
 export default function Home() {
   return (

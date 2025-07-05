@@ -6,7 +6,7 @@ const homes = [
         slug: "qafqaz-falcon-chalet",
         type: "chalet",
         description: "A stylish and cozy chalet with 3 bedrooms and 3 bathrooms. Ideal for a peaceful and relaxing escape in the heart of nature.",
-        rating: 5.0,
+        rating: 10,
         location: "Gabala, Azerbaijan",
         owner: "Ramil Mammadov",
         images: [
@@ -29,7 +29,7 @@ const homes = [
         type: "chalet",
         title: "Qafqaz Family Chalet",
         description: "A cozy chalet with 3 bedrooms, 2 bathrooms, and a heated pool. Perfect for a relaxing getaway in a tranquil natural setting.",
-        rating: 4.8,
+        rating: 9.8,
         location: "Gabala, Azerbaijan",
         owner: "Ramil Mammadov",
         images: [
@@ -51,7 +51,7 @@ const homes = [
         type: "chalet",
         title: "Qafqaz Luxury Chalet",
         description: "A spacious chalet with 5 bedrooms and 4 bathrooms. Features both indoor and outdoor pools for a comfortable and enjoyable stay.",
-        rating: 4.9,
+        rating: 9.9,
         location: "Gabala, Azerbaijan",
         owner: "Ramil Mammadov",
         images: [
@@ -73,7 +73,7 @@ const homes = [
         slug: "qafqaz-milano-deluxe",
         title: "Qafqaz Milano Deluxe",
         description: "This home features 4 bedrooms and 2 bathrooms, offering comfortable accommodation for up to 9 guests.",
-        rating: 4.9,
+        rating: 9.9,
         location: "Gabala, Azerbaijan",
         owner: "Ramil Mammadov",
         images: [
@@ -93,7 +93,7 @@ const homes = [
         slug: "qafqaz-modern-harmony",
         title: "Qafqaz Modern Harmony",
         description: "Comfortable chalet with 4 bedrooms and 2 bathrooms. Perfect for families or groups looking for a relaxing stay.",
-        rating: 4.9,
+        rating: 9.9,
         location: "Gabala, Azerbaijan",
         owner: "Ramil Mammadov",
         images: [
@@ -113,7 +113,7 @@ const homes = [
         slug: "qafqaz-rolling-bungalow",
         title: "Qafqaz Rolling Bungalow",
         description: "Spacious and comfortable chalet with 4 bedrooms and 4 bathrooms. Features both indoor and outdoor pools for a unique experience.",
-        rating: 4.9,
+        rating: 9.9,
         location: "Gabala, Azerbaijan",
         owner: "Ramil Mammadov",
         images: [
@@ -136,7 +136,7 @@ const homes = [
         type: "chalet",
         title: "Qafqaz Royal Chalet",
         description: "A stylish chalet with 4 bedrooms, 3 bathrooms, a large pool, terrace, and stunning views. Perfect for up to 8 guests seeking comfort and relaxation.",
-        rating: 4.9,
+        rating: 9.8,
         location: "Gabala, Azerbaijan",
         owner: "Ramil Mammadov",
         images: [
@@ -162,7 +162,7 @@ const homes = [
         type: "chalet",
         title: "Qafqaz Wooden Chalet",
         description: "A charming wooden chalet with 3 bedrooms and 2 bathrooms. Perfect for a cozy stay in the mountains.",
-        rating: 4.8,
+        rating: 9.6,
         location: "Gabala, Azerbaijan",
         owner: "Ramil Mammadov",
         images: [
@@ -176,6 +176,40 @@ const homes = [
             "../images/blog/Qafqaz Wooden Chalet/Qafqaz Wooden Chalet-7.jpg",
             "../images/blog/Qafqaz Wooden Chalet/Qafqaz Wooden Chalet-8.jpg",
             "../images/blog/Qafqaz Wooden Chalet/Qafqaz Wooden Chalet-9.jpg"
+        ]
+    },
+    {
+        id: "home-9",
+        slug: "qafqaz-magnolia-harmony",
+        type: "chalet",
+        title: "Qafqaz Magnolia Harmony",
+        description: "Spacious chalet offering 3 bedrooms and 1 bathroom, plus a pool to unwind after a day of exploring.",
+        rating: 10,
+        location: "Gabala, Azerbaijan",
+        owner: "Ramil Mammadov",
+        images: [
+            "../images/blog/Qafqaz Magnolia Harmony/Qafqaz Magnolia Harmony.jpg",
+            "../images/blog/Qafqaz Magnolia Harmony/Qafqaz Magnolia Harmony1.jpg",
+            "../images/blog/Qafqaz Magnolia Harmony/Qafqaz Magnolia Harmony2.jpg",
+            "../images/blog/Qafqaz Magnolia Harmony/Qafqaz Magnolia Harmony3.jpg",
+            "../images/blog/Qafqaz Magnolia Harmony/Qafqaz Magnolia Harmony4.jpg",
+            "../images/blog/Qafqaz Magnolia Harmony/Qafqaz Magnolia Harmony5.jpg",
+            "../images/blog/Qafqaz Magnolia Harmony/Qafqaz Magnolia Harmony6.jpg",
+            "../images/blog/Qafqaz Magnolia Harmony/Qafqaz Magnolia Harmony7.jpg",
+            "../images/blog/Qafqaz Magnolia Harmony/Qafqaz Magnolia Harmony8.jpg",
+            "../images/blog/Qafqaz Magnolia Harmony/Qafqaz Magnolia Harmony9.jpg",
+            "../images/blog/Qafqaz Magnolia Harmony/Qafqaz Magnolia Harmony10.jpg",
+            "../images/blog/Qafqaz Magnolia Harmony/Qafqaz Magnolia Harmony11.jpg",
+            "../images/blog/Qafqaz Magnolia Harmony/Qafqaz Magnolia Harmony12.jpg",
+            "../images/blog/Qafqaz Magnolia Harmony/Qafqaz Magnolia Harmony13.jpg",
+            "../images/blog/Qafqaz Magnolia Harmony/Qafqaz Magnolia Harmony14.jpg",
+            "../images/blog/Qafqaz Magnolia Harmony/Qafqaz Magnolia Harmony15.jpg",
+            "../images/blog/Qafqaz Magnolia Harmony/Qafqaz Magnolia Harmony16.jpg",
+            "../images/blog/Qafqaz Magnolia Harmony/Qafqaz Magnolia Harmony17.jpg",
+            "../images/blog/Qafqaz Magnolia Harmony/Qafqaz Magnolia Harmony18.jpg",
+            "../images/blog/Qafqaz Magnolia Harmony/Qafqaz Magnolia Harmony19.jpg",
+            "../images/blog/Qafqaz Magnolia Harmony/Qafqaz Magnolia Harmony20.jpg",
+            "../images/blog/Qafqaz Magnolia Harmony/Qafqaz Magnolia Harmony21.jpg"
         ]
     }
 ];

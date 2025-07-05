@@ -15,13 +15,13 @@ export default async function Footer() {
         "@type": "Organization",
         "name": "Area36",
         "description": "Premium travel destinations and adventure experiences worldwide",
-        "url": "https://area36.com",
-        "logo": "https://area36.com/images/ui/logo-area.svg",
+        "url": "https://area36.az/",
+        "logo": "https://area36.az/images/ui/logo-area.svg",
         "contactPoint": {
             "@type": "ContactPoint",
-            "telephone": "+994504271987",
+            "telephone": "+994552904045",
             "contactType": "customer support",
-            "email": "info@area36.com"
+            "email": "info@area36.az"
         },
         "address": {
             "@type": "PostalAddress",
@@ -35,7 +35,8 @@ export default async function Footer() {
             "https://twitter.com/area36",
             "https://youtube.com/area36"
         ]
-    };
+    }
+
 
 
     return (
