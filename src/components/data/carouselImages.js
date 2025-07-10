@@ -13,6 +13,7 @@ export const carouselImages = [
         alt: "Qafqaz Royal Chalet",
         location: "Gabala, Azerbaijan"
     },
+
     {
         src: image2,
         title: "Qafqaz Family Chalet",
