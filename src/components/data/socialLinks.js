@@ -11,6 +11,7 @@ export const socialLinks = [
             </svg>
         )
     },
+    
     {
         name: "TikTok",
         href: "https://www.tiktok.com/@area36.az?_t=ZS-8xvBLCeiLxK&_r=1",
