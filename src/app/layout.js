@@ -22,7 +22,7 @@ export const metadata = {
   openGraph: {
     title: 'Area36 – Luxury Resorts & Premium Travel Destinations Worldwide',
     icons: {
-      icon: '/favicon.ico',
+      icon: 'https://area36.az/favicon.ico',
     },
     description:
       "Area36 offers curated collection of luxury resorts, premium cabins, and exclusive villas. Book unforgettable stays at the world's most stunning destinations with Area36.",
