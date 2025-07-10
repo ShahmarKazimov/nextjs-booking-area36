@@ -1,4 +1,4 @@
-import image1 from '../../../public/images/blog/Qafqaz Royal Chalet/Qafqaz Royal Chalet.webp';
+import image1 from '../../../public/images/blog/Qafqaz Royal Chalet/Qafqaz Royal Chalet-15.webp';
 import image2 from '../../../public/images/blog/Qafqaz Family Chalet/Qafqaz Family Chalet.webp';
 import image3 from '../../../public/images/blog/Qafqaz Golden Loft/Qafqaz Golden Loft.webp';
 import image4 from '../../../public/images/blog/Qafqaz Milano Deluxe/Qafqaz Milano Deluxe.webp';
@@ -13,6 +13,7 @@ export const carouselImages = [
         alt: "Qafqaz Royal Chalet",
         location: "Gabala, Azerbaijan"
     },
+
     {
         src: image2,
         title: "Qafqaz Family Chalet",
@@ -23,10 +24,10 @@ export const carouselImages = [
     },
     {
         src: image3,
-        title: "Qafqaz Rolling Bungalow",
-        description: "4 bedrooms, 4 bathrooms, with indoor and outdoor pools – perfect for a luxurious stay.",
+        title: "Qafqaz Golden Loft",
+        description: "Charming chalet with 2 spacious bedrooms, 2 modern bathrooms, and a welcoming living area for your comfort.",
         badge: "Nature",
-        alt: "Qafqaz Rolling Bungalow",
+        alt: "Qafqaz Golden Loft",
         location: "Gabala, Azerbaijan"
     },
     {
