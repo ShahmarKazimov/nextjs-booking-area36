@@ -1,6 +1,6 @@
-import Carousel from "./components/ui/Carousel/Carousel";
-import Cards from "./components/Cards/Cards";
-import HeroSection from "./components/HeroSection/HeroSection";
+import Carousel from "../components/ui/Carousel/Carousel";
+import Cards from "../components/Cards/Cards";
+import HeroSection from "../components/HeroSection/HeroSection";
 
 // Homepage specific metadata
 export const metadata = {
@@ -28,7 +28,7 @@ export const metadata = {
     url: 'https://area36.az',
     images: [
       {
-        url: '/images/ui/area-image-hero.webp',
+        url: 'https://area36.az/images/ui/area-image-hero.webp',
         width: 1200,
         height: 630,
         alt: 'Area36 luxury resort destinations and premium vacation rentals',
