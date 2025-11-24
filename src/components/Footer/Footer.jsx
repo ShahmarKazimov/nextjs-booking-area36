@@ -85,7 +85,7 @@ export default async function Footer() {
                                     className="hover:text-blue-400 transition-colors"
                                     aria-label="Email us at info@area36.com"
                                 >
-                                    Gabaladeluxe@gmail.com
+                                    gabaladeluxe@gmail.com
                                 </Link>
                             </div>
                             <div className="flex items-center">

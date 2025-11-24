@@ -12,7 +12,7 @@ export function generateStaticParams() {
 
 // Dynamic metadata for each home
 export async function generateMetadata({ params }) {
-    const { slug } = params;
+    const { slug } = await params;
     const home = homes.find(h => h.slug === slug);
 
     if (!home) {
@@ -60,8 +60,8 @@ export async function generateMetadata({ params }) {
     };
 }
 
-export default function HomeDetailPage({ params }) {
-    const { slug } = params;
+export default async function HomeDetailPage({ params }) {
+    const { slug } = await params;
     const home = homes.find(h => h.slug === slug);
 
     if (!home) return notFound();
@@ -131,7 +131,7 @@ export default function HomeDetailPage({ params }) {
                                 </div>
                             </div>
                             <Link
-                                href="https://wa.me/994552904045?text=Hello, I would like to get more information about this house."
+                                href={`https://wa.me/994552904045?text=Hello, I would like to get more information about ${encodeURIComponent(home.title)}.`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
