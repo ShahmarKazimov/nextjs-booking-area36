@@ -112,7 +112,7 @@ export default function HomeDetailPage({ params }) {
                     </div>
 
                     <div className="lg:col-span-1">
-                        <div className="bg-white rounded-2xl shadow-sm px-5 py-[1rem] sticky top-8">
+                        <div className="bg-white rounded-2xl shadow-sm px-5 py-4 sticky top-8">
                             <h3 className="text-lg font-bold text-gray-900 mb-4">Property Details</h3>
                             <div className="mb-[0.6rem]">
                                 <div className="flex justify-between py-2 border-b border-gray-100">
