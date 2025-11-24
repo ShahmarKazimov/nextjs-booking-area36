@@ -6,11 +6,11 @@ import { heroBackgroundImage } from '../data/carouselImages';
 const HeroSection = () => {
     return (
         <section
-            className="relative sm:-top-[5.1rem] -top-[9rem] left-0 w-full h-[550px] sm:h-[720px] z-[-1] bg-black"
+            className="relative sm:-top-[5.1rem] -top-[9rem] left-0 w-full h-[550px] sm:h-[737px] z-[-1] bg-black"
             aria-label="Hero Section"
         >
             <div
-                className="relative w-full h-[620px] sm:h-[720px] bg-black"
+                className="relative w-full h-[620px] sm:h-[735px] bg-black"
                 style={{ backgroundColor: '#000000' }}
             >
                 <Image

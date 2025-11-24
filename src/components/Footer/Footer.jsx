@@ -57,16 +57,13 @@ export default async function Footer() {
                             title="Area36 - Premium Travel Destinations"
                         >
                             <Image
-                                src="/images/ui/area-logo.svg"
+                                src="/images/ui/logo.svg"
                                 alt="Area36 Logo"
-                                width={65}
-                                height={65}
+                                width={120}
+                                height={60}
                                 priority
-                                className="w-[65px] h-[65px]"
+                                className="w-[120px] h-[60px]"
                             />
-                            <div className="text-[2rem] font-bold text-white">
-                                A<span className="font-normal">rea<span className="font-medium text-blue-500">36</span></span>
-                            </div>
                         </Link>
 
                         <p className="text-gray-300 max-w-xs leading-relaxed">
