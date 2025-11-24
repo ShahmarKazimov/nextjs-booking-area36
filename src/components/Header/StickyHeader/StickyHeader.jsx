@@ -51,7 +51,7 @@ export default function StickyHeader() {
                     </Link>
                 </div>
                 <Link
-                    href="https://wa.me/994504271987?text=Hello, I would like to get more information about this house."
+                    href="https://wa.me/994552904045?text=Hi, I'm interested in renting a place. Can you assist me with the options?"
                     target="_blank"
                     rel="noopener noreferrer">
                     <button className="cursor-pointer w-full rounded-lg py-3.5 text-md font-semibold hover:text-white/75 uppercase text-white transition-all">

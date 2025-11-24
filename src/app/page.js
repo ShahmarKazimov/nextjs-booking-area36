@@ -4,7 +4,7 @@ import HeroSection from "../components/HeroSection/HeroSection";
 
 // Homepage specific metadata
 export const metadata = {
-  title: 'Area36 – Luxury Resorts & Premium Vacation Rentals',
+  title: 'Area36 – Luxury Chalets',
   description: 'Book luxury cabins, exclusive chalets, and premium villas worldwide with Area36. Discover handpicked accommodations with stunning views and world-class amenities for your perfect getaway.',
   keywords: [
     'Area36',
@@ -31,7 +31,7 @@ export const metadata = {
         url: 'https://area36.az/images/ui/area-image-hero.webp',
         width: 1200,
         height: 630,
-        alt: 'Area36 luxury resort destinations and premium vacation rentals',
+        alt: 'Area36 luxury chalet',
       },
     ],
   },

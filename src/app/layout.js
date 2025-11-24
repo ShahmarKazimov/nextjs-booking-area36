@@ -2,6 +2,8 @@ import { Geist } from "next/font/google";
 import "./globals.css";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
+import Head from 'next/head';
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,10 +19,10 @@ export const metadata = {
   description:
     "Area36 offers luxury cabins, chalets, and villas for rent worldwide. Experience premium accommodations with breathtaking views and unforgettable stays with Area36's curated destinations.",
   keywords: [
-    'Area36,Area 36,area 36,area36,Area36 luxury resorts,Area36 villa rental,Area36 azerbaijan,chalet bookings,luxury travel,Qafqaz Falcon Chalet,Qafqaz Family Chalet,Qafqaz Luxury Chalet,Qafqaz Milano Deluxe,Qafqaz Modern Harmony, Qafqaz Rolling Bungalow, Qafqaz Royal Chalet, Qafqaz Wooden Chalet,Qafqaz Magnolia Harmony,Qafqaz Golden Loft, real estate, villas, cabins, rentals, vacation homes',
+    'Area36,Area 36,area 36,area36,Area36 luxury resorts,Area36 villa rental,Area36 azerbaijan,chalet bookings,luxury travel,Area36 Falcon Chalet,Area36 Family Chalet,Area36 Luxury Chalet,Area36 Milano Deluxe,Area36 Modern Harmony, Area36 Rolling Bungalow, Area36 Royal Chalet, Area36 Wooden Chalet,Area36 Magnolia Harmony,Area36 Golden Loft,Qafqaz Falcon Chalet,Qafqaz Family Chalet,Qafqaz Luxury Chalet,Qafqaz Milano Deluxe,Qafqaz Modern Harmony, Qafqaz Rolling Bungalow, Qafqaz Royal Chalet, Qafqaz Wooden Chalet,Qafqaz Magnolia Harmony,Qafqaz Golden Loft, real estate, villas, cabins, rentals, vacation homes',
   ],
   openGraph: {
-    title: 'Area36 – Luxury Resorts & Premium Travel Destinations Worldwide',
+    title: 'Area36 Luxury Chalets',
     icons: {
       icon: 'https://area36.az/favicon.ico',
     },
@@ -37,62 +39,62 @@ export const metadata = {
         alt: 'Area36 luxury resorts and travel destinations',
       },
       {
-        url: "https://area36.az/images/blog/Qafqaz%20Falcon%20Chalet/Qafqaz%20Falcon%20Chalet.webp",
-        alt: "Qafqaz Falcon Chalet",
+        url: "https://area36.az/images/blog/Area36%20Falcon%20Chalet/Area36%20Falcon%20Chalet.webp",
+        alt: "Area36 Falcon Chalet",
         width: 1200,
         height: 630,
       },
       {
-        url: "https://area36.az/images/blog/Qafqaz%20Family%20Chalet/Qafqaz%20Family%20Chalet-1.webp",
-        alt: "Qafqaz Family Chalet",
+        url: "https://area36.az/images/blog/Area36%20Family%20Chalet/Area36%20Family%20Chalet-1.webp",
+        alt: "Area36 Family Chalet",
         width: 1200,
         height: 630,
       },
       {
-        url: "https://area36.az/images/blog/Qafqaz%20Luxury%20Chalet/Qafqaz%20Luxury%20Chalet.webp",
-        alt: "Qafqaz Luxury Chalet",
+        url: "https://area36.az/images/blog/Area36%20Luxury%20Chalet/Area36%20Luxury%20Chalet.webp",
+        alt: "Area36 Luxury Chalet",
         width: 1200,
         height: 630,
       },
       {
-        url: "https://area36.az/images/blog/Qafqaz%20Milano%20Deluxe/Qafqaz%20Milano%20Deluxe.webp",
-        alt: "Qafqaz Milano Deluxe",
+        url: "https://area36.az/images/blog/Area36%20Milano%20Deluxe/Area36%20Milano%20Deluxe.webp",
+        alt: "Area36 Milano Deluxe",
         width: 1200,
         height: 630,
       },
       {
-        url: "https://area36.az/images/blog/Qafqaz%20Modern%20Harmony/Qafqaz%20Modern%20Harmony.webp",
-        alt: "Qafqaz Modern Harmony",
+        url: "https://area36.az/images/blog/Area36%20Modern%20Harmony/Area36%20Modern%20Harmony.webp",
+        alt: "Area36 Modern Harmony",
         width: 1200,
         height: 630,
       },
       {
-        url: "https://area36.az/images/blog/Qafqaz%20Rolling%20Bungalow/Qafqaz%20Rolling%20Bungalow.webp",
-        alt: "Qafqaz Rolling Bungalow",
+        url: "https://area36.az/images/blog/Area36%20Rolling%20Bungalow/Area36%20Rolling%20Bungalow.webp",
+        alt: "Area36 Rolling Bungalow",
         width: 1200,
         height: 630,
       },
       {
-        url: "https://area36.az/images/blog/Qafqaz%20Royal%20Chalet/Qafqaz%20Royal%20Chalet.webp",
-        alt: "Qafqaz Royal Chalet",
+        url: "https://area36.az/images/blog/Area36%20Royal%20Chalet/Area36%20Royal%20Chalet.webp",
+        alt: "Area36 Royal Chalet",
         width: 1200,
         height: 630,
       },
       {
-        url: "https://area36.az/images/blog/Qafqaz%20Wooden%20Chalet/Qafqaz%20Wooden%20Chalet.webp",
-        alt: "Qafqaz Wooden Chalet",
+        url: "https://area36.az/images/blog/Area36%20Wooden%20Chalet/Area36%20Wooden%20Chalet.webp",
+        alt: "Area36 Wooden Chalet",
         width: 1200,
         height: 630,
       },
       {
-        url: "https://area36.az/images/blog/Qafqaz%20Magnolia%20Harmony/Qafqaz%20Magnolia%20Harmony.webp",
-        alt: "Qafqaz Magnolia Harmony",
+        url: "https://area36.az/images/blog/Area36%20Magnolia%20Harmony/Area36%20Magnolia%20Harmony.webp",
+        alt: "Area36 Magnolia Harmony",
         width: 1200,
         height: 630,
       },
       {
-        url: "https://area36.az/images/blog/Qafqaz%20Golden%20Loft/Qafqaz%20Golden%20Loft.webp",
-        alt: "Qafqaz Golden Loft",
+        url: "https://area36.az/images/blog/Area36%20Golden%20Loft/Area36%20Golden%20Loft.webp",
+        alt: "Area36 Golden Loft",
         width: 1200,
         height: 630,
       },
@@ -110,6 +112,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <Head>
+        <meta
+          name="google-site-verification"
+          content="AR5g26tkAKJNaN2348DJhQ3LgguJAWJcY4ED1JgeyTU"
+        />
+      </Head>
       <body className={`${geistSans.variable} antialiased text-white`}>
         <Header />
         <main role="main">{children}</main>
