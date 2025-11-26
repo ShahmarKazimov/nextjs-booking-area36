@@ -2,8 +2,8 @@ import React from 'react';
 import DestinationCarousel from './DestinationCarousel';
 import { carouselImages } from '../../data/carouselImages';
 import '../../../../src/app/globals.css';
-import areaCover2 from "../../../../public/images/ui/area36.webp";
-import areaCover from "../../../../public/images/ui/area36-2.webp";
+import areaCover2 from "../../../../public/images/ui/transport-first.webp";
+import areaCover from "../../../../public/images/ui/transport-second.webp";
 import Image from 'next/image';
 
 const Carousel = () => {

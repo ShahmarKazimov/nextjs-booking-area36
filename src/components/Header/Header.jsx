@@ -10,7 +10,7 @@ export default function Header() {
                 className="relative w-full bg-transparent text-white transition-all duration-300 ease-in-out z-50"
                 role="banner"
             >
-                <div className="flex items-center justify-between py-2 pl-[0.7rem] pr-[1.1rem] xl:px-10 min-h-[81px]">
+                <div className="flex items-center justify-between max-w-7xl mx-auto py-2 px-4 xl:px-0 min-h-[81px]">
                     <div className="flex items-center group">
                         <Link
                             href="/"

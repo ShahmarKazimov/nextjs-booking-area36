@@ -6,6 +6,47 @@ import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 export default function HomeDetails({ images = [], title = '', description = '' }) {
     const [selectedImage, setSelectedImage] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [isLoading, setIsLoading] = useState(true);
+    const [touchStart, setTouchStart] = useState(0);
+    const [touchEnd, setTouchEnd] = useState(0);
+    const thumbnailRefs = useState([])[0];
+
+    useEffect(() => {
+        if (images.length === 0) return;
+
+        let loadedCount = 0;
+        const totalImages = Math.min(images.length, 5);
+
+        images.slice(0, 5).forEach((src) => {
+            const img = new Image();
+            img.src = src;
+            img.onload = () => {
+                loadedCount++;
+                if (loadedCount === totalImages) {
+                    setIsLoading(false);
+                }
+            };
+            img.onerror = () => {
+                loadedCount++;
+                if (loadedCount === totalImages) {
+                    setIsLoading(false);
+                }
+            };
+        });
+    }, [images]);
+
+    useEffect(() => {
+        if (!selectedImage) return;
+
+        const handleKeyPress = (e) => {
+            if (e.key === 'Escape') closeModal();
+            if (e.key === 'ArrowRight') navigate('next');
+            if (e.key === 'ArrowLeft') navigate('prev');
+        };
+
+        window.addEventListener('keydown', handleKeyPress);
+        return () => window.removeEventListener('keydown', handleKeyPress);
+    }, [selectedImage, currentIndex]);
 
     const openModal = (index) => {
         setCurrentIndex(index);
@@ -20,6 +61,15 @@ export default function HomeDetails({ images = [], title = '', description = '' 
             : (currentIndex - 1 + images.length) % images.length;
         setCurrentIndex(newIndex);
         setSelectedImage(images[newIndex]);
+
+        // Scroll to active thumbnail
+        if (thumbnailRefs[newIndex]) {
+            thumbnailRefs[newIndex].scrollIntoView({
+                behavior: 'smooth',
+                block: 'nearest',
+                inline: 'center'
+            });
+        }
     };
 
     const handleKeyDown = (e) => {
@@ -28,15 +78,51 @@ export default function HomeDetails({ images = [], title = '', description = '' 
         if (e.key === 'ArrowLeft') navigate('prev');
     };
 
-    // Eğer images boşsa hiçbir şey render etme
+    const handleTouchStart = (e) => {
+        setTouchStart(e.touches[0].clientX);
+    };
+
+    const handleTouchMove = (e) => {
+        setTouchEnd(e.touches[0].clientX);
+    };
+
+    const handleTouchEnd = () => {
+        if (!touchStart || !touchEnd) return;
+
+        const distance = touchStart - touchEnd;
+        const minSwipeDistance = 50;
+
+        if (distance > minSwipeDistance) {
+            navigate('next');
+        } else if (distance < -minSwipeDistance) {
+            navigate('prev');
+        }
+
+        setTouchStart(0);
+        setTouchEnd(0);
+    };
+
     if (!images || images.length === 0) {
         return null;
+    }
+
+    if (isLoading) {
+        return (
+            <div className="flex items-center justify-center h-[29rem] mb-8">
+                <div className="relative flex flex-col items-center">
+                    <div className="w-16 h-16 border-4 border-gray-200 border-t-blue-500 rounded-full animate-spin"></div>
+                    <div className="mt-4 text-center">
+                        <p className="text-lg font-medium text-gray-600">Loading images...</p>
+                    </div>
+                </div>
+            </div>
+        );
     }
 
     return (
         <>
             {/* Grid Layout */}
-            <section 
+            <section
                 className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-8"
                 aria-label={`${title} photo gallery`}
             >
@@ -44,7 +130,7 @@ export default function HomeDetails({ images = [], title = '', description = '' 
                     <img
                         src={images[0]}
                         alt={`${title} - main photo${description ? `, ${description}` : ''}`}
-                        className="w-full h-full md:h-[29rem] object-cover rounded-xl cursor-pointer hover:opacity-90 transition-opacity shadow-lg"
+                        className="w-full h-full md:h-[29rem] object-cover rounded-xl cursor-pointer hover:opacity-90 duration-200 transition-opacity shadow-lg"
                         onClick={() => openModal(0)}
                         loading="eager"
                         width="600"
@@ -57,14 +143,14 @@ export default function HomeDetails({ images = [], title = '', description = '' 
                         <img
                             src={img}
                             alt={`${title} - interior photo ${i + 2}`}
-                            className="w-full h-full md:h-56 object-cover rounded-xl cursor-pointer hover:opacity-90 transition-opacity shadow-md"
+                            className="w-full h-full md:h-56 object-cover rounded-xl cursor-pointer hover:opacity-90 duration-200 transition-opacity shadow-md"
                             onClick={() => openModal(i + 1)}
                             loading="lazy"
                             width="300"
                             height="224"
                         />
                         {i === 3 && images.length > 5 && (
-                            <div 
+                            <div
                                 className="absolute inset-0 bg-black/50 rounded-xl flex items-center justify-center cursor-pointer hover:bg-black/40 transition-colors"
                                 onClick={() => openModal(i + 1)}
                                 role="button"
@@ -84,61 +170,69 @@ export default function HomeDetails({ images = [], title = '', description = '' 
                 <div
                     className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
                     onClick={closeModal}
-                    onKeyDown={handleKeyDown}
-                    tabIndex={0}
                     role="dialog"
                     aria-modal="true"
                     aria-label="Image viewer"
                 >
-                    <button 
-                        onClick={closeModal} 
-                        className="absolute top-4 right-4 text-white hover:text-gray-300 z-10 p-2"
+                    <button
+                        onClick={closeModal}
+                        className="absolute cursor-pointer top-4 right-4 text-white hover:text-gray-300 z-10 p-2"
                         aria-label="Close image viewer"
                     >
                         <X size={32} />
                     </button>
 
-                    <button 
+                    <button
                         onClick={(e) => { e.stopPropagation(); navigate('prev'); }}
-                        className="absolute left-4 text-white hover:text-gray-300 z-10 p-2"
+                        className="absolute cursor-pointer left-4 text-white hover:text-gray-300 z-10 p-2"
                         aria-label="Previous image"
                     >
                         <ChevronLeft size={48} />
                     </button>
 
-                    <div className="max-w-4xl max-h-full flex items-center justify-center">
+                    <div
+                        className="max-w-4xl max-h-full flex items-center justify-center"
+                        onTouchStart={handleTouchStart}
+                        onTouchMove={handleTouchMove}
+                        onTouchEnd={handleTouchEnd}
+                    >
                         <img
                             src={selectedImage}
                             alt={`${title} - full view, image ${currentIndex + 1} / ${images.length}`}
-                            className="max-w-full max-h-full object-contain rounded-lg"
+                            className="max-w-full max-h-full object-contain rounded-lg select-none"
                             onClick={(e) => e.stopPropagation()}
+                            draggable={false}
                         />
                     </div>
 
-                    <button 
+                    <button
                         onClick={(e) => { e.stopPropagation(); navigate('next'); }}
-                        className="absolute right-4 text-white hover:text-gray-300 z-10 p-2"
+                        className="absolute cursor-pointer right-4 text-white hover:text-gray-300 z-10 p-2"
                         aria-label="Next image"
                     >
                         <ChevronRight size={48} />
                     </button>
 
-                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white bg-black/50 px-4 py-2 rounded-full">
-                        {currentIndex + 1} / {images.length}
-                    </div>
+                    {/* <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white bg-black/50 px-4 py-2 rounded-full">
+                            {currentIndex + 1} / {images.length}
+                        </div>  */}
 
-                    <nav 
-                        className="absolute bottom-16 left-1/2 -translate-x-1/2 flex space-x-2 max-w-xs overflow-x-auto"
+                    <nav
+                        className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 max-w-[90vw] sm:max-w-md overflow-x-auto py-2 px-2"
+                        style={{
+                            scrollbarWidth: 'thin',
+                            scrollbarColor: 'rgba(255,255,255,0.3) transparent'
+                        }}
                         aria-label="Image thumbnails"
                     >
                         {images.map((img, i) => (
                             <img
                                 key={i}
+                                ref={(el) => (thumbnailRefs[i] = el)}
                                 src={img}
                                 alt={`${title} thumbnail ${i + 1}`}
-                                className={`w-12 h-12 object-cover rounded cursor-pointer ${
-                                    i === currentIndex ? 'ring-2 ring-white' : 'opacity-60 hover:opacity-80'
-                                }`}
+                                className={`w-12 h-12 object-cover rounded cursor-pointer transition-all ${i === currentIndex ? 'ring-2 ring-white scale-110' : 'opacity-60 hover:opacity-80'
+                                    }`}
                                 onClick={(e) => { e.stopPropagation(); openModal(i); }}
                                 loading="lazy"
                             />

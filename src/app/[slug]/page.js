@@ -2,7 +2,7 @@ import homes from '../../components/data/homes';
 import { notFound } from 'next/navigation';
 import HomeDetails from '../../components/HomeDetails/HomeDetails';
 import { MapPin, Home, UserRound } from 'lucide-react';
-import Link from 'next/link';
+import TransferSelect from '../../components/TransferSelect/TransferSelect';
 
 export function generateStaticParams() {
     return homes.map(home => ({
@@ -130,15 +130,7 @@ export default async function HomeDetailPage({ params }) {
                                     <span className="font-medium text-gray-900">{home.owner}</span>
                                 </div>
                             </div>
-                            <Link
-                                href={`https://wa.me/994552904045?text=Hello, I would like to get more information about ${encodeURIComponent(home.title)}.`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                <button className="cursor-pointer w-full rounded-lg bg-gray-900 py-3.5 px-7 text-sm font-bold uppercase text-white shadow-md hover:shadow-lg transition-all">
-                                    Contact
-                                </button>
-                            </Link>
+                            <TransferSelect homeTitle={home.title} />
                         </div>
                     </div>
                 </div>

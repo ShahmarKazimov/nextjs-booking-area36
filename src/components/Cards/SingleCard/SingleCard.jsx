@@ -32,7 +32,7 @@ const SingleCard = ({ property }) => {
             <footer className="px-6 pb-6 flex-shrink-0">
                 <Link href={`/${property.slug}`}>
                     <button className="cursor-pointer w-full rounded-lg bg-gray-900 py-3.5 px-7 text-sm font-bold uppercase text-white shadow-md hover:shadow-lg transition-all">
-                        Reserve
+                        View Details
                     </button>
                 </Link>
             </footer>
