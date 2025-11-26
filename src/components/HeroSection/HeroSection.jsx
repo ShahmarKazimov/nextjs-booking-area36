@@ -54,12 +54,12 @@ const HeroSection = () => {
                         </div>
                         <div className="w-px h-12 bg-white/30" aria-hidden="true"></div>
                         <div className="text-center">
-                            <div className="text-3xl font-bold" aria-label="Over 1 million happy travelers">1K+</div>
+                            <div className="text-3xl font-bold" aria-label="Over 10,000 happy travelers">10K+</div>
                             <div className="text-sm opacity-80">Happy Travelers</div>
                         </div>
                         <div className="w-px h-12 bg-white/30" aria-hidden="true"></div>
                         <div className="text-center">
-                            <div className="text-3xl font-bold" aria-label="4.9 out of 5 rating">4.9</div>
+                            <div className="text-3xl font-bold" aria-label="9.8 out of 10 rating">9.8</div>
                             <div className="text-sm opacity-80">Rating</div>
                         </div>
                     </div>
