@@ -10,11 +10,11 @@ const homes = [
         location: "Gabala, Azerbaijan",
         owner: "Ramil Mammadov",
         images: [
-            "../images/blog/Area36 Royal Chalet/Area36 Royal Chalet-2.webp",
+            "../images/blog/Area36 Royal Chalet/Area36 Royal Chalet-4.webp",
             "../images/blog/Area36 Royal Chalet/Area36 Royal Chalet-15.webp",
             "../images/blog/Area36 Royal Chalet/Area36 Royal Chalet.webp",
+            "../images/blog/Area36 Royal Chalet/Area36 Royal Chalet-2.webp",
             "../images/blog/Area36 Royal Chalet/Area36 Royal Chalet-3.webp",
-            "../images/blog/Area36 Royal Chalet/Area36 Royal Chalet-4.webp",
             "../images/blog/Area36 Royal Chalet/Area36 Royal Chalet-5.webp",
             "../images/blog/Area36 Royal Chalet/Area36 Royal Chalet-6.webp",
             "../images/blog/Area36 Royal Chalet/Area36 Royal Chalet-7.webp",
