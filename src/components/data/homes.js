@@ -10,6 +10,7 @@ const homes = [
         location: "Gabala, Azerbaijan",
         owner: "Ramil Mammadov",
         images: [
+            "../images/blog/Area36 Royal Chalet/Area36 Royal Chalet-16.webp",
             "../images/blog/Area36 Royal Chalet/Area36 Royal Chalet-4.webp",
             "../images/blog/Area36 Royal Chalet/Area36 Royal Chalet-15.webp",
             "../images/blog/Area36 Royal Chalet/Area36 Royal Chalet.webp",
@@ -25,6 +26,7 @@ const homes = [
             "../images/blog/Area36 Royal Chalet/Area36 Royal Chalet-12.webp",
             "../images/blog/Area36 Royal Chalet/Area36 Royal Chalet-13.webp",
             "../images/blog/Area36 Royal Chalet/Area36 Royal Chalet-14.webp",
+            "../images/blog/Area36 Royal Chalet/Area36 Royal Chalet-17.webp",
         ]
     },
     {
@@ -231,7 +233,15 @@ const homes = [
             "../images/blog/Area36 Rolling Bungalow/Area36 Rolling Bungalow-7.webp",
             "../images/blog/Area36 Rolling Bungalow/Area36 Rolling Bungalow-8.webp",
             "../images/blog/Area36 Rolling Bungalow/Area36 Rolling Bungalow-9.webp",
-            "../images/blog/Area36 Rolling Bungalow/Area36 Rolling Bungalow-10.webp"
+            "../images/blog/Area36 Rolling Bungalow/Area36 Rolling Bungalow-10.webp",
+            "../images/blog/Area36 Rolling Bungalow/Area36 Rolling Bungalow-11.webp",
+            "../images/blog/Area36 Rolling Bungalow/Area36 Rolling Bungalow-12.webp",
+            "../images/blog/Area36 Rolling Bungalow/Area36 Rolling Bungalow-13.webp",
+            "../images/blog/Area36 Rolling Bungalow/Area36 Rolling Bungalow-15.webp"
+
+
+
+
         ]
     },
 ];

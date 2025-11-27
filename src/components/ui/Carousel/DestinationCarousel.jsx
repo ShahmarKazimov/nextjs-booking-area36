@@ -2,8 +2,11 @@
 import React from 'react';
 import { Carousel } from 'antd';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import homes from '../../data/homes';
 
 const DestinationCarousel = ({ images }) => {
+    const router = useRouter();
     return (
         <section className="rounded-2xl" aria-label="Featured Destinations">
             {/* Beautiful Carousel Container */}
@@ -61,6 +64,10 @@ const DestinationCarousel = ({ images }) => {
                                                 {item.description}
                                             </p>
                                             <button
+                                                onClick={() => {
+                                                    const home = homes.find(h => h.title === item.title);
+                                                    if (home) router.push(`/${home.slug}`);
+                                                }}
                                                 className="sm:mt-4 mt-1 px-3 sm:px-6 py-1 sm:py-2.5 cursor-pointer bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full text-white text-xs sm:text-sm font-medium transition-all hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-white/50"
                                                 aria-label={`Explore ${item.title} destination`}
                                                 type="button"
