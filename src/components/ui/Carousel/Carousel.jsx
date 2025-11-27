@@ -2,8 +2,8 @@ import React from 'react';
 import DestinationCarousel from './DestinationCarousel';
 import { carouselImages } from '../../data/carouselImages';
 import '../../../../src/app/globals.css';
-import areaCover2 from "../../../../public/images/ui/transport-first.webp";
-import areaCover from "../../../../public/images/ui/transport-second.webp";
+import areaCars from "../../../../public/images/ui/transfer cars.webp";
+import areaCars2 from "../../../../public/images/ui/transfer-cars2.webp";
 import Image from 'next/image';
 
 const Carousel = () => {
@@ -41,7 +41,7 @@ const Carousel = () => {
               <h3 className="sr-only">Area36 Featured Image</h3>
               <figure className="h-full">
                 <Image
-                  src={areaCover2}
+                  src={areaCars}
                   alt="Area36 destination - luxury resort view with stunning landscape"
                   className="rounded-xl object-cover w-full h-full"
                   priority={true}
@@ -57,7 +57,7 @@ const Carousel = () => {
               <h3 className="sr-only">Area36 Featured Image</h3>
               <figure className="h-full">
                 <Image
-                  src={areaCover}
+                  src={areaCars2}
                   alt="Area36 section - exclusive moon suite with romantic atmosphere"
                   className="rounded-xl object-cover w-full h-full"
                   priority={true}
