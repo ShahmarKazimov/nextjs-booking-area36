@@ -9,7 +9,6 @@
     "lint": "next lint",
     "postbuild": "next-sitemap"
   },
-  
   "dependencies": {
     "antd": "^5.25.3",
     "lucide-react": "^0.517.0",
