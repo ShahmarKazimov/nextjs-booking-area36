@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 export default function HomeDetails({ images = [], title = '', description = '' }) {
@@ -18,7 +19,7 @@ export default function HomeDetails({ images = [], title = '', description = '' 
         const totalImages = Math.min(images.length, 5);
 
         images.slice(0, 5).forEach((src) => {
-            const img = new Image();
+            const img = new window.Image();
             img.src = src;
             img.onload = () => {
                 loadedCount++;
@@ -62,7 +63,6 @@ export default function HomeDetails({ images = [], title = '', description = '' 
         setCurrentIndex(newIndex);
         setSelectedImage(images[newIndex]);
 
-        // Scroll to active thumbnail
         if (thumbnailRefs[newIndex]) {
             thumbnailRefs[newIndex].scrollIntoView({
                 behavior: 'smooth',
@@ -70,12 +70,6 @@ export default function HomeDetails({ images = [], title = '', description = '' 
                 inline: 'center'
             });
         }
-    };
-
-    const handleKeyDown = (e) => {
-        if (e.key === 'Escape') closeModal();
-        if (e.key === 'ArrowRight') navigate('next');
-        if (e.key === 'ArrowLeft') navigate('prev');
     };
 
     const handleTouchStart = (e) => {
@@ -126,28 +120,26 @@ export default function HomeDetails({ images = [], title = '', description = '' 
                 className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-8"
                 aria-label={`${title} photo gallery`}
             >
-                <div className="md:col-span-2 md:row-span-2">
-                    <img
+                <div className="md:col-span-2 md:row-span-2 relative h-64 sm:h-80 md:h-[29rem]">
+                    <Image
                         src={images[0]}
                         alt={`${title} - main photo${description ? `, ${description}` : ''}`}
-                        className="w-full h-full md:h-[29rem] object-cover rounded-xl cursor-pointer hover:opacity-90 duration-200 transition-opacity shadow-lg"
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+                        className="object-cover rounded-xl cursor-pointer hover:opacity-90 duration-200 transition-opacity shadow-lg"
                         onClick={() => openModal(0)}
-                        loading="eager"
-                        width="600"
-                        height="464"
                     />
                 </div>
 
                 {images.slice(1, 5).map((img, i) => (
-                    <div key={i + 1} className="relative">
-                        <img
+                    <div key={i + 1} className="relative h-48 sm:h-56 md:h-56">
+                        <Image
                             src={img}
                             alt={`${title} - interior photo ${i + 2}`}
-                            className="w-full h-full md:h-56 object-cover rounded-xl cursor-pointer hover:opacity-90 duration-200 transition-opacity shadow-md"
+                            fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 25vw, 300px"
+                            className="object-cover rounded-xl cursor-pointer hover:opacity-90 duration-200 transition-opacity shadow-md"
                             onClick={() => openModal(i + 1)}
-                            loading="lazy"
-                            width="300"
-                            height="224"
                         />
                         {i === 3 && images.length > 5 && (
                             <div
@@ -191,18 +183,22 @@ export default function HomeDetails({ images = [], title = '', description = '' 
                     </button>
 
                     <div
-                        className="max-w-4xl max-h-full flex items-center justify-center"
+                        className="max-w-4xl max-h-full flex items-center justify-center relative w-full h-full"
                         onTouchStart={handleTouchStart}
                         onTouchMove={handleTouchMove}
                         onTouchEnd={handleTouchEnd}
                     >
-                        <img
-                            src={selectedImage}
-                            alt={`${title} - full view, image ${currentIndex + 1} / ${images.length}`}
-                            className="max-w-full max-h-full object-contain rounded-lg select-none"
-                            onClick={(e) => e.stopPropagation()}
-                            draggable={false}
-                        />
+                        <div className="relative w-full h-full max-w-4xl max-h-[80vh]">
+                            <Image
+                                src={selectedImage}
+                                alt={`${title} - full view, image ${currentIndex + 1} / ${images.length}`}
+                                fill
+                                sizes="(max-width: 768px) 100vw, 90vw"
+                                className="object-contain rounded-lg select-none"
+                                onClick={(e) => e.stopPropagation()}
+                                quality={95}
+                            />
+                        </div>
                     </div>
 
                     <button
@@ -213,10 +209,6 @@ export default function HomeDetails({ images = [], title = '', description = '' 
                         <ChevronRight size={48} />
                     </button>
 
-                    {/* <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white bg-black/50 px-4 py-2 rounded-full">
-                            {currentIndex + 1} / {images.length}
-                        </div>  */}
-
                     <nav
                         className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 max-w-[90vw] sm:max-w-md overflow-x-auto py-2 px-2"
                         style={{
@@ -226,16 +218,21 @@ export default function HomeDetails({ images = [], title = '', description = '' 
                         aria-label="Image thumbnails"
                     >
                         {images.map((img, i) => (
-                            <img
+                            <div
                                 key={i}
                                 ref={(el) => (thumbnailRefs[i] = el)}
-                                src={img}
-                                alt={`${title} thumbnail ${i + 1}`}
-                                className={`w-12 h-12 object-cover rounded cursor-pointer transition-all ${i === currentIndex ? 'ring-2 ring-white scale-110' : 'opacity-60 hover:opacity-80'
-                                    }`}
-                                onClick={(e) => { e.stopPropagation(); openModal(i); }}
-                                loading="lazy"
-                            />
+                                className="relative w-12 h-12 flex-shrink-0"
+                            >
+                                <Image
+                                    src={img}
+                                    alt={`${title} thumbnail ${i + 1}`}
+                                    fill
+                                    sizes="48px"
+                                    className={`object-cover rounded cursor-pointer transition-all ${i === currentIndex ? 'ring-2 ring-white scale-110' : 'opacity-60 hover:opacity-80'
+                                        }`}
+                                    onClick={(e) => { e.stopPropagation(); openModal(i); }}
+                                />
+                            </div>
                         ))}
                     </nav>
                 </div>

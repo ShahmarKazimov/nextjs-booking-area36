@@ -44,7 +44,6 @@ const Carousel = () => {
                   src={areaCars}
                   alt="Area36 destination - luxury resort view with stunning landscape"
                   className="rounded-xl object-cover w-full h-full"
-                  priority={true}
                   placeholder="blur"
                   sizes="(max-width: 768px) 50vw, (max-width: 1024px) 50vw, 33vw"
                   quality={90}
@@ -60,7 +59,6 @@ const Carousel = () => {
                   src={areaCars2}
                   alt="Area36 section - exclusive moon suite with romantic atmosphere"
                   className="rounded-xl object-cover w-full h-full"
-                  priority={true}
                   placeholder="blur"
                   sizes="(max-width: 768px) 50vw, (max-width: 1024px) 50vw, 33vw"
                   quality={90}

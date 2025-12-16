@@ -21,7 +21,7 @@ export default async function Footer() {
             "@type": "ContactPoint",
             "telephone": "+994552904045",
             "contactType": "customer support",
-            "email": "info@area36.az"
+            "email": "gabaladeluxe@gmail.com"
         },
         "address": {
             "@type": "PostalAddress",
@@ -36,8 +36,6 @@ export default async function Footer() {
             "https://youtube.com/area36"
         ]
     }
-
-
 
     return (
         <footer
@@ -56,14 +54,14 @@ export default async function Footer() {
                             aria-label="Area36 Home Page"
                             title="Area36 - Premium Travel Destinations"
                         >
-                            <Image
-                                src="/images/ui/logo.svg"
-                                alt="Area36 Logo"
-                                width={120}
-                                height={60}
-                                priority
-                                className="w-[120px] h-[60px]"
-                            />
+                            <figure className="relative w-[120px] h-[60px]">
+                                <Image
+                                    src="/images/ui/logo.svg"
+                                    alt="Area36 Logo"
+                                    fill={true}
+                                    className="object-contain"
+                                />
+                            </figure>
                         </Link>
 
                         <p className="text-gray-300 max-w-xs leading-relaxed">

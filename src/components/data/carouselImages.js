@@ -1,7 +1,7 @@
-import image1 from '../../../public/images/blog/Area36 Royal Chalet/Area36 Royal Chalet-15.webp';
-import image2 from '../../../public/images/blog/Area36 Family Chalet/Area36 Family Chalet.webp';
-import image3 from '../../../public/images/blog/Area36 Golden Loft/Area36 Golden Loft.webp';
-import image4 from '../../../public/images/blog/Area36 Milano Deluxe/Area36 Milano Deluxe.webp';
+import image1 from '../../../public/images/blog/Area36-Royal-Chalet/Area36-Royal-Chalet-15.webp';
+import image2 from '../../../public/images/blog/Area36-Family-Chalet/Area36-Family-Chalet.webp';
+import image3 from '../../../public/images/blog/Area36-Golden-Loft/Area36-Golden-Loft.webp';
+import image4 from '../../../public/images/blog/Area36-Milano-Deluxe/Area36-Milano-Deluxe.webp';
 import backgroundImage from '../../../public/images/ui/area-image-hero.webp';
 
 export const carouselImages = [

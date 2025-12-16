@@ -37,16 +37,13 @@ export default function StickyHeader() {
                         title="Area36"
                         className="flex items-center group gap-x-2"
                     >
-                        <figure className="flex items-center m-0">
+                        <figure className="relative w-[120px] h-[60px]">
                             <Image
                                 src="/images/ui/logo.svg"
                                 alt="Area36 Logo"
-                                width={120}
-                                height={60}
-                                priority
-                                className="w-[120px] h-[60px]"
+                                fill={true}
+                                className="object-contain"
                             />
-                            <figcaption className="sr-only">Area36 Brand Logo</figcaption>
                         </figure>
                     </Link>
                 </div>

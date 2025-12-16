@@ -30,7 +30,6 @@ const DestinationCarousel = ({ images }) => {
                                         <Image
                                             src={item.src}
                                             alt={item.alt}
-                                            priority={index === 0}
                                             className="object-cover sm:h-[35rem] transition-all duration-700 group-hover:scale-105 group-hover:brightness-110"
                                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                             quality={100}
