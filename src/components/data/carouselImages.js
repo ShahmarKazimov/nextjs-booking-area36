@@ -25,7 +25,7 @@ export const carouselImages = [
     {
         src: image3,
         title: "Area36 Golden Loft",
-        description: "Charming chalet with 2 spacious bedrooms, 2 modern bathrooms, and a welcoming living area for your comfort.",
+        description: "Charming chalet with 2 spacious bedrooms, 2 modern bathrooms, a heated pool, and a welcoming living area for your comfort.",
         badge: "Nature",
         alt: "Area36 Golden Loft",
         location: "Gabala, Azerbaijan"
@@ -33,7 +33,7 @@ export const carouselImages = [
     {
         src: image4,
         title: "Area36 Milano Deluxe",
-        description: "4 bedrooms, 2 bathrooms – comfortably accommodates up to 9 guests.",
+        description: "4 bedrooms, 3 bathrooms – comfortably accommodates up to 9 guests.",
         badge: "Mystery",
         alt: "Area36 Milano Deluxe",
         location: "Gabala, Azerbaijan"
