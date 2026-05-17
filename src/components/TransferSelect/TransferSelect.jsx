@@ -1,12 +1,24 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Car } from 'lucide-react';
 import Link from 'next/link';
 
 export default function TransferSelect({ homeTitle }) {
     const [selectedCar, setSelectedCar] = useState('');
     const [isOpen, setIsOpen] = useState(false);
+    const dropdownRef = useRef(null);
+
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setIsOpen(false);
+            }
+        }
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
 
     const carOptions = [
         'Mercedes Vito 7-8 seat',
@@ -22,7 +34,7 @@ export default function TransferSelect({ homeTitle }) {
                     <span className="text-gray-600">Transfer</span>
                 </div>
             </div>
-            <div className="relative mt-2 mb-4">
+            <div className="relative mt-2 mb-4" ref={dropdownRef}>
                 {/* Selected Value Display */}
                 <button
                     onClick={() => setIsOpen(!isOpen)}
@@ -52,7 +64,7 @@ export default function TransferSelect({ homeTitle }) {
                                         setSelectedCar(car);
                                         setIsOpen(false);
                                     }}
-                                    className={`w-full p-3.5 text-left hover:bg-gray-50 transition-colors duration-150 ${selectedCar === car ? 'bg-gray-100 font-medium' : ''
+                                    className={`cursor-pointer w-full p-3.5 text-left hover:bg-gray-50 transition-colors duration-150 ${selectedCar === car ? 'bg-gray-100 font-medium' : ''
                                         } ${index !== carOptions.length - 1 ? 'border-b border-gray-100' : ''}`}
                                 >
                                     <span className={selectedCar === car ? 'text-black' : 'text-gray-700'}>

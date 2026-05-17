@@ -174,7 +174,7 @@ export default async function HomeDetailPage({ params }) {
             <section className="lg:col-span-2">
               <article className="rounded-2xl shadow-sm p-8 mb-6">
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                  About {home.title}
+                  <span className="font-normal text-gray-500 italic">About</span> {home.title}
                 </h2>
                 <p className="text-gray-700 text-lg leading-relaxed">
                   {home.description}
@@ -184,16 +184,16 @@ export default async function HomeDetailPage({ params }) {
               {home.features && (
                 <section className="rounded-2xl shadow-sm p-8">
                   <h2 className="text-xl font-bold text-gray-900 mb-4">
-                    Property Features & Amenities
+                    Property Details
                   </h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {home.features.map((feature, i) => (
                       <div
                         key={i}
-                        className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg"
+                        className="flex items-center gap-3 p-3 bg-gray-100 rounded-lg"
                       >
                         <div
-                          className="w-2 h-2 bg-blue-500 rounded-full"
+                          className="w-2 h-2 bg-black rounded-full"
                           aria-hidden="true"
                         />
                         <span className="text-gray-700">{feature}</span>
@@ -204,10 +204,10 @@ export default async function HomeDetailPage({ params }) {
               )}
             </section>
 
-            <aside className="lg:col-span-1" aria-label="Property Details">
+            <aside className="lg:col-span-1" aria-label="Reservation Request">
               <div className="bg-white rounded-2xl shadow-sm px-5 py-4 sticky top-8">
                 <h2 className="text-lg font-bold text-gray-900 mb-4">
-                  Property Details
+                  Reservation Request
                 </h2>
 
                 <div className="mb-[0.6rem]">
