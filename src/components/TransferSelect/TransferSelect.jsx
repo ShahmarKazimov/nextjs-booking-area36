@@ -69,7 +69,7 @@ export default function TransferSelect({ homeTitle }) {
                 target="_blank"
                 rel="noopener noreferrer"
             >
-                <button className="cursor-pointer w-full rounded-lg bg-gray-900 py-3.5 px-7 text-sm font-bold uppercase text-white shadow-md hover:shadow-lg transition-all">
+                <button className="cursor-pointer w-full rounded-lg bg-gray-900 hover:bg-gray-700 py-3.5 px-7 text-sm font-bold uppercase text-white shadow-md hover:shadow-lg transition-all">
                     Reserve Now
                 </button>
             </Link>

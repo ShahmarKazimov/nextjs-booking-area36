@@ -1,7 +1,5 @@
 import Link from "next/link";
 import StickyHeader from "./StickyHeader/StickyHeader";
-import Image from "next/image";
-
 
 export default function Header() {
     return (
@@ -14,32 +12,36 @@ export default function Header() {
                     <div className="flex items-center group">
                         <Link
                             href="/"
-                            aria-label="Area36"
+                            aria-label="Area36 - Luxury Chalets & Villas"
                             title="Area36"
                             className="flex items-center group gap-x-2"
                         >
-                            <figure className="relative w-[120px] h-[60px]">
-                                <Image
+                            <figure>
+                                {/* SVG logo üçün next/image lazım deyil — img tagi daha performanslıdır */}
+                                <img
                                     src="/images/ui/logo.svg"
                                     alt="Area36 Logo"
-                                    fill={true}
+                                    width={120}
+                                    height={60}
                                     className="object-contain"
-                                    priority
                                 />
+                                <figcaption className="sr-only">Area36 Brand Logo</figcaption>
                             </figure>
-                            <figcaption className="sr-only">Area36 Brand Logo</figcaption>
                         </Link>
                     </div>
+
                     <Link
                         href="https://wa.me/994552904045?text=Hi, I'm interested in renting a place. Can you assist me with the options?"
                         target="_blank"
-                        rel="noopener noreferrer">
+                        rel="noopener noreferrer"
+                    >
                         <button className="cursor-pointer w-full rounded-lg py-3.5 text-md font-semibold hover:text-white/75 uppercase text-white transition-all">
                             Contact
                         </button>
                     </Link>
                 </div>
             </header>
+
             <StickyHeader />
         </>
     );

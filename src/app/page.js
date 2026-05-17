@@ -2,56 +2,72 @@ import Carousel from "../components/ui/Carousel/Carousel";
 import Cards from "../components/Cards/Cards";
 import HeroSection from "../components/HeroSection/HeroSection";
 
-// Homepage specific metadata
 export const metadata = {
-  title: 'Area36 – Luxury Chalets',
-  description: 'Book luxury cabins, exclusive chalets, and premium villas worldwide with Area36. Discover handpicked accommodations with stunning views and world-class amenities for your perfect getaway.',
-  keywords: [
-    'Area36',
-    'Area 36',
-    'area 36',
-    'area36',
-    'Area36 luxury resorts',
-    'Area36 villa rental',
-    'luxury resorts',
-    'vacation rentals',
-    'premium cabins',
-    'exclusive chalets',
-    'luxury villas',
-    'luxury travel',
-    'premium getaways',
-    'luxury stays'
-  ],
+  title: "Luxury Chalets, Cabins & Villas for Rent in Azerbaijan",
+  description:
+    "Area36 offers premium chalets, mountain cabins, and luxury villas in Azerbaijan. Browse our curated collection and book your perfect stay in the Qafqaz region.",
+  alternates: {
+    canonical: "https://area36.az",
+  },
   openGraph: {
-    title: 'Area36 – Book Luxury Resorts & Premium Vacation Rentals',
-    description: 'Area36 offers handpicked luxury accommodations worldwide. From mountain chalets to lakeside cabins, find your perfect premium getaway.',
-    url: 'https://area36.az',
+    title: "Area36 | Luxury Chalets & Villas in Azerbaijan",
+    description:
+      "Browse and book luxury chalets, mountain cabins, and villas in Azerbaijan. Area36 — premium stays in the Qafqaz region.",
+    url: "https://area36.az",
     images: [
       {
-        url: 'https://area36.az/images/ui/area-image-hero.webp',
+        url: "https://area36.az/images/ui/area-image-hero.webp",
         width: 1200,
         height: 630,
-        alt: 'Area36 luxury chalet',
+        alt: "Area36 luxury chalets and villas in Azerbaijan",
       },
     ],
   },
 };
 
+// RealEstateAgent və ya LodgingBusiness — platform üçün daha uyğundur
+const listingPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "@id": "https://area36.az/#listings",
+  name: "Luxury Chalets & Villas by Area36",
+  description:
+    "Curated collection of luxury chalets, cabins and villas available for rent in Azerbaijan.",
+  url: "https://area36.az",
+  publisher: {
+    "@id": "https://area36.az/#organization",
+  },
+};
 
 export default function Home() {
   return (
-    <main className="flex flex-col">
-      <header>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(listingPageSchema),
+        }}
+      />
+
+      <div className="flex flex-col">
+        {/* HeroSection vizual h1 ehtiva etməlidi — HeroSection komponentini yoxla */}
         <HeroSection />
-      </header>
 
-      <section aria-label="Featured Luxury Destinations">
-        <Carousel />
-      </section>
+        <section aria-label="Featured Luxury Destinations">
+          <Carousel />
+        </section>
 
-      <section aria-label="Premium Accommodation Collection" className="max-w-7xl mx-auto">
-        <Cards />
-      </section>
-    </main>
+        <section
+          aria-label="Luxury Chalets and Villas Collection"
+          className="max-w-7xl mx-auto"
+        >
+          {/* sr-only h2 saxla — screen reader + SEO üçün faydalıdır */}
+          <h2 className="sr-only">
+            Luxury Chalets, Cabins and Villas in Azerbaijan
+          </h2>
+          <Cards />
+        </section>
+      </div>
+    </>
   );
 }

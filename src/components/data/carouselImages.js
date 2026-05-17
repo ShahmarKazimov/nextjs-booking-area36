@@ -10,34 +10,33 @@ export const carouselImages = [
         title: "Area36 Royal Chalet",
         description: "4 bedrooms, 3 bathrooms, scenic terrace, and a large pool – perfect for 8 guests.",
         badge: "Adventure",
-        alt: "Area36 Royal Chalet",
-        location: "Gabala, Azerbaijan"
+        alt: "Area36 Royal Chalet — luxury 4-bedroom chalet with pool in Gabala, Azerbaijan",
+        location: "Gabala, Azerbaijan",
     },
-
     {
         src: image2,
         title: "Area36 Family Chalet",
         description: "3 bedrooms, 2 bathrooms, and a heated pool – ideal for a cozy stay.",
         badge: "Relaxation",
-        alt: "Area36 Family Chalet",
-        location: "Gabala, Azerbaijan"
+        alt: "Area36 Family Chalet — cozy 3-bedroom chalet with heated pool in Gabala, Azerbaijan",
+        location: "Gabala, Azerbaijan",
     },
     {
         src: image3,
         title: "Area36 Golden Loft",
         description: "Charming chalet with 2 spacious bedrooms, 2 modern bathrooms, a heated pool, and a welcoming living area for your comfort.",
         badge: "Nature",
-        alt: "Area36 Golden Loft",
-        location: "Gabala, Azerbaijan"
+        alt: "Area36 Golden Loft — charming 2-bedroom chalet with heated pool in Gabala, Azerbaijan",
+        location: "Gabala, Azerbaijan",
     },
     {
         src: image4,
         title: "Area36 Milano Deluxe",
         description: "4 bedrooms, 3 bathrooms – comfortably accommodates up to 9 guests.",
-        badge: "Mystery",
-        alt: "Area36 Milano Deluxe",
-        location: "Gabala, Azerbaijan"
-    }
+        badge: "Luxury",
+        alt: "Area36 Milano Deluxe — spacious 4-bedroom luxury chalet for 9 guests in Gabala, Azerbaijan",
+        location: "Gabala, Azerbaijan",
+    },
 ];
 
 export const heroBackgroundImage = backgroundImage;
