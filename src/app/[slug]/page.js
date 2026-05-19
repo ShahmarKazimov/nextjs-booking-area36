@@ -123,10 +123,10 @@ export default async function HomeDetailPage({ params }) {
     }),
 
     // occupancy — neçə nəfər qala biləcəyi
-    ...(home.maxOccupancy && {
+    ...(home.occupancy && {
       occupancy: {
         "@type": "QuantitativeValue",
-        value: home.maxOccupancy,
+        value: home.occupancy,
       },
     }),
 
