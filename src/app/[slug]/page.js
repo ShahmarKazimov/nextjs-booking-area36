@@ -92,7 +92,6 @@ export default async function HomeDetailPage({ params }) {
 
   if (!home) return notFound();
 
-  // geo string-ini parse et: "40.9907951,47.8335152" → { lat, lng }
   const [lat, lng] = home.geo?.split(",").map(Number) ?? [];
 
   const structuredData = {
@@ -113,7 +112,6 @@ export default async function HomeDetailPage({ params }) {
       addressCountry: "AZ",
     },
 
-    // geo — "Qəbələdə kirayə ev" kimi axtarışlarda görünmək üçün vacibdir
     ...(lat && lng && {
       geo: {
         "@type": "GeoCoordinates",
@@ -122,15 +120,6 @@ export default async function HomeDetailPage({ params }) {
       },
     }),
 
-    // occupancy — neçə nəfər qala biləcəyi
-    ...(home.occupancy && {
-      occupancy: {
-        "@type": "QuantitativeValue",
-        value: home.occupancy,
-      },
-    }),
-
-    // aggregateRating — Google nəticələrində ulduzlar göstərir
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: home.rating,
@@ -142,6 +131,15 @@ export default async function HomeDetailPage({ params }) {
     containsPlace: {
       "@type": "Accommodation",
       additionalType: home.type || "Chalet",
+
+      // occupancy containsPlace İÇİNDƏdir — Google tələbi belədir
+      ...(home.occupancy && {
+        occupancy: {
+          "@type": "QuantitativeValue",
+          value: home.occupancy,
+        },
+      }),
+
       amenityFeature:
         home.features?.map((feature) => ({
           "@type": "LocationFeatureSpecification",
@@ -192,7 +190,8 @@ export default async function HomeDetailPage({ params }) {
             <section className="lg:col-span-2">
               <article className="rounded-2xl shadow-sm p-8 mb-6">
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                  <span className="font-normal text-gray-500 italic">About</span> {home.title}
+                  <span className="font-normal text-gray-500 italic">About</span>{" "}
+                  {home.title}
                 </h2>
                 <p className="text-gray-700 text-lg leading-relaxed">
                   {home.description}

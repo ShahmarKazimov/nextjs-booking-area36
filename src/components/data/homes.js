@@ -307,7 +307,7 @@ const homes = [
         description: "A charming wooden chalet with 3 bedrooms, 2 bathrooms, and a heated pool. Perfect for a cozy stay in the mountains.",
         rating: 9.6,
         occupancy: 6,
-        geo: "40.9920654296875,47.861175537109375",
+        geo: "40.9901370,47.8542583",
         location: "Gabala, Azerbaijan",
         owner: "Ramil Mammadov",
         features: [
