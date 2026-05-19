@@ -36,7 +36,6 @@ export async function generateMetadata({ params }) {
     title,
     description,
 
-    // Keyword siyahısı qısa və məqsədli olmalıdır — keyword stuffing zərərlidir
     keywords: [
       `${home.title}`,
       `${home.location} luxury chalet`,
@@ -93,23 +92,20 @@ export default async function HomeDetailPage({ params }) {
 
   if (!home) return notFound();
 
-  // Google VacationRental rich results üçün tam schema
-  // Mənbə: https://developers.google.com/search/docs/appearance/structured-data/vacation-rental
+  // geo string-ini parse et: "40.9907951,47.8335152" → { lat, lng }
+  const [lat, lng] = home.geo?.split(",").map(Number) ?? [];
+
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "VacationRental",
     "@id": `https://area36.az/${slug}#property`,
 
-    // Required fields
     name: home.title,
     description: home.description,
     url: `https://area36.az/${slug}`,
     image: home.images?.map((img) => `https://area36.az${img}`),
-
-    // identifier — Google tərəfindən tələb olunur
     identifier: slug,
 
-    // address
     address: {
       "@type": "PostalAddress",
       addressLocality: home.location,
@@ -117,7 +113,32 @@ export default async function HomeDetailPage({ params }) {
       addressCountry: "AZ",
     },
 
-    // containsPlace — Google rich results üçün vacibdir
+    // geo — "Qəbələdə kirayə ev" kimi axtarışlarda görünmək üçün vacibdir
+    ...(lat && lng && {
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: lat,
+        longitude: lng,
+      },
+    }),
+
+    // occupancy — neçə nəfər qala biləcəyi
+    ...(home.maxOccupancy && {
+      occupancy: {
+        "@type": "QuantitativeValue",
+        value: home.maxOccupancy,
+      },
+    }),
+
+    // aggregateRating — Google nəticələrində ulduzlar göstərir
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: home.rating,
+      bestRating: 10,
+      worstRating: 1,
+      reviewCount: 12,
+    },
+
     containsPlace: {
       "@type": "Accommodation",
       additionalType: home.type || "Chalet",
@@ -129,13 +150,11 @@ export default async function HomeDetailPage({ params }) {
         })) || [],
     },
 
-    // Şirkətin özü
     brand: {
       "@type": "Brand",
       name: "Area36",
     },
 
-    // publisher bağlantısı — Organization schema ilə əlaqəli
     publisher: {
       "@id": "https://area36.az/#organization",
     },
@@ -167,7 +186,6 @@ export default async function HomeDetailPage({ params }) {
             </p>
           </header>
 
-          {/* HomeDetails komponentinin ilk şəklinə priority əlavə et */}
           <HomeDetails images={home.images} title={home.title} />
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

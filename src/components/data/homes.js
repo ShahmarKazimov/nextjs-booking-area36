@@ -7,6 +7,8 @@ const homes = [
         title: "Area36 Royal Chalet",
         description: "A stylish chalet with 4 bedrooms, 3 bathrooms, a large pool, terrace, and stunning views. Perfect for up to 8 guests seeking comfort and relaxation.",
         rating: 9.8,
+        maxOccupancy: 8,
+        geo: "40.9907951,47.8335152",
         location: "Gabala, Azerbaijan",
         owner: "Ramil Mammadov",
         features: [
@@ -46,6 +48,8 @@ const homes = [
         title: "Area36 Family Chalet",
         description: "A cozy chalet with 3 bedrooms, 2 bathrooms, and a heated pool. Perfect for a relaxing getaway in a tranquil natural setting.",
         rating: 9.8,
+        maxOccupancy: 6,
+        geo: "40.9907951,47.8335152",
         location: "Gabala, Azerbaijan",
         owner: "Ramil Mammadov",
         features: [
@@ -78,6 +82,8 @@ const homes = [
         title: "Area36 Golden Loft",
         description: "Charming chalet with 2 spacious bedrooms, 2 modern bathrooms, a heated pool, and a welcoming living area for your comfort.",
         rating: 9.9,
+        maxOccupancy: 4,
+        geo: "40.9907951,47.8335152",
         location: "Gabala, Azerbaijan",
         owner: "Ramil Mammadov",
         features: [
@@ -111,6 +117,8 @@ const homes = [
         title: "Area36 Luxury Chalet",
         description: "A spacious chalet with 5 bedrooms and 4 bathrooms. Features both indoor and outdoor pools for a comfortable and enjoyable stay.",
         rating: 9.9,
+        maxOccupancy: 10,
+        geo: "41.0001564,47.8717995",
         location: "Gabala, Azerbaijan",
         owner: "Ramil Mammadov",
         features: [
@@ -144,6 +152,8 @@ const homes = [
         title: "Qafqaz Riverside Chalet",
         description: "Comfortable chalet with 4 bedrooms, 4 bathrooms and a heated pool. Perfect for families or groups looking for a relaxing stay.",
         rating: 9.9,
+        maxOccupancy: 8,
+        geo: "40.995262145996094,47.85492706298828",
         location: "Gabala, Azerbaijan",
         owner: "Ramil Mammadov",
         features: [
@@ -186,6 +196,8 @@ const homes = [
         title: "Area36 Magnolia Harmony",
         description: "Spacious chalet offering 3 bedrooms and 1 bathroom, plus a pool to unwind after a day of exploring.",
         rating: 10,
+        maxOccupancy: 6,
+        geo: "40.9891891,47.8627586",
         location: "Gabala, Azerbaijan",
         owner: "Ramil Mammadov",
         features: [
@@ -226,6 +238,8 @@ const homes = [
         title: "Area36 Milano Deluxe",
         description: "This home features 4 bedrooms and 3 bathrooms, offering comfortable accommodation for up to 9 guests.",
         rating: 9.9,
+        maxOccupancy: 9,
+        geo: "40.96906280517578,47.848506927490234",
         location: "Gabala, Azerbaijan",
         owner: "Ramil Mammadov",
         features: [
@@ -256,6 +270,8 @@ const homes = [
         title: "Qafqaz Falcon Chalet",
         description: "A stylish and cozy chalet with 3 bedrooms and 3 bathrooms. Ideal for a peaceful and relaxing escape in the heart of nature.",
         rating: 10,
+        maxOccupancy: 6,
+        geo: "40.9991569519043,47.86448287963867",
         location: "Gabala, Azerbaijan",
         owner: "Ramil Mammadov",
         features: [
@@ -290,6 +306,8 @@ const homes = [
         title: "Qafqaz Wooden Chalet",
         description: "A charming wooden chalet with 3 bedrooms, 2 bathrooms, and a heated pool. Perfect for a cozy stay in the mountains.",
         rating: 9.6,
+        maxOccupancy: 6,
+        geo: "40.9920654296875,47.861175537109375",
         location: "Gabala, Azerbaijan",
         owner: "Ramil Mammadov",
         features: [
@@ -324,6 +342,8 @@ const homes = [
         title: "Qafqaz Rolling Bungalow",
         description: "Spacious and comfortable chalet with 4 bedrooms and 4 bathrooms. Features both indoor and outdoor pools for a unique experience.",
         rating: 9.9,
+        maxOccupancy: 8,
+        geo: "40.9920654296875,47.861175537109375",
         location: "Gabala, Azerbaijan",
         owner: "Ramil Mammadov",
         features: [
