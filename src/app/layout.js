@@ -6,31 +6,45 @@ import Footer from "../components/Footer/Footer";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
-  display: "swap", // CLS azaltmaq üçün
+  display: "swap",
 });
 
 export const metadata = {
   metadataBase: new URL("https://area36.az"),
 
   title: {
-    default: "Area36 | Luxury Chalets, Cabins & Villas in Azerbaijan",
+    default: "Area36 | Qəbələdə Lüks Chalet və Villa Kirayəsi",
     template: "%s | Area36",
   },
 
   description:
-    "Book luxury chalets, cabins, and villas in Azerbaijan with Area36. Premium mountain accommodations in Qafqaz region with breathtaking views, modern amenities, and unforgettable stays.",
+    "Qəbələdə günlük və həftəlik lüks chalet, dağ evi və villa kirayəsi. Hovuz, sauna, barbekü və Qafqaz dağ mənzərəsi ilə unudulmaz istirahət. Area36 ilə Qəbələdə premium istirahət.",
 
   applicationName: "Area36",
 
   keywords: [
-    "luxury chalets Azerbaijan",
-    "Qafqaz chalet rental",
-    "villa rental Azerbaijan",
-    "mountain cabin Azerbaijan",
-    "premium accommodation Qafqaz",
-    "Area36 luxury stays",
-    "chalet booking Azerbaijan",
-    "vacation rental Azerbaijan",
+    "Qəbələdə günlük kirayə ev",
+    "Qəbələdə villa kirayəsi",
+    "Qəbələdə chalet kirayəsi",
+    "Qəbələdə dağ evi kirayəsi",
+    "Qəbələdə həftəlik kirayə villa",
+    "Qəbələdə hovuzlu villa",
+    "Qəbələdə lüks istirahət evi",
+    "Qəbələdə saunalı dağ evi",
+    "Qəbələdə barbekülü villa",
+    "Qəbələdə ailə üçün kirayə ev",
+    "Qəbələdə dağ mənzərəli chalet",
+    "Qəbələdə şənlik üçün villa",
+    "Qafqaz mənzərəli kirayə ev Qəbələ",
+    "Qabala chalet rental Azerbaijan",
+    "luxury villa Qabala Azerbaijan",
+    "daily chalet rental Qabala",
+    "mountain villa Qabala with pool",
+    "Qabala vacation rental",
+    "chalet with sauna Qabala",
+    "Caucasus mountain chalet Azerbaijan",
+    "private villa rental Qabala weekly",
+    "Area36 luxury stays Azerbaijan",
   ],
 
   authors: [{ name: "Area36", url: "https://area36.az" }],
@@ -57,25 +71,25 @@ export const metadata = {
     type: "website",
     url: "https://area36.az",
     siteName: "Area36",
-    title: "Area36 | Luxury Chalets & Villas in Azerbaijan",
+    title: "Area36 | Qəbələdə Lüks Chalet, Dağ Evi və Villa Kirayəsi",
     description:
-      "Discover premium chalets, cabins, and villas in Azerbaijan. Book exclusive mountain stays with Area36.",
-    locale: "en_US",
+      "Qəbələdə günlük və həftəlik lüks chalet, dağ evi və villa kirayəsi. Hovuz, sauna, barbekü və Qafqaz mənzərəsi ilə premium istirahət.",
+    locale: "az_AZ",
     images: [
       {
         url: "https://area36.az/images/ui/area-image-hero.webp",
         width: 1200,
         height: 630,
-        alt: "Area36 luxury chalets and villas in Azerbaijan",
+        alt: "Area36 — Qəbələdə lüks chalet və villa kirayəsi",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "Area36 | Luxury Chalets & Villas in Azerbaijan",
+    title: "Area36 | Qəbələdə Lüks Chalet və Villa Kirayəsi",
     description:
-      "Book premium chalets, cabins, and villas in Azerbaijan with Area36.",
+      "Qəbələdə günlük və həftəlik lüks chalet, dağ evi və villa kirayəsi — Area36.",
     images: ["https://area36.az/images/ui/area-image-hero.webp"],
   },
 
@@ -84,13 +98,11 @@ export const metadata = {
     shortcut: "/favicon.ico",
   },
 
-  // google-site-verification buraya gəlir, <Head> yox
   verification: {
     google: "AR5g26tkAKJNaN2348DJhQ3LgguJAWJcY4ED1JgeyTU",
   },
 };
 
-// Organization schema bütün səhifələrə aid olduğu üçün layout-da qalır
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -102,8 +114,13 @@ const organizationSchema = {
     url: "https://area36.az/favicon.ico",
   },
   description:
-    "Premium luxury chalet, cabin and villa rental platform in Azerbaijan.",
-  sameAs: [], // sosial media linklərini buraya əlavə et
+    "Qəbələdə günlük və həftəlik lüks chalet, dağ evi və villa kirayəsi.",
+  areaServed: {
+    "@type": "City",
+    name: "Qəbələ",
+    addressCountry: "AZ",
+  },
+  sameAs: [],
 };
 
 const websiteSchema = {
@@ -112,10 +129,10 @@ const websiteSchema = {
   "@id": "https://area36.az/#website",
   name: "Area36",
   url: "https://area36.az",
+  inLanguage: "az",
   publisher: {
     "@id": "https://area36.az/#organization",
   },
-  // Sitelinks searchbox üçün (Google-da axtarış qutusu göstərə bilər)
   potentialAction: {
     "@type": "SearchAction",
     target: {
@@ -126,14 +143,44 @@ const websiteSchema = {
   },
 };
 
+const lodgingSchema = {
+  "@context": "https://schema.org",
+  "@type": "LodgingBusiness",
+  "@id": "https://area36.az/#lodging",
+  name: "Area36",
+  url: "https://area36.az",
+  description:
+    "Qəbələdə hovuz, sauna, barbekü və Qafqaz dağ mənzərəsi olan lüks chalet və villa kirayəsi.",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Qəbələ",
+    addressCountry: "AZ",
+  },
+  amenityFeature: [
+    { "@type": "LocationFeatureSpecification", name: "Hovuz", value: true },
+    { "@type": "LocationFeatureSpecification", name: "Sauna", value: true },
+    { "@type": "LocationFeatureSpecification", name: "Barbekü", value: true },
+    { "@type": "LocationFeatureSpecification", name: "Dağ mənzərəsi", value: true },
+    { "@type": "LocationFeatureSpecification", name: "Meşəlik ərazi", value: true },
+  ],
+  priceRange: "$$-$$$",
+  currenciesAccepted: "AZN",
+  paymentAccepted: "Cash, Bank Transfer",
+  image: "https://area36.az/images/ui/area-image-hero.webp",
+};
+
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="az">
       <body className={`${geistSans.variable} antialiased text-white`}>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify([organizationSchema, websiteSchema]),
+            __html: JSON.stringify([
+              organizationSchema,
+              websiteSchema,
+              lodgingSchema,
+            ]),
           }}
         />
         <Header />
