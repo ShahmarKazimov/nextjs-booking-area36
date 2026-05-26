@@ -1,7 +1,10 @@
 import Image from 'next/image';
 import { heroBackgroundImage } from '../data/carouselImages';
+import { useTranslations } from 'next-intl';
 
 const HeroSection = () => {
+    const t = useTranslations('Hero');
+
     return (
         <section
             className="relative sm:-top-[5.1rem] -top-[9rem] left-0 w-full h-[550px] sm:h-[737px] z-[-1] bg-black"
@@ -39,12 +42,12 @@ const HeroSection = () => {
                 <div className="text-center mt-20 space-y-6 max-w-4xl px-4">
                     <h1 className="text-4xl md:text-6xl font-bold mb-6 drop-shadow-2xl animate-fade-in-up">
                         <span className="bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent">
-                            Welcome to Area36
+                            {t('welcome')}
                         </span>
                     </h1>
 
                     <p className="text-xl md:text-2xl drop-shadow-lg opacity-90 animate-fade-in-up animation-delay-300">
-                        Experience the beauty of Qafqaz and create unforgettable memories in our luxurious chalets.
+                        {t('subtitle')}
                     </p>
 
                     {/* Stats */}
@@ -54,21 +57,21 @@ const HeroSection = () => {
                     >
                         <div className="text-center">
                             <div className="text-3xl font-bold">10+</div>
-                            <div className="text-sm opacity-80">Destinations</div>
+                            <div className="text-sm opacity-80">{t('destinations')}</div>
                         </div>
 
                         <div className="w-px h-12 bg-white/30" aria-hidden="true" />
 
                         <div className="text-center">
                             <div className="text-3xl font-bold">10K+</div>
-                            <div className="text-sm opacity-80">Happy Travelers</div>
+                            <div className="text-sm opacity-80">{t('travelers')}</div>
                         </div>
 
                         <div className="w-px h-12 bg-white/30" aria-hidden="true" />
 
                         <div className="text-center">
                             <div className="text-3xl font-bold">9.8</div>
-                            <div className="text-sm opacity-80">Rating</div>
+                            <div className="text-sm opacity-80">{t('rating')}</div>
                         </div>
                     </div>
                 </div>
