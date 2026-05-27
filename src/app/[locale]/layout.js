@@ -69,6 +69,7 @@ export async function generateMetadata({ params }) {
     authors: [{ name: "Area36", url: "https://area36.az" }],
     creator: "Area36",
     publisher: "Area36",
+  
 
     alternates: {
       canonical: canonicalUrl,
