@@ -4,11 +4,16 @@ import HomeDetails from "../../../components/HomeDetails/HomeDetails";
 import { MapPin, Home, UserRound } from "lucide-react";
 import TransferSelect from "../../../components/TransferSelect/TransferSelect";
 import { getTranslations } from "next-intl/server";
+export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return homes.map((home) => ({
-    slug: home.slug,
-  }));
+  const locales = ['en', 'az'];
+  return locales.flatMap((locale) =>
+    homes.map((home) => ({
+      locale,
+      slug: home.slug,
+    }))
+  );
 }
 
 export async function generateMetadata({ params }) {
@@ -56,7 +61,13 @@ export async function generateMetadata({ params }) {
 
     alternates: {
       canonical: `https://area36.az/${pathPrefix}${slug}`,
+      languages: {
+        en: `https://area36.az/${slug}`,
+        az: `https://area36.az/az/${slug}`,
+        "x-default": `https://area36.az/${slug}`,
+      },
     },
+
 
     robots: {
       index: true,
