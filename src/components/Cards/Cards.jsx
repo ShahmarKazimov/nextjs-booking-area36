@@ -1,7 +1,10 @@
 import SingleCard from "./SingleCard/SingleCard";
 import homes from "../data/homes";
+import { useTranslations } from "next-intl";
 
 export default function Cards() {
+    const t = useTranslations('Cards');
+
     return (
         <section
             aria-labelledby="featured-properties-title"
@@ -14,11 +17,10 @@ export default function Cards() {
                         id="featured-properties-title"
                         className="text-2xl md:text-3xl font-bold text-black relative"
                     >
-                        Our Favorite Homes
+                        {t('title')}
                     </h2>
                     <p className="text-gray-600 text-base max-w-2xl mx-auto mt-4">
-                        Explore a curated list of premium chalets and villas in Gabala, Azerbaijan —
-                        top-notch amenities, modern interiors, and breathtaking mountain views.
+                        {t('description')}
                     </p>
                 </header>
 

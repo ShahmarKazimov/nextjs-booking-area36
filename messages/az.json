@@ -1,0 +1,211 @@
+{
+  "Header": {
+    "contact": "Əlaqə",
+    "contactWhatsapp": "WhatsApp ilə Area36-ya yazın"
+  },
+  "Footer": {
+    "description": "Area36 ilə Qafqazın seçilmiş lüks villalarında rahatlıq və unudulmaz istirahət sizi gözləyir.",
+    "contactUs": "Bizimlə Əlaqə",
+    "followUs": "Bizi İzləyin",
+    "rights": "Bütün hüquqlar qorunur."
+  },
+  "Hero": {
+    "welcome": "Area36-ya Xoş Gəlmisiniz",
+    "subtitle": "Qafqazın möhtəşəm təbiətində yerləşən premium dağ evlərində rahatlıq, lüks və unudulmaz anlar yaşayın.",
+    "destinations": "Məkanlar",
+    "travelers": "Məmnun Səyyahlar",
+    "rating": "Reytinq"
+  },
+  "Cards": {
+    "title": "Evlərimiz",
+    "description": "Sizin üçün seçdiyimiz evləri kəşf edin, burada rahat və xoş istirahət üçün hər bir detal böyük diqqətlə düşünülüb.",
+    "viewDetails": "Ətraflı Bax"
+  },
+  "Carousel": {
+    "title": "Qafqazın Top Məkanlarını Kəşf Edin"
+  },
+  "Details": {
+    "about": "Haqqında",
+    "propertyDetails": "Detallar",
+    "reservationRequest": "Rezervasiya Sorğusu",
+    "location": "Məkan",
+    "owner": "Sahibi",
+    "transfer": "Transfer",
+    "selectTransfer": "Transfer seçin (İstəyə bağlı)",
+    "reserveNow": "İndi Rezerv Et",
+    "propertyNotFound": "Mülk Tapılmadı",
+    "viewOnMap": "Xəritədə Bax",
+    "villasIn": "Villalar",
+    "chaletIn": "Dağ Evi",
+    "in": "",
+    "azerbaijan": "Azərbaycan",
+    "notFoundDesc": "Axtardığınız mülk tapılmadı."
+  },
+  "Transfers": {
+    "vito": "Mercedes Vito 7-8 nəfərlik",
+    "sprinter": "Mercedes Sprinter 13-18 nəfərlik",
+    "sedan": "Sedan 4 nəfərlik"
+  },
+  "Homes": {
+    "area36-royal-chalet": {
+      "title": "Area36 Royal Chalet",
+      "type": "Dağ Evi",
+      "location": "Qəbələ",
+      "description": "Qəbələdə 4 yataq otağı, 3 vanna otağı, böyük hovuzu, terrası və möhtəşəm mənzərəsi olan dəbli dağ evi. Rahatlıq və dincəlmək istəyən 8 nəfərə qədər qonaq üçün mükəmməldir.",
+      "features": {
+        "4 Bedrooms": "4 Yataq otağı",
+        "3 Bathrooms": "3 Vanna otağı",
+        "Large Outdoor Pool": "Böyük Açıq Hovuz",
+        "Terrace": "Terras",
+        "Panoramic Views": "Panoramik Mənzərə",
+        "Up to 8 Guests": "8 Nəfərə qədər Qonaq",
+        "Free Parking": "Pulsuz Parkinq",
+        "Wi-Fi": "Wi-Fi"
+      }
+    },
+    "area36-family-chalet": {
+      "title": "Area36 Family Chalet",
+      "type": "Dağ Evi",
+      "location": "Qəbələ",
+      "description": "Sakit təbii mühitdə rahat istirahət üçün mükəmməl olan 3 yataq otağı, 2 vanna otağı və qızdırılan hovuzu olan rahat dağ evi.",
+      "features": {
+        "3 Bedrooms": "3 Yataq otağı",
+        "2 Bathrooms": "2 Vanna otağı",
+        "Heated Pool": "Qızdırılan Hovuz",
+        "Natural Setting": "Təbii Ətraf Mühit",
+        "Family Friendly": "Ailə üçün Uyğun",
+        "Free Parking": "Pulsuz Parkinq",
+        "Wi-Fi": "Wi-Fi",
+        "Terrace": "Terras"
+      }
+    },
+    "area36-golden-loft": {
+      "title": "Area36 Golden Loft",
+      "type": "Dağ Evi",
+      "location": "Qəbələ",
+      "description": "Sizin rahatlığınız üçün 2 geniş yataq otağı, 2 müasir vanna otağı, qızdırılan hovuzu və xoş qonaq otağı olan füsunkar dağ evi.",
+      "features": {
+        "2 Bedrooms": "2 Yataq otağı",
+        "2 Bathrooms": "2 Vanna otağı",
+        "Heated Pool": "Qızdırılan Hovuz",
+        "Spacious Living Area": "Geniş Qonaq Otağı",
+        "Modern Interior": "Modern İnteryer",
+        "Free Parking": "Pulsuz Parkinq",
+        "Wi-Fi": "Wi-Fi",
+        "Mountain Views": "Dağ Mənzərəsi"
+      }
+    },
+    "area36-luxury-chalet": {
+      "title": "Area36 Luxury Chalet",
+      "type": "Dağ Evi",
+      "location": "Qəbələ",
+      "description": "5 yataq otağı və 4 vanna otağı olan geniş dağ evi. Rahat və xoş istirahət üçün həm qapalı, həm də açıq hovuzları mövcuddur.",
+      "features": {
+        "5 Bedrooms": "5 Yataq otağı",
+        "4 Bathrooms": "4 Vanna otağı",
+        "Indoor Pool": "Qapalı Hovuz",
+        "Outdoor Pool": "Açıq Hovuz",
+        "Up to 10 Guests": "10 Nəfərə qədər Qonaq",
+        "Free Parking": "Pulsuz Parkinq",
+        "Wi-Fi": "Wi-Fi",
+        "Luxury Amenities": "Lüks Rahatlıqlar"
+      }
+    },
+    "qafqaz-riverside-chalet": {
+      "title": "Qafqaz Riverside Chalet",
+      "type": "Dağ Evi",
+      "location": "Qəbələ",
+      "description": "4 yataq otağı, 4 vanna otağı və qızdırılan hovuzu olan rahat dağ evi. Sakit istirahət axtaran ailələr və ya qruplar üçün mükəmməldir.",
+      "features": {
+        "4 Bedrooms": "4 Yataq otağı",
+        "4 Bathrooms": "4 Vanna otağı",
+        "Heated Pool": "Qızdırılan Hovuz",
+        "Riverside Location": "Çay Kənarı",
+        "Family Friendly": "Ailə üçün Uyğun",
+        "Free Parking": "Pulsuz Parkinq",
+        "Wi-Fi": "Wi-Fi",
+        "Nature Views": "Təbiət Mənzərəsi"
+      }
+    },
+    "area36-magnolia-harmony": {
+      "title": "Area36 Magnolia Harmony",
+      "type": "Dağ Evi",
+      "location": "Qəbələ",
+      "description": "Kəşflərlə dolu bir gündən sonra dincəlmək üçün hovuzu, həmçinin 3 yataq otağı və 1 vanna otağı təklif edən geniş dağ evi.",
+      "features": {
+        "3 Bedrooms": "3 Yataq otağı",
+        "1 Bathroom": "1 Vanna otağı",
+        "Outdoor Pool": "Açıq Hovuz",
+        "Spacious Garden": "Geniş Bağça",
+        "Free Parking": "Pulsuz Parkinq",
+        "Wi-Fi": "Wi-Fi",
+        "Peaceful Location": "Sakit Məkan",
+        "Mountain Views": "Dağ Mənzərəsi"
+      }
+    },
+    "area36-milano-deluxe": {
+      "title": "Area36 Milano Deluxe",
+      "type": "Dağ Evi",
+      "location": "Qəbələ",
+      "description": "Bu evdə 4 yataq otağı və 3 vanna otağı var, 9 nəfərə qədər qonaq üçün rahat yerləşdirmə təklif edir.",
+      "features": {
+        "4 Bedrooms": "4 Yataq otağı",
+        "3 Bathrooms": "3 Vanna otağı",
+        "Up to 9 Guests": "9 Nəfərə qədər Qonaq",
+        "Modern Design": "Modern Dizayn",
+        "Free Parking": "Pulsuz Parkinq",
+        "Wi-Fi": "Wi-Fi",
+        "Terrace": "Terras",
+        "Mountain Views": "Dağ Mənzərəsi"
+      }
+    },
+    "qafqaz-falcon-chalet": {
+      "title": "Qafqaz Falcon Chalet",
+      "type": "Dağ Evi",
+      "location": "Qəbələ",
+      "description": "3 yataq otağı və 3 vanna otağı olan dəbli və rahat dağ evi. Təbiətin qoynunda sakit və dincəlmək üçün ideal bir seçimdir.",
+      "features": {
+        "3 Bedrooms": "3 Yataq otağı",
+        "3 Bathrooms": "3 Vanna otağı",
+        "Heart of Nature": "Təbiətin Qoynunda",
+        "Peaceful Setting": "Sakit Mühit",
+        "Free Parking": "Pulsuz Parkinq",
+        "Wi-Fi": "Wi-Fi",
+        "Terrace": "Terras",
+        "Stunning Views": "Möhtəşəm Mənzərə"
+      }
+    },
+    "qafqaz-wooden-chalet": {
+      "title": "Qafqaz Wooden Chalet",
+      "type": "Dağ Evi",
+      "location": "Qəbələ",
+      "description": "Dağlarda rahat bir istirahət üçün mükəmməl olan 3 yataq otağı, 2 vanna otağı və qızdırılan hovuzu olan füsunkar taxta dağ evi.",
+      "features": {
+        "3 Bedrooms": "3 Yataq otağı",
+        "2 Bathrooms": "2 Vanna otağı",
+        "Heated Pool": "Qızdırılan Hovuz",
+        "Wooden Interior": "Taxta İnteryer",
+        "Mountain Location": "Dağlıq Ərazi",
+        "Free Parking": "Pulsuz Parkinq",
+        "Wi-Fi": "Wi-Fi",
+        "Cozy Fireplace": "Rahat Kamin"
+      }
+    },
+    "qafqaz-rolling-bungalow": {
+      "title": "Qafqaz Rolling Bungalow",
+      "type": "Bungalov",
+      "location": "Qəbələ",
+      "description": "4 yataq otağı və 4 vanna otağı olan geniş və rahat dağ evi. Unikal təcrübə üçün həm qapalı, həm də açıq hovuzları mövcuddur.",
+      "features": {
+        "4 Bedrooms": "4 Yataq otağı",
+        "4 Bathrooms": "4 Vanna otağı",
+        "Indoor Pool": "Qapalı Hovuz",
+        "Outdoor Pool": "Açıq Hovuz",
+        "Spacious Layout": "Geniş Planlaşdırma",
+        "Free Parking": "Pulsuz Parkinq",
+        "Wi-Fi": "Wi-Fi",
+        "Unique Experience": "Unikal Təcrübə"
+      }
+    }
+  }
+}
