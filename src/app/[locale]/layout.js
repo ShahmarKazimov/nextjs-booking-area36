@@ -25,32 +25,32 @@ export async function generateMetadata({ params }) {
 
   const keywords = isAz
     ? [
-        "Qəbələdə günlük kirayə ev",
-        "Qəbələdə villa kirayəsi",
-        "Qəbələdə chalet kirayəsi",
-        "Qəbələdə dağ evi kirayəsi",
-        "Qəbələdə həftəlik kirayə villa",
-        "Qəbələdə hovuzlu villa",
-        "Qəbələdə lüks istirahət evi",
-        "Qəbələdə saunalı dağ evi",
-        "Qəbələdə barbekülü villa",
-        "Qəbələdə ailə üçün kirayə ev",
-        "Qəbələdə dağ mənzərəli chalet",
-        "Qəbələdə şənlik üçün villa",
-        "Qafqaz mənzərəli kirayə ev Qəbələ",
-        "Area36"
-      ]
+      "Qəbələdə günlük kirayə ev",
+      "Qəbələdə villa kirayəsi",
+      "Qəbələdə chalet kirayəsi",
+      "Qəbələdə dağ evi kirayəsi",
+      "Qəbələdə həftəlik kirayə villa",
+      "Qəbələdə hovuzlu villa",
+      "Qəbələdə lüks istirahət evi",
+      "Qəbələdə saunalı dağ evi",
+      "Qəbələdə barbekülü villa",
+      "Qəbələdə ailə üçün kirayə ev",
+      "Qəbələdə dağ mənzərəli chalet",
+      "Qəbələdə şənlik üçün villa",
+      "Qafqaz mənzərəli kirayə ev Qəbələ",
+      "Area36"
+    ]
     : [
-        "Gabala chalet rental Azerbaijan",
-        "luxury villa Gabala Azerbaijan",
-        "daily chalet rental Gabala",
-        "mountain villa Qabala with pool",
-        "Qabala vacation rental",
-        "chalet with sauna Qabala",
-        "Caucasus mountain chalet Azerbaijan",
-        "private villa rental Qabala weekly",
-        "Area36 luxury stays Azerbaijan"
-      ];
+      "Gabala chalet rental Azerbaijan",
+      "luxury villa Gabala Azerbaijan",
+      "daily chalet rental Gabala",
+      "mountain villa Qabala with pool",
+      "Qabala vacation rental",
+      "chalet with sauna Qabala",
+      "Caucasus mountain chalet Azerbaijan",
+      "private villa rental Qabala weekly",
+      "Area36 luxury stays Azerbaijan"
+    ];
 
   const canonicalUrl = isAz ? "https://area36.az/az" : "https://area36.az";
 
@@ -75,6 +75,7 @@ export async function generateMetadata({ params }) {
       languages: {
         en: "https://area36.az",
         az: "https://area36.az/az",
+        "x-default": "https://area36.az",
       },
     },
 
@@ -208,20 +209,21 @@ export default async function RootLayout({ children, params }) {
     <html lang={locale}>
       <body className={`${geistSans.variable} antialiased text-white`}>
         <NextIntlClientProvider messages={messages} locale={locale}>
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify([
-                getOrganizationSchema(locale),
-                getWebsiteSchema(locale),
-                getLodgingSchema(locale),
-              ]),
-            }}
-          />
           <Header />
           <main role="main">{children}</main>
           <Footer />
         </NextIntlClientProvider>
+        {/* Script body-nin sonuna keç */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([
+              getOrganizationSchema(locale),
+              getWebsiteSchema(locale),
+              getLodgingSchema(locale),
+            ]),
+          }}
+        />
       </body>
     </html>
   );
