@@ -75,12 +75,12 @@ export default async function Home({ params }) {
       <div className="flex flex-col">
         <HeroSection />
 
-        <section aria-label="Featured Luxury Destinations">
+        <section aria-label={isAz ? "Seçilmiş Lüks Məkanlar" : "Featured Luxury Destinations"}>
           <Carousel />
         </section>
 
         <section
-          aria-label="Luxury Chalets and Villas Collection"
+          aria-label={isAz ? "Lüks Dağ Evləri və Villalar Kolleksiyası" : "Luxury Chalets and Villas Collection"}
           className="max-w-7xl mx-auto"
         >
           <h2 className="sr-only">

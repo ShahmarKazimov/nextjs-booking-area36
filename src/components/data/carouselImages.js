@@ -6,6 +6,8 @@ import backgroundImage from '../../../public/images/ui/area-image-hero.webp';
 
 export const carouselImages = [
     {
+        key: "royal-chalet",
+        slug: "area36-royal-chalet",
         src: image1,
         title: "Area36 Royal Chalet",
         description: "4 bedrooms, 3 bathrooms, scenic terrace, and a large pool – perfect for 8 guests.",
@@ -14,6 +16,8 @@ export const carouselImages = [
         location: "Gabala, Azerbaijan",
     },
     {
+        key: "family-chalet",
+        slug: "area36-family-chalet",
         src: image2,
         title: "Area36 Family Chalet",
         description: "3 bedrooms, 2 bathrooms, and a heated pool – ideal for a cozy stay.",
@@ -22,6 +26,8 @@ export const carouselImages = [
         location: "Gabala, Azerbaijan",
     },
     {
+        key: "golden-loft",
+        slug: "area36-golden-loft",
         src: image3,
         title: "Area36 Golden Loft",
         description: "Charming chalet with 2 spacious bedrooms, 2 modern bathrooms, a heated pool, and a welcoming living area for your comfort.",
@@ -30,6 +36,8 @@ export const carouselImages = [
         location: "Gabala, Azerbaijan",
     },
     {
+        key: "milano-deluxe",
+        slug: "area36-milano-deluxe",
         src: image4,
         title: "Area36 Milano Deluxe",
         description: "4 bedrooms, 3 bathrooms – comfortably accommodates up to 9 guests.",

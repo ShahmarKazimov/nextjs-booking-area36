@@ -22,7 +22,48 @@
     "viewDetails": "Ətraflı Bax"
   },
   "Carousel": {
-    "title": "Qafqazın Top Məkanlarını Kəşf Edin"
+    "title": "Qafqazın Top Məkanlarını Kəşf Edin",
+    "exploreNow": "İndi Kəşf Edin",
+    "galleryTitle": "Məkan Qalereyası və Seçilmiş Sahələr",
+    "galleryAria": "Məkan qalereyası",
+    "carouselAria": "Məkan foto karuseli",
+    "featuredImageAria": "Area36 Seçilmiş Şəkil",
+    "featuredAlt1": "Area36 məkanı - möhtəşəm mənzərəsi olan lüks kurort görünüşü",
+    "featuredAlt2": "Area36 bölməsi - romantik atmosferli eksklüziv ay lüks otağı",
+    "travelDestinationsAria": "Səyahət məkanları karuseli",
+    "featuredDestinationsAria": "Seçilmiş Məkanlar",
+    "categoryAria": "Kateqoriya: {badge}",
+    "exploreAria": "{title} məkanını kəşf edin",
+    "items": {
+      "royal-chalet": {
+        "title": "Area36 Royal Chalet",
+        "description": "4 yataq otağı, 3 vanna otağı, mənzərəli terras və böyük hovuz – 8 qonaq üçün mükəmməldir.",
+        "badge": "Macəra",
+        "alt": "Area36 Royal Chalet — Qəbələdə 4 yataq otaqlı hovuzlu lüks dağ evi, Azərbaycan",
+        "location": "Qəbələ, Azərbaycan"
+      },
+      "family-chalet": {
+        "title": "Area36 Family Chalet",
+        "description": "3 yataq otağı, 2 vanna otağı və qızdırılan hovuz – rahat istirahət üçün idealdır.",
+        "badge": "İstirahət",
+        "alt": "Area36 Family Chalet — Qəbələdə qızdırılan hovuzlu rahat 3 yataq otaqlı dağ evi, Azərbaycan",
+        "location": "Qəbələ, Azərbaycan"
+      },
+      "golden-loft": {
+        "title": "Area36 Golden Loft",
+        "description": "2 geniş yataq otağı, 2 müasir vanna otağı, qızdırılan hovuz və rahatlığınız üçün xoş qonaq otağı olan füsunkar dağ evi.",
+        "badge": "Təbiət",
+        "alt": "Area36 Golden Loft — Qəbələdə qızdırılan hovuzlu füsunkar 2 yataq otaqlı dağ evi, Azərbaycan",
+        "location": "Qəbələ, Azərbaycan"
+      },
+      "milano-deluxe": {
+        "title": "Area36 Milano Deluxe",
+        "description": "4 yataq otağı, 3 vanna otağı – 9 qonağa qədər rahat şəkildə yerləşə bilər.",
+        "badge": "Lüks",
+        "alt": "Area36 Milano Deluxe — Qəbələdə 9 qonaq üçün geniş 4 yataq otaqlı lüks dağ evi, Azərbaycan",
+        "location": "Qəbələ, Azərbaycan"
+      }
+    }
   },
   "Details": {
     "about": "Haqqında",

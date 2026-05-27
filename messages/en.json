@@ -22,7 +22,48 @@
     "viewDetails": "View Details"
   },
   "Carousel": {
-    "title": "Discover the Top Places of the Caucasus"
+    "title": "Discover the Top Places of the Caucasus",
+    "exploreNow": "Explore Now",
+    "galleryTitle": "Destination Gallery and Featured Areas",
+    "galleryAria": "Destination gallery",
+    "carouselAria": "Destination photo carousel",
+    "featuredImageAria": "Area36 Featured Image",
+    "featuredAlt1": "Area36 destination - luxury resort view with stunning landscape",
+    "featuredAlt2": "Area36 section - exclusive moon suite with romantic atmosphere",
+    "travelDestinationsAria": "Travel destinations carousel",
+    "featuredDestinationsAria": "Featured Destinations",
+    "categoryAria": "Category: {badge}",
+    "exploreAria": "Explore {title} destination",
+    "items": {
+      "royal-chalet": {
+        "title": "Area36 Royal Chalet",
+        "description": "4 bedrooms, 3 bathrooms, scenic terrace, and a large pool – perfect for 8 guests.",
+        "badge": "Adventure",
+        "alt": "Area36 Royal Chalet — luxury 4-bedroom chalet with pool in Gabala, Azerbaijan",
+        "location": "Gabala, Azerbaijan"
+      },
+      "family-chalet": {
+        "title": "Area36 Family Chalet",
+        "description": "3 bedrooms, 2 bathrooms, and a heated pool – ideal for a cozy stay.",
+        "badge": "Relaxation",
+        "alt": "Area36 Family Chalet — cozy 3-bedroom chalet with heated pool in Gabala, Azerbaijan",
+        "location": "Gabala, Azerbaijan"
+      },
+      "golden-loft": {
+        "title": "Area36 Golden Loft",
+        "description": "Charming chalet with 2 spacious bedrooms, 2 modern bathrooms, a heated pool, and a welcoming living area for your comfort.",
+        "badge": "Nature",
+        "alt": "Area36 Golden Loft — charming 2-bedroom chalet with heated pool in Gabala, Azerbaijan",
+        "location": "Gabala, Azerbaijan"
+      },
+      "milano-deluxe": {
+        "title": "Area36 Milano Deluxe",
+        "description": "4 bedrooms, 3 bathrooms – comfortably accommodates up to 9 guests.",
+        "badge": "Luxury",
+        "alt": "Area36 Milano Deluxe — spacious 4-bedroom luxury chalet for 9 guests in Gabala, Azerbaijan",
+        "location": "Gabala, Azerbaijan"
+      }
+    }
   },
   "Details": {
     "about": "About",
