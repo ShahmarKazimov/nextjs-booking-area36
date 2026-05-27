@@ -4,22 +4,25 @@
     "contactWhatsapp": "Contact Area36 on WhatsApp"
   },
   "Footer": {
-    "description": "Find your ideal rental home with Area36. We offer comfortable properties and a smooth renting experience.",
+    "description": "Area36 offers comfort and unforgettable stays in handpicked luxury villas across the Caucasus.",
     "contactUs": "Contact Us",
     "followUs": "Follow Us",
     "rights": "All rights reserved."
   },
   "Hero": {
     "welcome": "Welcome to Area36",
-    "subtitle": "Experience the beauty of Qafqaz and create unforgettable memories in our luxurious chalets.",
+    "subtitle": "Experience comfort, luxury, and unforgettable moments in premium mountain homes located in the breathtaking nature of the Caucasus.",
     "destinations": "Destinations",
     "travelers": "Happy Travelers",
     "rating": "Rating"
   },
   "Cards": {
-    "title": "Our Favorite Homes",
-    "description": "Explore a curated list of premium chalets and villas in Gabala, Azerbaijan — top-notch amenities, modern interiors, and breathtaking mountain views.",
+    "title": "Our Homes",
+    "description": "Explore the homes we have carefully selected for you, where every detail is thoughtfully designed to ensure a comfortable and pleasant stay.",
     "viewDetails": "View Details"
+  },
+  "Carousel": {
+    "title": "Discover the Top Places of the Caucasus"
   },
   "Details": {
     "about": "About",

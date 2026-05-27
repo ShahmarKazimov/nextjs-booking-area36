@@ -7,11 +7,11 @@ export async function generateMetadata({ params }) {
   const isAz = locale === "az";
 
   const title = isAz
-    ? "Qəbələdə Günlük Kirayə Lüks Şale və Villalar"
-    : "Luxury Chalets, Cabins & Villas for Rent in Azerbaijan";
+    ? "Area36 | Qafqaz Villaları  "
+    : "Area36 | Villas in Caucasus";
 
   const description = isAz
-    ? "Qəbələdə hovuz, sauna, kamin və möhtəşəm dağ mənzərələri ilə təchiz olunmuş premium şale və villaların ən böyük kolleksiyası."
+    ? "Qəbələdə hovuz, sauna, kamin və möhtəşəm dağ mənzərələri ilə təchiz olunmuş premium dağ evləri və villaların ən böyük kolleksiyası."
     : "Area36 offers premium chalets, mountain cabins, and luxury villas in Azerbaijan. Browse our curated collection and book your perfect stay in the Qafqaz region.";
 
   const canonicalUrl = isAz ? "https://area36.az/az" : "https://area36.az";
@@ -35,7 +35,7 @@ export async function generateMetadata({ params }) {
           url: "https://area36.az/images/ui/area-image-hero.webp",
           width: 1200,
           height: 630,
-          alt: isAz ? "Area36 lüks şalelər və villalar" : "Area36 luxury chalets and villas in Azerbaijan",
+          alt: isAz ? "Area36 lüks dağ evləri və villalar" : "Area36 luxury chalets and villas in Azerbaijan",
         },
       ],
     },
@@ -48,9 +48,9 @@ function getListingPageSchema(locale) {
     "@context": "https://schema.org",
     "@type": "ItemList",
     "@id": "https://area36.az/#listings",
-    name: isAz ? "Area36 tərəfindən Lüks Şale və Villalar" : "Luxury Chalets & Villas by Area36",
+    name: isAz ? "Area36 tərəfindən Lüks Dağ Evləri və Villalar" : "Luxury Chalets & Villas by Area36",
     description: isAz
-      ? "Qəbələdə günlük və həftəlik kirayə verilən premium şale, dağ evi və villaların seçilmiş kolleksiyası."
+      ? "Qəbələdə günlük və həftəlik kirayə verilən premium dağ evləri və villaların seçilmiş kolleksiyası."
       : "Curated collection of luxury chalets, cabins and villas available for rent in Azerbaijan.",
     url: isAz ? "https://area36.az/az" : "https://area36.az",
     publisher: {
@@ -84,7 +84,7 @@ export default async function Home({ params }) {
           className="max-w-7xl mx-auto"
         >
           <h2 className="sr-only">
-            {isAz ? "Qəbələdə lüks şale, dağ evi və villalar" : "Luxury Chalets, Cabins and Villas in Azerbaijan"}
+            {isAz ? "Qəbələdə lüks dağ evləri və villalar" : "Luxury Chalets, Cabins and Villas in Azerbaijan"}
           </h2>
           <Cards />
         </section>

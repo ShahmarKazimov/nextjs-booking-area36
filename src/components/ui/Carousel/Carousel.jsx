@@ -5,15 +5,18 @@ import '../../../../src/app/globals.css';
 import areaCars from "../../../../public/images/ui/transfer cars.webp";
 import areaCars2 from "../../../../public/images/ui/transfer-cars2.webp";
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 const Carousel = () => {
+  const t = useTranslations('Carousel');
+
   return (
     <div className="flex flex-col">
       {/* Main Content */}
       <main className="relative px-4 lg:px-0" role="main">
         <header className="text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-8 text-black relative">
-            Discover Our Top Destinations
+            {t('title')}
           </h2>
         </header>
 

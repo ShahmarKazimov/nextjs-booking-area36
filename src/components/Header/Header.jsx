@@ -34,8 +34,7 @@ export default function Header() {
                         </Link>
                     </div>
 
-                    <div className="flex items-center gap-4">
-                        <LanguageSwitcher />
+                    <div className="flex items-center gap-2">
 
                         <Link
                             href="https://wa.me/994552904045?text=Hi, I'm interested in renting a place. Can you assist me with the options?"
@@ -43,10 +42,11 @@ export default function Header() {
                             rel="noopener noreferrer"
                             aria-label={t("contactWhatsapp")}
                         >
-                            <button className="cursor-pointer rounded-lg px-4 py-2.5 text-sm font-semibold hover:text-white/75 bg-white/10 hover:bg-white/20 border border-white/10 backdrop-blur-md uppercase text-white transition-all">
+                            <button className="cursor-pointer rounded-lg px-3 py-[0.5rem] text-sm font-semibold hover:text-white/75 border border-white/10 uppercase text-white transition-all">
                                 {t("contact")}
                             </button>
                         </Link>
+                        <LanguageSwitcher />
                     </div>
                 </div>
             </header>

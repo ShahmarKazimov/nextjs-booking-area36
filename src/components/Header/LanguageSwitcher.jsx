@@ -5,6 +5,28 @@ import { useLocale } from "next-intl";
 import { useState, useRef, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
 
+const UKFlag = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 30" className="w-5 h-3.5 rounded-sm shadow-sm inline-block shrink-0">
+    <rect width="50" height="30" fill="#012169" />
+    <path d="M0 0 L50 30 M50 0 L0 30" stroke="#FFFFFF" strokeWidth="6" />
+    <path d="M0 0 L50 30 M50 0 L0 30" stroke="#C8102E" strokeWidth="2.5" />
+    <path d="M25 0 V30 M0 15 H50" stroke="#FFFFFF" strokeWidth="10" />
+    <path d="M25 0 V30 M0 15 H50" stroke="#C8102E" strokeWidth="6" />
+  </svg>
+);
+
+const AZFlag = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 30" className="w-5 h-3.5 rounded-sm shadow-sm inline-block shrink-0">
+    <rect width="50" height="10" fill="#00B5E2" />
+    <rect y="10" width="50" height="10" fill="#EF3340" />
+    <rect y="20" width="50" height="10" fill="#50B848" />
+    <circle cx="23" cy="15" r="3.8" fill="#FFFFFF" />
+    <circle cx="24.6" cy="15" r="3" fill="#EF3340" />
+    <rect x="25.8" y="13.8" width="2.4" height="2.4" fill="#FFFFFF" />
+    <rect x="25.8" y="13.8" width="2.4" height="2.4" fill="#FFFFFF" transform="rotate(45 27 15)" />
+  </svg>
+);
+
 export default function LanguageSwitcher() {
   const locale = useLocale();
   const router = useRouter();
@@ -28,8 +50,8 @@ export default function LanguageSwitcher() {
   };
 
   const languages = [
-    { code: "en", name: "EN", flag: "🇬🇧" },
-    { code: "az", name: "AZ", flag: "🇦🇿" }
+    { code: "en", name: "EN", flag: <UKFlag /> },
+    { code: "az", name: "AZ", flag: <AZFlag /> }
   ];
 
   const currentLang = languages.find((lang) => lang.code === locale) || languages[0];
@@ -38,11 +60,11 @@ export default function LanguageSwitcher() {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-1.5 px-3 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/10 backdrop-blur-md text-white text-sm font-semibold transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer"
+        className="flex items-center text-sm gap-1.5 px-3 py-[0.667rem] rounded-lg hover:text-white/75 border border-white/10 text-white font-semibold transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer"
         aria-haspopup="true"
         aria-expanded={isOpen}
       >
-        <span className="text-base leading-none">{currentLang.flag}</span>
+        {currentLang.flag}
         <span className="leading-none">{currentLang.name}</span>
         <ChevronDown size={14} className={`transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} />
       </button>
@@ -57,7 +79,7 @@ export default function LanguageSwitcher() {
                 className={`w-full px-4 py-2.5 text-left text-sm flex items-center gap-3 transition-colors hover:bg-white/10 cursor-pointer ${locale === lang.code ? "text-blue-400 font-bold bg-white/5" : "text-white/80"
                   }`}
               >
-                <span className="text-base leading-none">{lang.flag}</span>
+                {lang.flag}
                 <span className="leading-none">{lang.name}</span>
               </button>
             ))}
@@ -67,3 +89,4 @@ export default function LanguageSwitcher() {
     </div>
   );
 }
+

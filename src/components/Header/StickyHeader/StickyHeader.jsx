@@ -49,18 +49,18 @@ export default function StickyHeader() {
                     />
                 </Link>
 
-                <div className="flex items-center gap-4">
-                    <LanguageSwitcher />
+                <div className="flex items-center gap-2">
 
                     <Link
                         href="https://wa.me/994552904045?text=Hi, I'm interested in renting a place. Can you assist me with the options?"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="cursor-pointer rounded-lg px-4 py-2.5 text-sm font-semibold hover:text-white/75 bg-white/15 hover:bg-white/25 border border-white/10 backdrop-blur-md uppercase text-white transition-all"
+                        className="cursor-pointer rounded-lg px-3 py-[0.5rem] text-sm font-semibold hover:text-white/75 border border-white/10  uppercase text-white transition-all"
                         aria-label={t("contactWhatsapp")}
                     >
                         {t("contact")}
                     </Link>
+                    <LanguageSwitcher />
                 </div>
             </div>
         </header>

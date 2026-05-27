@@ -18,7 +18,7 @@ export default function Footer() {
         "@type": "Organization",
         "name": "Area36",
         "description": locale === "az"
-            ? "Area36 ilə ideal kirayə evinizi tapın. Biz rahat mülklər və hamar kirayə təcrübəsi təklif edirik."
+            ? "Area36 ilə Qafqazın seçilmiş lüks villalarında rahatlıq və unudulmaz istirahət sizi gözləyir."
             : "Find your ideal rental home with Area36. We offer comfortable properties and a smooth renting experience.",
         "url": "https://area36.az/",
         "logo": "https://area36.az/images/ui/logo-area.svg",
@@ -35,10 +35,11 @@ export default function Footer() {
             "addressCountry": "AZ"
         },
         "sameAs": [
-            "https://facebook.com/area36",
-            "https://instagram.com/area36",
-            "https://twitter.com/area36",
-            "https://youtube.com/area36"
+            "https://instagram.com/area36stay",
+            "https://tiktok.com/@area36stay"
+            // "https://facebook.com/area36stay",
+            // "https://twitter.com/area36stay",
+            // "https://youtube.com/area36stay",
         ]
     }
 
