@@ -1,43 +1,47 @@
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { socialLinks } from "@/components/data/socialLinks";
 import Image from "next/image";
+import { useTranslations, useLocale } from "next-intl";
 
 function getCurrentYear() {
     return new Date().getFullYear();
 }
 
-export default async function Footer() {
+export default function Footer() {
     const currentYear = getCurrentYear();
+    const t = useTranslations("Footer");
+    const locale = useLocale();
 
     // Structured data for SEO
     const structuredData = {
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "Area36",
-        "description": "Premium travel destinations and adventure experiences worldwide",
+        "description": locale === "az"
+            ? "Area36 ilə Qafqazın seçilmiş lüks villalarında rahatlıq və unudulmaz istirahət sizi gözləyir."
+            : "Find your ideal rental home with Area36. We offer comfortable properties and a smooth renting experience.",
         "url": "https://area36.az/",
         "logo": "https://area36.az/images/ui/logo-area.svg",
         "contactPoint": {
             "@type": "ContactPoint",
             "telephone": "+994552904045",
             "contactType": "customer support",
-            "email": "info@area36.az"
+            "email": "gabaladeluxe@gmail.com"
         },
         "address": {
             "@type": "PostalAddress",
-            "addressLocality": "Gabala",
-            "addressRegion": "Azerbaijan",
+            "addressLocality": locale === "az" ? "Qəbələ" : "Gabala",
+            "addressRegion": locale === "az" ? "Azərbaycan" : "Azerbaijan",
             "addressCountry": "AZ"
         },
         "sameAs": [
-            "https://facebook.com/area36",
-            "https://instagram.com/area36",
-            "https://twitter.com/area36",
-            "https://youtube.com/area36"
+            "https://instagram.com/area36stay",
+            "https://tiktok.com/@area36stay"
+            // "https://facebook.com/area36stay",
+            // "https://twitter.com/area36stay",
+            // "https://youtube.com/area36stay",
         ]
     }
-
-
 
     return (
         <footer
@@ -56,24 +60,24 @@ export default async function Footer() {
                             aria-label="Area36 Home Page"
                             title="Area36 - Premium Travel Destinations"
                         >
-                            <Image
-                                src="/images/ui/logo.svg"
-                                alt="Area36 Logo"
-                                width={120}
-                                height={60}
-                                priority
-                                className="w-[120px] h-[60px]"
-                            />
+                            <figure className="relative w-[120px] h-[60px]">
+                                <Image
+                                    src="/images/ui/logo.svg"
+                                    alt="Area36 Logo"
+                                    fill={true}
+                                    className="object-contain"
+                                />
+                            </figure>
                         </Link>
 
                         <p className="text-gray-300 max-w-xs leading-relaxed">
-                            Find your ideal rental home with Area36. We offer comfortable properties and a smooth renting experience.
+                            {t("description")}
                         </p>
                     </div>
 
                     {/* Contact Us Section */}
                     <div>
-                        <h3 className="text-lg font-semibold mb-4 text-white">Contact Us</h3>
+                        <h3 className="text-lg font-semibold mb-4 text-white">{t("contactUs")}</h3>
                         <div className="space-y-3 text-sm text-gray-400">
                             <div className="flex items-center">
                                 <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
@@ -81,9 +85,9 @@ export default async function Footer() {
                                     <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                                 </svg>
                                 <Link
-                                    href="mailto:info@area36.com"
+                                    href="mailto:gabaladeluxe@gmail.com"
                                     className="hover:text-blue-400 transition-colors"
-                                    aria-label="Email us at info@area36.com"
+                                    aria-label="Email us at gabaladeluxe@gmail.com"
                                 >
                                     gabaladeluxe@gmail.com
                                 </Link>
@@ -95,7 +99,7 @@ export default async function Footer() {
                                 <Link
                                     href="tel:+994552904045"
                                     className="hover:text-blue-400 transition-colors"
-                                    aria-label="Call us at +994 50 427 19 87"
+                                    aria-label="Call us at +994 55 290 40 45"
                                 >
                                     +994 (55) 290-40-45
                                 </Link>
@@ -104,14 +108,14 @@ export default async function Footer() {
                                 <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                                     <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                                 </svg>
-                                <span>Gabala, Azerbaijan</span>
+                                <span>{locale === "az" ? "Qəbələ, Azərbaycan" : "Gabala, Azerbaijan"}</span>
                             </div>
                         </div>
                     </div>
 
                     {/* Social Media */}
                     <div>
-                        <h3 className="text-lg font-semibold mb-4 text-white">Follow Us</h3>
+                        <h3 className="text-lg font-semibold mb-4 text-white">{t("followUs")}</h3>
                         <div className="flex space-x-3">
                             {socialLinks.map((social, index) => (
                                 <Link
@@ -130,7 +134,7 @@ export default async function Footer() {
 
                         {/* Copyright moved here for better layout */}
                         <div className="text-sm text-gray-400 mt-4">
-                            <span>© {currentYear} Area36. All rights reserved.</span>
+                            <span>© {currentYear} Area36. {t("rights")}</span>
                         </div>
                     </div>
                 </div>

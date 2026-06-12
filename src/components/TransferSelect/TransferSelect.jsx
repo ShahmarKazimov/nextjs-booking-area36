@@ -1,35 +1,52 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Car } from 'lucide-react';
-import Link from 'next/link';
+import { useTranslations, useLocale } from 'next-intl';
 
 export default function TransferSelect({ homeTitle }) {
     const [selectedCar, setSelectedCar] = useState('');
     const [isOpen, setIsOpen] = useState(false);
+    const dropdownRef = useRef(null);
 
-    const carOptions = [
-        'Mercedes Vito 7-8 seat',
-        'Mercedes Sprinter 13-18 seats',
-        'Sedan 4 seats'
-    ];
+    const tDetails = useTranslations('Details');
+    const tTransfers = useTranslations('Transfers');
+    const locale = useLocale();
+
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setIsOpen(false);
+            }
+        }
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
+
+    const carOptions = ['vito', 'sprinter', 'sedan'];
+
+    const selectedCarLabel = selectedCar ? tTransfers(selectedCar) : '';
+    const waText = locale === 'az'
+        ? `Salam, ${homeTitle} haqqında ətraflı məlumat almaq istəyirəm.${selectedCar ? ` Transfer: ${selectedCarLabel}.` : ' Transfersiz.'}`
+        : `Hello, I would like to get more information about ${homeTitle}.${selectedCar ? ` Transfer: ${selectedCarLabel}.` : ' Without transfer.'}`;
 
     return (
         <>
             <div className="flex justify-between py-2 border-b border-gray-100">
                 <div className="flex items-center gap-1 text-gray-600">
                     <Car size={18} />
-                    <span className="text-gray-600">Transfer</span>
+                    <span className="text-gray-600">{tDetails('transfer')}</span>
                 </div>
             </div>
-            <div className="relative mt-2 mb-4">
+            <div className="relative mt-2 mb-4" ref={dropdownRef}>
                 {/* Selected Value Display */}
                 <button
                     onClick={() => setIsOpen(!isOpen)}
                     className="w-full p-3.5 border border-gray-200 rounded-xl text-gray-900 bg-white hover:border-gray-300 focus:ring-2 focus:ring-black focus:border-transparent outline-none cursor-pointer transition-all duration-200 flex items-center justify-between group"
                 >
                     <span className={`font-medium ${!selectedCar ? 'text-gray-400' : ''}`}>
-                        {selectedCar || 'Select transfer (Optional)'}
+                        {selectedCar ? tTransfers(selectedCar) : tDetails('selectTransfer')}
                     </span>
                     <svg
                         className={`w-5 h-5 text-gray-400 group-hover:text-gray-600 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
@@ -45,18 +62,18 @@ export default function TransferSelect({ homeTitle }) {
                 {isOpen && (
                     <div className="absolute z-10 w-full mt-2 bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
                         <div className="max-h-60 overflow-y-auto">
-                            {carOptions.map((car, index) => (
+                            {carOptions.map((carKey, index) => (
                                 <button
-                                    key={car}
+                                    key={carKey}
                                     onClick={() => {
-                                        setSelectedCar(car);
+                                        setSelectedCar(carKey);
                                         setIsOpen(false);
                                     }}
-                                    className={`w-full p-3.5 text-left hover:bg-gray-50 transition-colors duration-150 ${selectedCar === car ? 'bg-gray-100 font-medium' : ''
+                                    className={`cursor-pointer w-full p-3.5 text-left hover:bg-gray-50 transition-colors duration-150 ${selectedCar === carKey ? 'bg-gray-100 font-medium' : ''
                                         } ${index !== carOptions.length - 1 ? 'border-b border-gray-100' : ''}`}
                                 >
-                                    <span className={selectedCar === car ? 'text-black' : 'text-gray-700'}>
-                                        {car}
+                                    <span className={selectedCar === carKey ? 'text-black' : 'text-gray-700'}>
+                                        {tTransfers(carKey)}
                                     </span>
                                 </button>
                             ))}
@@ -64,15 +81,16 @@ export default function TransferSelect({ homeTitle }) {
                     </div>
                 )}
             </div>
-            <Link
-                href={`https://wa.me/994552904045?text=Hello, I would like to get more information about ${encodeURIComponent(homeTitle)}${selectedCar ? ` with ${encodeURIComponent(selectedCar)}` : ' without transfer'}.`}
+            <a
+                href={`https://wa.me/994552904045?text=${encodeURIComponent(waText)}`}
                 target="_blank"
                 rel="noopener noreferrer"
+                className="block w-full"
             >
-                <button className="cursor-pointer w-full rounded-lg bg-gray-900 py-3.5 px-7 text-sm font-bold uppercase text-white shadow-md hover:shadow-lg transition-all">
-                    Reserve Now
+                <button className="cursor-pointer w-full rounded-lg bg-gray-900 hover:bg-gray-700 py-3.5 px-7 text-sm font-bold uppercase text-white shadow-md hover:shadow-lg transition-all">
+                    {tDetails('reserveNow')}
                 </button>
-            </Link>
+            </a>
         </>
     );
 }

@@ -1,7 +1,10 @@
 import SingleCard from "./SingleCard/SingleCard";
 import homes from "../data/homes";
+import { useTranslations } from "next-intl";
 
 export default function Cards() {
+    const t = useTranslations('Cards');
+
     return (
         <section
             aria-labelledby="featured-properties-title"
@@ -9,31 +12,29 @@ export default function Cards() {
         >
             <div className="max-w-7xl mx-auto w-full">
                 <header className="text-center mb-6">
-                    <h1
+                    {/* h1 → h2: səhifədə HeroSection-da artıq h1 var */}
+                    <h2
                         id="featured-properties-title"
                         className="text-2xl md:text-3xl font-bold text-black relative"
                     >
-                        Our Favorite Homes
-                    </h1>
+                        {t('title')}
+                    </h2>
                     <p className="text-gray-600 text-base max-w-2xl mx-auto mt-4">
-                        Explore a curated list of premium homes with top-notch amenities,
-                        modern interiors, and prime locations. Your dream home is just a
-                        click away.
+                        {t('description')}
                     </p>
                 </header>
 
-                <main>
-                    <ul
-                        role="list"
-                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-                    >
-                        {homes.map((property) => (
-                            <li key={property.id}>
-                                <SingleCard property={property} />
-                            </li>
-                        ))}
-                    </ul>
-                </main>
+                {/* main silindi — layout.js-də artıq var */}
+                <ul
+                    role="list"
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                >
+                    {homes.map((property) => (
+                        <li key={property.id}>
+                            <SingleCard property={property} />
+                        </li>
+                    ))}
+                </ul>
             </div>
         </section>
     );

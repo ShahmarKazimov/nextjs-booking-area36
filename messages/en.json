@@ -1,0 +1,252 @@
+{
+  "Header": {
+    "contact": "Contact",
+    "contactWhatsapp": "Contact Area36 on WhatsApp"
+  },
+  "Footer": {
+    "description": "Area36 offers comfort and unforgettable stays in handpicked luxury villas across the Caucasus.",
+    "contactUs": "Contact Us",
+    "followUs": "Follow Us",
+    "rights": "All rights reserved."
+  },
+  "Hero": {
+    "welcome": "Welcome to Area36",
+    "subtitle": "Experience comfort, luxury, and unforgettable moments in premium mountain homes located in the breathtaking nature of the Caucasus.",
+    "destinations": "Destinations",
+    "travelers": "Happy Travelers",
+    "rating": "Rating"
+  },
+  "Cards": {
+    "title": "Our Homes",
+    "description": "Explore the homes we have carefully selected for you, where every detail is thoughtfully designed to ensure a comfortable and pleasant stay.",
+    "viewDetails": "View Details"
+  },
+  "Carousel": {
+    "title": "Discover the Top Places of the Caucasus",
+    "exploreNow": "Explore Now",
+    "galleryTitle": "Destination Gallery and Featured Areas",
+    "galleryAria": "Destination gallery",
+    "carouselAria": "Destination photo carousel",
+    "featuredImageAria": "Area36 Featured Image",
+    "featuredAlt1": "Area36 destination - luxury resort view with stunning landscape",
+    "featuredAlt2": "Area36 section - exclusive moon suite with romantic atmosphere",
+    "travelDestinationsAria": "Travel destinations carousel",
+    "featuredDestinationsAria": "Featured Destinations",
+    "categoryAria": "Category: {badge}",
+    "exploreAria": "Explore {title} destination",
+    "items": {
+      "royal-chalet": {
+        "title": "Area36 Royal Chalet",
+        "description": "4 bedrooms, 3 bathrooms, scenic terrace, and a large pool – perfect for 8 guests.",
+        "badge": "Adventure",
+        "alt": "Area36 Royal Chalet — luxury 4-bedroom chalet with pool in Gabala, Azerbaijan",
+        "location": "Gabala, Azerbaijan"
+      },
+      "family-chalet": {
+        "title": "Area36 Family Chalet",
+        "description": "3 bedrooms, 2 bathrooms, and a heated pool – ideal for a cozy stay.",
+        "badge": "Relaxation",
+        "alt": "Area36 Family Chalet — cozy 3-bedroom chalet with heated pool in Gabala, Azerbaijan",
+        "location": "Gabala, Azerbaijan"
+      },
+      "golden-loft": {
+        "title": "Area36 Golden Loft",
+        "description": "Charming chalet with 2 spacious bedrooms, 2 modern bathrooms, a heated pool, and a welcoming living area for your comfort.",
+        "badge": "Nature",
+        "alt": "Area36 Golden Loft — charming 2-bedroom chalet with heated pool in Gabala, Azerbaijan",
+        "location": "Gabala, Azerbaijan"
+      },
+      "milano-deluxe": {
+        "title": "Area36 Milano Deluxe",
+        "description": "4 bedrooms, 3 bathrooms – comfortably accommodates up to 9 guests.",
+        "badge": "Luxury",
+        "alt": "Area36 Milano Deluxe — spacious 4-bedroom luxury chalet for 9 guests in Gabala, Azerbaijan",
+        "location": "Gabala, Azerbaijan"
+      }
+    }
+  },
+  "Details": {
+    "about": "About",
+    "propertyDetails": "Property Details",
+    "reservationRequest": "Reservation Request",
+    "location": "Location",
+    "owner": "Owner",
+    "transfer": "Transfer",
+    "selectTransfer": "Select transfer (Optional)",
+    "reserveNow": "Reserve Now",
+    "propertyNotFound": "Property Not Found",
+    "viewOnMap": "View on Map",
+    "villasIn": "Villas in",
+    "chaletIn": "Chalet in",
+    "in": "in",
+    "azerbaijan": "Azerbaijan",
+    "notFoundDesc": "The requested property could not be found."
+  },
+  "Transfers": {
+    "vito": "Mercedes Vito 7-8 seat",
+    "sprinter": "Mercedes Sprinter 13-18 seats",
+    "sedan": "Sedan 4 seats"
+  },
+  "Homes": {
+    "area36-royal-chalet": {
+      "title": "Area36 Royal Chalet",
+      "type": "Chalet",
+      "location": "Gabala",
+      "description": "A stylish chalet with 4 bedrooms, 3 bathrooms, a large pool, terrace, and stunning views. Perfect for up to 8 guests seeking comfort and relaxation.",
+      "features": {
+        "4 Bedrooms": "4 Bedrooms",
+        "3 Bathrooms": "3 Bathrooms",
+        "Large Outdoor Pool": "Large Outdoor Pool",
+        "Terrace": "Terrace",
+        "Panoramic Views": "Panoramic Views",
+        "Up to 8 Guests": "Up to 8 Guests",
+        "Free Parking": "Free Parking",
+        "Wi-Fi": "Wi-Fi"
+      }
+    },
+    "area36-family-chalet": {
+      "title": "Area36 Family Chalet",
+      "type": "Chalet",
+      "location": "Gabala",
+      "description": "A cozy chalet with 3 bedrooms, 2 bathrooms, and a heated pool. Perfect for a relaxing getaway in a tranquil natural setting.",
+      "features": {
+        "3 Bedrooms": "3 Bedrooms",
+        "2 Bathrooms": "2 Bathrooms",
+        "Heated Pool": "Heated Pool",
+        "Natural Setting": "Natural Setting",
+        "Family Friendly": "Family Friendly",
+        "Free Parking": "Free Parking",
+        "Wi-Fi": "Wi-Fi",
+        "Terrace": "Terrace"
+      }
+    },
+    "area36-golden-loft": {
+      "title": "Area36 Golden Loft",
+      "type": "Chalet",
+      "location": "Gabala",
+      "description": "Charming chalet with 2 spacious bedrooms, 2 modern bathrooms, a heated pool, and a welcoming living area for your comfort.",
+      "features": {
+        "2 Bedrooms": "2 Bedrooms",
+        "2 Bathrooms": "2 Bathrooms",
+        "Heated Pool": "Heated Pool",
+        "Spacious Living Area": "Spacious Living Area",
+        "Modern Interior": "Modern Interior",
+        "Free Parking": "Free Parking",
+        "Wi-Fi": "Wi-Fi",
+        "Mountain Views": "Mountain Views"
+      }
+    },
+    "area36-luxury-chalet": {
+      "title": "Area36 Luxury Chalet",
+      "type": "Chalet",
+      "location": "Gabala",
+      "description": "A spacious chalet with 5 bedrooms and 4 bathrooms. Features both indoor and outdoor pools for a comfortable and enjoyable stay.",
+      "features": {
+        "5 Bedrooms": "5 Bedrooms",
+        "4 Bathrooms": "4 Bathrooms",
+        "Indoor Pool": "Indoor Pool",
+        "Outdoor Pool": "Outdoor Pool",
+        "Up to 10 Guests": "Up to 10 Guests",
+        "Free Parking": "Free Parking",
+        "Wi-Fi": "Wi-Fi",
+        "Luxury Amenities": "Luxury Amenities"
+      }
+    },
+    "qafqaz-riverside-chalet": {
+      "title": "Qafqaz Riverside Chalet",
+      "type": "Chalet",
+      "location": "Gabala",
+      "description": "Comfortable chalet with 4 bedrooms, 4 bathrooms and a heated pool. Perfect for families or groups looking for a relaxing stay.",
+      "features": {
+        "4 Bedrooms": "4 Bedrooms",
+        "4 Bathrooms": "4 Bathrooms",
+        "Heated Pool": "Heated Pool",
+        "Riverside Location": "Riverside Location",
+        "Family Friendly": "Family Friendly",
+        "Free Parking": "Free Parking",
+        "Wi-Fi": "Wi-Fi",
+        "Nature Views": "Nature Views"
+      }
+    },
+    "area36-magnolia-harmony": {
+      "title": "Area36 Magnolia Harmony",
+      "type": "Chalet",
+      "location": "Gabala",
+      "description": "Spacious chalet offering 3 bedrooms and 1 bathroom, plus a pool to unwind after a day of exploring.",
+      "features": {
+        "3 Bedrooms": "3 Bedrooms",
+        "1 Bathroom": "1 Bathroom",
+        "Outdoor Pool": "Outdoor Pool",
+        "Spacious Garden": "Spacious Garden",
+        "Free Parking": "Free Parking",
+        "Wi-Fi": "Wi-Fi",
+        "Peaceful Location": "Peaceful Location",
+        "Mountain Views": "Mountain Views"
+      }
+    },
+    "area36-milano-deluxe": {
+      "title": "Area36 Milano Deluxe",
+      "type": "Chalet",
+      "location": "Gabala",
+      "description": "This home features 4 bedrooms and 3 bathrooms, offering comfortable accommodation for up to 9 guests.",
+      "features": {
+        "4 Bedrooms": "4 Bedrooms",
+        "3 Bathrooms": "3 Bathrooms",
+        "Up to 9 Guests": "Up to 9 Guests",
+        "Modern Design": "Modern Design",
+        "Free Parking": "Free Parking",
+        "Wi-Fi": "Wi-Fi",
+        "Terrace": "Terrace",
+        "Mountain Views": "Mountain Views"
+      }
+    },
+    "qafqaz-falcon-chalet": {
+      "title": "Qafqaz Falcon Chalet",
+      "type": "Chalet",
+      "location": "Gabala",
+      "description": "A stylish and cozy chalet with 3 bedrooms and 3 bathrooms. Ideal for a peaceful and relaxing escape in the heart of nature.",
+      "features": {
+        "3 Bedrooms": "3 Bedrooms",
+        "3 Bathrooms": "3 Bathrooms",
+        "Heart of Nature": "Heart of Nature",
+        "Peaceful Setting": "Peaceful Setting",
+        "Free Parking": "Free Parking",
+        "Wi-Fi": "Wi-Fi",
+        "Terrace": "Terrace",
+        "Stunning Views": "Stunning Views"
+      }
+    },
+    "qafqaz-wooden-chalet": {
+      "title": "Qafqaz Wooden Chalet",
+      "type": "Chalet",
+      "location": "Gabala",
+      "description": "A charming wooden chalet with 3 bedrooms, 2 bathrooms, and a heated pool. Perfect for a cozy stay in the mountains.",
+      "features": {
+        "3 Bedrooms": "3 Bedrooms",
+        "2 Bathrooms": "2 Bathrooms",
+        "Heated Pool": "Heated Pool",
+        "Wooden Interior": "Wooden Interior",
+        "Mountain Location": "Mountain Location",
+        "Free Parking": "Free Parking",
+        "Wi-Fi": "Wi-Fi",
+        "Cozy Fireplace": "Cozy Fireplace"
+      }
+    },
+    "qafqaz-rolling-bungalow": {
+      "title": "Qafqaz Rolling Bungalow",
+      "type": "Bungalow",
+      "location": "Gabala",
+      "description": "Spacious and comfortable chalet with 4 bedrooms and 4 bathrooms. Features both indoor and outdoor pools for a unique experience.",
+      "features": {
+        "4 Bedrooms": "4 Bedrooms",
+        "4 Bathrooms": "4 Bathrooms",
+        "Indoor Pool": "Indoor Pool",
+        "Outdoor Pool": "Outdoor Pool",
+        "Spacious Layout": "Spacious Layout",
+        "Free Parking": "Free Parking",
+        "Wi-Fi": "Wi-Fi",
+        "Unique Experience": "Unique Experience"
+      }
+    }
+  }
+}
