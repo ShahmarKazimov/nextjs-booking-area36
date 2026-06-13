@@ -5,6 +5,9 @@
   },
   "Footer": {
     "description": "Area36 offers comfort and unforgettable stays in handpicked luxury villas across the Caucasus.",
+    "information": "Information",
+    "aboutUs": "About Us",
+    "privacyPolicy": "Privacy Policy",
     "contactUs": "Contact Us",
     "followUs": "Follow Us",
     "rights": "All rights reserved."

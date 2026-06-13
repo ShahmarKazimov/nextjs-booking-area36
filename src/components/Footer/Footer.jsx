@@ -51,7 +51,7 @@ export default function Footer() {
         >
             {/* Main Footer Content */}
             <div className="max-w-7xl mx-auto px-4 xl:px-0 py-12">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
 
                     <div className="lg:col-span-1">
                         <Link
@@ -73,6 +73,29 @@ export default function Footer() {
                         <p className="text-gray-300 max-w-xs leading-relaxed">
                             {t("description")}
                         </p>
+                    </div>
+
+                    {/* Information Section */}
+                    <div>
+                        <h3 className="text-lg font-semibold mb-4 text-white">{t("information")}</h3>
+                        <div className="space-y-3 text-sm text-gray-400">
+                            <div className="flex items-center">
+                                <Link
+                                    href="/about"
+                                    className="hover:text-white transition-colors"
+                                >
+                                    {t("aboutUs")}
+                                </Link>
+                            </div>
+                            <div className="flex items-center">
+                                <Link
+                                    href="/privacy-policy"
+                                    className="hover:text-white transition-colors"
+                                >
+                                    {t("privacyPolicy")}
+                                </Link>
+                            </div>
+                        </div>
                     </div>
 
                     {/* Contact Us Section */}
