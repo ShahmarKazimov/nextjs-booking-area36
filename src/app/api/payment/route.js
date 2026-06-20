@@ -1,11 +1,16 @@
+// /api/payment/route.js
 import { NextResponse } from "next/server";
 import crypto from "crypto";
 
 export async function POST(req) {
     const { orderId, homeTitle } = await req.json();
 
-    const publicKey = process.env.EPOINT_PUBLIC_KEY;
-    const privateKey = process.env.EPOINT_PRIVATE_KEY;
+    const publicKey = process.env.EPOINT_PUBLIC_KEY;   // "i000201616"
+    const privateKey = process.env.EPOINT_PRIVATE_KEY; // "9JUMbwpTbMHYIAHlePU8CgKI"
+
+    // DEBUG: key-ləri yoxla
+    console.log("PUBLIC KEY:", publicKey);
+    console.log("PRIVATE KEY:", privateKey);
 
     const data = {
         public_key: publicKey,
@@ -20,10 +25,16 @@ export async function POST(req) {
 
     const dataBase64 = Buffer.from(JSON.stringify(data)).toString("base64");
 
+    // BASE64 imza - HEX deyil
     const signature = crypto
         .createHmac("sha1", privateKey)
         .update(dataBase64)
         .digest("base64");
+
+    // DEBUG: nə göndərdiyini gör
+    console.log("DATA JSON:", JSON.stringify(data));
+    console.log("DATA BASE64:", dataBase64);
+    console.log("SIGNATURE:", signature);
 
     const response = await fetch("https://epoint.az/api/1/request", {
         method: "POST",
@@ -32,6 +43,7 @@ export async function POST(req) {
     });
 
     const result = await response.json();
+    console.log("EPOINT RESPONSE:", JSON.stringify(result));
 
     if (result.status === "success") {
         return NextResponse.json({ redirect_url: result.redirect_url });
