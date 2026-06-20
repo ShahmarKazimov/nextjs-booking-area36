@@ -77,6 +77,8 @@
     "transfer": "Transfer",
     "selectTransfer": "Select transfer (Optional)",
     "reserveNow": "Reserve Now",
+    "loading": "Loading...",
+    "payPrePayment": "Pay Pre-Payment (170 ₼)",
     "propertyNotFound": "Property Not Found",
     "viewOnMap": "View on Map",
     "villasIn": "Villas in",
