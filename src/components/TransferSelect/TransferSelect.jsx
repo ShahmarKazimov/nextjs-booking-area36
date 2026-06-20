@@ -116,7 +116,8 @@ export default function TransferSelect({ homeTitle }) {
                 disabled={loading}
                 className="cursor-pointer w-full rounded-lg border-2 border-gray-900 hover:bg-gray-100 py-3.5 px-7 text-sm font-bold uppercase text-gray-900 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             >
-                {loading ? 'Yüklənir...' : 'Beh ödə (170 ₼)'}
+                {loading ? 'Yüklənir...' : 'Beh ödə (1
+                 ₼)'}
             </button>
         </>
     );
