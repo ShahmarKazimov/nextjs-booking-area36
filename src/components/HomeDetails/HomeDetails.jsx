@@ -4,7 +4,17 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import Image from 'next/image';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
-export default function HomeDetails({ images = [], title = '', description = '' }) {
+export default function HomeDetails({
+    images = [],
+    title = '',
+    description = '',
+    location = '',
+    villaRentalLabel = '', // page.js-dən gələcək, tərcümə olunmuş "luxury villa rental" / "lüks villa kirayəsi"
+}) {
+    const photoAlt = location
+        ? `${title} – ${location} ${villaRentalLabel}`
+        : `${title} – ${villaRentalLabel}`;
+
     const [selectedIndex, setSelectedIndex] = useState(null);
     const [touchStart, setTouchStart] = useState(0);
     const [touchEnd, setTouchEnd] = useState(0);
@@ -79,7 +89,7 @@ export default function HomeDetails({ images = [], title = '', description = '' 
                 <div className="md:col-span-2 md:row-span-2 relative h-64 sm:h-80 md:h-[29rem]">
                     <Image
                         src={images[0]}
-                        alt={`${title} - main photo${description ? `, ${description}` : ''}`}
+                        alt={photoAlt}
                         fill
                         priority                        // ← LCP xəbərdarlığını aradan qaldırır
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
@@ -93,7 +103,7 @@ export default function HomeDetails({ images = [], title = '', description = '' 
                     <div key={i + 1} className="relative h-48 sm:h-56 md:h-56">
                         <Image
                             src={img}
-                            alt={`${title} - photo ${i + 2}`}
+                            alt={photoAlt}
                             fill
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 25vw, 300px"
                             className="object-cover rounded-xl cursor-pointer hover:opacity-90 duration-200 transition-opacity shadow-md"
@@ -155,7 +165,7 @@ export default function HomeDetails({ images = [], title = '', description = '' 
                     >
                         <Image
                             src={images[selectedIndex]}
-                            alt={`${title} - photo ${selectedIndex + 1} of ${images.length}`}
+                            alt={photoAlt}
                             fill
                             sizes="(max-width: 768px) 100vw, 90vw"
                             className="object-contain rounded-lg select-none"
@@ -187,14 +197,13 @@ export default function HomeDetails({ images = [], title = '', description = '' 
                             >
                                 <Image
                                     src={img}
-                                    alt={`${title} thumbnail ${i + 1}`}
+                                    alt={`${photoAlt} thumbnail`}
                                     fill
                                     sizes="48px"
-                                    className={`object-cover rounded cursor-pointer transition-all ${
-                                        i === selectedIndex
-                                            ? 'ring-2 ring-white scale-110'
-                                            : 'opacity-60 hover:opacity-80'
-                                    }`}
+                                    className={`object-cover rounded cursor-pointer transition-all ${i === selectedIndex
+                                        ? 'ring-2 ring-white scale-110'
+                                        : 'opacity-60 hover:opacity-80'
+                                        }`}
                                     onClick={(e) => { e.stopPropagation(); setSelectedIndex(i); }}
                                 />
                             </div>

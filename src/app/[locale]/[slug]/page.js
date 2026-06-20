@@ -33,14 +33,19 @@ export async function generateMetadata({ params }) {
   const typeStr = tHome("type") || "Chalet";
   const locationStr = tHome("location");
   const azerbaijanStr = t("azerbaijan");
-  const title = `${tHome("title")} | Luxury ${typeStr} ${t("in") ? t("in") + " " : ""}${locationStr}, ${azerbaijanStr}`;
+  const luxuryStr = t("luxury"); // YENİ: Details.json-a "luxury" key-i əlavə edilməlidir
+  const title = `${tHome("title")} | ${luxuryStr} ${typeStr} ${t("in") ? t("in") + " " : ""}${locationStr}, ${azerbaijanStr}`;
 
-  const rawDescription = tHome("description");
-  const description =
-    rawDescription?.length > 155
-      ? `${rawDescription.slice(0, 152)}...`
-      : rawDescription;
+  const rawDescription = tHome("description") || tHome("title");
 
+  function truncateAtWord(str, maxLen) {
+    if (!str || str.length <= maxLen) return str;
+    const sliced = str.slice(0, maxLen);
+    const lastSpace = sliced.lastIndexOf(" ");
+    return `${sliced.slice(0, lastSpace > 0 ? lastSpace : maxLen)}...`;
+  }
+
+  const description = truncateAtWord(rawDescription, 155);
   const image = home.images?.[0]
     ? `https://area36.az${home.images[0]}`
     : "https://area36.az/images/ui/area-image-hero.webp";
@@ -53,10 +58,20 @@ export async function generateMetadata({ params }) {
 
     keywords: [
       tHome("title"),
-      `${locationStr} luxury chalet`,
+
       `${locationStr} villa rental`,
-      `luxury accommodation ${locationStr} Azerbaijan`,
-      "Area36 chalet booking",
+      `${locationStr} luxury villa`,
+      `${locationStr} chalet rental`,
+      `${locationStr} holiday home`,
+      `${locationStr} vacation rental`,
+
+      locale === "az"
+        ? `${locationStr} villa kirayəsi`
+        : `${locationStr} villa rental`,
+
+      locale === "az"
+        ? `${locationStr} günlük kirayə ev`
+        : `${locationStr} daily rental house`,
     ],
 
     alternates: {
@@ -145,14 +160,6 @@ export default async function HomeDetailPage({ params }) {
       },
     }),
 
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: home.rating,
-      bestRating: 10,
-      worstRating: 1,
-      reviewCount: 12,
-    },
-
     containsPlace: {
       "@type": "Accommodation",
       additionalType: tHome("type") || "Chalet",
@@ -208,7 +215,12 @@ export default async function HomeDetailPage({ params }) {
             </p>
           </header>
 
-          <HomeDetails images={home.images} title={tHome("title")} />
+          <HomeDetails
+            images={home.images}
+            title={tHome("title")}
+            location={`${tHome("location")}, ${t("azerbaijan")}`}
+            villaRentalLabel={t("villaRental")}
+          />
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
             <section className="lg:col-span-2 space-y-8">

@@ -28,6 +28,35 @@ export default function sitemap() {
     },
   ]);
 
+  const staticPages = ["about", "privacy-policy"];
+
+  const staticUrls = staticPages.flatMap((page) => [
+    {
+      url: `https://area36.az/${page}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.3,
+      alternates: {
+        languages: {
+          en: `https://area36.az/${page}`,
+          az: `https://area36.az/az/${page}`,
+        },
+      },
+    },
+    {
+      url: `https://area36.az/az/${page}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.3,
+      alternates: {
+        languages: {
+          en: `https://area36.az/${page}`,
+          az: `https://area36.az/az/${page}`,
+        },
+      },
+    },
+  ]);
+
   return [
     {
       url: "https://area36.az",
@@ -54,5 +83,6 @@ export default function sitemap() {
       },
     },
     ...homeUrls,
+    ...staticUrls,
   ];
 }

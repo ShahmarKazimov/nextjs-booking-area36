@@ -22,7 +22,7 @@ const Carousel = () => {
 
         <div className="max-w-7xl mx-auto">
           {/* Page Title for Screen Readers */}
-          <h1 className="sr-only">{t('galleryTitle')}</h1>
+          <h2 className="sr-only">{t('galleryTitle')}</h2>
 
           {/* Destinations Gallery Section */}
           <section

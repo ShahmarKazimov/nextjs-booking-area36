@@ -8,8 +8,7 @@ const HeroSection = () => {
     return (
         <section
             className="relative sm:-top-[5.1rem] -top-[9rem] left-0 w-full h-[550px] sm:h-[737px] z-[-1] bg-black"
-            aria-label="Area36 Hero Section"
-        >
+            aria-label="Luxury villas and chalets in Gabala"        >
             <div
                 className="relative w-full h-[620px] sm:h-[735px] bg-black"
                 style={{ backgroundColor: '#000000' }}
@@ -41,7 +40,14 @@ const HeroSection = () => {
             <div className="absolute inset-0 flex flex-col justify-center items-center text-white z-10">
                 <div className="text-center mt-20 space-y-6 max-w-4xl px-4">
                     <h1 className="text-4xl md:text-6xl font-bold mb-6 drop-shadow-2xl animate-fade-in-up">
-                        <span className="bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent">
+                        {/* SEO üçün açar söz-yönümlü mətn — vizual olaraq görünmür, Google və screen reader oxuyur */}
+                        <span className="sr-only">{t('seoTitle')}</span>
+
+                        {/* Vizual brendinq mətni — dizaynı qoruyur */}
+                        <span
+                            className="bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent"
+                            aria-hidden="true"
+                        >
                             {t('welcome')}
                         </span>
                     </h1>

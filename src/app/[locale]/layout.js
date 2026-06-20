@@ -23,33 +23,71 @@ export async function generateMetadata({ params }) {
     ? "Qəbələdə günlük və həftəlik lüks chalet, dağ evi və villa kirayəsi. Hovuz, sauna, barbekü və Qafqaz dağ mənzərəsi ilə unudulmaz istirahət. Area36 ilə Qəbələdə premium istirahət."
     : "Daily and weekly luxury chalet, mountain cabin, and villa rentals in Gabala. Pool, sauna, BBQ, and Caucasus mountain views. Premium vacation with Area36.";
 
-  const keywords = isAz
-    ? [
-      "Qəbələdə günlük kirayə ev",
+  const keywords = isAz ?
+    [
+      // CORE HIGH-INTENT (AZ)
+      "Qəbələdə ev kirayəsi",
+      "Qəbələ ev kirayə",
+      "Qəbələdə günlük ev kirayəsi",
       "Qəbələdə villa kirayəsi",
       "Qəbələdə chalet kirayəsi",
       "Qəbələdə dağ evi kirayəsi",
-      "Qəbələdə həftəlik kirayə villa",
-      "Qəbələdə hovuzlu villa",
-      "Qəbələdə lüks istirahət evi",
-      "Qəbələdə saunalı dağ evi",
-      "Qəbələdə barbekülü villa",
-      "Qəbələdə ailə üçün kirayə ev",
-      "Qəbələdə dağ mənzərəli chalet",
-      "Qəbələdə şənlik üçün villa",
-      "Qafqaz mənzərəli kirayə ev Qəbələ",
-      "Area36"
+      "Qəbələ kirayə evlər",
+      "Qəbələdə kirayə evlər",
+      "Qəbələ günlük kirayə ev",
+      "Qəbələ villa kirayə",
+
+      // DIACRITIC-FREE (AZ)
+      "Qebele kiraye ev",
+      "Qebele ev kirayesi",
+      "Qebele gunluk kiraye ev",
+      "Qebele villa kirayesi",
+      "Qebele chalet kirayesi",
+      "Qebele dag evi kirayesi",
+      "Qebele kiraye evler",
+      "Qebelede kiraye ev",
+      "Qebelede evler kiraye",
+
+      // INTENT / CONVERSATIONAL (AZ)
+      "Qəbələdə kirayə evlər",
+      "Qəbələdə kirayə ev qiymətləri",
+      "Qəbələdə villa qiymətləri",
+      "Qəbələdə günlük ev neçəyədir",
+      "Qəbələdə hovuzlu ev kirayəsi",
+      "Qəbələdə ailə üçün ev kirayəsi",
+      "Qəbələdə rahat evlər kirayə",
+
+      // PREMIUM / LUXURY (AZ + MIX)
+      "Qəbələdə lüks villa kirayəsi",
+      "Qəbələdə premium villa",
+      "Qəbələdə hovuzlu villa kirayə",
+      "Qəbələdə sauna olan evlər",
+      "Qəbələdə dağ mənzərəli villa",
+      "Qəbələdə private villa rental",
+      "Gabala luxury villa rental",
+      "Gabala chalet with pool",
     ]
     : [
-      "Gabala chalet rental Azerbaijan",
-      "luxury villa Gabala Azerbaijan",
-      "daily chalet rental Gabala",
-      "mountain villa Qabala with pool",
-      "Qabala vacation rental",
-      "chalet with sauna Qabala",
-      "Caucasus mountain chalet Azerbaijan",
-      "private villa rental Qabala weekly",
-      "Area36 luxury stays Azerbaijan"
+      "Gabala villa for rent",
+      "Gabala villas for rent",
+      "villa rental Gabala",
+      "luxury villas in Gabala",
+      "Gabala house for rent",
+      "houses for rent in Gabala",
+      "Gabala holiday homes",
+      "Gabala vacation rentals",
+      "vacation rentals Gabala Azerbaijan",
+      "Gabala chalet rental",
+      "chalet rental in Gabala",
+      "mountain chalet Gabala",
+      "cabin rentals Gabala",
+      "Gabala cabins for rent",
+      "Gabala accommodation",
+      "places to stay in Gabala",
+      "Gabala Airbnb villas",
+      "private villa rental Gabala",
+      "family villa Gabala rental",
+      "pool villa Gabala Azerbaijan",
     ];
 
   const canonicalUrl = isAz ? "https://area36.az/az" : "https://area36.az";
@@ -69,7 +107,7 @@ export async function generateMetadata({ params }) {
     authors: [{ name: "Area36", url: "https://area36.az" }],
     creator: "Area36",
     publisher: "Area36",
-  
+
 
     alternates: {
       canonical: canonicalUrl,
@@ -126,6 +164,11 @@ export async function generateMetadata({ params }) {
     },
   };
 }
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
 
 function getOrganizationSchema(locale) {
   return {

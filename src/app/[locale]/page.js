@@ -7,7 +7,7 @@ export async function generateMetadata({ params }) {
   const isAz = locale === "az";
 
   const title = isAz
-    ? "Area36 | Qafqaz Villaları  "
+    ? "Area36 | Qafqaz Villaları"
     : "Area36 | Villas in Caucasus";
 
   const description = isAz
@@ -24,6 +24,7 @@ export async function generateMetadata({ params }) {
       languages: {
         en: "https://area36.az",
         az: "https://area36.az/az",
+        "x-default": "https://area36.az",
       },
     },
     openGraph: {

@@ -17,7 +17,8 @@
     "subtitle": "Experience comfort, luxury, and unforgettable moments in premium mountain homes located in the breathtaking nature of the Caucasus.",
     "destinations": "Destinations",
     "travelers": "Happy Travelers",
-    "rating": "Rating"
+    "rating": "Rating",
+    "seoTitle": "Luxury Villa and Chalet Rentals in Gabala, Azerbaijan"
   },
   "Cards": {
     "title": "Our Homes",
@@ -85,7 +86,10 @@
     "chaletIn": "Chalet in",
     "in": "in",
     "azerbaijan": "Azerbaijan",
-    "notFoundDesc": "The requested property could not be found."
+    "notFoundDesc": "The requested property could not be found.", 
+    "luxury": "Luxury",
+    "villaRental": "luxury villa rental",
+    "rating": "Rating"
   },
   "Transfers": {
     "vito": "Mercedes Vito 7-8 seat",

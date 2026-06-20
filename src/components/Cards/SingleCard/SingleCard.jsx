@@ -6,11 +6,18 @@ import { useTranslations } from "next-intl";
 const SingleCard = ({ property }) => {
     const tHome = useTranslations(`Homes.${property.slug}`);
     const tCards = useTranslations("Cards");
+    const tDetails = useTranslations("Details");
 
     const title = tHome("title");
     const type = tHome("type");
     const description = tHome("description");
     const location = tHome("location");
+
+    // Tərcümə əsaslı, hər iki dildə düzgün görünən alt text
+    const inWord = tDetails("in"); // EN: "in", AZ: "" (boş)
+    const imageAlt = inWord
+        ? `${title} — ${tDetails("luxury")} ${type || "chalet"} ${inWord} ${location}`
+        : `${title} — ${tDetails("luxury")} ${type || "chalet"} ${location}`;
 
     return (
         <article className="border border-black/10 relative flex flex-col w-full h-full rounded-xl bg-white text-gray-700 shadow-xl">
@@ -18,7 +25,7 @@ const SingleCard = ({ property }) => {
             <div className="relative mx-4 mt-4 overflow-hidden shadow-lg rounded-xl h-56 flex-shrink-0">
                 <Image
                     src={property.images[0]}
-                    alt={`${title} — luxury ${type || "chalet"} in ${location}`}
+                    alt={imageAlt}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover"
@@ -34,7 +41,7 @@ const SingleCard = ({ property }) => {
                     </h3>
                     <p
                         className="flex items-center gap-1.5 text-base text-blue-gray-900 flex-shrink-0"
-                        aria-label={`Rating: ${property.rating} out of 10`}
+                        aria-label={`${tDetails("rating") || "Rating"}: ${property.rating} / 10`}
                     >
                         {Icons.star}
                         {property.rating}
@@ -52,7 +59,7 @@ const SingleCard = ({ property }) => {
                 <Link
                     href={`/${property.slug}`}
                     className="block w-full rounded-lg bg-gray-900 py-3.5 px-7 text-sm font-bold uppercase text-white shadow-md hover:shadow-lg hover:bg-gray-700 transition-all text-center"
-                    aria-label={`View details for ${title}`}
+                    aria-label={`${tCards("viewDetails")}: ${title}`}
                 >
                     {tCards("viewDetails")}
                 </Link>

@@ -17,7 +17,9 @@
     "subtitle": "Qafqazın möhtəşəm təbiətində yerləşən premium dağ evlərində rahatlıq, lüks və unudulmaz anlar yaşayın.",
     "destinations": "Məkanlar",
     "travelers": "Məmnun Səyyahlar",
-    "rating": "Reytinq"
+    "rating": "Reytinq",
+    "seoTitle": "Qəbələdə Lüks Villa və Dağ Evi Kirayəsi"
+
   },
   "Cards": {
     "title": "Evlərimiz",
@@ -85,7 +87,10 @@
     "chaletIn": "Dağ Evi",
     "in": "",
     "azerbaijan": "Azərbaycan",
-    "notFoundDesc": "Axtardığınız mülk tapılmadı."
+    "notFoundDesc": "Axtardığınız mülk tapılmadı.",
+    "luxury": "Lüks",
+    "villaRental": "lüks villa kirayəsi",
+    "rating": "Reytinq"
   },
   "Transfers": {
     "vito": "Mercedes Vito 7-8 nəfərlik",
