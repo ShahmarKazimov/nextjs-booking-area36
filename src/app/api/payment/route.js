@@ -5,8 +5,8 @@ import crypto from "crypto";
 export async function POST(req) {
     const { orderId, homeTitle } = await req.json();
 
-    const publicKey = process.env.EPOINT_PUBLIC_KEY;   // "i000201616"
-    const privateKey = process.env.EPOINT_PRIVATE_KEY; // "9JUMbwpTbMHYIAHlePU8CgKI"
+    const publicKey = process.env.EPOINT_PUBLIC_KEY;   
+    const privateKey = process.env.EPOINT_PRIVATE_KEY; 
 
     // DEBUG: key-ləri yoxla
     console.log("PUBLIC KEY:", publicKey);
