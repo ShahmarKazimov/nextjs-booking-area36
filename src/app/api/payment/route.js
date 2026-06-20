@@ -23,12 +23,12 @@ export async function POST(req) {
     const signature = crypto
         .createHmac("sha1", privateKey)
         .update(dataBase64)
-        .digest("hex");
+        .digest("base64");
 
     const response = await fetch("https://epoint.az/api/1/request", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ data: dataBase64, signature }),
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({ data: dataBase64, signature }).toString(),
     });
 
     const result = await response.json();
