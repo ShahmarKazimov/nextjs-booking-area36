@@ -5,34 +5,32 @@ import crypto from "crypto";
 export async function POST(req) {
     const { orderId, homeTitle } = await req.json();
 
-    const publicKey = process.env.EPOINT_PUBLIC_KEY;   
-    const privateKey = process.env.EPOINT_PRIVATE_KEY; 
-
-    // DEBUG: key-ləri yoxla
-    console.log("PUBLIC KEY:", publicKey);
-    console.log("PRIVATE KEY:", privateKey);
+    const publicKey = process.env.EPOINT_PUBLIC_KEY;   // "i000201616"
+    const privateKey = process.env.EPOINT_PRIVATE_KEY; // "9JUMbwpTbMHYlAHIePU8CgKI"
 
     const data = {
         public_key: publicKey,
-        amount: 170,
+        amount: "170.00",          // STRING, decimal formatda — Epoint nümunəsindəki kimi
         currency: "AZN",
         language: "az",
         order_id: orderId,
         description: `Beh - ${homeTitle}`,
         success_redirect_url: "https://area36.az/payment/success",
         error_redirect_url: "https://area36.az/payment/error",
+        result_url: "https://area36.az/payment/result",
     };
 
-    const dataBase64 = Buffer.from(JSON.stringify(data)).toString("base64");
+    const payload = JSON.stringify(data);
+    const dataBase64 = Buffer.from(payload).toString("base64");
 
-    // BASE64 imza - HEX deyil
-    const signature = crypto
-        .createHmac("sha1", privateKey)
-        .update(dataBase64)
-        .digest("base64");
+    // EPOINT-İN RƏSMİ ALQORİTMİ: sha1(privateKey + data + privateKey), HMAC DEYİL
+    const signature = Buffer.from(
+        crypto
+            .createHash("sha1")
+            .update(privateKey + dataBase64 + privateKey)
+            .digest()
+    ).toString("base64");
 
-    // DEBUG: nə göndərdiyini gör
-    console.log("DATA JSON:", JSON.stringify(data));
     console.log("DATA BASE64:", dataBase64);
     console.log("SIGNATURE:", signature);
 
