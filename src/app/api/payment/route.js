@@ -10,7 +10,7 @@ export async function POST(req) {
 
     const data = {
         public_key: publicKey,
-        amount: "1.00",          // STRING, decimal formatda — Epoint nümunəsindəki kimi
+        amount: "170.00",          // STRING, decimal formatda — Epoint nümunəsindəki kimi
         currency: "AZN",
         language: "az",
         order_id: orderId,
