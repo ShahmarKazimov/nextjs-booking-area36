@@ -4,7 +4,7 @@ export async function generateMetadata({ params }) {
 
   return {
     title: isAz ? "Məxfilik Siyasəti | Area36" : "Privacy Policy | Area36",
-    description: isAz 
+    description: isAz
       ? "AREA36 istifadəçilərinin şəxsi məlumatlarının qorunmasına xüsusi önəm verir. Bu Məxfilik Siyasəti saytımızdan istifadə zamanı məlumatların necə qorunduğunu izah edir."
       : "AREA36 attaches special importance to the protection of users' personal data. This Privacy Policy explains how information is protected when using our site.",
   };
@@ -22,14 +22,14 @@ export default async function PrivacyPolicyPage({ params }) {
             {isAz ? "Məxfilik Siyasəti" : "Privacy Policy"}
           </h1>
         </div>
-        
+
         <div className="p-8 md:p-12 space-y-8 text-gray-700 leading-relaxed text-lg">
           <p>
-            {isAz 
+            {isAz
               ? "AREA36 istifadəçilərinin şəxsi məlumatlarının qorunmasına xüsusi önəm verir. Bu Məxfilik Siyasəti saytımızdan istifadə zamanı hansı məlumatların toplandığını, necə istifadə edildiyini və necə qorunduğunu izah edir."
               : "AREA36 attaches special importance to the protection of users' personal data. This Privacy Policy explains what information is collected, how it is used, and how it is protected when using our site."}
           </p>
-          
+
           <div className="space-y-4">
             <h2 className="text-2xl font-bold text-gray-900">{isAz ? "1. Toplanan məlumatlar" : "1. Information collected"}</h2>
             <p>{isAz ? "Saytımız vasitəsilə rezervasiya sorğusu göndərərkən və ya bizimlə əlaqə saxlayarkən aşağıdakı məlumatlar toplana bilər:" : "The following information may be collected when sending a reservation request through our site or contacting us:"}</p>
