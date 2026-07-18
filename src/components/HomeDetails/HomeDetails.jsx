@@ -216,6 +216,18 @@ export default function HomeDetails({
                     </div>
                 </div>
             )}
+
+            {/* Google Bot üçün gizli şəkil siyahısı (SEO üçün) */}
+            <div style={{ display: 'none' }} aria-hidden="true">
+                {images.slice(5).map((img, i) => (
+                    <img
+                        key={i}
+                        src={img}
+                        alt={`${photoAlt} - şəkil ${i + 6}`}
+                        loading="lazy"
+                    />
+                ))}
+            </div>
         </>
     );
 }
