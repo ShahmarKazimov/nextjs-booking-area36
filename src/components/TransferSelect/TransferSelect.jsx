@@ -114,7 +114,7 @@ export default function TransferSelect({ homeTitle }) {
             <button
                 onClick={handleDeposit}
                 disabled={loading}
-                className="cursor-pointer hover:bg-gray-200 duration-200 w-full rounded-lg border-2 border-gray-900 hover:bg-gray-100 py-3 px-7 text-sm font-bold uppercase text-gray-900 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="cursor-pointer hover:bg-gray-200 duration-200 w-full rounded-lg border-2 border-gray-900 py-3 px-7 text-sm font-bold uppercase text-gray-900 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             >
                     {loading ? tDetails('loading') : tDetails('payPrePayment')}
             </button>
