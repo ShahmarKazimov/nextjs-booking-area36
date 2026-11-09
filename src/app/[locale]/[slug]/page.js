@@ -1,9 +1,66 @@
 import homes from "../../../components/data/homes";
 import { notFound } from "next/navigation";
 import HomeDetails from "../../../components/HomeDetails/HomeDetails";
-import { MapPin, Home, UserRound } from "lucide-react";
-import TransferSelect from "../../../components/TransferSelect/TransferSelect";
+import {
+  MapPin,
+  Home,
+  UserRound,
+  Users,
+  BedDouble,
+  Bath,
+  Waves,
+  Flame,
+  Mountain,
+  Sun,
+  Car,
+  Wifi,
+  UtensilsCrossed,
+  Tv,
+  Wind,
+  Trees,
+  Sparkles,
+  CheckCircle2,
+  Maximize2,
+  Coffee,
+  Snowflake,
+  Droplets,
+  ShieldCheck,
+  Umbrella,
+  Armchair,
+  Baby,
+  PawPrint,
+} from "lucide-react";
+import BookingSidebar from "../../../components/Booking/BookingSidebar";
 import { getTranslations } from "next-intl/server";
+
+function getFeatureIcon(feature) {
+  const f = (feature || "").toLowerCase();
+  if (f.includes("bedroom") || f.includes("yataq")) return <BedDouble size={18} className="text-gray-900" />;
+  if (f.includes("bathroom") || f.includes("hamam") || f.includes("vanna")) return <Bath size={18} className="text-gray-900" />;
+  if (f.includes("sqm") || f.includes("sahə") || f.includes("kv")) return <Maximize2 size={18} className="text-gray-900" />;
+  if (f.includes("wi-fi") || f.includes("wifi") || f.includes("internet")) return <Wifi size={18} className="text-gray-900" />;
+  if (f.includes("netflix") || f.includes("channel") || f.includes("kanal") || f.includes("tv")) return <Tv size={18} className="text-gray-900" />;
+  if (f.includes("iron") || f.includes("ütü")) return <Sparkles size={18} className="text-gray-900" />;
+  if (f.includes("dryer") || f.includes("fen") || f.includes("air") || f.includes("kondisioner")) return <Wind size={18} className="text-gray-900" />;
+  if (f.includes("water") || f.includes("su")) return <Droplets size={18} className="text-gray-900" />;
+  if (f.includes("camera") || f.includes("kamera") || f.includes("security") || f.includes("təhlükəsizlik")) return <ShieldCheck size={18} className="text-gray-900" />;
+  if (f.includes("refrigerator") || f.includes("soyuducu")) return <Snowflake size={18} className="text-gray-900" />;
+  if (f.includes("coffee") || f.includes("tea") || f.includes("çay") || f.includes("qəhvə")) return <Coffee size={18} className="text-gray-900" />;
+  if (f.includes("kitchen") || f.includes("mətbəx") || f.includes("microwave") || f.includes("soba") || f.includes("dishes") || f.includes("qab")) return <UtensilsCrossed size={18} className="text-gray-900" />;
+  if (f.includes("fire") || f.includes("od") || f.includes("kamin") || f.includes("manqal") || f.includes("bbq")) return <Flame size={18} className="text-gray-900" />;
+  if (f.includes("umbrella") || f.includes("çətir")) return <Umbrella size={18} className="text-gray-900" />;
+  if (f.includes("furniture") || f.includes("mebel")) return <Armchair size={18} className="text-gray-900" />;
+  if (f.includes("garden") || f.includes("bağ") || f.includes("yaşıllıq") || f.includes("tree")) return <Trees size={18} className="text-gray-900" />;
+  if (f.includes("parking") || f.includes("avtomobil") || f.includes("dayanacaq")) return <Car size={18} className="text-gray-900" />;
+  if (f.includes("mountain") || f.includes("view") || f.includes("mənzərə") || f.includes("dağ")) return <Mountain size={18} className="text-gray-900" />;
+  if (f.includes("family") || f.includes("ailə") || f.includes("uşaq") || f.includes("children")) return <Baby size={18} className="text-gray-900" />;
+  if (f.includes("pet") || f.includes("heyvan")) return <PawPrint size={18} className="text-gray-900" />;
+  if (f.includes("pool") || f.includes("hovuz")) return <Waves size={18} className="text-gray-900" />;
+  if (f.includes("guest") || f.includes("qonaq") || f.includes("occupancy")) return <Users size={18} className="text-gray-900" />;
+  if (f.includes("terrace") || f.includes("terras") || f.includes("balcony") || f.includes("balkon")) return <Sun size={18} className="text-gray-900" />;
+  return <CheckCircle2 size={18} className="text-gray-900" />;
+}
+
 export const dynamicParams = false;
 
 export function generateStaticParams() {
@@ -124,6 +181,7 @@ export async function generateMetadata({ params }) {
 
 export default async function HomeDetailPage({ params }) {
   const { locale, slug } = await params;
+  const isAz = locale === "az";
   const home = homes.find((h) => h.slug === slug);
 
   if (!home) return notFound();
@@ -200,7 +258,7 @@ export default async function HomeDetailPage({ params }) {
 
       <div className="min-h-screen text-gray-900 bg-gray-50/50 py-8">
         <div className="max-w-7xl mx-auto p-4">
-          <header className="mb-8 bg-white rounded-2xl shadow-sm p-6">
+          <header className="mb-8 bg-white rounded-2xl shadow-sm p-6 border border-gray-100">
             <h1 className="text-3xl font-bold text-gray-900 mb-4 flex items-center gap-2">
               <Home size={24} className="text-gray-700" aria-hidden="true" />
               {tHome("title")}
@@ -226,8 +284,8 @@ export default async function HomeDetailPage({ params }) {
             <section className="lg:col-span-2 space-y-8">
               <article className="bg-white rounded-2xl shadow-sm p-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                  <span className="font-normal text-gray-500 italic">{t("about")}</span>{" "}
                   {tHome("title")}
+                  <span className="font-normal text-gray-500 italic lowercase pl-2">{t("about")}</span>{" "}
                 </h2>
                 <p className="text-gray-700 text-lg leading-relaxed whitespace-pre-line">
                   {tHome("description")}
@@ -235,21 +293,24 @@ export default async function HomeDetailPage({ params }) {
               </article>
 
               {home.features && (
-                <section className="bg-white rounded-2xl shadow-sm p-8">
-                  <h2 className="text-xl font-bold text-gray-900 mb-4">
-                    {t("propertyDetails")}
+                <section className="bg-white rounded-2xl shadow-sm p-6 sm:p-8 border border-gray-100">
+                  <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2.5">
+                    <Sparkles size={20} className="text-gray-900" aria-hidden="true" />
+                    <span>{t("propertyDetails")}</span>
                   </h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
                     {home.features.map((feature, i) => (
                       <div
                         key={i}
-                        className="flex items-center gap-3 p-3 bg-gray-50 border border-gray-100 rounded-lg hover:shadow-sm transition-all"
+                        className="group flex items-center gap-3.5 p-3.5 bg-gray-50/70 hover:bg-gray-100/70 border border-gray-200/70 rounded-xl hover:border-black/20 hover:shadow-xs transition-all"
                       >
                         <div
-                          className="w-2 h-2 bg-gray-800 rounded-full"
+                          className="w-9 h-9 rounded-lg bg-white border border-gray-200 shadow-xs flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform"
                           aria-hidden="true"
-                        />
-                        <span className="text-gray-700 font-medium">
+                        >
+                          {getFeatureIcon(feature)}
+                        </div>
+                        <span className="text-gray-800 font-medium text-sm sm:text-base leading-snug">
                           {tHome(`features.${feature}`)}
                         </span>
                       </div>
@@ -260,35 +321,13 @@ export default async function HomeDetailPage({ params }) {
             </section>
 
             <aside className="lg:col-span-1" aria-label={t("reservationRequest")}>
-              <div className="bg-white rounded-2xl shadow-sm px-6 py-6 sticky top-8 border border-gray-100">
-                <h2 className="text-lg font-bold text-gray-900 mb-4 pb-2 border-b border-gray-100">
-                  {t("reservationRequest")}
-                </h2>
-
-                <div className="mb-6 space-y-4">
-                  <div className="flex justify-between py-2 border-b border-gray-50">
-                    <div className="flex items-center gap-2 text-gray-600">
-                      <MapPin size={18} aria-hidden="true" />
-                      <span>{t("location")}</span>
-                    </div>
-                    <span className="font-semibold text-gray-900">
-                      {tHome("location")}, {t("azerbaijan")}
-                    </span>
-                  </div>
-
-                  <div className="flex justify-between py-2 border-b border-gray-50">
-                    <div className="flex items-center gap-2 text-gray-600">
-                      <UserRound size={18} aria-hidden="true" />
-                      <span>{t("owner")}</span>
-                    </div>
-                    <span className="font-semibold text-gray-900">
-                      {home.owner}
-                    </span>
-                  </div>
-                </div>
-
-                <TransferSelect homeTitle={tHome("title")} />
-              </div>
+              <BookingSidebar
+                homeTitle={tHome("title")}
+                location={`${tHome("location")}, ${t("azerbaijan")}`}
+                owner={home.owner}
+                slug={slug}
+                airbnbUrl={home.airbnbUrl}
+              />
             </aside>
           </div>
         </div>

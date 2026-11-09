@@ -88,7 +88,7 @@ export default function TransferSelect({ homeTitle }) {
                                 <button
                                     key={carKey}
                                     onClick={() => { setSelectedCar(carKey); setIsOpen(false); }}
-                                    className={`cursor-pointer w-full p-3.5 text-left hover:bg-gray-50 transition-colors duration-150 ${selectedCar === carKey ? 'bg-gray-100 font-medium' : ''} ${index !== carOptions.length - 1 ? 'border-b border-gray-100' : ''}`}
+                                    className={`cursor-pointer w-full p-3.5 text-left hover:bg-gray-100 transition-colors duration-150 ${selectedCar === carKey ? 'bg-gray-100 font-medium' : ''} ${index !== carOptions.length - 1 ? 'border-b border-gray-100' : ''}`}
                                 >
                                     <span className={selectedCar === carKey ? 'text-black' : 'text-gray-700'}>
                                         {tTransfers(carKey)}
@@ -105,7 +105,7 @@ export default function TransferSelect({ homeTitle }) {
                 href={`https://wa.me/994552904045?text=${encodeURIComponent(waText)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block w-full mb-3 cursor-pointer rounded-lg bg-gray-900 duration-200 hover:bg-gray-600 py-3.5 px-7 text-sm font-bold uppercase text-white shadow-md hover:shadow-lg transition-all text-center"
+                className="block w-full mb-3 cursor-pointer rounded-lg bg-black duration-200 hover:bg-neutral-800 py-3.5 px-7 text-sm font-bold uppercase text-white shadow-md hover:shadow-xl transition-all text-center"
             >
                 {tDetails('reserveNow')}
             </a>
@@ -114,7 +114,7 @@ export default function TransferSelect({ homeTitle }) {
             <button
                 onClick={handleDeposit}
                 disabled={loading}
-                className="cursor-pointer hover:bg-gray-200 duration-200 w-full rounded-lg border-2 border-gray-900 py-3 px-7 text-sm font-bold uppercase text-gray-900 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="cursor-pointer hover:bg-black hover:text-white duration-200 w-full rounded-lg border-2 border-black py-3 px-7 text-sm font-bold uppercase text-black transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             >
                     {loading ? tDetails('loading') : tDetails('payPrePayment')}
             </button>

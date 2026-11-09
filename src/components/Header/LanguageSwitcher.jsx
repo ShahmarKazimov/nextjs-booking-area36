@@ -60,7 +60,7 @@ export default function LanguageSwitcher() {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center text-sm gap-1.5 px-3 py-[0.667rem] rounded-lg hover:text-white/75 border border-white/10 text-white font-semibold transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer"
+        className="flex items-center text-sm gap-1.5 px-3 py-[0.667rem] rounded-lg hover:bg-white/10 hover:border-white/20 hover:text-white border border-white/10 text-white font-semibold transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer"
         aria-haspopup="true"
         aria-expanded={isOpen}
       >
@@ -76,7 +76,7 @@ export default function LanguageSwitcher() {
               <button
                 key={lang.code}
                 onClick={() => handleLanguageChange(lang.code)}
-                className={`w-full px-4 py-2.5 text-left text-sm flex items-center gap-3 transition-colors hover:bg-white/10 cursor-pointer ${locale === lang.code ? "text-blue-400 font-bold bg-white/5" : "text-white/80"
+                className={`w-full px-4 py-2.5 text-left text-sm flex items-center gap-3 transition-colors hover:bg-white/10 hover:text-white cursor-pointer ${locale === lang.code ? "text-white font-bold bg-white/15" : "text-white/80"
                   }`}
               >
                 {lang.flag}

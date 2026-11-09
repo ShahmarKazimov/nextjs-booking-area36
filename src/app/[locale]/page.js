@@ -1,4 +1,3 @@
-import Carousel from "../../components/ui/Carousel/Carousel";
 import Cards from "../../components/Cards/Cards";
 import HeroSection from "../../components/HeroSection/HeroSection";
 
@@ -75,10 +74,6 @@ export default async function Home({ params }) {
 
       <div className="flex flex-col">
         <HeroSection />
-
-        <section aria-label={isAz ? "Seçilmiş Lüks Məkanlar" : "Featured Luxury Destinations"}>
-          <Carousel />
-        </section>
 
         <section
           aria-label={isAz ? "Lüks Dağ Evləri və Villalar Kolleksiyası" : "Luxury Chalets and Villas Collection"}

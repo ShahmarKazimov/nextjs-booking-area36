@@ -39,7 +39,7 @@ const HeroSection = () => {
             {/* Overlay Content */}
             <div className="absolute inset-0 flex flex-col justify-center items-center text-white z-10">
                 <div className="text-center mt-20 space-y-6 max-w-4xl px-4">
-                    <h1 className="text-4xl md:text-6xl font-bold mb-6 drop-shadow-2xl animate-fade-in-up">
+                    <h1 className="text-4xl sm:text-6xl font-bold mb-6 drop-shadow-2xl animate-fade-in-up">
                         {/* SEO üçün açar söz-yönümlü mətn — vizual olaraq görünmür, Google və screen reader oxuyur */}
                         <span className="sr-only">{t('seoTitle')}</span>
 
@@ -52,34 +52,10 @@ const HeroSection = () => {
                         </span>
                     </h1>
 
-                    <p className="text-xl md:text-2xl drop-shadow-lg opacity-90 animate-fade-in-up animation-delay-300">
+                    <p className="text-xl max-w-2xl mx-auto sm:text-2xl drop-shadow-lg opacity-90 animate-fade-in-up animation-delay-300">
                         {t('subtitle')}
                     </p>
 
-                    {/* Stats */}
-                    <div
-                        className="flex justify-center space-x-8 mt-8 animate-fade-in-up animation-delay-600"
-                        aria-label="Area36 highlights"
-                    >
-                        <div className="text-center">
-                            <div className="text-3xl font-bold">10+</div>
-                            <div className="text-sm opacity-80">{t('destinations')}</div>
-                        </div>
-
-                        <div className="w-px h-12 bg-white/30" aria-hidden="true" />
-
-                        <div className="text-center">
-                            <div className="text-3xl font-bold">10K+</div>
-                            <div className="text-sm opacity-80">{t('travelers')}</div>
-                        </div>
-
-                        <div className="w-px h-12 bg-white/30" aria-hidden="true" />
-
-                        <div className="text-center">
-                            <div className="text-3xl font-bold">9.8</div>
-                            <div className="text-sm opacity-80">{t('rating')}</div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>

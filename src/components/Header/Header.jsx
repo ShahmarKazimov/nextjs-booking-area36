@@ -42,7 +42,7 @@ export default function Header() {
                             rel="noopener noreferrer"
                             aria-label={t("contactWhatsapp")}
                         >
-                            <button className="cursor-pointer rounded-lg px-3 py-[0.5rem] text-sm font-semibold hover:text-white/75 border border-white/10 uppercase text-white transition-all">
+                            <button className="cursor-pointer rounded-lg px-3 py-[0.5rem] text-sm font-semibold hover:bg-white/10 hover:border-white/20 hover:text-white border border-white/10 uppercase text-white transition-all">
                                 {t("contact")}
                             </button>
                         </Link>
