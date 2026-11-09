@@ -74,13 +74,13 @@ export default async function AboutPage({ params }) {
             <div className="space-y-4 text-base">
               <p className="flex items-center">
                 <span className="font-medium w-24 text-gray-900">{isAz ? "Telefon:" : "Phone:"}</span>
-                <a href="tel:+994552904045" className="text-blue-600 hover:text-blue-800 transition-colors">
+                <a href="tel:+994552904045" className="text-gray-900 hover:text-black font-semibold underline underline-offset-4 decoration-gray-300 hover:decoration-black transition-colors">
                   +994 55 290 40 45
                 </a>
               </p>
               <p className="flex items-center">
                 <span className="font-medium w-24 text-gray-900">{isAz ? "E-poçt:" : "Email:"}</span>
-                <a href="mailto:gabaladeluxe@gmail.com" className="text-blue-600 hover:text-blue-800 transition-colors">
+                <a href="mailto:gabaladeluxe@gmail.com" className="text-gray-900 hover:text-black font-semibold underline underline-offset-4 decoration-gray-300 hover:decoration-black transition-colors">
                   gabaladeluxe@gmail.com
                 </a>
               </p>

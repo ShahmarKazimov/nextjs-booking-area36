@@ -250,8 +250,11 @@ export default async function RootLayout({ children, params }) {
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
-      <body className={`${geistSans.variable} antialiased text-white`}>
+    <html lang={locale} suppressHydrationWarning>
+      <body
+        className={`${geistSans.variable} antialiased text-white`}
+        suppressHydrationWarning
+      >
         <NextIntlClientProvider messages={messages} locale={locale}>
           <Header />
           <main role="main">{children}</main>

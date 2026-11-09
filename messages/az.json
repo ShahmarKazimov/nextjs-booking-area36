@@ -13,8 +13,8 @@
     "rights": "Bütün hüquqlar qorunur."
   },
   "Hero": {
-    "welcome": "Area36-ya Xoş Gəlmisiniz",
-    "subtitle": "Qafqazın möhtəşəm təbiətində yerləşən premium dağ evlərində rahatlıq, lüks və unudulmaz anlar yaşayın.",
+    "welcome": "Qəbələdə kirayə villalar",
+    "subtitle": "Möhtəşəm dağ mənzərəli premium evlərdə tətilinizi daha unudulmaz keçirin.",
     "destinations": "Məkanlar",
     "travelers": "Məmnun Səyyahlar",
     "rating": "Reytinq",
@@ -24,51 +24,19 @@
   "Cards": {
     "title": "Evlərimiz",
     "description": "Sizin üçün seçdiyimiz evləri kəşf edin, burada rahat və xoş istirahət üçün hər bir detal böyük diqqətlə düşünülüb.",
-    "viewDetails": "Ətraflı Bax"
-  },
-  "Carousel": {
-    "title": "Qafqazın Top Məkanlarını Kəşf Edin",
-    "exploreNow": "İndi Kəşf Edin",
-    "galleryTitle": "Məkan Qalereyası və Seçilmiş Sahələr",
-    "galleryAria": "Məkan qalereyası",
-    "carouselAria": "Məkan foto karuseli",
-    "featuredImageAria": "Area36 Seçilmiş Şəkil",
-    "featuredAlt1": "Area36 məkanı - möhtəşəm mənzərəsi olan lüks kurort görünüşü",
-    "featuredAlt2": "Area36 bölməsi - romantik atmosferli eksklüziv ay lüks otağı",
-    "travelDestinationsAria": "Səyahət məkanları karuseli",
-    "featuredDestinationsAria": "Seçilmiş Məkanlar",
-    "categoryAria": "Kateqoriya: {badge}",
-    "exploreAria": "{title} məkanını kəşf edin",
-    "items": {
-      "royal-chalet": {
-        "title": "Area36 Royal Chalet",
-        "description": "4 yataq otağı, 3 vanna otağı, mənzərəli terras və böyük hovuz – 8 qonaq üçün mükəmməldir.",
-        "badge": "Macəra",
-        "alt": "Area36 Royal Chalet — Qəbələdə 4 yataq otaqlı hovuzlu lüks dağ evi, Azərbaycan",
-        "location": "Qəbələ, Azərbaycan"
-      },
-      "family-chalet": {
-        "title": "Area36 Family Chalet",
-        "description": "3 yataq otağı, 2 vanna otağı və qızdırılan hovuz – rahat istirahət üçün idealdır.",
-        "badge": "İstirahət",
-        "alt": "Area36 Family Chalet — Qəbələdə qızdırılan hovuzlu rahat 3 yataq otaqlı dağ evi, Azərbaycan",
-        "location": "Qəbələ, Azərbaycan"
-      },
-      "golden-loft": {
-        "title": "Area36 Golden Loft",
-        "description": "2 geniş yataq otağı, 2 müasir vanna otağı, qızdırılan hovuz və rahatlığınız üçün xoş qonaq otağı olan füsunkar dağ evi.",
-        "badge": "Təbiət",
-        "alt": "Area36 Golden Loft — Qəbələdə qızdırılan hovuzlu füsunkar 2 yataq otaqlı dağ evi, Azərbaycan",
-        "location": "Qəbələ, Azərbaycan"
-      },
-      "milano-deluxe": {
-        "title": "Area36 Milano Deluxe",
-        "description": "4 yataq otağı, 3 vanna otağı – 9 qonağa qədər rahat şəkildə yerləşə bilər.",
-        "badge": "Lüks",
-        "alt": "Area36 Milano Deluxe — Qəbələdə 9 qonaq üçün geniş 4 yataq otaqlı lüks dağ evi, Azərbaycan",
-        "location": "Qəbələ, Azərbaycan"
-      }
-    }
+    "viewDetails": "Ətraflı Bax",
+    "filterAll": "Bütün Evlər",
+    "filterOur": "Bizim Evlər",
+    "filterPartner": "Partnyor Evlər",
+    "ourHomesTitle": "Bizim Evlərimiz",
+    "ourHomesSubtitle": "Area36 tərəfindən birbaşa idarə olunan premium villalarımız",
+    "partnerHomesTitle": "Partnyor Evlər",
+    "partnerHomesSubtitle": "Əməkdaşlıq etdiyimiz seçilmiş və etibarlı partnyor villalar",
+    "perNight": "gecə",
+    "ourBadge": "Bizim Evimiz",
+    "partnerBadge": "Partnyor Ev",
+    "inquirePrice": "Qiyməti Öyrən",
+    "priceOnRequest": "Qiymət sorğu ilə"
   },
   "Details": {
     "about": "Haqqında",
@@ -90,28 +58,59 @@
     "notFoundDesc": "Axtardığınız mülk tapılmadı.",
     "luxury": "Lüks",
     "villaRental": "lüks villa kirayəsi",
-    "rating": "Reytinq"
+    "rating": "Reytinq",
+    "checkIn": "Giriş",
+    "checkOut": "Çıxış",
+    "selectDates": "Tarixləri seçin",
+    "chooseDates": "Təqvimdən tarixləri seçin",
+    "clearDates": "Təmizlə",
+    "nightsCount": "{count} gecə",
+    "booked": "Dolu",
+    "available": "Boş",
+    "selected": "Seçildi",
+    "airbnbSynced": "Airbnb ilə sinxronizasiya",
+    "liveCalendar": "Canlı Təqvim",
+    "selectCheckIn": "Giriş tarixini seçin",
+    "selectCheckOut": "Çıxış tarixini seçin",
+    "bookedOverlapError": "Seçilmiş aralıqda artıq dolu tarixlər var."
   },
   "Transfers": {
-    "vito": "Mercedes Vito 7-8 nəfərlik",
-    "sprinter": "Mercedes Sprinter 13-18 nəfərlik",
-    "sedan": "Sedan 4 nəfərlik"
+    "none": "Transfersiz (Öz avtomobilimlə)",
+    "vito": "Mercedes Vito (7-8 nəfərlik)",
+    "sprinter": "Mercedes Sprinter (13-18 nəfərlik)",
+    "sedan": "Sedan (4 nəfərlik)"
   },
   "Homes": {
     "area36-royal-chalet": {
       "title": "Area36 Royal Chalet",
       "type": "Dağ Evi",
       "location": "Qəbələ",
-      "description": "Qəbələdə 4 yataq otağı, 3 vanna otağı, böyük hovuzu, terrası və möhtəşəm mənzərəsi olan dəbli dağ evi. Rahatlıq və dincəlmək istəyən 8 nəfərə qədər qonaq üçün mükəmməldir.",
+      "description": "Qəbələnin gözəl təbiəti qoynunda yerləşən Royal Chalet rahatlıq, məxfilik və unudulmaz istirahət axtaran qonaqlar üçün ideal seçimdir. Müasir dizaynı, geniş və komfortlu yaşayış sahəsi, 4 yataq otağı və möhtəşəm dağ mənzərəsi ilə bu villa ailəvi istirahət və dostlarla birlikdə tətil üçün mükəmməl şərait yaradır. Villanın şəxsi həyəti qonaqlara tam sərbəst və rahat istirahət imkanı təqdim edir. Mövsümi açıq hovuzda sərinləyə, geniş terrasda təbiətin gözəlliyindən zövq ala, besedkada vaxt keçirə və manqal sahəsində sevdiklərinizlə xoş anlar yaşaya bilərsiniz. Royal Chalet bütün fəsillərdə rahat istirahət üçün nəzərdə tutulub. Yerdən isitmə sistemi, kondisioner, sürətli Wi-Fi, Smart TV və tam təchiz olunmuş mətbəx qonaqların ehtiyac duyduğu komfortu təmin edir. İstər ailənizlə sakit və özəl istirahət, istərsə də Qəbələnin təbiətini kəşf etmək üçün səyahət planlaşdırın, Royal Chalet sizə rahat, xoş və yaddaqalan tətil təklif edir. Qəbələdə hovuzlu villa, dağ mənzərəli ev və şəxsi həyəti olan günlük kirayə ev axtarırsınızsa, Royal Chalet sizin üçün əla seçimdir.",
       "features": {
         "4 Bedrooms": "4 Yataq otağı",
-        "3 Bathrooms": "3 Vanna otağı",
-        "Large Outdoor Pool": "Böyük Açıq Hovuz",
-        "Terrace": "Terras",
-        "Panoramic Views": "Panoramik Mənzərə",
-        "Up to 8 Guests": "8 Nəfərə qədər Qonaq",
-        "Free Parking": "Pulsuz Parkinq",
-        "Wi-Fi": "Wi-Fi"
+        "2 Bathrooms": "2 Hamam otağı",
+        "160 sqm": "160 m² Yaşayış sahəsi",
+        "Free Wi-Fi": "Pulsuz Wi-Fi",
+        "Netflix": "Netflix",
+        "Paid Channels": "Ödənişli kanallar (Kabel TV)",
+        "Iron & Board": "Ütü və ütü masası",
+        "Hair Dryer": "Fen",
+        "Hot Water": "24/7 İsti su",
+        "Security Cameras": "Təhlükəsizlik kameraları",
+        "Kitchen Appliances": "Mətbəx avadanlıqları",
+        "Refrigerator": "Soyuducu",
+        "Tea & Coffee Maker": "Çay və qəhvə avadanlıqları",
+        "Microwave": "Mikrodalğalı soba",
+        "Dishes & Cutlery": "Yemək qabları və mətbəx ləvazimatları",
+        "Outdoor Fire Pit": "Açıq havada od qalama yeri",
+        "Sun Umbrellas": "Günəş çətirləri",
+        "Outdoor Furniture": "Açıq hava mebelləri",
+        "Garden & Greenery": "Yaşıllıq və bağ",
+        "Private Parking": "Şəxsi avtomobil dayanacağı",
+        "Panoramic Mountain Views": "Panoramik dağ mənzərəsi",
+        "Family Friendly": "Uşaqlı ailələr üçün uyğundur",
+        "No Pets Allowed": "Ev heyvanı qəbul edilmir",
+        "Large Outdoor Pool": "Böyük Açıq Hovuz"
       }
     },
     "area36-family-chalet": {

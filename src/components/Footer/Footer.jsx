@@ -109,7 +109,7 @@ export default function Footer() {
                                 </svg>
                                 <Link
                                     href="mailto:gabaladeluxe@gmail.com"
-                                    className="hover:text-blue-400 transition-colors"
+                                    className="hover:text-white transition-colors"
                                     aria-label="Email us at gabaladeluxe@gmail.com"
                                 >
                                     gabaladeluxe@gmail.com
@@ -121,7 +121,7 @@ export default function Footer() {
                                 </svg>
                                 <Link
                                     href="tel:+994552904045"
-                                    className="hover:text-blue-400 transition-colors"
+                                    className="hover:text-white transition-colors"
                                     aria-label="Call us at +994 55 290 40 45"
                                 >
                                     +994 (55) 290-40-45
@@ -144,7 +144,7 @@ export default function Footer() {
                                 <Link
                                     key={index}
                                     href={social.href}
-                                    className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-8 h-8 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/40"
                                     aria-label={`Visit our ${social.name} page`}
                                     title={`Follow us on ${social.name}`}
                                     target="_blank"

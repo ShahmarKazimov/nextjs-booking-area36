@@ -13,8 +13,8 @@
     "rights": "All rights reserved."
   },
   "Hero": {
-    "welcome": "Welcome to Area36",
-    "subtitle": "Experience comfort, luxury, and unforgettable moments in premium mountain homes located in the breathtaking nature of the Caucasus.",
+    "welcome": "Villa Rentals in Gabala",
+    "subtitle": "Make your holiday even more unforgettable in premium homes with breathtaking mountain views.",
     "destinations": "Destinations",
     "travelers": "Happy Travelers",
     "rating": "Rating",
@@ -23,51 +23,19 @@
   "Cards": {
     "title": "Our Homes",
     "description": "Explore the homes we have carefully selected for you, where every detail is thoughtfully designed to ensure a comfortable and pleasant stay.",
-    "viewDetails": "View Details"
-  },
-  "Carousel": {
-    "title": "Discover the Top Places of the Caucasus",
-    "exploreNow": "Explore Now",
-    "galleryTitle": "Destination Gallery and Featured Areas",
-    "galleryAria": "Destination gallery",
-    "carouselAria": "Destination photo carousel",
-    "featuredImageAria": "Area36 Featured Image",
-    "featuredAlt1": "Area36 destination - luxury resort view with stunning landscape",
-    "featuredAlt2": "Area36 section - exclusive moon suite with romantic atmosphere",
-    "travelDestinationsAria": "Travel destinations carousel",
-    "featuredDestinationsAria": "Featured Destinations",
-    "categoryAria": "Category: {badge}",
-    "exploreAria": "Explore {title} destination",
-    "items": {
-      "royal-chalet": {
-        "title": "Area36 Royal Chalet",
-        "description": "4 bedrooms, 3 bathrooms, scenic terrace, and a large pool – perfect for 8 guests.",
-        "badge": "Adventure",
-        "alt": "Area36 Royal Chalet — luxury 4-bedroom chalet with pool in Gabala, Azerbaijan",
-        "location": "Gabala, Azerbaijan"
-      },
-      "family-chalet": {
-        "title": "Area36 Family Chalet",
-        "description": "3 bedrooms, 2 bathrooms, and a heated pool – ideal for a cozy stay.",
-        "badge": "Relaxation",
-        "alt": "Area36 Family Chalet — cozy 3-bedroom chalet with heated pool in Gabala, Azerbaijan",
-        "location": "Gabala, Azerbaijan"
-      },
-      "golden-loft": {
-        "title": "Area36 Golden Loft",
-        "description": "Charming chalet with 2 spacious bedrooms, 2 modern bathrooms, a heated pool, and a welcoming living area for your comfort.",
-        "badge": "Nature",
-        "alt": "Area36 Golden Loft — charming 2-bedroom chalet with heated pool in Gabala, Azerbaijan",
-        "location": "Gabala, Azerbaijan"
-      },
-      "milano-deluxe": {
-        "title": "Area36 Milano Deluxe",
-        "description": "4 bedrooms, 3 bathrooms – comfortably accommodates up to 9 guests.",
-        "badge": "Luxury",
-        "alt": "Area36 Milano Deluxe — spacious 4-bedroom luxury chalet for 9 guests in Gabala, Azerbaijan",
-        "location": "Gabala, Azerbaijan"
-      }
-    }
+    "viewDetails": "View Details",
+    "filterAll": "All Homes",
+    "filterOur": "Our Homes",
+    "filterPartner": "Partner Homes",
+    "ourHomesTitle": "Our Exclusive Homes",
+    "ourHomesSubtitle": "Premium chalets managed directly by Area36",
+    "partnerHomesTitle": "Partner Properties",
+    "partnerHomesSubtitle": "Handpicked verified partner villas for your stay",
+    "perNight": "night",
+    "ourBadge": "Our Property",
+    "partnerBadge": "Partner Home",
+    "inquirePrice": "Inquire Price",
+    "priceOnRequest": "Price on request"
   },
   "Details": {
     "about": "About",
@@ -89,28 +57,59 @@
     "notFoundDesc": "The requested property could not be found.", 
     "luxury": "Luxury",
     "villaRental": "luxury villa rental",
-    "rating": "Rating"
+    "rating": "Rating",
+    "checkIn": "Check-in",
+    "checkOut": "Check-out",
+    "selectDates": "Select dates",
+    "chooseDates": "Choose dates from calendar",
+    "clearDates": "Clear",
+    "nightsCount": "{count} nights",
+    "booked": "Booked",
+    "available": "Available",
+    "selected": "Selected",
+    "airbnbSynced": "Synced with Airbnb",
+    "liveCalendar": "Live Calendar",
+    "selectCheckIn": "Select check-in date",
+    "selectCheckOut": "Select check-out date",
+    "bookedOverlapError": "Selected range includes booked dates."
   },
   "Transfers": {
-    "vito": "Mercedes Vito 7-8 seat",
-    "sprinter": "Mercedes Sprinter 13-18 seats",
-    "sedan": "Sedan 4 seats"
+    "none": "Without transfer (Own transport)",
+    "vito": "Mercedes Vito (7-8 seats)",
+    "sprinter": "Mercedes Sprinter (13-18 seats)",
+    "sedan": "Sedan (4 seats)"
   },
   "Homes": {
     "area36-royal-chalet": {
       "title": "Area36 Royal Chalet",
       "type": "Chalet",
       "location": "Gabala",
-      "description": "A stylish chalet with 4 bedrooms, 3 bathrooms, a large pool, terrace, and stunning views. Perfect for up to 8 guests seeking comfort and relaxation.",
+      "description": "Royal Chalet – Luxury Mountain View Villa with Private Pool in Gabala Surrounded by the beautiful natural scenery of Gabala, Azerbaijan, Royal Chalet offers the perfect combination of comfort, privacy and relaxation. Featuring modern architecture, spacious living areas, four comfortable bedrooms and beautiful mountain views, this villa is an ideal choice for families and groups looking for a memorable holiday. The private outdoor area provides guests with a relaxing and exclusive atmosphere. Enjoy the seasonal outdoor swimming pool, spend quality time on the spacious terrace, relax in the traditional gazebo or prepare delicious meals in the dedicated BBQ area. Royal Chalet is designed to provide comfort throughout the year. The property features underfloor heating, air conditioning, high-speed Wi-Fi, Smart TV and a fully equipped kitchen, ensuring a convenient and enjoyable stay. Whether you are planning a peaceful family getaway or an unforgettable holiday with friends, Royal Chalet offers everything you need to enjoy the natural beauty and hospitality of Gabala. If you are looking for a luxury villa with a swimming pool, private garden and mountain views in Gabala, Azerbaijan, Royal Chalet is an excellent choice for your next holiday.",
       "features": {
         "4 Bedrooms": "4 Bedrooms",
-        "3 Bathrooms": "3 Bathrooms",
-        "Large Outdoor Pool": "Large Outdoor Pool",
-        "Terrace": "Terrace",
-        "Panoramic Views": "Panoramic Views",
-        "Up to 8 Guests": "Up to 8 Guests",
-        "Free Parking": "Free Parking",
-        "Wi-Fi": "Wi-Fi"
+        "2 Bathrooms": "2 Bathrooms",
+        "160 sqm": "160 m² Living Area",
+        "Free Wi-Fi": "Free Wi-Fi",
+        "Netflix": "Netflix",
+        "Paid Channels": "Cable / Premium Channels",
+        "Iron & Board": "Iron & Ironing Board",
+        "Hair Dryer": "Hair Dryer",
+        "Hot Water": "24/7 Hot Water",
+        "Security Cameras": "Security Cameras",
+        "Kitchen Appliances": "Kitchen Equipment",
+        "Refrigerator": "Refrigerator",
+        "Tea & Coffee Maker": "Tea & Coffee Facilities",
+        "Microwave": "Microwave",
+        "Dishes & Cutlery": "Dishes & Cutlery",
+        "Outdoor Fire Pit": "Outdoor Fire Pit",
+        "Sun Umbrellas": "Sun Umbrellas",
+        "Outdoor Furniture": "Outdoor Furniture",
+        "Garden & Greenery": "Garden & Greenery",
+        "Private Parking": "Private Parking",
+        "Panoramic Mountain Views": "Panoramic Mountain Views",
+        "Family Friendly": "Suitable for Families with Children",
+        "No Pets Allowed": "No Pets Allowed",
+        "Large Outdoor Pool": "Large Outdoor Pool"
       }
     },
     "area36-family-chalet": {

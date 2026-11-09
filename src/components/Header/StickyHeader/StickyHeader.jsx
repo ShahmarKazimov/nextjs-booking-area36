@@ -29,7 +29,7 @@ export default function StickyHeader() {
 
     return (
         <header
-            className="fixed top-0 left-0 w-full bg-black/50 backdrop-blur-md shadow-lg transition-all duration-300 ease-in-out z-50 animate-in fade-in slide-in-from-top-1 duration-300"
+            className="fixed top-0 left-0 w-full bg-black/80 backdrop-blur-md shadow-lg transition-all duration-300 ease-in-out z-50 animate-in fade-in slide-in-from-top-1"
             aria-label="Sticky Navigation"
         >
             <div className="flex items-center justify-between py-2 px-4 xl:px-0 max-w-7xl mx-auto min-h-[81px]">
@@ -55,7 +55,7 @@ export default function StickyHeader() {
                         href="https://wa.me/994552904045?text=Hi, I'm interested in renting a place. Can you assist me with the options?"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="cursor-pointer rounded-lg px-3 py-[0.5rem] text-sm font-semibold hover:text-white/75 border border-white/10  uppercase text-white transition-all"
+                        className="cursor-pointer rounded-lg px-3 py-[0.5rem] text-sm font-semibold hover:bg-white/10 hover:border-white/20 hover:text-white border border-white/10 uppercase text-white transition-all"
                         aria-label={t("contactWhatsapp")}
                     >
                         {t("contact")}
