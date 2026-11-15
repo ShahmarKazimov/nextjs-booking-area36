@@ -3,10 +3,11 @@
 import { Link, usePathname } from "@/i18n/routing";
 import { useEffect, useState } from "react";
 import LanguageSwitcher from "../LanguageSwitcher";
-import { useTranslations } from "next-intl";
+import WishlistLink from "../../Wishlist/WishlistLink";
+import HeaderNav from "../HeaderNav";
+import MobileMenu from "../MobileMenu";
 
 export default function StickyHeader() {
-    const t = useTranslations("Header");
     const pathname = usePathname();
     const isHome = pathname === "/";
     const [isFixed, setIsFixed] = useState(!isHome);
@@ -28,7 +29,7 @@ export default function StickyHeader() {
     // Header həmişə DOM-dadır; görünmə/gizlənmə transform + opacity ilə animasiya olunur.
     return (
         <header
-            className={`fixed top-0 left-0 w-full bg-black/80 backdrop-blur-md shadow-lg transition-all duration-500 ease-out z-50 ${
+            className={`fixed top-0 left-0 w-full bg-[#1c1a17]/90 backdrop-blur-md border-b border-white/10 shadow-md transition-all duration-500 ease-out z-50 ${
                 isFixed
                     ? "translate-y-0 opacity-100 visible"
                     : "-translate-y-full opacity-0 invisible pointer-events-none"
@@ -53,18 +54,14 @@ export default function StickyHeader() {
                     />
                 </Link>
 
-                <div className="flex items-center gap-2">
+                <HeaderNav />
 
-                    <Link
-                        href="https://wa.me/994552904045?text=Hi, I'm interested in renting a place. Can you assist me with the options?"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="cursor-pointer rounded-lg px-3 py-[0.5rem] text-sm font-semibold hover:bg-white/10 hover:border-white/20 hover:text-white border border-white/10 uppercase text-white transition-all"
-                        aria-label={t("contactWhatsapp")}
-                    >
-                        {t("contact")}
-                    </Link>
-                    <LanguageSwitcher />
+                <div className="flex items-center gap-2">
+                    <div className="hidden md:flex items-center gap-2">
+                        <WishlistLink />
+                        <LanguageSwitcher />
+                    </div>
+                    <MobileMenu />
                 </div>
             </div>
         </header>

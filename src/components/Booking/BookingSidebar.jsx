@@ -84,6 +84,7 @@ export default function BookingSidebar({
   const [bookedDates, setBookedDates] = useState(new Set());
   const [isLoadingCalendar, setIsLoadingCalendar] = useState(true);
   const [hasIcal, setHasIcal] = useState(false);
+  const [calendarError, setCalendarError] = useState(false);
 
   const [checkIn, setCheckIn] = useState(null);
   const [checkOut, setCheckOut] = useState(null);
@@ -117,12 +118,18 @@ export default function BookingSidebar({
         const res = await fetch(`/api/calendar?slug=${encodeURIComponent(slug)}`);
         const data = await res.json();
 
-        if (isMounted && data.success) {
-          setBookedDates(new Set(data.bookedDates || []));
-          setHasIcal(Boolean(data.hasIcal));
+        if (isMounted) {
+          if (data.success) {
+            setBookedDates(new Set(data.bookedDates || []));
+            setHasIcal(Boolean(data.hasIcal));
+            setCalendarError(false);
+          } else {
+            setCalendarError(true);
+          }
         }
       } catch (err) {
         console.error('Failed to load iCal calendar:', err);
+        if (isMounted) setCalendarError(true);
       } finally {
         if (isMounted) setIsLoadingCalendar(false);
       }
@@ -410,6 +417,9 @@ Please provide more information and current availability for this property.`;
     }
   }
 
+  // Homes without an iCal feed have no live availability, so no calendar is shown
+  const noCalendar = !isLoadingCalendar && !hasIcal && !calendarError;
+
   return (
     <div className="bg-white rounded-3xl shadow-sm px-6 py-6 sticky top-8 border border-gray-100">
       {/* Header */}
@@ -438,7 +448,13 @@ Please provide more information and current availability for this property.`;
         </div>
       </div>
 
-      {/* ── AIRBNB STYLE CALENDAR ───────────────────────────────────── */}
+      {/* ── NO CALENDAR (home has no iCal feed) ─────────────────────── */}
+      {noCalendar ? (
+        <div className="mb-6 p-4 rounded-xl bg-[#edeae4] border border-[#e0dcd4]">
+          <h3 className="text-base font-bold text-gray-900">{tDetails('noCalendarTitle')}</h3>
+          <p className="text-sm text-gray-700 mt-1">{tDetails('noCalendarText')}</p>
+        </div>
+      ) : (
       <div className="mb-6">
         {/* Title & Subtitle like Airbnb */}
         <div className="mb-3">
@@ -500,6 +516,12 @@ Please provide more information and current availability for this property.`;
             </button>
           </div>
 
+          {calendarError && (
+            <div className="mb-2 p-2 rounded-lg bg-amber-50 border border-amber-200 text-amber-800 text-xs" role="alert">
+              {tDetails('calendarUnavailable')}
+            </div>
+          )}
+
           {/* Conflict Error Message */}
           {errorMsg && (
             <div className="mb-2 p-2 rounded-lg bg-red-50 border border-red-200 text-red-700 text-xs">
@@ -533,7 +555,7 @@ Please provide more information and current availability for this property.`;
                     <button
                       type="button"
                       onClick={() => handleDayClick(day)}
-                      className="h-9 w-9 rounded-full bg-black text-white font-bold text-sm flex items-center justify-center shadow-sm cursor-pointer transition-transform hover:scale-105"
+                      className="h-9 w-9 rounded-full bg-[#2d4a2b] text-white font-bold text-sm flex items-center justify-center shadow-sm cursor-pointer transition-transform hover:scale-105"
                     >
                       {day.dayNumber}
                     </button>
@@ -587,7 +609,7 @@ Please provide more information and current availability for this property.`;
                   <button
                     type="button"
                     onClick={() => handleDayClick(day)}
-                    className="h-9 w-9 rounded-full text-gray-900 text-sm font-bold hover:border hover:border-black cursor-pointer transition-colors flex items-center justify-center"
+                    className="h-9 w-9 rounded-full text-gray-900 text-sm font-bold hover:border hover:border-[#2d4a2b] cursor-pointer transition-colors flex items-center justify-center"
                   >
                     {day.dayNumber}
                   </button>
@@ -621,6 +643,7 @@ Please provide more information and current availability for this property.`;
           </div>
         </div>
       </div>
+      )}
 
       {/* ── TRANSFER SELECTION ─────────────────────────────────────── */}
       <div className="mb-5">
@@ -633,7 +656,7 @@ Please provide more information and current availability for this property.`;
           <button
             type="button"
             onClick={() => setIsTransferOpen(!isTransferOpen)}
-            className="w-full p-3 border border-gray-200 rounded-xl text-gray-900 bg-gray-50/60 hover:bg-gray-50 focus:ring-2 focus:ring-black focus:border-transparent outline-none cursor-pointer transition-all duration-200 flex items-center justify-between group"
+            className="w-full p-3 border border-[#e0dcd4] rounded-xl text-gray-900 bg-[#edeae4] hover:bg-[#e6e2da] focus:ring-2 focus:ring-black focus:border-transparent outline-none cursor-pointer transition-all duration-200 flex items-center justify-between group"
           >
             <div className="flex items-center gap-2 truncate">
               <span className="text-sm font-semibold text-gray-900 truncate">
@@ -688,7 +711,7 @@ Please provide more information and current availability for this property.`;
         href={`https://wa.me/994552904045?text=${encodeURIComponent(waText)}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="block w-full mb-3 cursor-pointer rounded-xl bg-black duration-200 hover:bg-neutral-800 py-3.5 px-6 text-sm font-bold uppercase tracking-wider text-white shadow-md hover:shadow-xl transition-all text-center"
+        className="block w-full mb-3 cursor-pointer rounded-xl bg-[#2d4a2b] border border-[#2d4a2b] text-white hover:bg-[#233a22] hover:border-[#233a22] duration-200 py-3.5 px-6 text-sm sm:text-base font-semibold transition-all text-center"
       >
         {tDetails('reserveNow')}
       </a>
@@ -697,7 +720,7 @@ Please provide more information and current availability for this property.`;
       <button
         onClick={handleDeposit}
         disabled={loadingPayment}
-        className="cursor-pointer hover:bg-black hover:text-white duration-200 w-full rounded-xl border-2 border-black py-3 px-6 text-sm font-bold uppercase tracking-wider text-black transition-all disabled:opacity-50 disabled:cursor-not-allowed text-center"
+        className="cursor-pointer bg-[#edeae4] border border-[#e0dcd4] text-black hover:bg-[#e6e2da] duration-200 w-full rounded-xl py-3.5 px-6 text-sm sm:text-base font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed text-center"
       >
         {loadingPayment ? tDetails('loading') : tDetails('payPrePayment')}
       </button>

@@ -16,8 +16,9 @@ export default function Cards() {
 
     return (
         <section
+            id="villas"
             aria-labelledby="featured-properties-title"
-            className="px-4 lg:px-0 min-h-screen pb-16 pt-4"
+            className="px-4 lg:px-0 min-h-screen pb-16 pt-4 scroll-mt-24"
         >
             <div className="max-w-7xl mx-auto w-full">
                 {/* Main Header */}
@@ -30,78 +31,25 @@ export default function Cards() {
                     </h2>
                     {/* Filter Tabs */}
                     <div className="w-full max-w-xl mx-auto mt-6 sm:mt-8 px-1 sm:px-0">
-                        <div className="grid grid-cols-3 gap-2">
-                            <button
-                                type="button"
-                                onClick={() => setActiveFilter('all')}
-                                className={`w-full py-3 sm:px-5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer flex items-center justify-between px-5 gap-1.5 shadow-sm ${
-                                    activeFilter === 'all'
-                                        ? 'bg-black text-white shadow-md'
-                                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                                }`}
-                            >
-                                <span>
-                                    {isAz ? 'Bütün' : 'All'}
-                                    <span className="hidden sm:inline"> {isAz ? 'Evlər' : 'Homes'}</span>
-                                </span>
-                                <span
-                                    className={`text-[10px] min-w-[18px] h-[18px] px-1 rounded-full inline-flex items-center justify-center font-bold leading-none ${
-                                        activeFilter === 'all'
-                                            ? 'bg-white/20 text-white'
-                                            : 'bg-gray-200 text-gray-600'
+                        <div className="grid grid-cols-3 gap-3">
+                            {[
+                                { key: 'all', label: isAz ? 'Hamısı' : 'All' },
+                                { key: 'our', label: isAz ? 'Bizim' : 'Our' },
+                                { key: 'partner', label: isAz ? 'Partnyor' : 'Partner' },
+                            ].map(({ key, label }) => (
+                                <button
+                                    key={key}
+                                    type="button"
+                                    onClick={() => setActiveFilter(key)}
+                                    className={`w-full py-3 px-4 rounded-xl border text-sm sm:text-base font-semibold transition-all duration-200 cursor-pointer text-center ${
+                                        activeFilter === key
+                                            ? 'bg-[#2d4a2b] border-[#2d4a2b] text-white'
+                                            : 'bg-[#edeae4] border-[#e0dcd4] text-black hover:bg-[#e6e2da]'
                                     }`}
                                 >
-                                    {homes.length}
-                                </span>
-                            </button>
-
-                            <button
-                                type="button"
-                                onClick={() => setActiveFilter('our')}
-                                className={`w-full py-3 px-5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer flex items-center justify-between gap-1.5 shadow-sm ${
-                                    activeFilter === 'our'
-                                        ? 'bg-black text-white shadow-md'
-                                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                                }`}
-                            >
-                                <span>
-                                    {isAz ? 'Bizim' : 'Our'}
-                                    <span className="hidden sm:inline"> {isAz ? 'Evlər' : 'Homes'}</span>
-                                </span>
-                                <span
-                                    className={`text-[10px] min-w-[18px] h-[18px] px-1 rounded-full inline-flex items-center justify-center font-bold leading-none ${
-                                        activeFilter === 'our'
-                                            ? 'bg-white/20 text-white'
-                                            : 'bg-gray-200 text-gray-600'
-                                    }`}
-                                >
-                                    {ourHomes.length}
-                                </span>
-                            </button>
-
-                            <button
-                                type="button"
-                                onClick={() => setActiveFilter('partner')}
-                                className={`w-full py-3 px-5 sm:px-5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer flex items-center justify-between gap-1.5 shadow-sm ${
-                                    activeFilter === 'partner'
-                                        ? 'bg-black text-white shadow-md'
-                                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                                }`}
-                            >
-                                <span>
-                                    {isAz ? 'Partnyor' : 'Partner'}
-                                    <span className="hidden sm:inline"> {isAz ? 'Evlər' : 'Homes'}</span>
-                                </span>
-                                <span
-                                    className={`text-[10px] min-w-[18px] h-[18px] px-1 rounded-full inline-flex items-center justify-center font-bold leading-none ${
-                                        activeFilter === 'partner'
-                                            ? 'bg-white/20 text-white'
-                                            : 'bg-gray-200 text-gray-600'
-                                    }`}
-                                >
-                                    {partnerHomes.length}
-                                </span>
-                            </button>
+                                    {label}
+                                </button>
+                            ))}
                         </div>
                     </div>
                 </header>

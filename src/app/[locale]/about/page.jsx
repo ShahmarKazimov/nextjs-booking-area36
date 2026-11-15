@@ -1,3 +1,5 @@
+import { buildAlternates, localizedUrl, ogLocale, OG_IMAGE } from "@/lib/seo";
+
 export async function generateMetadata({ params }) {
   const { locale } = await params;
   const isAz = locale === "az";
@@ -7,6 +9,14 @@ export async function generateMetadata({ params }) {
     description: isAz 
       ? "AREA36 Azərbaycanda premium villa və istirahət evlərinin təqdimatı və rezervasiyası sahəsində fəaliyyət göstərən platformadır."
       : "AREA36 is a platform operating in the presentation and reservation of premium villas and holiday homes in Azerbaijan.",
+    alternates: buildAlternates(locale, "/about"),
+    openGraph: {
+      type: "website",
+      siteName: "Area36",
+      url: localizedUrl(locale, "/about"),
+      locale: ogLocale(locale),
+      images: [OG_IMAGE],
+    },
   };
 }
 

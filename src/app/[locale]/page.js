@@ -1,3 +1,5 @@
+import homes from "../../components/data/homes";
+import { SITE_URL, OG_IMAGE, buildAlternates, localizedUrl, ogLocale } from "@/lib/seo";
 import Cards from "../../components/Cards/Cards";
 import HeroSection from "../../components/HeroSection/HeroSection";
 
@@ -6,38 +8,36 @@ export async function generateMetadata({ params }) {
   const isAz = locale === "az";
 
   const title = isAz
-    ? "Area36 | Qafqaz Villaları"
-    : "Area36 | Villas in Caucasus";
+    ? "Qəbələdə Villa və Chalet Kirayəsi | Area36"
+    : "Villa & Chalet Rentals in Gabala, Azerbaijan | Area36";
 
   const description = isAz
-    ? "Qəbələdə hovuz, sauna, kamin və möhtəşəm dağ mənzərələri ilə təchiz olunmuş premium dağ evləri və villaların ən böyük kolleksiyası."
-    : "Area36 offers premium chalets, mountain cabins, and luxury villas in Azerbaijan. Browse our curated collection and book your perfect stay in the Qafqaz region.";
-
-  const canonicalUrl = isAz ? "https://area36.az/az" : "https://area36.az";
+    ? "Qəbələdə hovuzlu, dağ mənzərəli villa və chalet-lərin günlük kirayəsi. Area36 ilə Royal Chalet, Family Chalet, Golden Loft və digər evləri seçin, WhatsApp ilə rezerv edin."
+    : "Book heated-pool villas and mountain-view chalets for rent in Gabala, Azerbaijan. Choose Royal Chalet, Family Chalet, Golden Loft and more with Area36.";
 
   return {
-    title,
+    title: { absolute: title },
     description,
-    alternates: {
-      canonical: canonicalUrl,
-      languages: {
-        en: "https://area36.az",
-        az: "https://area36.az/az",
-        "x-default": "https://area36.az",
-      },
-    },
+    alternates: buildAlternates(locale),
     openGraph: {
-      title: `${title} | Area36`,
+      type: "website",
+      siteName: "Area36",
+      title,
       description,
-      url: canonicalUrl,
+      url: localizedUrl(locale),
+      locale: ogLocale(locale),
       images: [
         {
-          url: "https://area36.az/images/ui/hero.webp",
-          width: 1200,
-          height: 630,
+          ...OG_IMAGE,
           alt: isAz ? "Area36 lüks dağ evləri və villalar" : "Area36 luxury chalets and villas in Azerbaijan",
         },
       ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [OG_IMAGE.url],
     },
   };
 }
@@ -47,15 +47,20 @@ function getListingPageSchema(locale) {
   return {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    "@id": "https://area36.az/#listings",
+    "@id": `${localizedUrl(locale)}#listings`,
     name: isAz ? "Area36 tərəfindən Lüks Dağ Evləri və Villalar" : "Luxury Chalets & Villas by Area36",
     description: isAz
       ? "Qəbələdə günlük və həftəlik kirayə verilən premium dağ evləri və villaların seçilmiş kolleksiyası."
       : "Curated collection of luxury chalets, cabins and villas available for rent in Azerbaijan.",
-    url: isAz ? "https://area36.az/az" : "https://area36.az",
-    publisher: {
-      "@id": "https://area36.az/#organization",
-    },
+    url: localizedUrl(locale),
+    publisher: { "@id": `${SITE_URL}/#organization` },
+    numberOfItems: homes.length,
+    itemListElement: homes.map((home, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      url: localizedUrl(locale, `/${home.slug}`),
+      name: home.title,
+    })),
   };
 }
 
