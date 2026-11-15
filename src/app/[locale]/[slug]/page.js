@@ -105,7 +105,7 @@ export async function generateMetadata({ params }) {
   const description = truncateAtWord(rawDescription, 155);
   const image = home.images?.[0]
     ? `https://area36.az${home.images[0]}`
-    : "https://area36.az/images/ui/area-image-hero.webp";
+    : "https://area36.az/images/ui/hero.webp";
 
   const pathPrefix = locale === "az" ? "az/" : "";
 
