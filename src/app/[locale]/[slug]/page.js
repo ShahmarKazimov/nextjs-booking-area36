@@ -1,4 +1,5 @@
 import homes from "../../../components/data/homes";
+import { SITE_URL, OG_IMAGE, buildAlternates, localizedUrl, ogLocale } from "@/lib/seo";
 import { notFound } from "next/navigation";
 import HomeDetails from "../../../components/HomeDetails/HomeDetails";
 import {
@@ -91,9 +92,14 @@ export async function generateMetadata({ params }) {
   const locationStr = tHome("location");
   const azerbaijanStr = t("azerbaijan");
   const luxuryStr = t("luxury"); // YENİ: Details.json-a "luxury" key-i əlavə edilməlidir
-  const title = `${tHome("title")} | ${luxuryStr} ${typeStr} ${t("in") ? t("in") + " " : ""}${locationStr}, ${azerbaijanStr}`;
+  // Optional hand-written SEO fields (Homes.<slug>.metaTitle / metaDescription) override the generated ones
+  const title = tHome.has("metaTitle")
+    ? tHome("metaTitle")
+    : `${tHome("title")} | ${luxuryStr} ${typeStr} ${t("in") ? t("in") + " " : ""}${locationStr}, ${azerbaijanStr}`;
 
-  const rawDescription = tHome("description") || tHome("title");
+  const rawDescription = tHome.has("metaDescription")
+    ? tHome("metaDescription")
+    : tHome("description") || tHome("title");
 
   function truncateAtWord(str, maxLen) {
     if (!str || str.length <= maxLen) return str;
@@ -103,11 +109,12 @@ export async function generateMetadata({ params }) {
   }
 
   const description = truncateAtWord(rawDescription, 155);
+  const ogTitle = `${title} | Area36`;
   const image = home.images?.[0]
-    ? `https://area36.az${home.images[0]}`
-    : "https://area36.az/images/ui/hero.webp";
+    ? `${SITE_URL}${home.images[0]}`
+    : OG_IMAGE.url;
 
-  const pathPrefix = locale === "az" ? "az/" : "";
+  const pageUrl = localizedUrl(locale, `/${slug}`);
 
   return {
     title,
@@ -131,15 +138,7 @@ export async function generateMetadata({ params }) {
         : `${locationStr} daily rental house`,
     ],
 
-    alternates: {
-      canonical: `https://area36.az/${pathPrefix}${slug}`,
-      languages: {
-        en: `https://area36.az/${slug}`,
-        az: `https://area36.az/az/${slug}`,
-        "x-default": `https://area36.az/${slug}`,
-      },
-    },
-
+    alternates: buildAlternates(locale, `/${slug}`),
 
     robots: {
       index: true,
@@ -154,17 +153,15 @@ export async function generateMetadata({ params }) {
     },
 
     openGraph: {
-      title: `${title} | Area36`,
+      title: ogTitle,
       description,
-      url: `https://area36.az/${pathPrefix}${slug}`,
+      url: pageUrl,
       siteName: "Area36",
-      locale: locale === "az" ? "az_AZ" : "en_US",
+      locale: ogLocale(locale),
       type: "website",
       images: [
         {
           url: image,
-          width: 1200,
-          height: 630,
           alt: `${tHome("title")} - Area36`,
         },
       ],
@@ -172,7 +169,7 @@ export async function generateMetadata({ params }) {
 
     twitter: {
       card: "summary_large_image",
-      title: `${title} | Area36`,
+      title: ogTitle,
       description,
       images: [image],
     },
@@ -190,17 +187,25 @@ export default async function HomeDetailPage({ params }) {
   const tHome = await getTranslations({ locale, namespace: `Homes.${slug}` });
 
   const [lat, lng] = home.geo?.split(",").map(Number) ?? [];
-  const pathPrefix = locale === "az" ? "az/" : "";
+  const pageUrl = localizedUrl(locale, `/${slug}`);
+
+  const countFeature = (pattern) => {
+    const match = home.features?.map((f) => f.match(pattern)).find(Boolean);
+    return match ? Number(match[1]) : null;
+  };
+  const bedrooms = countFeature(/^(\d+)\s+bedrooms?/i);
+  const bathrooms = countFeature(/^(\d+)\s+bathrooms?/i);
 
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "VacationRental",
-    "@id": `https://area36.az/${pathPrefix}${slug}#property`,
+    "@id": `${pageUrl}#property`,
 
     name: tHome("title"),
     description: tHome("description"),
-    url: `https://area36.az/${pathPrefix}${slug}`,
-    image: home.images?.map((img) => `https://area36.az${img}`),
+    url: pageUrl,
+    inLanguage: locale,
+    image: home.images?.map((img) => `${SITE_URL}${img.split("?")[0]}`),
     identifier: slug,
 
     address: {
@@ -218,9 +223,15 @@ export default async function HomeDetailPage({ params }) {
       },
     }),
 
+    ...(!home.isPartner && home.price && {
+      priceRange: `${home.price} AZN / ${isAz ? "gecə" : "night"}`,
+    }),
+
     containsPlace: {
       "@type": "Accommodation",
       additionalType: tHome("type") || "Chalet",
+      ...(bedrooms && { numberOfBedrooms: bedrooms }),
+      ...(bathrooms && { numberOfBathroomsTotal: bathrooms }),
 
       ...(home.occupancy && {
         occupancy: {
@@ -243,8 +254,27 @@ export default async function HomeDetailPage({ params }) {
     },
 
     publisher: {
-      "@id": "https://area36.az/#organization",
+      "@id": `${SITE_URL}/#organization`,
     },
+  };
+
+  const breadcrumbData = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: isAz ? "Ana səhifə" : "Home",
+        item: localizedUrl(locale),
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: tHome("title"),
+        item: pageUrl,
+      },
+    ],
   };
 
   return (
@@ -252,7 +282,7 @@ export default async function HomeDetailPage({ params }) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(structuredData),
+          __html: JSON.stringify([structuredData, breadcrumbData]),
         }}
       />
 

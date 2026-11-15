@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import Image from 'next/image';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useLocale } from 'next-intl';
 
 export default function HomeDetails({
     images = [],
@@ -11,6 +12,8 @@ export default function HomeDetails({
     location = '',
     villaRentalLabel = '', // page.js-dən gələcək, tərcümə olunmuş "luxury villa rental" / "lüks villa kirayəsi"
 }) {
+    const locale = useLocale();
+    const photoWord = locale === 'az' ? 'şəkil' : 'photo';
     const photoAlt = location
         ? `${title} – ${location} ${villaRentalLabel}`
         : `${title} – ${villaRentalLabel}`;
@@ -223,7 +226,7 @@ export default function HomeDetails({
                     <img
                         key={i}
                         src={img}
-                        alt={`${photoAlt} - şəkil ${i + 6}`}
+                        alt={`${photoAlt} - ${photoWord} ${i + 6}`}
                         loading="lazy"
                     />
                 ))}

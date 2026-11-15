@@ -45,7 +45,7 @@ export default function Footer() {
 
     return (
         <footer
-            className="bg-black text-white border-t border-gray-800 mt-10"
+            className="bg-[#1c1a17] text-[#ebe7d8] border-t border-white/10 mt-10"
             role="contentinfo"
             aria-label="Site Footer"
         >
@@ -70,7 +70,7 @@ export default function Footer() {
                             </figure>
                         </Link>
 
-                        <p className="text-gray-300 max-w-xs leading-relaxed">
+                        <p className="text-[#ebe7d8]/80 max-w-xs leading-relaxed">
                             {t("description")}
                         </p>
                     </div>
@@ -78,7 +78,7 @@ export default function Footer() {
                     {/* Information Section */}
                     <div>
                         <h3 className="text-lg font-semibold mb-4 text-white">{t("information")}</h3>
-                        <div className="space-y-3 text-sm text-gray-400">
+                        <div className="space-y-3 text-sm text-[#ebe7d8]/65">
                             <div className="flex items-center">
                                 <Link
                                     href="/about"
@@ -101,7 +101,7 @@ export default function Footer() {
                     {/* Contact Us Section */}
                     <div>
                         <h3 className="text-lg font-semibold mb-4 text-white">{t("contactUs")}</h3>
-                        <div className="space-y-3 text-sm text-gray-400">
+                        <div className="space-y-3 text-sm text-[#ebe7d8]/65">
                             <div className="flex items-center">
                                 <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                                     <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
@@ -144,7 +144,7 @@ export default function Footer() {
                                 <Link
                                     key={index}
                                     href={social.href}
-                                    className="w-8 h-8 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/40"
+                                    className="w-8 h-8 rounded-full flex items-center justify-center text-[#ebe7d8]/65 hover:text-white hover:bg-white/10 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/40"
                                     aria-label={`Visit our ${social.name} page`}
                                     title={`Follow us on ${social.name}`}
                                     target="_blank"
@@ -156,7 +156,7 @@ export default function Footer() {
                         </div>
 
                         {/* Copyright moved here for better layout */}
-                        <div className="text-sm text-gray-400 mt-4">
+                        <div className="text-sm text-[#ebe7d8]/65 mt-4">
                             <span>© {currentYear} Area36. {t("rights")}</span>
                         </div>
                     </div>

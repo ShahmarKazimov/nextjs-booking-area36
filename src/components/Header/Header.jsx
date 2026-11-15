@@ -1,15 +1,15 @@
 import { Link } from "@/i18n/routing";
 import StickyHeader from "./StickyHeader/StickyHeader";
 import LanguageSwitcher from "./LanguageSwitcher";
-import { useTranslations } from "next-intl";
+import WishlistLink from "../Wishlist/WishlistLink";
+import HeaderNav from "./HeaderNav";
+import MobileMenu from "./MobileMenu";
 
 export default function Header() {
-    const t = useTranslations("Header");
-
     return (
         <>
             <header
-                className="relative w-full bg-transparent text-white transition-all duration-300 ease-in-out z-50"
+                className="relative w-full bg-transparent has-[#mobile-menu]:bg-[#1c1a17] text-white z-50"
                 role="banner"
             >
                 <div className="flex items-center justify-between max-w-7xl mx-auto py-2 px-4 xl:px-0 min-h-[81px]">
@@ -34,19 +34,14 @@ export default function Header() {
                         </Link>
                     </div>
 
-                    <div className="flex items-center gap-2">
+                    <HeaderNav />
 
-                        <Link
-                            href="https://wa.me/994552904045?text=Hi, I'm interested in renting a place. Can you assist me with the options?"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={t("contactWhatsapp")}
-                        >
-                            <button className="cursor-pointer rounded-lg px-3 py-[0.5rem] text-sm font-semibold hover:bg-white/10 hover:border-white/20 hover:text-white border border-white/10 uppercase text-white transition-all">
-                                {t("contact")}
-                            </button>
-                        </Link>
-                        <LanguageSwitcher />
+                    <div className="flex items-center gap-2">
+                        <div className="hidden md:flex items-center gap-2">
+                            <WishlistLink />
+                            <LanguageSwitcher />
+                        </div>
+                        <MobileMenu />
                     </div>
                 </div>
             </header>

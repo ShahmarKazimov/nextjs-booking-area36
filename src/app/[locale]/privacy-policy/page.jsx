@@ -1,3 +1,5 @@
+import { buildAlternates, localizedUrl, ogLocale, OG_IMAGE } from "@/lib/seo";
+
 export async function generateMetadata({ params }) {
   const { locale } = await params;
   const isAz = locale === "az";
@@ -7,6 +9,14 @@ export async function generateMetadata({ params }) {
     description: isAz
       ? "AREA36 istifadəçilərinin şəxsi məlumatlarının qorunmasına xüsusi önəm verir. Bu Məxfilik Siyasəti saytımızdan istifadə zamanı məlumatların necə qorunduğunu izah edir."
       : "AREA36 attaches special importance to the protection of users' personal data. This Privacy Policy explains how information is protected when using our site.",
+    alternates: buildAlternates(locale, "/privacy-policy"),
+    openGraph: {
+      type: "website",
+      siteName: "Area36",
+      url: localizedUrl(locale, "/privacy-policy"),
+      locale: ogLocale(locale),
+      images: [OG_IMAGE],
+    },
   };
 }
 

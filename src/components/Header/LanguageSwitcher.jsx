@@ -27,7 +27,8 @@ const AZFlag = () => (
   </svg>
 );
 
-export default function LanguageSwitcher() {
+export default function LanguageSwitcher({ variant = "dark" }) {
+  const light = variant === "light";
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
@@ -60,7 +61,7 @@ export default function LanguageSwitcher() {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center text-sm gap-1.5 px-3 py-[0.667rem] rounded-lg hover:bg-white/10 hover:border-white/20 hover:text-white border border-white/10 text-white font-semibold transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer"
+        className={`flex items-center text-sm gap-1.5 px-3 py-[0.667rem] rounded-xl ${light ? "text-black border-black/15 bg-[#edeae4] hover:bg-[#e6e2da]" : "hover:bg-white/10 hover:border-white/20 hover:text-white border border-white/10 text-white"} border font-semibold transition-all duration-300 cursor-pointer`}
         aria-haspopup="true"
         aria-expanded={isOpen}
       >
@@ -70,7 +71,7 @@ export default function LanguageSwitcher() {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-max rounded-xl bg-black/90 border border-white/10 backdrop-blur-lg shadow-2xl overflow-hidden z-[9999] animate-in fade-in slide-in-from-top-2 duration-200">
+        <div className="absolute right-0 mt-2 w-max rounded-xl bg-[#1c1a17]/95 border border-white/10 backdrop-blur-lg shadow-2xl shadow-2xl overflow-hidden z-[9999] animate-in fade-in slide-in-from-top-2 duration-200">
           <div className="py-1">
             {languages.map((lang) => (
               <button

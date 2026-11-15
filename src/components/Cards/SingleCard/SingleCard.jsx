@@ -1,10 +1,12 @@
 'use client';
 
+import { useState } from "react";
 import Image from "next/image";
 import Icons from "../../ui/icons/icons";
 import { Link } from "@/i18n/routing";
+import WishlistButton from "../../Wishlist/WishlistButton";
 import { useTranslations, useLocale } from "next-intl";
-import { MessageCircle } from "lucide-react";
+import { MessageCircle, BedDouble, Bath, Users, Loader2 } from "lucide-react";
 
 const SingleCard = ({ property }) => {
     const tHome = useTranslations(`Homes.${property.slug}`);
@@ -12,11 +14,34 @@ const SingleCard = ({ property }) => {
     const tDetails = useTranslations("Details");
     const locale = useLocale();
     const isAz = locale === "az";
+    const [navigating, setNavigating] = useState(false);
+
+    // Show a spinner right away on a normal click (ignore new-tab / modified clicks)
+    const handleNavigate = (e) => {
+        if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        setNavigating(true);
+    };
 
     const title = tHome("title");
     const type = tHome("type");
     const description = tHome("description");
     const location = tHome("location");
+
+    // Bedrooms / bathrooms are derived from the English feature keys (e.g. "4 Bedrooms")
+    const countFeature = (pattern) => {
+        const match = property.features
+            ?.map((f) => f.match(pattern))
+            .find(Boolean);
+        return match ? Number(match[1]) : null;
+    };
+    const bedrooms = countFeature(/^(\d+)\s+bedrooms?/i);
+    const bathrooms = countFeature(/^(\d+)\s+bathrooms?/i);
+    const guests = property.occupancy;
+    const stats = [
+        bedrooms && { Icon: BedDouble, label: tCards("bedrooms", { count: bedrooms }) },
+        bathrooms && { Icon: Bath, label: tCards("bathrooms", { count: bathrooms }) },
+        guests && { Icon: Users, label: tCards("guests", { count: guests }) },
+    ].filter(Boolean);
 
     // Translation-based alt text
     const inWord = tDetails("in");
@@ -36,6 +61,7 @@ const SingleCard = ({ property }) => {
             {/* Top Clickable Area (Image + Details) */}
             <Link
                 href={`/${property.slug}`}
+                onClick={handleNavigate}
                 className="flex flex-col flex-grow text-inherit no-underline cursor-pointer"
                 aria-label={`${title} - ${tCards("viewDetails")}`}
             >
@@ -68,6 +94,16 @@ const SingleCard = ({ property }) => {
                         <p className="text-sm text-gray-600 line-clamp-2 leading-relaxed">
                             {description}
                         </p>
+                        {stats.length > 0 && (
+                            <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-1.5 text-xs font-medium text-gray-700">
+                                {stats.map(({ Icon, label }) => (
+                                    <li key={label} className="flex items-center gap-1.5">
+                                        <Icon size={14} className="text-[#2d4a2b]" aria-hidden="true" />
+                                        <span>{label}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
                     </div>
                 </div>
             </Link>
@@ -87,7 +123,8 @@ const SingleCard = ({ property }) => {
                         </div>
                         <Link
                             href={`/${property.slug}`}
-                            className="inline-flex items-center justify-center rounded-xl bg-black py-2.5 px-4 text-xs font-bold uppercase tracking-wider text-white shadow-xs hover:bg-neutral-800 transition-all text-center cursor-pointer"
+                            onClick={handleNavigate}
+                            className="inline-flex items-center justify-center rounded-xl bg-[#2d4a2b] border border-[#2d4a2b] text-white hover:bg-[#233a22] hover:border-[#233a22] py-2.5 px-4 text-sm font-semibold transition-all text-center cursor-pointer"
                         >
                             {tCards("viewDetails")}
                         </Link>
@@ -106,7 +143,7 @@ const SingleCard = ({ property }) => {
                             href={waInquiryUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 py-2.5 px-4 text-xs font-bold uppercase tracking-wider text-white shadow-xs hover:shadow-md transition-all text-center cursor-pointer"
+                            className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-[#2d4a2b] border border-[#2d4a2b] text-white hover:bg-[#233a22] hover:border-[#233a22] py-2.5 px-4 text-sm font-semibold transition-all text-center cursor-pointer"
                             title="WhatsApp ilə qiyməti öyrən"
                         >
                             <MessageCircle size={14} />
@@ -115,6 +152,17 @@ const SingleCard = ({ property }) => {
                     </>
                 )}
             </div>
+            <WishlistButton slug={property.slug} className="absolute top-7 right-7 z-[5]" />
+            {navigating && (
+                <div
+                    className="absolute inset-0 z-10 flex items-center justify-center bg-white/70 backdrop-blur-[2px]"
+                    role="status"
+                    aria-live="polite"
+                >
+                    <Loader2 className="h-8 w-8 animate-spin text-[#2d4a2b]" aria-hidden="true" />
+                    <span className="sr-only">{tDetails("loading")}</span>
+                </div>
+            )}
         </article>
     );
 };

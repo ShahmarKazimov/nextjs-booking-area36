@@ -1,88 +1,27 @@
 import homes from "../components/data/homes";
+import { LOCALES, DEFAULT_LOCALE, localizedUrl } from "@/lib/seo";
+
+// Every entry points at the final /en or /az URL (never a redirecting path) and
+// carries hreflang alternates, including x-default.
+function entry(path, priority) {
+  const languages = Object.fromEntries(LOCALES.map((l) => [l, localizedUrl(l, path)]));
+  languages["x-default"] = localizedUrl(DEFAULT_LOCALE, path);
+  return LOCALES.map((locale) => ({
+    url: localizedUrl(locale, path),
+    lastModified: BUILD_DATE,
+    changeFrequency: priority >= 0.8 ? "weekly" : "monthly",
+    priority,
+    alternates: { languages },
+  }));
+}
+
+const BUILD_DATE = new Date();
 
 export default function sitemap() {
-  const homeUrls = homes.flatMap((home) => [
-    {
-      url: `https://area36.az/${home.slug}`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-      alternates: {
-        languages: {
-          en: `https://area36.az/${home.slug}`,
-          az: `https://area36.az/az/${home.slug}`,
-        },
-      },
-    },
-    {
-      url: `https://area36.az/az/${home.slug}`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-      alternates: {
-        languages: {
-          en: `https://area36.az/${home.slug}`,
-          az: `https://area36.az/az/${home.slug}`,
-        },
-      },
-    },
-  ]);
-
-  const staticPages = ["about", "privacy-policy"];
-
-  const staticUrls = staticPages.flatMap((page) => [
-    {
-      url: `https://area36.az/${page}`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.3,
-      alternates: {
-        languages: {
-          en: `https://area36.az/${page}`,
-          az: `https://area36.az/az/${page}`,
-        },
-      },
-    },
-    {
-      url: `https://area36.az/az/${page}`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.3,
-      alternates: {
-        languages: {
-          en: `https://area36.az/${page}`,
-          az: `https://area36.az/az/${page}`,
-        },
-      },
-    },
-  ]);
-
   return [
-    {
-      url: "https://area36.az",
-      lastModified: new Date(),
-      priority: 1,
-      changeFrequency: "daily",
-      alternates: {
-        languages: {
-          en: "https://area36.az",
-          az: "https://area36.az/az",
-        },
-      },
-    },
-    {
-      url: "https://area36.az/az",
-      lastModified: new Date(),
-      priority: 1,
-      changeFrequency: "daily",
-      alternates: {
-        languages: {
-          en: "https://area36.az",
-          az: "https://area36.az/az",
-        },
-      },
-    },
-    ...homeUrls,
-    ...staticUrls,
+    ...entry("", 1),
+    ...homes.flatMap((home) => entry(`/${home.slug}`, 0.8)),
+    ...entry("/about", 0.3),
+    ...entry("/privacy-policy", 0.3),
   ];
 }

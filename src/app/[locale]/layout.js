@@ -2,8 +2,10 @@ import { Geist } from "next/font/google";
 import "../globals.css";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
+import { WishlistProvider } from "../../components/Wishlist/WishlistProvider";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
+import { SITE_URL, CONTACT, OG_IMAGE, localizedUrl, ogLocale } from "@/lib/seo";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,8 +22,8 @@ export async function generateMetadata({ params }) {
     : "Area36 | Luxury Chalet & Villa Rentals in Gabala";
 
   const description = isAz
-    ? "Qəbələdə günlük və həftəlik lüks chalet, dağ evi və villa kirayəsi. Hovuz, sauna, barbekü və Qafqaz dağ mənzərəsi ilə unudulmaz istirahət. Area36 ilə Qəbələdə premium istirahət."
-    : "Daily and weekly luxury chalet, mountain cabin, and villa rentals in Gabala. Pool, sauna, BBQ, and Caucasus mountain views. Premium vacation with Area36.";
+    ? "Qəbələdə günlük və həftəlik lüks chalet, dağ evi və villa kirayəsi. Hovuz, barbekü sahəsi və Qafqaz dağ mənzərəsi ilə unudulmaz istirahət. Area36 ilə Qəbələdə premium istirahət."
+    : "Daily and weekly luxury chalet, mountain cabin, and villa rentals in Gabala. Pool, BBQ area, and Caucasus mountain views. Premium vacation with Area36.";
 
   const keywords = isAz ?
     [
@@ -61,7 +63,6 @@ export async function generateMetadata({ params }) {
       "Qəbələdə lüks villa kirayəsi",
       "Qəbələdə premium villa",
       "Qəbələdə hovuzlu villa kirayə",
-      "Qəbələdə sauna olan evlər",
       "Qəbələdə dağ mənzərəli villa",
       "Qəbələdə private villa rental",
       "Gabala luxury villa rental",
@@ -90,8 +91,6 @@ export async function generateMetadata({ params }) {
       "pool villa Gabala Azerbaijan",
     ];
 
-  const canonicalUrl = isAz ? "https://area36.az/az" : "https://area36.az";
-
   return {
     metadataBase: new URL("https://area36.az"),
 
@@ -109,15 +108,6 @@ export async function generateMetadata({ params }) {
     publisher: "Area36",
 
 
-    alternates: {
-      canonical: canonicalUrl,
-      languages: {
-        en: "https://area36.az",
-        az: "https://area36.az/az",
-        "x-default": "https://area36.az",
-      },
-    },
-
     robots: {
       index: true,
       follow: true,
@@ -132,16 +122,15 @@ export async function generateMetadata({ params }) {
 
     openGraph: {
       type: "website",
-      url: canonicalUrl,
       siteName: "Area36",
       title: titleDefault,
       description,
-      locale: isAz ? "az_AZ" : "en_US",
+      locale: ogLocale(locale),
       images: [
         {
-          url: "https://area36.az/images/ui/hero.webp",
-          width: 1200,
-          height: 630,
+          url: OG_IMAGE.url,
+          width: OG_IMAGE.width,
+          height: OG_IMAGE.height,
           alt: isAz ? "Area36 — Qəbələdə lüks chalet və villa kirayəsi" : "Area36 — luxury chalet and villa rentals in Gabala",
         },
       ],
@@ -151,7 +140,7 @@ export async function generateMetadata({ params }) {
       card: "summary_large_image",
       title: titleDefault,
       description,
-      images: ["https://area36.az/images/ui/hero.webp"],
+      images: [OG_IMAGE.url],
     },
 
     icons: {
@@ -174,12 +163,22 @@ function getOrganizationSchema(locale) {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "@id": "https://area36.az/#organization",
+    "@id": `${SITE_URL}/#organization`,
     name: "Area36",
-    url: "https://area36.az",
+    url: localizedUrl(locale),
     logo: {
       "@type": "ImageObject",
-      url: "https://area36.az/favicon.ico",
+      url: `${SITE_URL}/images/ui/logo.svg`,
+    },
+    email: CONTACT.email,
+    telephone: CONTACT.phone,
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: CONTACT.phone,
+      email: CONTACT.email,
+      contactType: "reservations",
+      areaServed: "AZ",
+      availableLanguage: ["az", "en"],
     },
     description: locale === "az"
       ? "Qəbələdə günlük və həftəlik lüks chalet, dağ evi və villa kirayəsi."
@@ -189,7 +188,6 @@ function getOrganizationSchema(locale) {
       name: locale === "az" ? "Qəbələ" : "Gabala",
       addressCountry: "AZ",
     },
-    sameAs: [],
   };
 }
 
@@ -197,21 +195,11 @@ function getWebsiteSchema(locale) {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "@id": "https://area36.az/#website",
+    "@id": `${SITE_URL}/#website`,
     name: "Area36",
-    url: "https://area36.az",
+    url: localizedUrl(locale),
     inLanguage: locale,
-    publisher: {
-      "@id": "https://area36.az/#organization",
-    },
-    potentialAction: {
-      "@type": "SearchAction",
-      target: {
-        "@type": "EntryPoint",
-        urlTemplate: "https://area36.az/?q={search_term_string}",
-      },
-      "query-input": "required name=search_term_string",
-    },
+    publisher: { "@id": `${SITE_URL}/#organization` },
   };
 }
 
@@ -220,12 +208,14 @@ function getLodgingSchema(locale) {
   return {
     "@context": "https://schema.org",
     "@type": "LodgingBusiness",
-    "@id": "https://area36.az/#lodging",
+    "@id": `${SITE_URL}/#lodging`,
     name: "Area36",
-    url: "https://area36.az",
+    url: localizedUrl(locale),
     description: isAz
-      ? "Qəbələdə hovuz, sauna, barbekü və Qafqaz dağ mənzərəsi olan lüks chalet və villa kirayəsi."
-      : "Luxury chalet and villa rentals in Gabala with pool, sauna, BBQ and Caucasus mountain views.",
+      ? "Qəbələdə hovuz və Qafqaz dağ mənzərəsi olan lüks chalet və villa kirayəsi."
+      : "Luxury chalet and villa rentals in Gabala with pools and Caucasus mountain views.",
+    telephone: CONTACT.phone,
+    email: CONTACT.email,
     address: {
       "@type": "PostalAddress",
       addressLocality: isAz ? "Qəbələ" : "Gabala",
@@ -233,15 +223,10 @@ function getLodgingSchema(locale) {
     },
     amenityFeature: [
       { "@type": "LocationFeatureSpecification", name: isAz ? "Hovuz" : "Pool", value: true },
-      { "@type": "LocationFeatureSpecification", name: isAz ? "Sauna" : "Sauna", value: true },
-      { "@type": "LocationFeatureSpecification", name: isAz ? "Barbekü" : "BBQ", value: true },
       { "@type": "LocationFeatureSpecification", name: isAz ? "Dağ mənzərəsi" : "Mountain views", value: true },
-      { "@type": "LocationFeatureSpecification", name: isAz ? "Meşəlik ərazi" : "Forest area", value: true },
     ],
-    priceRange: "$$-$$$",
     currenciesAccepted: "AZN",
-    paymentAccepted: "Cash, Bank Transfer",
-    image: "https://area36.az/images/ui/hero.webp",
+    image: OG_IMAGE.url,
   };
 }
 
@@ -250,15 +235,17 @@ export default async function RootLayout({ children, params }) {
   const messages = await getMessages();
 
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={locale} data-scroll-behavior="smooth" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} antialiased text-white`}
         suppressHydrationWarning
       >
         <NextIntlClientProvider messages={messages} locale={locale}>
-          <Header />
-          <main role="main">{children}</main>
-          <Footer />
+          <WishlistProvider>
+            <Header />
+            <main role="main">{children}</main>
+            <Footer />
+          </WishlistProvider>
         </NextIntlClientProvider>
         {/* Script body-nin sonuna keç */}
         <script

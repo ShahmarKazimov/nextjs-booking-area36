@@ -1,4 +1,14 @@
 @import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
 @custom-variant dark (&:where(.dark, .dark *));
 /* body {
   @apply bg-[#ebe7d8];
