@@ -139,7 +139,7 @@ export async function generateMetadata({ params }) {
       locale: isAz ? "az_AZ" : "en_US",
       images: [
         {
-          url: "https://area36.az/images/ui/area-image-hero.webp",
+          url: "https://area36.az/images/ui/hero.webp",
           width: 1200,
           height: 630,
           alt: isAz ? "Area36 — Qəbələdə lüks chalet və villa kirayəsi" : "Area36 — luxury chalet and villa rentals in Gabala",
@@ -151,7 +151,7 @@ export async function generateMetadata({ params }) {
       card: "summary_large_image",
       title: titleDefault,
       description,
-      images: ["https://area36.az/images/ui/area-image-hero.webp"],
+      images: ["https://area36.az/images/ui/hero.webp"],
     },
 
     icons: {
@@ -241,7 +241,7 @@ function getLodgingSchema(locale) {
     priceRange: "$$-$$$",
     currenciesAccepted: "AZN",
     paymentAccepted: "Cash, Bank Transfer",
-    image: "https://area36.az/images/ui/area-image-hero.webp",
+    image: "https://area36.az/images/ui/hero.webp",
   };
 }
 

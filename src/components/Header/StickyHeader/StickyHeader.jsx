@@ -25,12 +25,16 @@ export default function StickyHeader() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, [isHome]);
 
-    if (isHome && !isFixed) return null;
-
+    // Header həmişə DOM-dadır; görünmə/gizlənmə transform + opacity ilə animasiya olunur.
     return (
         <header
-            className="fixed top-0 left-0 w-full bg-black/80 backdrop-blur-md shadow-lg transition-all duration-300 ease-in-out z-50 animate-in fade-in slide-in-from-top-1"
+            className={`fixed top-0 left-0 w-full bg-black/80 backdrop-blur-md shadow-lg transition-all duration-500 ease-out z-50 ${
+                isFixed
+                    ? "translate-y-0 opacity-100 visible"
+                    : "-translate-y-full opacity-0 invisible pointer-events-none"
+            }`}
             aria-label="Sticky Navigation"
+            aria-hidden={!isFixed}
         >
             <div className="flex items-center justify-between py-2 px-4 xl:px-0 max-w-7xl mx-auto min-h-[81px]">
                 <Link

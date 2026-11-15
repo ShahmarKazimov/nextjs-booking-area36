@@ -32,7 +32,7 @@ export async function generateMetadata({ params }) {
       url: canonicalUrl,
       images: [
         {
-          url: "https://area36.az/images/ui/area-image-hero.webp",
+          url: "https://area36.az/images/ui/hero.webp",
           width: 1200,
           height: 630,
           alt: isAz ? "Area36 lüks dağ evləri və villalar" : "Area36 luxury chalets and villas in Azerbaijan",

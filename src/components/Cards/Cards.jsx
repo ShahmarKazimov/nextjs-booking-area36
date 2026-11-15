@@ -28,10 +28,6 @@ export default function Cards() {
                     >
                         {t('title')}
                     </h2>
-                    <p className="text-gray-600 text-base max-w-2xl mx-auto mt-3">
-                        {t('description')}
-                    </p>
-
                     {/* Filter Tabs */}
                     <div className="w-full max-w-xl mx-auto mt-6 sm:mt-8 px-1 sm:px-0">
                         <div className="grid grid-cols-3 gap-2">
