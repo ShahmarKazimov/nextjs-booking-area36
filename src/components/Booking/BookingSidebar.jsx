@@ -7,7 +7,6 @@ import {
   MapPin,
   UserRound,
   X,
-  Sparkles,
 } from 'lucide-react';
 import { useTranslations, useLocale } from 'next-intl';
 import { useRouter } from '@/i18n/routing';
@@ -541,7 +540,6 @@ Please provide more information and current availability for this property.`;
         {checkIn && (
           <div className="mb-3 p-2.5 rounded-xl bg-[#2d4a2b] text-white flex items-center justify-between text-xs font-medium animate-in fade-in duration-150">
             <div className="flex items-center gap-2 truncate">
-              <Sparkles size={14} className="text-amber-400 flex-shrink-0" />
               <span className="truncate">
                 {checkOut
                   ? `${formatDisplayDate(checkIn, locale)} — ${formatDisplayDate(checkOut, locale)} (${nights} ${locale === 'az' ? 'gecə' : 'nights'})`
