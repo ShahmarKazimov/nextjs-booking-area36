@@ -64,11 +64,8 @@ export default function Cards() {
                                     <h3 className="text-xl md:text-2xl font-bold text-gray-900">
                                         {t('ourHomesTitle')}
                                     </h3>
-                                    <p className="text-xs md:text-sm text-gray-500 mt-1">
-                                        {t('ourHomesSubtitle')}
-                                    </p>
                                 </div>
-                                <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-gray-100 text-gray-700 border border-gray-200">
+                                <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-gray-100 text-gray-700 border border-gray-200 whitespace-nowrap flex-shrink-0 ml-3">
                                     {ourHomes.length} villa
                                 </span>
                             </div>
@@ -94,11 +91,8 @@ export default function Cards() {
                                     <h3 className="text-xl md:text-2xl font-bold text-gray-900">
                                         {t('partnerHomesTitle')}
                                     </h3>
-                                    <p className="text-xs md:text-sm text-gray-500 mt-1">
-                                        {t('partnerHomesSubtitle')}
-                                    </p>
                                 </div>
-                                <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-gray-100 text-gray-700 border border-gray-200">
+                                <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-gray-100 text-gray-700 border border-gray-200 whitespace-nowrap flex-shrink-0 ml-3">
                                     {partnerHomes.length} villa
                                 </span>
                             </div>
