@@ -760,7 +760,7 @@ Please provide more information and current availability for this property.`;
           type="button"
           onClick={handleContinue}
           disabled={nights < 1}
-          className="block w-full mb-3 cursor-pointer rounded-xl bg-neutral-900 text-white hover:bg-black duration-200 py-3.5 px-6 text-sm sm:text-base font-semibold transition-all text-center disabled:opacity-50 disabled:cursor-not-allowed"
+          className="block w-full mb-3 cursor-pointer rounded-xl bg-[#2d4a2b] border border-[#2d4a2b] text-white hover:bg-[#233a22] hover:border-[#233a22] duration-200 py-3.5 px-6 text-sm sm:text-base font-semibold transition-all text-center disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:bg-[#2d4a2b]"
         >
           {nights < 1 ? tDetails('selectDatesToContinue') : tDetails('continueBooking')}
         </button>
@@ -771,7 +771,11 @@ Please provide more information and current availability for this property.`;
         href={`https://wa.me/994552904045?text=${encodeURIComponent(waText)}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="block w-full mb-3 cursor-pointer rounded-xl bg-[#2d4a2b] border border-[#2d4a2b] text-white hover:bg-[#233a22] hover:border-[#233a22] duration-200 py-3.5 px-6 text-sm sm:text-base font-semibold transition-all text-center"
+        className={
+          hasBeds24
+            ? 'block text-center py-1 text-sm font-medium text-gray-600 underline underline-offset-4 hover:text-gray-900 cursor-pointer'
+            : 'block w-full mb-3 cursor-pointer rounded-xl bg-[#2d4a2b] border border-[#2d4a2b] text-white hover:bg-[#233a22] hover:border-[#233a22] duration-200 py-3.5 px-6 text-sm sm:text-base font-semibold transition-all text-center'
+        }
       >
         {tDetails('askOnWhatsApp')}
       </a>
