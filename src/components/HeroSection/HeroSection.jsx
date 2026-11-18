@@ -7,10 +7,10 @@ const HeroSection = () => {
 
     return (
         <section
-            className="relative sm:-top-[5.1rem] -top-[9rem] left-0 w-full h-[550px] sm:h-[737px] z-[-1] bg-black"
+            className="relative sm:-top-[5.1rem] max-sm:-mt-[9rem] left-0 w-full h-[550px] sm:h-[737px] z-[-1] bg-black"
             aria-label="Luxury villas and chalets in Gabala"        >
             <div
-                className="relative w-full h-[620px] sm:h-[735px] bg-black"
+                className="relative w-full h-full sm:h-[735px] bg-black"
                 style={{ backgroundColor: '#000000' }}
             >
                 <Image
