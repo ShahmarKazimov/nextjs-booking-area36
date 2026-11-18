@@ -21,6 +21,10 @@ async function beds24Get(path) {
       headers: { token, Accept: "application/json" },
       cache: "no-store",
     });
+    if (res.status === 401 || res.status === 403) {
+      // Token revoked/expired: search Vercel logs for this marker and issue a new Beds24 token.
+      console.error(`BEDS24_AUTH_FAILED: Beds24 returned ${res.status}. Create a new long life token and update BEDS24_TOKEN.`);
+    }
     if (!res.ok) throw new Error(`Beds24 responded with ${res.status}`);
     const json = await res.json();
     if (json?.success === false) throw new Error(json.error || "Beds24 error");

@@ -36,6 +36,9 @@ export async function GET(request) {
       { signal: controller.signal, headers: { token, Accept: "application/json" }, cache: "no-store" }
     );
     clearTimeout(timeoutId);
+    if (res.status === 401 || res.status === 403) {
+      console.error(`BEDS24_AUTH_FAILED: Beds24 returned ${res.status}. Create a new long life token and update BEDS24_TOKEN.`);
+    }
     const json = await res.json();
     if (!res.ok || json?.success === false) {
       return NextResponse.json({ success: true, available: false, price: null });
