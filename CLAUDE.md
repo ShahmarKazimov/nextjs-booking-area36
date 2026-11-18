@@ -29,6 +29,6 @@ Adding a property = new entry in `homes.js` + `Homes.<slug>` block in both messa
 - **Language:** only the Beds24 `lang` param differs from the site locale: `az` -> `lang=tr` (the Azerbaijani texts are stored in Beds24's Turkish slot), `en` -> `lang=en`. `<html lang>` and hreflang stay `az`/`en`.
 - Adding a Beds24 home = `beds24PropId` + `beds24RoomId` in `homes.js`.
 
-**Payments:** `POST /api/payment` ([route](src/app/api/payment/route.js)) builds a base64 payload and signs it with Epoint's `sha1(privateKey + data + privateKey)` scheme, then returns Epoint's `redirect_url`. Needs `EPOINT_PUBLIC_KEY` and `EPOINT_PRIVATE_KEY` env vars. The amount (`170.00` AZN, a deposit) and the redirect URLs are hardcoded; success/error pages are under `src/app/[locale]/payment/`. Note the route's `result_url` (`/payment/result`) has no corresponding page.
+**Payments:** the sidebar no longer has a deposit button. Reservations are made in the Beds24 form (no payment there; Beds24 emails the guest, then the owner collects the deposit via WhatsApp). `POST /api/payment` (Epoint) and the pages under `src/app/[locale]/payment/` still exist but are unused.
 
 **Other config:** [next.config.mjs](next.config.mjs) holds permanent redirects for renamed slugs (area36-* ↔ qafqaz-*), a www→apex redirect, security headers, and immutable caching for `/images/*`. When renaming a slug, add a redirect there. `robots.js` and `sitemap.js` in `src/app/` generate SEO files.
