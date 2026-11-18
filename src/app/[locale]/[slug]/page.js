@@ -357,8 +357,10 @@ export default async function HomeDetailPage({ params }) {
                 owner={home.owner}
                 slug={slug}
                 airbnbUrl={home.airbnbUrl}
+                hasBeds24={Boolean(home.beds24PropId)}
               />
             </aside>
+
           </div>
         </div>
       </div>

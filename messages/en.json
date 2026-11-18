@@ -65,6 +65,8 @@
     "transfer": "Transfer",
     "selectTransfer": "Select transfer (Optional)",
     "reserveNow": "Reserve Now",
+    "continueBooking": "Continue",
+    "selectDatesToContinue": "Select your dates to continue",
     "loading": "Loading...",
     "payPrePayment": "Pay Deposit",
     "propertyNotFound": "Property Not Found",

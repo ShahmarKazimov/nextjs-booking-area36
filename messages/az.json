@@ -66,6 +66,8 @@
     "transfer": "Transfer",
     "selectTransfer": "Transfer seçin (İstəyə bağlı)",
     "reserveNow": "İndi Rezerv Et",
+    "continueBooking": "Davam et",
+    "selectDatesToContinue": "Davam etmək üçün tarixləri seçin",
     "loading": "Yüklənir...",
     "payPrePayment": "Beh ödə",
     "propertyNotFound": "Mülk Tapılmadı",
