@@ -324,9 +324,8 @@ export default async function HomeDetailPage({ params }) {
 
               {home.features && (
                 <section className="bg-white rounded-2xl shadow-sm p-6 sm:p-8 border border-gray-100">
-                  <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2.5">
-                    <Sparkles size={20} className="text-gray-900" aria-hidden="true" />
-                    <span>{t("propertyDetails")}</span>
+                  <h2 className="text-xl font-bold text-gray-900 mb-6">
+                    {t("propertyDetails")}
                   </h2>
                   <ExpandableFeatures
                     items={home.features.map((feature, i) => (
