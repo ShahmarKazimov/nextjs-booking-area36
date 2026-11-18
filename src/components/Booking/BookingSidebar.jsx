@@ -4,8 +4,6 @@ import { useState, useEffect, useMemo } from 'react';
 import {
   ChevronLeft,
   ChevronRight,
-  MapPin,
-  UserRound,
   X,
 } from 'lucide-react';
 import { useTranslations, useLocale } from 'next-intl';
@@ -77,7 +75,6 @@ function formatShortDate(dateStr, locale) {
 export default function BookingSidebar({
   homeTitle,
   location,
-  owner,
   slug,
   airbnbUrl,
   hasBeds24 = false,
@@ -472,50 +469,28 @@ Please provide more information and current availability for this property.`;
           sheetOpen ? 'max-lg:block' : 'max-lg:hidden'
         } lg:rounded-3xl lg:shadow-sm lg:sticky lg:top-8`}
       >
-      {/* Mobile sheet header (dates + close) */}
-      <div className="lg:hidden flex items-start justify-between mb-4">
+      {/* Single header: dates once chosen, otherwise a short prompt (+ close on mobile) */}
+      <div className="flex items-start justify-between mb-4">
         <div className="min-w-0">
-          <p className="text-xl font-bold text-gray-900 truncate">
+          <h2 className="text-xl font-bold text-gray-900 truncate">
             {hasDates ? rangeLabel : locale === 'az' ? 'Tarixləri seçin' : 'Select dates'}
-          </p>
-          <p className="text-sm text-gray-500 truncate">
-            {hasDates ? `${nightsLabel} · ${homeTitle}` : homeTitle}
+          </h2>
+          <p className="text-sm text-gray-500 mt-0.5">
+            {hasDates
+              ? `${nightsLabel} · ${homeTitle}`
+              : locale === 'az'
+                ? 'Dəqiq rezervasiya üçün tarixlərinizi seçin'
+                : 'Add your travel dates for exact availability'}
           </p>
         </div>
         <button
           type="button"
           onClick={() => setSheetOpen(false)}
-          className="w-10 h-10 rounded-full bg-[#efede8] hover:bg-[#e6e2da] text-gray-900 flex items-center justify-center flex-shrink-0 ml-3 cursor-pointer"
+          className="lg:hidden w-10 h-10 rounded-full bg-[#efede8] hover:bg-[#e6e2da] text-gray-900 flex items-center justify-center flex-shrink-0 ml-3 cursor-pointer"
           aria-label={locale === 'az' ? 'Bağla' : 'Close'}
         >
           <X size={18} />
         </button>
-      </div>
-
-      {/* Header (desktop) */}
-      <div className="hidden lg:block pb-3 mb-4 border-b border-gray-100">
-        <h2 className="text-lg font-bold text-gray-900">
-          {tDetails('reservationRequest')}
-        </h2>
-      </div>
-
-      {/* Location & Owner info (desktop) */}
-      <div className="hidden lg:block mb-5 space-y-3">
-        <div className="flex justify-between items-center py-1.5 border-b border-gray-50 text-sm">
-          <div className="flex items-center gap-2 text-gray-500">
-            <MapPin size={16} aria-hidden="true" />
-            <span>{tDetails('location')}</span>
-          </div>
-          <span className="font-semibold text-gray-900">{location}</span>
-        </div>
-
-        <div className="flex justify-between items-center py-1.5 border-b border-gray-50 text-sm">
-          <div className="flex items-center gap-2 text-gray-500">
-            <UserRound size={16} aria-hidden="true" />
-            <span>{tDetails('owner')}</span>
-          </div>
-          <span className="font-semibold text-gray-900">{owner}</span>
-        </div>
       </div>
 
       {/* ── NO CALENDAR (home has no iCal feed) ─────────────────────── */}
@@ -526,16 +501,6 @@ Please provide more information and current availability for this property.`;
         </div>
       )}
       <div className="mb-6">
-        {/* Title & Subtitle like Airbnb */}
-        <div className="mb-3 hidden lg:block">
-          <h3 className="text-lg font-bold text-gray-900">
-            {locale === 'az' ? 'Tarixləri seçin' : 'Select dates'}
-          </h3>
-          <p className="text-xs text-gray-500 mt-0.5">
-            {locale === 'az' ? 'Dəqiq rezervasiya üçün tarixlərinizi seçin' : 'Add your travel dates for exact availability'}
-          </p>
-        </div>
-
         {/* Selected Dates Summary Badge */}
         {checkIn && (
           <div className="mb-3 p-2.5 rounded-xl bg-[#2d4a2b] text-white flex items-center justify-between text-xs font-medium animate-in fade-in duration-150">

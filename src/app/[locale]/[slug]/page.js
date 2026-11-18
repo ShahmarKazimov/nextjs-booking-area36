@@ -347,7 +347,6 @@ export default async function HomeDetailPage({ params }) {
               <BookingSidebar
                 homeTitle={tHome("title")}
                 location={`${tHome("location")}, ${t("azerbaijan")}`}
-                owner={home.owner}
                 slug={slug}
                 airbnbUrl={home.airbnbUrl}
                 hasBeds24={Boolean(home.beds24PropId)}
