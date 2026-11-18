@@ -811,8 +811,8 @@ Please provide more information and current availability for this property.`;
       </a>
       </div>
 
-      {/* Mobile sticky booking bar */}
-      <div className="lg:hidden fixed bottom-0 inset-x-0 z-30 bg-white border-t border-gray-200 px-4 py-3 flex items-center justify-between gap-3">
+      {/* Mobile booking block (sits in the page flow, right after the amenities) */}
+      <div className="lg:hidden bg-white rounded-2xl shadow-sm border border-gray-100 p-4 flex items-center justify-between gap-3">
         <div className="min-w-0">
           {hasDates ? (
             <>
@@ -861,8 +861,6 @@ Please provide more information and current availability for this property.`;
         )}
       </div>
 
-      {/* keeps page content clear of the mobile bar */}
-      <div className="lg:hidden h-20" aria-hidden="true" />
     </>
   );
 }
