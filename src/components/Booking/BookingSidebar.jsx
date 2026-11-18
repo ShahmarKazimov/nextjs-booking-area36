@@ -539,7 +539,7 @@ Please provide more information and current availability for this property.`;
 
         {/* Selected Dates Summary Badge */}
         {checkIn && (
-          <div className="mb-3 p-2.5 rounded-xl bg-neutral-900 text-white flex items-center justify-between text-xs font-medium animate-in fade-in duration-150">
+          <div className="mb-3 p-2.5 rounded-xl bg-[#2d4a2b] text-white flex items-center justify-between text-xs font-medium animate-in fade-in duration-150">
             <div className="flex items-center gap-2 truncate">
               <Sparkles size={14} className="text-amber-400 flex-shrink-0" />
               <span className="truncate">
@@ -551,7 +551,7 @@ Please provide more information and current availability for this property.`;
             <button
               type="button"
               onClick={handleClearDates}
-              className="p-1 hover:bg-neutral-800 rounded text-neutral-300 hover:text-white cursor-pointer ml-2 flex-shrink-0"
+              className="p-1 hover:bg-[#233a22] rounded text-green-100 hover:text-white cursor-pointer ml-2 flex-shrink-0"
               title={tDetails('clearDates')}
             >
               <X size={13} />
