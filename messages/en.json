@@ -64,6 +64,8 @@
     "owner": "Owner",
     "reserveNow": "Reserve Now",
     "checkAvailability": "Check availability",
+    "readMore": "Read more",
+    "readLess": "Show less",
     "showAllFeatures": "Show all {count} amenities",
     "showLessFeatures": "Show less",
     "continueBooking": "Continue",

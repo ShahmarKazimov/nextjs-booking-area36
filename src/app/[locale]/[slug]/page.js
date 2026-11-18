@@ -32,6 +32,7 @@ import {
   PawPrint,
 } from "lucide-react";
 import BookingSidebar from "../../../components/Booking/BookingSidebar";
+import ExpandableText from "../../../components/ExpandableText/ExpandableText";
 import ExpandableFeatures from "../../../components/ExpandableFeatures/ExpandableFeatures";
 import { getTranslations } from "next-intl/server";
 
@@ -313,14 +314,12 @@ export default async function HomeDetailPage({ params }) {
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
             <section className="lg:col-span-2 space-y-8">
-              <article className="bg-white rounded-2xl shadow-sm p-8">
+              <article className="bg-white rounded-2xl shadow-sm p-5 sm:p-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">
                   {tHome("title")}
                   <span className="font-normal text-gray-500 italic lowercase pl-2">{t("about")}</span>{" "}
                 </h2>
-                <p className="text-gray-700 text-lg leading-relaxed whitespace-pre-line">
-                  {tHome("description")}
-                </p>
+                <ExpandableText text={tHome("description")} />
               </article>
 
               {home.features && (
