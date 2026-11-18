@@ -12,6 +12,7 @@ import {
   Check,
 } from 'lucide-react';
 import { useTranslations, useLocale } from 'next-intl';
+import { useRouter } from '@/i18n/routing';
 
 // Explicit static month dictionaries to prevent browser ICU locale bugs (e.g. "M11 2026")
 const AZ_MONTHS = [
@@ -75,7 +76,9 @@ export default function BookingSidebar({
   owner,
   slug,
   airbnbUrl,
+  hasBeds24 = false,
 }) {
+  const router = useRouter();
   const tDetails = useTranslations('Details');
   const tTransfers = useTranslations('Transfers');
   const locale = useLocale();
@@ -84,6 +87,8 @@ export default function BookingSidebar({
   const [bookedDates, setBookedDates] = useState(new Set());
   const [isLoadingCalendar, setIsLoadingCalendar] = useState(true);
   const [hasIcal, setHasIcal] = useState(false);
+  const [minStays, setMinStays] = useState({});
+  const [prices, setPrices] = useState({});
   const [calendarError, setCalendarError] = useState(false);
 
   const [checkIn, setCheckIn] = useState(null);
@@ -122,6 +127,8 @@ export default function BookingSidebar({
           if (data.success) {
             setBookedDates(new Set(data.bookedDates || []));
             setHasIcal(Boolean(data.hasIcal));
+            setMinStays(data.minStays || {});
+            setPrices(data.prices || {});
             setCalendarError(false);
           } else {
             setCalendarError(true);
@@ -167,6 +174,20 @@ export default function BookingSidebar({
     const diff = Math.round((d2 - d1) / (1000 * 60 * 60 * 24));
     return diff > 0 ? diff : 0;
   }, [checkIn, checkOut]);
+
+  // Total price from Beds24 nightly rates (check-in night .. night before check-out)
+  const totalPrice = useMemo(() => {
+    if (!checkIn || !checkOut || nights < 1) return null;
+    let sum = 0;
+    const cursor = parseDateStr(checkIn);
+    for (let i = 0; i < nights; i++) {
+      const p = prices[toDateString(cursor)];
+      if (p == null) return null;
+      sum += p;
+      cursor.setDate(cursor.getDate() + 1);
+    }
+    return sum;
+  }, [checkIn, checkOut, nights, prices]);
 
   // Calendar Month Navigation Limits
   const canGoPrev = useMemo(() => {
@@ -288,6 +309,18 @@ export default function BookingSidebar({
         return;
       }
 
+      // Minimum stay (from Beds24) for the check-in night
+      const minNights = minStays[checkIn] || 1;
+      const nightsCount = Math.round((end - start) / (1000 * 60 * 60 * 24));
+      if (nightsCount < minNights) {
+        setErrorMsg(
+          locale === 'az'
+            ? `Bu tarix üçün minimum qalma müddəti ${minNights} gecədir.`
+            : `Minimum stay for this date is ${minNights} nights.`
+        );
+        return;
+      }
+
       // Valid range selected!
       setCheckOut(clickedStr);
       setSelectingStep('checkIn');
@@ -376,6 +409,13 @@ Please confirm availability and price for these dates.`;
 Please provide more information and current availability for this property.`;
     }
   }, [homeTitle, location, checkIn, checkOut, nights, currentTransferLabel, locale]);
+
+  // Next step: Beds24 booking form (rendered inside our own site)
+  function handleContinue() {
+    if (!checkIn || !checkOut || nights < 1) return;
+    const qs = new URLSearchParams({ checkin: checkIn, numnight: String(nights) });
+    router.push(`/${slug}/book?${qs.toString()}`);
+  }
 
   // Payment Handler
   async function handleDeposit() {
@@ -485,6 +525,17 @@ Please provide more information and current availability for this property.`;
             >
               <X size={13} />
             </button>
+          </div>
+        )}
+
+        {totalPrice != null && (
+          <div className="mb-3 flex items-center justify-between text-sm">
+            <span className="text-gray-600">
+              {nights} {locale === 'az' ? 'gecə' : nights === 1 ? 'night' : 'nights'}
+            </span>
+            <span className="font-bold text-gray-900">
+              {locale === 'az' ? 'Cəmi' : 'Total'}: ₼ {totalPrice}
+            </span>
           </div>
         )}
 
@@ -706,6 +757,17 @@ Please provide more information and current availability for this property.`;
       </div>
 
       {/* ── ACTION BUTTONS ─────────────────────────────────────────── */}
+      {hasBeds24 && (
+        <button
+          type="button"
+          onClick={handleContinue}
+          disabled={nights < 1}
+          className="block w-full mb-3 cursor-pointer rounded-xl bg-neutral-900 text-white hover:bg-black duration-200 py-3.5 px-6 text-sm sm:text-base font-semibold transition-all text-center disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          {nights < 1 ? tDetails('selectDatesToContinue') : tDetails('continueBooking')}
+        </button>
+      )}
+
       {/* WhatsApp Button */}
       <a
         href={`https://wa.me/994552904045?text=${encodeURIComponent(waText)}`}
