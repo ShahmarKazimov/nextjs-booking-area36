@@ -4,8 +4,6 @@ import { useState, useEffect, useMemo } from 'react';
 import {
   ChevronLeft,
   ChevronRight,
-  MapPin,
-  UserRound,
   X,
 } from 'lucide-react';
 import { useTranslations, useLocale } from 'next-intl';
@@ -77,7 +75,6 @@ function formatShortDate(dateStr, locale) {
 export default function BookingSidebar({
   homeTitle,
   location,
-  owner,
   slug,
   airbnbUrl,
   hasBeds24 = false,
@@ -497,25 +494,6 @@ Please provide more information and current availability for this property.`;
         <h2 className="text-lg font-bold text-gray-900">
           {tDetails('reservationRequest')}
         </h2>
-      </div>
-
-      {/* Location & Owner info (desktop) */}
-      <div className="hidden lg:block mb-5 space-y-3">
-        <div className="flex justify-between items-center py-1.5 border-b border-gray-50 text-sm">
-          <div className="flex items-center gap-2 text-gray-500">
-            <MapPin size={16} aria-hidden="true" />
-            <span>{tDetails('location')}</span>
-          </div>
-          <span className="font-semibold text-gray-900">{location}</span>
-        </div>
-
-        <div className="flex justify-between items-center py-1.5 border-b border-gray-50 text-sm">
-          <div className="flex items-center gap-2 text-gray-500">
-            <UserRound size={16} aria-hidden="true" />
-            <span>{tDetails('owner')}</span>
-          </div>
-          <span className="font-semibold text-gray-900">{owner}</span>
-        </div>
       </div>
 
       {/* ── NO CALENDAR (home has no iCal feed) ─────────────────────── */}
