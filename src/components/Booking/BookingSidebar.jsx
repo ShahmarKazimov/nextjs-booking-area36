@@ -7,7 +7,6 @@ import {
   MapPin,
   UserRound,
   X,
-  Sparkles,
 } from 'lucide-react';
 import { useTranslations, useLocale } from 'next-intl';
 import { useRouter } from '@/i18n/routing';
@@ -68,6 +67,13 @@ function formatDisplayDate(dateStr, locale) {
   return `${day} ${monthName} ${year}`;
 }
 
+function formatShortDate(dateStr, locale) {
+  const d = parseDateStr(dateStr);
+  if (!d) return '';
+  const monthName = locale === 'az' ? AZ_MONTHS[d.getMonth()] : EN_MONTHS[d.getMonth()];
+  return `${d.getDate()} ${monthName.toLowerCase()}`;
+}
+
 export default function BookingSidebar({
   homeTitle,
   location,
@@ -88,6 +94,7 @@ export default function BookingSidebar({
   const [maxPeople, setMaxPeople] = useState(null);
   const [adults, setAdults] = useState(2);
   const [children, setChildren] = useState(0);
+  const [sheetOpen, setSheetOpen] = useState(false);
   const [offerPrice, setOfferPrice] = useState(null);
   const [offerStatus, setOfferStatus] = useState('idle'); // idle | loading | ok | unavailable | error
   const [calendarError, setCalendarError] = useState(false);
@@ -106,6 +113,16 @@ export default function BookingSidebar({
 
   const [viewYear, setViewYear] = useState(today.getFullYear());
   const [viewMonth, setViewMonth] = useState(today.getMonth());
+
+  // Lock page scroll while the mobile booking sheet is open
+  useEffect(() => {
+    if (!sheetOpen || typeof window === 'undefined' || window.innerWidth >= 1024) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [sheetOpen]);
 
   // Fetch Beds24 availability from our API
   useEffect(() => {
@@ -364,7 +381,7 @@ export default function BookingSidebar({
 
   // Weekday initials matching Airbnb (Monday to Sunday)
   const weekDays = locale === 'az'
-    ? ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz']
+    ? ['B.e', 'Ç.a', 'Ç', 'C.a', 'C', 'Ş', 'B']
     : ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
 
   // Structured WhatsApp Message Composer
@@ -427,17 +444,63 @@ Please provide more information and current availability for this property.`;
   // Homes without Beds24 IDs have no live availability, so no calendar is shown
   const noCalendar = !isLoadingCalendar && !hasCalendar && !calendarError;
 
+  const hasDates = Boolean(checkIn && checkOut && nights > 0);
+  const rangeLabel = hasDates
+    ? `${formatShortDate(checkIn, locale)} – ${formatShortDate(checkOut, locale)}`
+    : '';
+  const nightsLabel = `${nights} ${locale === 'az' ? 'gecə' : nights === 1 ? 'night' : 'nights'}`;
+  const barPrice =
+    hasBeds24 && offerStatus === 'ok'
+      ? `₼ ${offerPrice}`
+      : hasBeds24 && offerStatus === 'loading'
+        ? '…'
+        : nightsLabel;
+  const waHref = `https://wa.me/994552904045?text=${encodeURIComponent(waText)}`;
+
   return (
-    <div className="bg-white rounded-3xl shadow-sm px-6 py-6 sticky top-8 border border-gray-100">
-      {/* Header */}
-      <div className="pb-3 mb-4 border-b border-gray-100">
+    <>
+      {sheetOpen && (
+        <div
+          className="fixed inset-0 bg-black/40 z-40 lg:hidden"
+          onClick={() => setSheetOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+
+      <div
+        className={`bg-white px-6 pt-6 pb-6 border border-gray-100 max-lg:fixed max-lg:inset-0 max-lg:z-[1000] max-lg:h-dvh max-lg:overflow-y-auto max-lg:rounded-none max-lg:border-0 max-lg:pb-0 ${
+          sheetOpen ? 'max-lg:block' : 'max-lg:hidden'
+        } lg:rounded-3xl lg:shadow-sm lg:sticky lg:top-8`}
+      >
+      {/* Mobile sheet header (dates + close) */}
+      <div className="lg:hidden flex items-start justify-between mb-4">
+        <div className="min-w-0">
+          <p className="text-xl font-bold text-gray-900 truncate">
+            {hasDates ? rangeLabel : locale === 'az' ? 'Tarixləri seçin' : 'Select dates'}
+          </p>
+          <p className="text-sm text-gray-500 truncate">
+            {hasDates ? `${nightsLabel} · ${homeTitle}` : homeTitle}
+          </p>
+        </div>
+        <button
+          type="button"
+          onClick={() => setSheetOpen(false)}
+          className="w-10 h-10 rounded-full bg-[#efede8] hover:bg-[#e6e2da] text-gray-900 flex items-center justify-center flex-shrink-0 ml-3 cursor-pointer"
+          aria-label={locale === 'az' ? 'Bağla' : 'Close'}
+        >
+          <X size={18} />
+        </button>
+      </div>
+
+      {/* Header (desktop) */}
+      <div className="hidden lg:block pb-3 mb-4 border-b border-gray-100">
         <h2 className="text-lg font-bold text-gray-900">
           {tDetails('reservationRequest')}
         </h2>
       </div>
 
-      {/* Location & Owner info */}
-      <div className="mb-5 space-y-3">
+      {/* Location & Owner info (desktop) */}
+      <div className="hidden lg:block mb-5 space-y-3">
         <div className="flex justify-between items-center py-1.5 border-b border-gray-50 text-sm">
           <div className="flex items-center gap-2 text-gray-500">
             <MapPin size={16} aria-hidden="true" />
@@ -456,15 +519,15 @@ Please provide more information and current availability for this property.`;
       </div>
 
       {/* ── NO CALENDAR (home has no iCal feed) ─────────────────────── */}
-      {noCalendar ? (
-        <div className="mb-6 p-4 rounded-xl bg-[#edeae4] border border-[#e0dcd4]">
+      {noCalendar && (
+        <div className="mb-4 p-4 rounded-xl bg-[#edeae4] border border-[#e0dcd4]">
           <h3 className="text-base font-bold text-gray-900">{tDetails('noCalendarTitle')}</h3>
           <p className="text-sm text-gray-700 mt-1">{tDetails('noCalendarText')}</p>
         </div>
-      ) : (
+      )}
       <div className="mb-6">
         {/* Title & Subtitle like Airbnb */}
-        <div className="mb-3">
+        <div className="mb-3 hidden lg:block">
           <h3 className="text-lg font-bold text-gray-900">
             {locale === 'az' ? 'Tarixləri seçin' : 'Select dates'}
           </h3>
@@ -475,9 +538,8 @@ Please provide more information and current availability for this property.`;
 
         {/* Selected Dates Summary Badge */}
         {checkIn && (
-          <div className="mb-3 p-2.5 rounded-xl bg-neutral-900 text-white flex items-center justify-between text-xs font-medium animate-in fade-in duration-150">
+          <div className="mb-3 p-2.5 rounded-xl bg-[#2d4a2b] text-white flex items-center justify-between text-xs font-medium animate-in fade-in duration-150">
             <div className="flex items-center gap-2 truncate">
-              <Sparkles size={14} className="text-amber-400 flex-shrink-0" />
               <span className="truncate">
                 {checkOut
                   ? `${formatDisplayDate(checkIn, locale)} — ${formatDisplayDate(checkOut, locale)} (${nights} ${locale === 'az' ? 'gecə' : 'nights'})`
@@ -487,7 +549,7 @@ Please provide more information and current availability for this property.`;
             <button
               type="button"
               onClick={handleClearDates}
-              className="p-1 hover:bg-neutral-800 rounded text-neutral-300 hover:text-white cursor-pointer ml-2 flex-shrink-0"
+              className="p-1 hover:bg-[#233a22] rounded text-green-100 hover:text-white cursor-pointer ml-2 flex-shrink-0"
               title={tDetails('clearDates')}
             >
               <X size={13} />
@@ -557,12 +619,18 @@ Please provide more information and current availability for this property.`;
 
               // Selected Check-In or Check-Out (Solid Black Circle)
               if (day.isCheckIn || day.isCheckOut) {
+                const band =
+                  checkIn && checkOut
+                    ? day.isCheckIn
+                      ? 'bg-[linear-gradient(to_right,transparent_50%,#e3ecdf_50%)]'
+                      : 'bg-[linear-gradient(to_right,#e3ecdf_50%,transparent_50%)]'
+                    : '';
                 return (
-                  <div key={day.id} className="flex items-center justify-center">
+                  <div key={day.id} className={`flex items-center justify-center ${band}`}>
                     <button
                       type="button"
                       onClick={() => handleDayClick(day)}
-                      className="h-9 w-9 rounded-full bg-[#2d4a2b] text-white font-bold text-sm flex items-center justify-center shadow-sm cursor-pointer transition-transform hover:scale-105"
+                      className="h-10 w-10 rounded-full bg-[#2d4a2b] text-white font-bold text-sm flex items-center justify-center cursor-pointer"
                     >
                       {day.dayNumber}
                     </button>
@@ -573,11 +641,11 @@ Please provide more information and current availability for this property.`;
               // In-Range between checkIn and checkOut
               if (day.isInRange) {
                 return (
-                  <div key={day.id} className="flex items-center justify-center bg-gray-100 py-0.5">
+                  <div key={day.id} className="flex items-center justify-center bg-[#e3ecdf]">
                     <button
                       type="button"
                       onClick={() => handleDayClick(day)}
-                      className="h-8 w-full text-gray-900 font-semibold text-sm flex items-center justify-center cursor-pointer hover:bg-gray-200"
+                      className="h-10 w-full text-gray-900 font-semibold text-sm flex items-center justify-center cursor-pointer"
                     >
                       {day.dayNumber}
                     </button>
@@ -665,7 +733,6 @@ Please provide more information and current availability for this property.`;
           </div>
         </div>
       </div>
-      )}
 
       {hasBeds24 && hasCalendar && (
         <div className="mb-5 space-y-2">
@@ -706,6 +773,7 @@ Please provide more information and current availability for this property.`;
         </div>
       )}
 
+      <div className="max-lg:sticky max-lg:bottom-0 max-lg:-mx-6 max-lg:px-6 max-lg:pt-3 max-lg:pb-4 max-lg:bg-white max-lg:border-t max-lg:border-gray-100">
       {/* ── ACTION BUTTONS ─────────────────────────────────────────── */}
       {hasBeds24 && checkIn && checkOut && nights > 0 && (
       <div className="mb-3 flex items-center justify-between rounded-xl bg-[#edeae4] border border-[#e0dcd4] px-4 py-3 text-sm">
@@ -740,8 +808,60 @@ Please provide more information and current availability for this property.`;
         rel="noopener noreferrer"
         className="block w-full mb-3 cursor-pointer rounded-xl bg-[#2d4a2b] border border-[#2d4a2b] text-white hover:bg-[#233a22] hover:border-[#233a22] duration-200 py-3.5 px-6 text-sm sm:text-base font-semibold transition-all text-center"
       >
-        {tDetails('reserveNow')}
+        {tDetails('askOnWhatsApp')}
       </a>
-    </div>
+      </div>
+      </div>
+
+      {/* Mobile booking block (sits in the page flow, right after the amenities) */}
+      <div className="lg:hidden bg-white rounded-2xl shadow-sm border border-gray-100 p-4 flex items-center justify-between gap-3">
+        <div className="min-w-0">
+          {hasDates ? (
+            <>
+              <p className="text-base font-bold text-gray-900 truncate">{barPrice}</p>
+              <button
+                type="button"
+                onClick={() => setSheetOpen(true)}
+                className="text-xs text-gray-600 underline truncate cursor-pointer"
+              >
+                {rangeLabel}
+              </button>
+            </>
+          ) : (
+            <>
+              <p className="text-sm font-bold text-gray-900 truncate">{homeTitle}</p>
+            </>
+          )}
+        </div>
+
+        {!hasDates ? (
+          <button
+            type="button"
+            onClick={() => setSheetOpen(true)}
+            className="rounded-xl bg-[#2d4a2b] text-white px-5 py-3 text-sm font-semibold whitespace-nowrap cursor-pointer"
+          >
+            {tDetails('checkAvailability')}
+          </button>
+        ) : hasBeds24 ? (
+          <button
+            type="button"
+            onClick={handleContinue}
+            className="rounded-xl bg-[#2d4a2b] text-white px-5 py-3 text-sm font-semibold whitespace-nowrap cursor-pointer"
+          >
+            {tDetails('reserveNow')}
+          </button>
+        ) : (
+          <a
+            href={waHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-xl bg-[#2d4a2b] text-white px-5 py-3 text-sm font-semibold whitespace-nowrap"
+          >
+            {tDetails('askOnWhatsApp')}
+          </a>
+        )}
+      </div>
+
+    </>
   );
 }

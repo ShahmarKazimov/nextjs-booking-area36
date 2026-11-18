@@ -3,8 +3,6 @@ import { SITE_URL, OG_IMAGE, buildAlternates, localizedUrl, ogLocale } from "@/l
 import { notFound } from "next/navigation";
 import HomeDetails from "../../../components/HomeDetails/HomeDetails";
 import {
-  MapPin,
-  Home,
   UserRound,
   Users,
   BedDouble,
@@ -32,6 +30,8 @@ import {
   PawPrint,
 } from "lucide-react";
 import BookingSidebar from "../../../components/Booking/BookingSidebar";
+import ExpandableText from "../../../components/ExpandableText/ExpandableText";
+import ExpandableFeatures from "../../../components/ExpandableFeatures/ExpandableFeatures";
 import { getTranslations } from "next-intl/server";
 
 function getFeatureIcon(feature) {
@@ -289,17 +289,13 @@ export default async function HomeDetailPage({ params }) {
       <div className="min-h-screen text-gray-900 bg-gray-50/50 py-8">
         <div className="max-w-7xl mx-auto p-4">
           <header className="mb-8 bg-white rounded-2xl shadow-sm p-6 border border-gray-100">
-            <h1 className="text-3xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-              <Home size={24} className="text-gray-700" aria-hidden="true" />
+            <h1 className="text-xl sm:text-3xl font-bold text-gray-900 mb-2 sm:mb-4">
               {tHome("title")}
             </h1>
 
-            <p className="text-lg text-gray-600 flex items-center gap-2">
-              <MapPin size={18} className="text-gray-500" aria-hidden="true" />
-              <span>
-                {tHome("type") && `${tHome("type")} ${t("in") ? t("in") + " " : ""}`}
-                {tHome("location")}, {t("azerbaijan")}
-              </span>
+            <p className="text-sm sm:text-lg text-gray-600">
+              {tHome("type") && `${tHome("type")} ${t("in") ? t("in") + " " : ""}`}
+              {tHome("location")}, {t("azerbaijan")}
             </p>
           </header>
 
@@ -312,24 +308,21 @@ export default async function HomeDetailPage({ params }) {
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
             <section className="lg:col-span-2 space-y-8">
-              <article className="bg-white rounded-2xl shadow-sm p-8">
+              <article className="bg-white rounded-2xl shadow-sm p-5 sm:p-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">
                   {tHome("title")}
                   <span className="font-normal text-gray-500 italic lowercase pl-2">{t("about")}</span>{" "}
                 </h2>
-                <p className="text-gray-700 text-lg leading-relaxed whitespace-pre-line">
-                  {tHome("description")}
-                </p>
+                <ExpandableText text={tHome("description")} />
               </article>
 
               {home.features && (
                 <section className="bg-white rounded-2xl shadow-sm p-6 sm:p-8 border border-gray-100">
-                  <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2.5">
-                    <Sparkles size={20} className="text-gray-900" aria-hidden="true" />
-                    <span>{t("propertyDetails")}</span>
+                  <h2 className="text-xl font-bold text-gray-900 mb-6">
+                    {t("propertyDetails")}
                   </h2>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
-                    {home.features.map((feature, i) => (
+                  <ExpandableFeatures
+                    items={home.features.map((feature, i) => (
                       <div
                         key={i}
                         className="group flex items-center gap-3.5 p-3.5 bg-gray-50/70 hover:bg-gray-100/70 border border-gray-200/70 rounded-xl hover:border-black/20 hover:shadow-xs transition-all"
@@ -345,7 +338,7 @@ export default async function HomeDetailPage({ params }) {
                         </span>
                       </div>
                     ))}
-                  </div>
+                  />
                 </section>
               )}
             </section>
