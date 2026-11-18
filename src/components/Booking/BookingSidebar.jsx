@@ -468,7 +468,7 @@ Please provide more information and current availability for this property.`;
       )}
 
       <div
-        className={`bg-white px-6 pt-6 pb-6 border border-gray-100 max-lg:fixed max-lg:inset-x-0 max-lg:bottom-0 max-lg:z-50 max-lg:max-h-[92vh] max-lg:overflow-y-auto max-lg:rounded-t-3xl max-lg:shadow-2xl ${
+        className={`bg-white px-6 pt-6 pb-6 border border-gray-100 max-lg:fixed max-lg:inset-0 max-lg:z-[1000] max-lg:h-dvh max-lg:overflow-y-auto max-lg:rounded-none max-lg:border-0 max-lg:pb-0 ${
           sheetOpen ? 'max-lg:block' : 'max-lg:hidden'
         } lg:rounded-3xl lg:shadow-sm lg:sticky lg:top-8`}
       >
@@ -773,6 +773,7 @@ Please provide more information and current availability for this property.`;
         </div>
       )}
 
+      <div className="max-lg:sticky max-lg:bottom-0 max-lg:-mx-6 max-lg:px-6 max-lg:pt-3 max-lg:pb-4 max-lg:bg-white max-lg:border-t max-lg:border-gray-100">
       {/* ── ACTION BUTTONS ─────────────────────────────────────────── */}
       {hasBeds24 && checkIn && checkOut && nights > 0 && (
       <div className="mb-3 flex items-center justify-between rounded-xl bg-[#edeae4] border border-[#e0dcd4] px-4 py-3 text-sm">
@@ -809,6 +810,7 @@ Please provide more information and current availability for this property.`;
       >
         {tDetails('reserveNow')}
       </a>
+      </div>
       </div>
 
       {/* Mobile booking block (sits in the page flow, right after the amenities) */}
