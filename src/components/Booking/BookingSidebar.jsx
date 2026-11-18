@@ -828,7 +828,6 @@ Please provide more information and current availability for this property.`;
           ) : (
             <>
               <p className="text-sm font-bold text-gray-900 truncate">{homeTitle}</p>
-              <p className="text-xs text-gray-500 truncate">{tDetails('selectDatesToContinue')}</p>
             </>
           )}
         </div>
