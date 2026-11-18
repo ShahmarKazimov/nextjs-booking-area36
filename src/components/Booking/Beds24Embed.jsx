@@ -7,8 +7,8 @@ export default function Beds24Embed({
   title,
   checkin,
   numnight,
-  numadult = 2,
-  numchild = 0,
+  numadult,
+  numchild,
 }) {
   const params = new URLSearchParams({
     propid: propId,
@@ -20,8 +20,8 @@ export default function Beds24Embed({
   if (checkin && numnight) {
     params.set("checkin", checkin);
     params.set("numnight", String(numnight));
-    params.set("numadult", String(numadult));
-    params.set("numchild", String(numchild));
+    if (numadult) params.set("numadult", String(numadult));
+    if (numchild != null) params.set("numchild", String(numchild));
     if (roomId) params.set(`br1-${roomId}`, "Book");
   }
 

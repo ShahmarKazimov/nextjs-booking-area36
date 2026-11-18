@@ -8,7 +8,7 @@ export const metadata = { robots: { index: false, follow: false } };
 
 export default async function BookPage({ params, searchParams }) {
   const { locale, slug } = await params;
-  const { checkin, numnight } = await searchParams;
+  const { checkin, numnight, numadult, numchild } = await searchParams;
   const home = homes.find((h) => h.slug === slug);
   if (!home || !home.beds24PropId) notFound();
 
@@ -29,6 +29,8 @@ export default async function BookPage({ params, searchParams }) {
         title={tHome("title")}
         checkin={validDate ? checkin : undefined}
         numnight={nights > 0 && nights <= 60 ? nights : undefined}
+        numadult={parseInt(numadult, 10) >= 1 ? parseInt(numadult, 10) : undefined}
+        numchild={parseInt(numchild, 10) >= 0 ? parseInt(numchild, 10) : undefined}
       />
     </div>
   );
