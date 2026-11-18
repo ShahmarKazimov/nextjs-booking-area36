@@ -113,7 +113,6 @@ export default function BookingSidebar({
   // Transfer State
   const [selectedCar, setSelectedCar] = useState('none');
   const [isTransferOpen, setIsTransferOpen] = useState(false);
-  const [loadingPayment, setLoadingPayment] = useState(false);
 
   const transferDropdownRef = useRef(null);
 
@@ -448,47 +447,7 @@ Please provide more information and current availability for this property.`;
     router.push(`/${slug}/book?${qs.toString()}`);
   }
 
-  // Payment Handler
-  async function handleDeposit() {
-    setLoadingPayment(true);
-    try {
-      const orderId = `deposit_${Date.now()}`;
-      const res = await fetch('/api/payment', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          orderId,
-          homeTitle,
-          checkIn,
-          checkOut,
-          nights,
-          selectedCar,
-        }),
-      });
-
-      const data = await res.json();
-
-      if (data.redirect_url) {
-        window.location.href = data.redirect_url;
-      } else {
-        alert(
-          locale === 'az'
-            ? 'Xəta baş verdi. Zəhmət olmasa yenidən cəhd edin.'
-            : 'An error occurred. Please try again.'
-        );
-      }
-    } catch {
-      alert(
-        locale === 'az'
-          ? 'Xəta baş verdi. Zəhmət olmasa yenidən cəhd edin.'
-          : 'An error occurred. Please try again.'
-      );
-    } finally {
-      setLoadingPayment(false);
-    }
-  }
-
-  // Homes without an iCal feed have no live availability, so no calendar is shown
+  // Homes without Beds24 IDs have no live availability, so no calendar is shown
   const noCalendar = !isLoadingCalendar && !hasCalendar && !calendarError;
 
   return (
@@ -851,15 +810,6 @@ Please provide more information and current availability for this property.`;
       >
         {tDetails('reserveNow')}
       </a>
-
-      {/* Pre-payment / Deposit Button */}
-      <button
-        onClick={handleDeposit}
-        disabled={loadingPayment}
-        className="cursor-pointer bg-[#edeae4] border border-[#e0dcd4] text-black hover:bg-[#e6e2da] duration-200 w-full rounded-xl py-3.5 px-6 text-sm sm:text-base font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed text-center"
-      >
-        {loadingPayment ? tDetails('loading') : tDetails('payPrePayment')}
-      </button>
     </div>
   );
 }
