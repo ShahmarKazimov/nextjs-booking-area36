@@ -486,7 +486,7 @@ Please provide more information and current availability for this property.`;
         <button
           type="button"
           onClick={() => setSheetOpen(false)}
-          className="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center flex-shrink-0 ml-3 cursor-pointer"
+          className="w-10 h-10 rounded-full bg-[#efede8] hover:bg-[#e6e2da] text-gray-900 flex items-center justify-center flex-shrink-0 ml-3 cursor-pointer"
           aria-label={locale === 'az' ? 'Bağla' : 'Close'}
         >
           <X size={18} />
