@@ -263,6 +263,23 @@ export default function BookingSidebar({
       const isCheckIn = checkIn === dateStr;
       const isCheckOut = checkOut === dateStr;
 
+      // A booked night can still be the check-out (departure) day if every night
+      // between the chosen check-in and it is free.
+      let isCheckoutOnly = false;
+      if (isBooked && !isPast && checkIn && !checkOut && selectingStep === 'checkOut' && dateStr > checkIn) {
+        isCheckoutOnly = true;
+        const c = parseDateStr(checkIn);
+        c.setDate(c.getDate() + 1);
+        const e = parseDateStr(dateStr);
+        while (c < e) {
+          if (bookedDates.has(toDateString(c))) {
+            isCheckoutOnly = false;
+            break;
+          }
+          c.setDate(c.getDate() + 1);
+        }
+      }
+
       let isInRange = false;
       if (checkIn && checkOut) {
         isInRange = dateStr > checkIn && dateStr < checkOut;
@@ -275,6 +292,7 @@ export default function BookingSidebar({
         dateStr,
         isPast,
         isBooked,
+        isCheckoutOnly,
         isCheckIn,
         isCheckOut,
         isInRange,
@@ -283,11 +301,11 @@ export default function BookingSidebar({
     }
 
     return days;
-  }, [viewYear, viewMonth, today, bookedDates, checkIn, checkOut]);
+  }, [viewYear, viewMonth, today, bookedDates, checkIn, checkOut, selectingStep]);
 
   // Handle Day Selection
   function handleDayClick(dayItem) {
-    if (dayItem.empty || dayItem.isPast || dayItem.isBooked) return;
+    if (dayItem.empty || dayItem.isPast || (dayItem.isBooked && !dayItem.isCheckoutOnly)) return;
     setErrorMsg(null);
 
     const clickedStr = dayItem.dateStr;
@@ -518,21 +536,6 @@ Please provide more information and current availability for this property.`;
           </div>
         )}
 
-        {hasBeds24 && checkIn && checkOut && nights > 0 && (
-          <div className="mb-3 flex items-center justify-between text-sm">
-            <span className="text-gray-600">
-              {nights} {locale === 'az' ? 'gecə' : nights === 1 ? 'night' : 'nights'}
-            </span>
-            <span className="font-bold text-gray-900">
-              {offerStatus === 'loading' && '…'}
-              {offerStatus === 'ok' && `${locale === 'az' ? 'Cəmi' : 'Total'}: ₼ ${offerPrice}`}
-              {offerStatus === 'unavailable' &&
-                (locale === 'az' ? 'Bu tarixlər üçün qiymət yoxdur' : 'No price for these dates')}
-              {offerStatus === 'error' && tDetails('calendarUnavailable')}
-            </span>
-          </div>
-        )}
-
         {/* Calendar Box (Clean, Borderless Numbers like Airbnb) */}
         <div className="pt-2 pb-1">
           {/* Centered Month Header with Navigation */}
@@ -624,6 +627,21 @@ Please provide more information and current availability for this property.`;
               }
 
               // Booked / Reserved Date from Airbnb (Crossed out like Airbnb)
+              if (day.isBooked && day.isCheckoutOnly) {
+                return (
+                  <div key={day.id} className="flex items-center justify-center">
+                    <button
+                      type="button"
+                      onClick={() => handleDayClick(day)}
+                      title={locale === 'az' ? 'Çıxış günü kimi seçilə bilər' : 'Can be selected as check-out'}
+                      className="h-9 w-9 rounded-full text-gray-500 text-sm font-normal hover:border hover:border-[#2d4a2b] cursor-pointer transition-colors flex items-center justify-center"
+                    >
+                      {day.dayNumber}
+                    </button>
+                  </div>
+                );
+              }
+
               if (day.isBooked) {
                 return (
                   <div key={day.id} className="flex items-center justify-center">
@@ -790,6 +808,21 @@ Please provide more information and current availability for this property.`;
       </div>
 
       {/* ── ACTION BUTTONS ─────────────────────────────────────────── */}
+      {hasBeds24 && checkIn && checkOut && nights > 0 && (
+      <div className="mb-3 flex items-center justify-between rounded-xl bg-[#edeae4] border border-[#e0dcd4] px-4 py-3 text-sm">
+        <span className="text-gray-600">
+          {nights} {locale === 'az' ? 'gecə' : nights === 1 ? 'night' : 'nights'}
+        </span>
+        <span className="font-bold text-gray-900">
+          {offerStatus === 'loading' && '…'}
+          {offerStatus === 'ok' && `${locale === 'az' ? 'Cəmi' : 'Total'}: ₼ ${offerPrice}`}
+          {offerStatus === 'unavailable' &&
+            (locale === 'az' ? 'Bu tarixlər üçün qiymət yoxdur' : 'No price for these dates')}
+          {offerStatus === 'error' && tDetails('calendarUnavailable')}
+        </span>
+      </div>
+    )}
+
       {hasBeds24 && (
         <button
           type="button"
