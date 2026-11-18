@@ -32,6 +32,7 @@ import {
   PawPrint,
 } from "lucide-react";
 import BookingSidebar from "../../../components/Booking/BookingSidebar";
+import ExpandableFeatures from "../../../components/ExpandableFeatures/ExpandableFeatures";
 import { getTranslations } from "next-intl/server";
 
 function getFeatureIcon(feature) {
@@ -328,8 +329,8 @@ export default async function HomeDetailPage({ params }) {
                     <Sparkles size={20} className="text-gray-900" aria-hidden="true" />
                     <span>{t("propertyDetails")}</span>
                   </h2>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
-                    {home.features.map((feature, i) => (
+                  <ExpandableFeatures
+                    items={home.features.map((feature, i) => (
                       <div
                         key={i}
                         className="group flex items-center gap-3.5 p-3.5 bg-gray-50/70 hover:bg-gray-100/70 border border-gray-200/70 rounded-xl hover:border-black/20 hover:shadow-xs transition-all"
@@ -345,7 +346,7 @@ export default async function HomeDetailPage({ params }) {
                         </span>
                       </div>
                     ))}
-                  </div>
+                  />
                 </section>
               )}
             </section>

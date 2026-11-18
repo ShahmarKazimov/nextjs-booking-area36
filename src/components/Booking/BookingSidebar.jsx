@@ -68,6 +68,13 @@ function formatDisplayDate(dateStr, locale) {
   return `${day} ${monthName} ${year}`;
 }
 
+function formatShortDate(dateStr, locale) {
+  const d = parseDateStr(dateStr);
+  if (!d) return '';
+  const monthName = locale === 'az' ? AZ_MONTHS[d.getMonth()] : EN_MONTHS[d.getMonth()];
+  return `${d.getDate()} ${monthName.toLowerCase()}`;
+}
+
 export default function BookingSidebar({
   homeTitle,
   location,
@@ -88,6 +95,7 @@ export default function BookingSidebar({
   const [maxPeople, setMaxPeople] = useState(null);
   const [adults, setAdults] = useState(2);
   const [children, setChildren] = useState(0);
+  const [sheetOpen, setSheetOpen] = useState(false);
   const [offerPrice, setOfferPrice] = useState(null);
   const [offerStatus, setOfferStatus] = useState('idle'); // idle | loading | ok | unavailable | error
   const [calendarError, setCalendarError] = useState(false);
@@ -106,6 +114,16 @@ export default function BookingSidebar({
 
   const [viewYear, setViewYear] = useState(today.getFullYear());
   const [viewMonth, setViewMonth] = useState(today.getMonth());
+
+  // Lock page scroll while the mobile booking sheet is open
+  useEffect(() => {
+    if (!sheetOpen || typeof window === 'undefined' || window.innerWidth >= 1024) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [sheetOpen]);
 
   // Fetch Beds24 availability from our API
   useEffect(() => {
@@ -427,17 +445,63 @@ Please provide more information and current availability for this property.`;
   // Homes without Beds24 IDs have no live availability, so no calendar is shown
   const noCalendar = !isLoadingCalendar && !hasCalendar && !calendarError;
 
+  const hasDates = Boolean(checkIn && checkOut && nights > 0);
+  const rangeLabel = hasDates
+    ? `${formatShortDate(checkIn, locale)} – ${formatShortDate(checkOut, locale)}`
+    : '';
+  const nightsLabel = `${nights} ${locale === 'az' ? 'gecə' : nights === 1 ? 'night' : 'nights'}`;
+  const barPrice =
+    hasBeds24 && offerStatus === 'ok'
+      ? `₼ ${offerPrice}`
+      : hasBeds24 && offerStatus === 'loading'
+        ? '…'
+        : nightsLabel;
+  const waHref = `https://wa.me/994552904045?text=${encodeURIComponent(waText)}`;
+
   return (
-    <div className="bg-white rounded-3xl shadow-sm px-6 py-6 sticky top-8 border border-gray-100">
-      {/* Header */}
-      <div className="pb-3 mb-4 border-b border-gray-100">
+    <>
+      {sheetOpen && (
+        <div
+          className="fixed inset-0 bg-black/40 z-40 lg:hidden"
+          onClick={() => setSheetOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+
+      <div
+        className={`bg-white px-6 pt-6 pb-6 border border-gray-100 max-lg:fixed max-lg:inset-x-0 max-lg:bottom-0 max-lg:z-50 max-lg:max-h-[92vh] max-lg:overflow-y-auto max-lg:rounded-t-3xl max-lg:shadow-2xl ${
+          sheetOpen ? 'max-lg:block' : 'max-lg:hidden'
+        } lg:rounded-3xl lg:shadow-sm lg:sticky lg:top-8`}
+      >
+      {/* Mobile sheet header (dates + close) */}
+      <div className="lg:hidden flex items-start justify-between mb-4">
+        <div className="min-w-0">
+          <p className="text-xl font-bold text-gray-900 truncate">
+            {hasDates ? rangeLabel : locale === 'az' ? 'Tarixləri seçin' : 'Select dates'}
+          </p>
+          <p className="text-sm text-gray-500 truncate">
+            {hasDates ? `${nightsLabel} · ${homeTitle}` : homeTitle}
+          </p>
+        </div>
+        <button
+          type="button"
+          onClick={() => setSheetOpen(false)}
+          className="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center flex-shrink-0 ml-3 cursor-pointer"
+          aria-label={locale === 'az' ? 'Bağla' : 'Close'}
+        >
+          <X size={18} />
+        </button>
+      </div>
+
+      {/* Header (desktop) */}
+      <div className="hidden lg:block pb-3 mb-4 border-b border-gray-100">
         <h2 className="text-lg font-bold text-gray-900">
           {tDetails('reservationRequest')}
         </h2>
       </div>
 
-      {/* Location & Owner info */}
-      <div className="mb-5 space-y-3">
+      {/* Location & Owner info (desktop) */}
+      <div className="hidden lg:block mb-5 space-y-3">
         <div className="flex justify-between items-center py-1.5 border-b border-gray-50 text-sm">
           <div className="flex items-center gap-2 text-gray-500">
             <MapPin size={16} aria-hidden="true" />
@@ -456,15 +520,15 @@ Please provide more information and current availability for this property.`;
       </div>
 
       {/* ── NO CALENDAR (home has no iCal feed) ─────────────────────── */}
-      {noCalendar ? (
-        <div className="mb-6 p-4 rounded-xl bg-[#edeae4] border border-[#e0dcd4]">
+      {noCalendar && (
+        <div className="mb-4 p-4 rounded-xl bg-[#edeae4] border border-[#e0dcd4]">
           <h3 className="text-base font-bold text-gray-900">{tDetails('noCalendarTitle')}</h3>
           <p className="text-sm text-gray-700 mt-1">{tDetails('noCalendarText')}</p>
         </div>
-      ) : (
+      )}
       <div className="mb-6">
         {/* Title & Subtitle like Airbnb */}
-        <div className="mb-3">
+        <div className="mb-3 hidden lg:block">
           <h3 className="text-lg font-bold text-gray-900">
             {locale === 'az' ? 'Tarixləri seçin' : 'Select dates'}
           </h3>
@@ -665,7 +729,6 @@ Please provide more information and current availability for this property.`;
           </div>
         </div>
       </div>
-      )}
 
       {hasBeds24 && hasCalendar && (
         <div className="mb-5 space-y-2">
@@ -742,6 +805,60 @@ Please provide more information and current availability for this property.`;
       >
         {tDetails('reserveNow')}
       </a>
-    </div>
+      </div>
+
+      {/* Mobile sticky booking bar */}
+      <div className="lg:hidden fixed bottom-0 inset-x-0 z-30 bg-white border-t border-gray-200 px-4 py-3 flex items-center justify-between gap-3">
+        <div className="min-w-0">
+          {hasDates ? (
+            <>
+              <p className="text-base font-bold text-gray-900 truncate">{barPrice}</p>
+              <button
+                type="button"
+                onClick={() => setSheetOpen(true)}
+                className="text-xs text-gray-600 underline truncate cursor-pointer"
+              >
+                {rangeLabel}
+              </button>
+            </>
+          ) : (
+            <>
+              <p className="text-sm font-bold text-gray-900 truncate">{homeTitle}</p>
+              <p className="text-xs text-gray-500 truncate">{tDetails('selectDatesToContinue')}</p>
+            </>
+          )}
+        </div>
+
+        {!hasDates ? (
+          <button
+            type="button"
+            onClick={() => setSheetOpen(true)}
+            className="rounded-xl bg-[#2d4a2b] text-white px-5 py-3 text-sm font-semibold whitespace-nowrap cursor-pointer"
+          >
+            {tDetails('checkAvailability')}
+          </button>
+        ) : hasBeds24 ? (
+          <button
+            type="button"
+            onClick={handleContinue}
+            className="rounded-xl bg-[#2d4a2b] text-white px-5 py-3 text-sm font-semibold whitespace-nowrap cursor-pointer"
+          >
+            {tDetails('reserveNow')}
+          </button>
+        ) : (
+          <a
+            href={waHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-xl bg-[#2d4a2b] text-white px-5 py-3 text-sm font-semibold whitespace-nowrap"
+          >
+            {tDetails('reserveNow')}
+          </a>
+        )}
+      </div>
+
+      {/* keeps page content clear of the mobile bar */}
+      <div className="lg:hidden h-20" aria-hidden="true" />
+    </>
   );
 }
