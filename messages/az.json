@@ -63,8 +63,6 @@
     "reservationRequest": "Rezervasiya Sorğusu",
     "location": "Məkan",
     "owner": "Sahibi",
-    "transfer": "Transfer",
-    "selectTransfer": "Transfer seçin (İstəyə bağlı)",
     "reserveNow": "İndi Rezerv Et",
     "continueBooking": "Davam et",
     "selectDatesToContinue": "Davam etmək üçün tarixləri seçin",
@@ -99,12 +97,6 @@
     "selectCheckIn": "Giriş tarixini seçin",
     "selectCheckOut": "Çıxış tarixini seçin",
     "bookedOverlapError": "Seçilmiş aralıqda artıq dolu tarixlər var."
-  },
-  "Transfers": {
-    "none": "Transfersiz (Öz avtomobilimlə)",
-    "vito": "Mercedes Vito (7-8 nəfərlik)",
-    "sprinter": "Mercedes Sprinter (13-18 nəfərlik)",
-    "sedan": "Sedan (4 nəfərlik)"
   },
   "Homes": {
     "area36-royal-chalet": {

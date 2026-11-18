@@ -62,8 +62,6 @@
     "reservationRequest": "Reservation Request",
     "location": "Location",
     "owner": "Owner",
-    "transfer": "Transfer",
-    "selectTransfer": "Select transfer (Optional)",
     "reserveNow": "Reserve Now",
     "continueBooking": "Continue",
     "selectDatesToContinue": "Select your dates to continue",
@@ -98,12 +96,6 @@
     "selectCheckIn": "Select check-in date",
     "selectCheckOut": "Select check-out date",
     "bookedOverlapError": "Selected range includes booked dates."
-  },
-  "Transfers": {
-    "none": "Without transfer (Own transport)",
-    "vito": "Mercedes Vito (7-8 seats)",
-    "sprinter": "Mercedes Sprinter (13-18 seats)",
-    "sedan": "Sedan (4 seats)"
   },
   "Homes": {
     "area36-royal-chalet": {

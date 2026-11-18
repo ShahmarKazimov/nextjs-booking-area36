@@ -1,15 +1,13 @@
 'use client';
 
-import { useState, useRef, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import {
-  Car,
   ChevronLeft,
   ChevronRight,
   MapPin,
   UserRound,
   X,
   Sparkles,
-  Check,
 } from 'lucide-react';
 import { useTranslations, useLocale } from 'next-intl';
 import { useRouter } from '@/i18n/routing';
@@ -80,7 +78,6 @@ export default function BookingSidebar({
 }) {
   const router = useRouter();
   const tDetails = useTranslations('Details');
-  const tTransfers = useTranslations('Transfers');
   const locale = useLocale();
 
   // Calendar State
@@ -109,12 +106,6 @@ export default function BookingSidebar({
 
   const [viewYear, setViewYear] = useState(today.getFullYear());
   const [viewMonth, setViewMonth] = useState(today.getMonth());
-
-  // Transfer State
-  const [selectedCar, setSelectedCar] = useState('none');
-  const [isTransferOpen, setIsTransferOpen] = useState(false);
-
-  const transferDropdownRef = useRef(null);
 
   // Fetch Beds24 availability from our API
   useEffect(() => {
@@ -153,20 +144,6 @@ export default function BookingSidebar({
       isMounted = false;
     };
   }, [slug]);
-
-  // Click outside listener for Transfer dropdown
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (
-        transferDropdownRef.current &&
-        !transferDropdownRef.current.contains(event.target)
-      ) {
-        setIsTransferOpen(false);
-      }
-    }
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
 
   // Calculate nights
   const nights = useMemo(() => {
@@ -390,25 +367,11 @@ export default function BookingSidebar({
     ? ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz']
     : ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
 
-  // Transfer Dropdown options
-  const carOptions = [
-    { key: 'none', label: tTransfers('none') },
-    { key: 'vito', label: tTransfers('vito') },
-    { key: 'sprinter', label: tTransfers('sprinter') },
-    { key: 'sedan', label: tTransfers('sedan') },
-  ];
-
-  const currentTransferLabel = useMemo(() => {
-    const found = carOptions.find((opt) => opt.key === selectedCar);
-    return found ? found.label : tTransfers('none');
-  }, [selectedCar, carOptions, tTransfers]);
-
   // Structured WhatsApp Message Composer
   const waText = useMemo(() => {
     const isAz = locale === 'az';
     const checkInDisplay = checkIn ? formatDisplayDate(checkIn, locale) : null;
     const checkOutDisplay = checkOut ? formatDisplayDate(checkOut, locale) : null;
-    const transferText = currentTransferLabel;
 
     if (isAz) {
       if (checkInDisplay && checkOutDisplay) {
@@ -419,7 +382,6 @@ export default function BookingSidebar({
 📅 Giriş tarixi: ${checkInDisplay}
 📅 Çıxış tarixi: ${checkOutDisplay}
 🌙 Müddət: ${nights} gecə
-🚗 Transfer: ${transferText}
 
 Zəhmət olmasa bu tarixlər üçün mövcudluğu və qiyməti təsdiq edərdiniz.`;
       }
@@ -427,7 +389,6 @@ Zəhmət olmasa bu tarixlər üçün mövcudluğu və qiyməti təsdiq edərdini
 
 🏡 Villa: ${homeTitle}
 📍 Məkan: ${location}
-🚗 Transfer: ${transferText}
 
 Zəhmət olmasa villa haqqında ətraflı məlumat və mövcud tarixlər barədə məlumat verərdiniz.`;
     } else {
@@ -439,7 +400,6 @@ Zəhmət olmasa villa haqqında ətraflı məlumat və mövcud tarixlər barəd�
 📅 Check-in date: ${checkInDisplay}
 📅 Check-out date: ${checkOutDisplay}
 🌙 Duration: ${nights} night(s)
-🚗 Transfer: ${transferText}
 
 Please confirm availability and price for these dates.`;
       }
@@ -447,11 +407,10 @@ Please confirm availability and price for these dates.`;
 
 🏡 Villa: ${homeTitle}
 📍 Location: ${location}
-🚗 Transfer: ${transferText}
 
 Please provide more information and current availability for this property.`;
     }
-  }, [homeTitle, location, checkIn, checkOut, nights, currentTransferLabel, locale]);
+  }, [homeTitle, location, checkIn, checkOut, nights, locale]);
 
   // Next step: Beds24 booking form (rendered inside our own site)
   function handleContinue() {
@@ -746,66 +705,6 @@ Please provide more information and current availability for this property.`;
           )}
         </div>
       )}
-
-      {/* ── TRANSFER SELECTION ─────────────────────────────────────── */}
-      <div className="mb-5">
-        <div className="flex items-center gap-1.5 text-gray-700 text-xs font-bold uppercase tracking-wider mb-2">
-          <Car size={15} className="text-gray-900" />
-          <span>{tDetails('transfer')}</span>
-        </div>
-
-        <div className="relative" ref={transferDropdownRef}>
-          <button
-            type="button"
-            onClick={() => setIsTransferOpen(!isTransferOpen)}
-            className="w-full p-3 border border-[#e0dcd4] rounded-xl text-gray-900 bg-[#edeae4] hover:bg-[#e6e2da] focus:ring-2 focus:ring-black focus:border-transparent outline-none cursor-pointer transition-all duration-200 flex items-center justify-between group"
-          >
-            <div className="flex items-center gap-2 truncate">
-              <span className="text-sm font-semibold text-gray-900 truncate">
-                {currentTransferLabel}
-              </span>
-            </div>
-            <svg
-              className={`w-4 h-4 text-gray-500 group-hover:text-gray-900 transition-transform duration-200 flex-shrink-0 ml-2 ${
-                isTransferOpen ? 'rotate-180' : ''
-              }`}
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-
-          {isTransferOpen && (
-            <div className="absolute z-20 w-full mt-2 bg-white border border-gray-200 rounded-xl shadow-xl overflow-hidden animate-in fade-in slide-in-from-top-1 duration-150">
-              <div className="divide-y divide-gray-100">
-                {carOptions.map((opt) => {
-                  const isSelected = selectedCar === opt.key;
-                  return (
-                    <button
-                      key={opt.key}
-                      type="button"
-                      onClick={() => {
-                        setSelectedCar(opt.key);
-                        setIsTransferOpen(false);
-                      }}
-                      className={`cursor-pointer w-full p-3 text-left text-sm flex items-center justify-between transition-colors duration-150 hover:bg-gray-50 ${
-                        isSelected ? 'bg-gray-50/80 font-semibold text-black' : 'text-gray-700'
-                      }`}
-                    >
-                      <span className="truncate pr-2">{opt.label}</span>
-                      {isSelected && (
-                        <Check size={16} className="text-black flex-shrink-0" />
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
 
       {/* ── ACTION BUTTONS ─────────────────────────────────────────── */}
       {hasBeds24 && checkIn && checkOut && nights > 0 && (
