@@ -808,7 +808,7 @@ Please provide more information and current availability for this property.`;
         rel="noopener noreferrer"
         className="block w-full mb-3 cursor-pointer rounded-xl bg-[#2d4a2b] border border-[#2d4a2b] text-white hover:bg-[#233a22] hover:border-[#233a22] duration-200 py-3.5 px-6 text-sm sm:text-base font-semibold transition-all text-center"
       >
-        {tDetails('reserveNow')}
+        {tDetails('askOnWhatsApp')}
       </a>
       </div>
       </div>
@@ -857,7 +857,7 @@ Please provide more information and current availability for this property.`;
             rel="noopener noreferrer"
             className="rounded-xl bg-[#2d4a2b] text-white px-5 py-3 text-sm font-semibold whitespace-nowrap"
           >
-            {tDetails('reserveNow')}
+            {tDetails('askOnWhatsApp')}
           </a>
         )}
       </div>
