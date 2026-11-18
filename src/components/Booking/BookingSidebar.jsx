@@ -382,7 +382,7 @@ export default function BookingSidebar({
 
   // Weekday initials matching Airbnb (Monday to Sunday)
   const weekDays = locale === 'az'
-    ? ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz']
+    ? ['B.e', 'Ç.a', 'Ç', 'C.a', 'C', 'Ş', 'B']
     : ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
 
   // Structured WhatsApp Message Composer
@@ -621,12 +621,18 @@ Please provide more information and current availability for this property.`;
 
               // Selected Check-In or Check-Out (Solid Black Circle)
               if (day.isCheckIn || day.isCheckOut) {
+                const band =
+                  checkIn && checkOut
+                    ? day.isCheckIn
+                      ? 'bg-[linear-gradient(to_right,transparent_50%,#e3ecdf_50%)]'
+                      : 'bg-[linear-gradient(to_right,#e3ecdf_50%,transparent_50%)]'
+                    : '';
                 return (
-                  <div key={day.id} className="flex items-center justify-center">
+                  <div key={day.id} className={`flex items-center justify-center ${band}`}>
                     <button
                       type="button"
                       onClick={() => handleDayClick(day)}
-                      className="h-9 w-9 rounded-full bg-[#2d4a2b] text-white font-bold text-sm flex items-center justify-center shadow-sm cursor-pointer transition-transform hover:scale-105"
+                      className="h-10 w-10 rounded-full bg-[#2d4a2b] text-white font-bold text-sm flex items-center justify-center cursor-pointer"
                     >
                       {day.dayNumber}
                     </button>
@@ -637,11 +643,11 @@ Please provide more information and current availability for this property.`;
               // In-Range between checkIn and checkOut
               if (day.isInRange) {
                 return (
-                  <div key={day.id} className="flex items-center justify-center bg-gray-100 py-0.5">
+                  <div key={day.id} className="flex items-center justify-center bg-[#e3ecdf]">
                     <button
                       type="button"
                       onClick={() => handleDayClick(day)}
-                      className="h-8 w-full text-gray-900 font-semibold text-sm flex items-center justify-center cursor-pointer hover:bg-gray-200"
+                      className="h-10 w-full text-gray-900 font-semibold text-sm flex items-center justify-center cursor-pointer"
                     >
                       {day.dayNumber}
                     </button>
