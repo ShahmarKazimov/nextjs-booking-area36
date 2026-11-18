@@ -86,9 +86,13 @@ export default function BookingSidebar({
   // Calendar State
   const [bookedDates, setBookedDates] = useState(new Set());
   const [isLoadingCalendar, setIsLoadingCalendar] = useState(true);
-  const [hasIcal, setHasIcal] = useState(false);
+  const [hasCalendar, setHasCalendar] = useState(false);
   const [minStays, setMinStays] = useState({});
-  const [prices, setPrices] = useState({});
+  const [maxPeople, setMaxPeople] = useState(null);
+  const [adults, setAdults] = useState(2);
+  const [children, setChildren] = useState(0);
+  const [offerPrice, setOfferPrice] = useState(null);
+  const [offerStatus, setOfferStatus] = useState('idle'); // idle | loading | ok | unavailable | error
   const [calendarError, setCalendarError] = useState(false);
 
   const [checkIn, setCheckIn] = useState(null);
@@ -113,7 +117,7 @@ export default function BookingSidebar({
 
   const transferDropdownRef = useRef(null);
 
-  // Fetch Airbnb iCal availability from our API
+  // Fetch Beds24 availability from our API
   useEffect(() => {
     let isMounted = true;
 
@@ -126,16 +130,16 @@ export default function BookingSidebar({
         if (isMounted) {
           if (data.success) {
             setBookedDates(new Set(data.bookedDates || []));
-            setHasIcal(Boolean(data.hasIcal));
+            setHasCalendar(Boolean(data.hasCalendar));
             setMinStays(data.minStays || {});
-            setPrices(data.prices || {});
+            setMaxPeople(data.maxPeople || null);
             setCalendarError(false);
           } else {
             setCalendarError(true);
           }
         }
       } catch (err) {
-        console.error('Failed to load iCal calendar:', err);
+        console.error('Failed to load calendar:', err);
         if (isMounted) setCalendarError(true);
       } finally {
         if (isMounted) setIsLoadingCalendar(false);
@@ -175,19 +179,41 @@ export default function BookingSidebar({
     return diff > 0 ? diff : 0;
   }, [checkIn, checkOut]);
 
-  // Total price from Beds24 nightly rates (check-in night .. night before check-out)
-  const totalPrice = useMemo(() => {
-    if (!checkIn || !checkOut || nights < 1) return null;
-    let sum = 0;
-    const cursor = parseDateStr(checkIn);
-    for (let i = 0; i < nights; i++) {
-      const p = prices[toDateString(cursor)];
-      if (p == null) return null;
-      sum += p;
-      cursor.setDate(cursor.getDate() + 1);
+  // Final price for the selected stay, straight from Beds24 offers
+  useEffect(() => {
+    if (!hasBeds24 || !hasCalendar || !checkIn || !checkOut || nights < 1) {
+      setOfferStatus('idle');
+      setOfferPrice(null);
+      return;
     }
-    return sum;
-  }, [checkIn, checkOut, nights, prices]);
+    let cancelled = false;
+    setOfferStatus('loading');
+    const qs = new URLSearchParams({
+      slug,
+      arrival: checkIn,
+      departure: checkOut,
+      adults: String(adults),
+      children: String(children),
+    });
+    fetch(`/api/offer?${qs.toString()}`)
+      .then((r) => r.json())
+      .then((data) => {
+        if (cancelled) return;
+        if (!data.success) setOfferStatus('error');
+        else if (!data.available) setOfferStatus('unavailable');
+        else {
+          setOfferPrice(data.price);
+          setOfferStatus('ok');
+        }
+      })
+      .catch(() => !cancelled && setOfferStatus('error'));
+    return () => {
+      cancelled = true;
+    };
+  }, [hasBeds24, hasCalendar, slug, checkIn, checkOut, nights, adults, children]);
+
+  const guestLimit = maxPeople || 10;
+  const totalGuests = adults + children;
 
   // Calendar Month Navigation Limits
   const canGoPrev = useMemo(() => {
@@ -413,7 +439,12 @@ Please provide more information and current availability for this property.`;
   // Next step: Beds24 booking form (rendered inside our own site)
   function handleContinue() {
     if (!checkIn || !checkOut || nights < 1) return;
-    const qs = new URLSearchParams({ checkin: checkIn, numnight: String(nights) });
+    const qs = new URLSearchParams({
+      checkin: checkIn,
+      numnight: String(nights),
+      numadult: String(adults),
+      numchild: String(children),
+    });
     router.push(`/${slug}/book?${qs.toString()}`);
   }
 
@@ -458,7 +489,7 @@ Please provide more information and current availability for this property.`;
   }
 
   // Homes without an iCal feed have no live availability, so no calendar is shown
-  const noCalendar = !isLoadingCalendar && !hasIcal && !calendarError;
+  const noCalendar = !isLoadingCalendar && !hasCalendar && !calendarError;
 
   return (
     <div className="bg-white rounded-3xl shadow-sm px-6 py-6 sticky top-8 border border-gray-100">
@@ -528,13 +559,17 @@ Please provide more information and current availability for this property.`;
           </div>
         )}
 
-        {totalPrice != null && (
+        {hasBeds24 && checkIn && checkOut && nights > 0 && (
           <div className="mb-3 flex items-center justify-between text-sm">
             <span className="text-gray-600">
               {nights} {locale === 'az' ? 'gecə' : nights === 1 ? 'night' : 'nights'}
             </span>
             <span className="font-bold text-gray-900">
-              {locale === 'az' ? 'Cəmi' : 'Total'}: ₼ {totalPrice}
+              {offerStatus === 'loading' && '…'}
+              {offerStatus === 'ok' && `${locale === 'az' ? 'Cəmi' : 'Total'}: ₼ ${offerPrice}`}
+              {offerStatus === 'unavailable' &&
+                (locale === 'az' ? 'Bu tarixlər üçün qiymət yoxdur' : 'No price for these dates')}
+              {offerStatus === 'error' && tDetails('calendarUnavailable')}
             </span>
           </div>
         )}
@@ -694,6 +729,45 @@ Please provide more information and current availability for this property.`;
           </div>
         </div>
       </div>
+      )}
+
+      {hasBeds24 && hasCalendar && (
+        <div className="mb-5 space-y-2">
+          {[
+            { key: 'adults', label: tDetails('adults'), value: adults, min: 1, set: setAdults },
+            { key: 'children', label: tDetails('children'), value: children, min: 0, set: setChildren },
+          ].map((g) => (
+            <div key={g.key} className="flex items-center justify-between text-sm">
+              <span className="font-semibold text-gray-900">{g.label}</span>
+              <div className="flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => g.set(Math.max(g.min, g.value - 1))}
+                  disabled={g.value <= g.min}
+                  className="w-8 h-8 rounded-full border border-gray-300 text-gray-800 disabled:opacity-30 cursor-pointer disabled:cursor-not-allowed"
+                  aria-label={`- ${g.label}`}
+                >
+                  −
+                </button>
+                <span className="w-5 text-center font-semibold">{g.value}</span>
+                <button
+                  type="button"
+                  onClick={() => g.set(g.value + 1)}
+                  disabled={totalGuests >= guestLimit}
+                  className="w-8 h-8 rounded-full border border-gray-300 text-gray-800 disabled:opacity-30 cursor-pointer disabled:cursor-not-allowed"
+                  aria-label={`+ ${g.label}`}
+                >
+                  +
+                </button>
+              </div>
+            </div>
+          ))}
+          {maxPeople && (
+            <p className="text-xs text-gray-500">
+              {locale === 'az' ? `Maksimum ${maxPeople} qonaq` : `Maximum ${maxPeople} guests`}
+            </p>
+          )}
+        </div>
       )}
 
       {/* ── TRANSFER SELECTION ─────────────────────────────────────── */}

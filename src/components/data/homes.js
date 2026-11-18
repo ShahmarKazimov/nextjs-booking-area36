@@ -17,7 +17,6 @@ const homes = [
         beds24RoomId: "758028",
         airbnbListingId: "939660216494964037",
         airbnbUrl: "https://www.airbnb.com.tr/rooms/939660216494964037",
-        icalUrl: "https://www.airbnb.com/calendar/ical/939660216494964037.ics?t=4f6c586a9c3d40dc89f8e9a61203c263&locale=en",
         features: [
             "4 Bedrooms",
             "2 Bathrooms",
@@ -81,7 +80,6 @@ const homes = [
         beds24RoomId: "758029",
         airbnbListingId: "53093466",
         airbnbUrl: "https://www.airbnb.com.tr/rooms/53093466",
-        icalUrl: "https://www.airbnb.com.tr/calendar/ical/53093466.ics?t=4a41d741ed1d4ae8b72ed2a4362ce7cf",
         features: [
             "3 Bedrooms",
             "2 Bathrooms",
@@ -149,7 +147,6 @@ const homes = [
         beds24RoomId: "758030",
         airbnbListingId: "1516765801396510482",
         airbnbUrl: "https://www.airbnb.com.tr/rooms/1516765801396510482",
-        icalUrl: "https://www.airbnb.com.tr/calendar/ical/1516765801396510482.ics?t=e8559ca53aca4892b834e7788aa62ab8",
         features: [
             "2 Bedrooms",
             "2 Bathrooms",
