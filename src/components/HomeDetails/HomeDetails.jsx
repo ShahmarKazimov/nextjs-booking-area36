@@ -89,7 +89,7 @@ export default function HomeDetails({
                 aria-label={`${title} photo gallery`}
             >
                 {/* Ana şəkil — LCP üçün priority */}
-                <div className="md:col-span-2 md:row-span-2 relative h-64 sm:h-80 md:h-[29rem]">
+                <div className="md:col-span-2 md:row-span-2 relative h-60 sm:h-80 md:h-[29rem]">
                     <Image
                         src={images[0]}
                         alt={photoAlt}
@@ -103,7 +103,7 @@ export default function HomeDetails({
 
                 {/* Kiçik şəkillər (2–5) */}
                 {images.slice(1, 5).map((img, i) => (
-                    <div key={i + 1} className="relative h-48 sm:h-56 md:h-56">
+                    <div key={i + 1} className="relative h-60 sm:h-56 md:h-56">
                         <Image
                             src={img}
                             alt={photoAlt}
