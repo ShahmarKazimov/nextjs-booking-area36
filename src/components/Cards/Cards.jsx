@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import SingleCard from './SingleCard/SingleCard';
 import homes from '../data/homes';
 import { useTranslations, useLocale } from 'next-intl';
@@ -10,6 +11,54 @@ export default function Cards() {
     const locale = useLocale();
     const isAz = locale === 'az';
     const [activeFilter, setActiveFilter] = useState('all'); // 'all' | 'our' | 'partner'
+
+    // Date search from the hero (?arrival&departure&adults&children): per-home availability from Beds24
+    const sp = useSearchParams();
+    const arrival = sp.get('arrival') || '';
+    const departure = sp.get('departure') || '';
+    const adults = sp.get('adults') || '2';
+    const children = sp.get('children') || '0';
+    const searchActive = /^\d{4}-\d{2}-\d{2}$/.test(arrival) && /^\d{4}-\d{2}-\d{2}$/.test(departure);
+    const searchQuery = searchActive
+        ? new URLSearchParams({ arrival, departure, adults, children }).toString()
+        : '';
+    const niceDay = (str) => {
+        const [y, m, d] = str.split('-').map(Number);
+        return new Date(y, m - 1, d).toLocaleDateString(isAz ? 'az-AZ' : 'en-GB', { day: 'numeric', month: 'short' });
+    };
+    const [results, setResults] = useState({});
+    const [searchState, setSearchState] = useState('idle'); // idle | loading | done | error
+
+    useEffect(() => {
+        if (!searchActive) {
+            setResults({});
+            setSearchState('idle');
+            return;
+        }
+        let cancelled = false;
+        setSearchState('loading');
+        fetch(`/api/search?${searchQuery}`)
+            .then((r) => r.json())
+            .then((data) => {
+                if (cancelled) return;
+                if (data.success) {
+                    setResults(data.results || {});
+                    setSearchState('done');
+                } else {
+                    setResults({});
+                    setSearchState('error');
+                }
+            })
+            .catch(() => {
+                if (!cancelled) {
+                    setResults({});
+                    setSearchState('error');
+                }
+            });
+        return () => {
+            cancelled = true;
+        };
+    }, [searchActive, searchQuery]);
 
     const ourHomes = homes.filter((h) => !h.isPartner);
     const partnerHomes = homes.filter((h) => h.isPartner);
@@ -54,6 +103,21 @@ export default function Cards() {
                     </div>
                 </header>
 
+                {searchActive && (
+                    <p
+                        role="status"
+                        className="mb-8 -mt-2 text-center text-sm text-gray-600"
+                    >
+                        {searchState === 'loading'
+                            ? isAz ? 'Mövcudluq yoxlanılır…' : 'Checking availability…'
+                            : searchState === 'error'
+                                ? isAz ? 'Mövcudluğu yoxlamaq mümkün olmadı, bir azdan yenidən cəhd edin.' : 'Could not check availability right now. Please try again shortly.'
+                                : isAz
+                                    ? `${niceDay(arrival)} – ${niceDay(departure)} tarixləri üçün mövcudluq göstərilir`
+                                    : `Showing availability for ${niceDay(arrival)} – ${niceDay(departure)}`}
+                    </p>
+                )}
+
                 {/* Content Sections */}
                 <div className="space-y-16">
                     {/* SECTION 1: BİZİM EVLƏRİMİZ */}
@@ -76,7 +140,7 @@ export default function Cards() {
                             >
                                 {ourHomes.map((property) => (
                                     <li key={property.id}>
-                                        <SingleCard property={property} />
+                                        <SingleCard property={property} search={results[property.slug] || null} searchQuery={searchQuery} />
                                     </li>
                                 ))}
                             </ul>
@@ -103,7 +167,7 @@ export default function Cards() {
                             >
                                 {partnerHomes.map((property) => (
                                     <li key={property.id}>
-                                        <SingleCard property={property} />
+                                        <SingleCard property={property} search={results[property.slug] || null} searchQuery={searchQuery} />
                                     </li>
                                 ))}
                             </ul>

@@ -1,5 +1,6 @@
 import homes from "../../components/data/homes";
 import { SITE_URL, OG_IMAGE, buildAlternates, localizedUrl, ogLocale } from "@/lib/seo";
+import { Suspense } from "react";
 import Cards from "../../components/Cards/Cards";
 import HeroSection from "../../components/HeroSection/HeroSection";
 
@@ -87,7 +88,9 @@ export default async function Home({ params }) {
           <h2 className="sr-only">
             {isAz ? "Qəbələdə lüks dağ evləri və villalar" : "Luxury Chalets, Cabins and Villas in Azerbaijan"}
           </h2>
-          <Cards />
+          <Suspense fallback={null}>
+            <Cards />
+          </Suspense>
         </section>
       </div>
     </>

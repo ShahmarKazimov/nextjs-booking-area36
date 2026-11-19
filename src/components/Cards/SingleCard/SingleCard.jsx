@@ -9,7 +9,7 @@ import WishlistButton from "../../Wishlist/WishlistButton";
 import { useTranslations, useLocale } from "next-intl";
 import { MessageCircle, BedDouble, Bath, Users, Loader2 } from "lucide-react";
 
-const SingleCard = ({ property }) => {
+const SingleCard = ({ property, search = null, searchQuery = '' }) => {
     const tHome = useTranslations(`Homes.${property.slug}`);
     const tCards = useTranslations("Cards");
     const tDetails = useTranslations("Details");
@@ -21,6 +21,30 @@ const SingleCard = ({ property }) => {
     const handleNavigate = (e) => {
         if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
         setNavigating(true);
+    };
+
+    // Date search result (Beds24 homes only): 'available' | 'unavailable' | 'unknown' | null
+    const dim = search?.status === 'unavailable';
+    const free = search?.status === 'available';
+    const MONTHS = isAz
+        ? ['yan', 'fev', 'mar', 'apr', 'may', 'iyn', 'iyl', 'avq', 'sen', 'okt', 'noy', 'dek']
+        : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const shortDay = (str) => {
+        const [, m, d] = str.split('-').map(Number);
+        return `${d} ${MONTHS[m - 1]}`;
+    };
+    const withDates = (arrival, departure) => {
+        const sp = new URLSearchParams(searchQuery);
+        sp.set('arrival', arrival);
+        sp.set('departure', departure);
+        return `/${property.slug}?${sp.toString()}`;
+    };
+    const reasonText = () => {
+        if (search?.reason === 'minStay' && search.minNights)
+            return isAz ? `Minimum ${search.minNights} gecə` : `Minimum ${search.minNights} nights`;
+        if (search?.reason === 'capacity')
+            return isAz ? `Maksimum ${search.maxPeople} qonaq` : `Max ${search.maxPeople} guests`;
+        return isAz ? 'Bu tarixlərdə doludur' : 'Booked for these dates';
     };
 
     const title = tHome("title");
@@ -64,7 +88,7 @@ const SingleCard = ({ property }) => {
             <Link
                 href={`/${property.slug}`}
                 onClick={handleNavigate}
-                className="flex flex-col flex-grow text-inherit no-underline cursor-pointer"
+                className={`flex flex-col flex-grow text-inherit no-underline cursor-pointer transition-[opacity,filter] duration-300 ${dim ? 'opacity-55 grayscale-[0.6]' : ''}`}
                 aria-label={`${title} - ${tCards("viewDetails")}`}
             >
                 {/* Photo */}
@@ -112,7 +136,55 @@ const SingleCard = ({ property }) => {
 
             {/* Pricing / Action Bottom Bar (Outside the top Link to prevent nested <a> tags) */}
             <div className="px-5 pb-5 pt-3 border-t border-gray-100 flex items-center justify-between gap-3 flex-shrink-0">
-                {!property.isPartner ? (
+                {free ? (
+                    <>
+                        <div>
+                            <span className="text-[11px] text-[#2d4a2b] block font-semibold uppercase tracking-wider">
+                                {isAz ? "Bu tarixlərdə boşdur" : "Available for your dates"}
+                            </span>
+                            {search.price ? (
+                                <div className="flex items-baseline gap-1 text-gray-900">
+                                    <span className="text-xl font-bold tracking-tight">₼ {Math.round(search.price)}</span>
+                                    <span className="text-xs text-gray-500 font-normal">
+                                        / {search.nights} {isAz ? "gecə" : search.nights === 1 ? "night" : "nights"}
+                                    </span>
+                                </div>
+                            ) : (
+                                <span className="text-xs text-gray-700 font-semibold">{tCards("viewDetails")}</span>
+                            )}
+                        </div>
+                        <Link
+                            href={`/${property.slug}?${searchQuery}`}
+                            onClick={handleNavigate}
+                            className="inline-flex items-center justify-center rounded-xl bg-[#2d4a2b] border border-[#2d4a2b] text-white hover:bg-[#233a22] hover:border-[#233a22] py-2.5 px-4 text-sm font-semibold transition-all text-center cursor-pointer"
+                        >
+                            {isAz ? "Rezerv et" : "Reserve"}
+                        </Link>
+                    </>
+                ) : dim ? (
+                    <div className="w-full">
+                        <span className="text-xs font-semibold text-gray-600 block">{reasonText()}</span>
+                        {search.nearest?.length > 0 && (
+                            <div className="mt-2">
+                                <span className="text-[11px] text-gray-400 block font-medium uppercase tracking-wider mb-1.5">
+                                    {isAz ? "Ən yaxın boş tarixlər" : "Nearest free dates"}
+                                </span>
+                                <div className="flex flex-wrap gap-2">
+                                    {search.nearest.map((w) => (
+                                        <Link
+                                            key={w.arrival}
+                                            href={withDates(w.arrival, w.departure)}
+                                            onClick={handleNavigate}
+                                            className="rounded-lg border border-[#2d4a2b]/40 bg-white px-2.5 py-1.5 text-xs font-semibold text-[#2d4a2b] hover:bg-[#2d4a2b] hover:text-white transition-colors cursor-pointer"
+                                        >
+                                            {shortDay(w.arrival)} – {shortDay(w.departure)}
+                                        </Link>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                ) : !property.isPartner ? (
                     <>
                         <div>
                             <span className="text-[11px] text-gray-400 block font-medium uppercase tracking-wider">
