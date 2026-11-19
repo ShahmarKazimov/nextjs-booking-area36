@@ -1,6 +1,7 @@
 import { Link } from "@/i18n/routing";
 import { socialLinks } from "@/components/data/socialLinks";
 import Image from "next/image";
+import FooterGarland from "@/components/Winter/FooterGarland";
 import { useTranslations, useLocale } from "next-intl";
 
 function getCurrentYear() {
@@ -45,7 +46,7 @@ export default function Footer() {
 
     return (
         <footer
-            className="bg-[#1c1a17] text-[#ebe7d8] border-t border-white/10 mt-10"
+            className="relative isolate bg-[#1c1a17] text-[#ebe7d8] border-t border-white/10 mt-10"
             role="contentinfo"
             aria-label="Site Footer"
         >
@@ -144,7 +145,7 @@ export default function Footer() {
                                 <Link
                                     key={index}
                                     href={social.href}
-                                    className="w-8 h-8 rounded-full flex items-center justify-center text-[#ebe7d8]/65 hover:text-white hover:bg-white/10 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/40"
+                                    className="w-8 h-8 rounded-full flex items-center justify-center text-[#ebe7d8]/65 hover:text-white transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/40"
                                     aria-label={`Visit our ${social.name} page`}
                                     title={`Follow us on ${social.name}`}
                                     target="_blank"
@@ -163,6 +164,7 @@ export default function Footer() {
                 </div>
             </div>
 
+            <FooterGarland />
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{

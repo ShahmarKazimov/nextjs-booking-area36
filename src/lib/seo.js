@@ -11,9 +11,9 @@ export const CONTACT = {
   email: "gabaladeluxe@gmail.com",
 };
 
-// hero.webp is 1600x900
+// area36-winter-hero.webp is 1600x900
 export const OG_IMAGE = {
-  url: `${SITE_URL}/images/ui/hero.webp`,
+  url: `${SITE_URL}/images/ui/area36-winter-hero.webp`,
   width: 1600,
   height: 900,
 };

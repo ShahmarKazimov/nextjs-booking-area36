@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import { heroBackgroundImage } from '../data/carouselImages';
 import { useTranslations } from 'next-intl';
+import HeroGarland from '../Winter/HeroGarland';
+import { isWinter } from '@/config/winterEffects';
 
 const HeroSection = () => {
     const t = useTranslations('Hero');
@@ -28,6 +30,17 @@ const HeroSection = () => {
             {/* Multi-layer Gradient */}
             <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/70" aria-hidden="true" />
             <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 via-transparent to-purple-900/20" aria-hidden="true" />
+
+            {/* Winter accent: soft warm-white glow along the bottom edge */}
+            {isWinter('accents') && (
+                <div
+                    className="absolute inset-x-0 bottom-0 h-40 pointer-events-none"
+                    style={{ background: 'radial-gradient(ellipse 60% 100% at 50% 100%, rgba(255,236,200,0.14), transparent 70%)' }}
+                    aria-hidden="true"
+                />
+            )}
+
+            <HeroGarland />
 
             {/* Floating Particles */}
             <div className="absolute inset-0 overflow-hidden" aria-hidden="true">

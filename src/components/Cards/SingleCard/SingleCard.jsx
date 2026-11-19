@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import CardHat from "../../Winter/CardHat";
 import Icons from "../../ui/icons/icons";
 import { Link } from "@/i18n/routing";
 import WishlistButton from "../../Wishlist/WishlistButton";
@@ -57,6 +58,7 @@ const SingleCard = ({ property }) => {
     )}`;
 
     return (
+        <div className="relative w-full h-full">
         <article className="group border border-black/10 hover:border-black/25 relative flex flex-col w-full h-full rounded-2xl bg-white text-gray-700 shadow-md transition-all duration-300 hover:shadow-2xl overflow-hidden">
             {/* Top Clickable Area (Image + Details) */}
             <Link
@@ -164,6 +166,8 @@ const SingleCard = ({ property }) => {
                 </div>
             )}
         </article>
+        <CardHat slug={property.slug} isPartner={Boolean(property.isPartner)} />
+        </div>
     );
 };
 

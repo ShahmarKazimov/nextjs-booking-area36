@@ -101,3 +101,27 @@ html {
   scrollbar-width: none;
 }
 
+
+/* Winter: soft twinkle for warm-white fairy lights */
+@keyframes xmasTwinkle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+.xmas-light {
+  animation: xmasTwinkle 3.2s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .xmas-light { animation: none; }
+}
+
+/* Winter: very slow, faint glow for header fairy lights */
+@keyframes xmasGlow {
+  0%, 100% { opacity: 0.85; }
+  50% { opacity: 0.35; }
+}
+.xmas-glow {
+  animation: xmasGlow 5.5s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .xmas-glow { animation: none; opacity: 0.7; }
+}
