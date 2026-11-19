@@ -5,6 +5,7 @@ import Footer from "../../components/Footer/Footer";
 import { WishlistProvider } from "../../components/Wishlist/WishlistProvider";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
+import Snowfall from "../../components/Winter/Snowfall";
 import { SITE_URL, CONTACT, OG_IMAGE, localizedUrl, ogLocale } from "@/lib/seo";
 
 const geistSans = Geist({
@@ -246,6 +247,7 @@ export default async function RootLayout({ children, params }) {
             <main role="main">{children}</main>
             <Footer />
           </WishlistProvider>
+          <Snowfall />
         </NextIntlClientProvider>
         {/* Script body-nin sonuna keç */}
         <script

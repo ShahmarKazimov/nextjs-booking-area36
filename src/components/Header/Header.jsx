@@ -4,6 +4,8 @@ import LanguageSwitcher from "./LanguageSwitcher";
 import WishlistLink from "../Wishlist/WishlistLink";
 import HeaderNav from "./HeaderNav";
 import MobileMenu from "./MobileMenu";
+import SantaHat from "../Winter/SantaHat";
+import FairyLights from "../Winter/FairyLights";
 
 export default function Header() {
     return (
@@ -20,7 +22,7 @@ export default function Header() {
                             title="Area36"
                             className="flex items-center group gap-x-2"
                         >
-                            <figure>
+                            <figure className="relative">
                                 {/* SVG logo üçün next/image lazım deyil — img tagi daha performanslıdır */}
                                 <img
                                     src="/images/ui/logo.svg"
@@ -29,6 +31,7 @@ export default function Header() {
                                     height={60}
                                     className="object-contain"
                                 />
+                                <SantaHat />
                                 <figcaption className="sr-only">Area36 Brand Logo</figcaption>
                             </figure>
                         </Link>
@@ -44,6 +47,7 @@ export default function Header() {
                         <MobileMenu />
                     </div>
                 </div>
+                <FairyLights />
             </header>
 
             <StickyHeader />

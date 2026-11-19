@@ -6,6 +6,7 @@ import LanguageSwitcher from "../LanguageSwitcher";
 import WishlistLink from "../../Wishlist/WishlistLink";
 import HeaderNav from "../HeaderNav";
 import MobileMenu from "../MobileMenu";
+import SantaHat from "../../Winter/SantaHat";
 
 export default function StickyHeader() {
     const pathname = usePathname();
@@ -45,13 +46,16 @@ export default function StickyHeader() {
                     className="flex items-center gap-x-2"
                 >
                     {/* SVG üçün next/image lazım deyil — img tagi istifadə et */}
-                    <img
+                    <span className="relative block">
+                        <img
                         src="/images/ui/logo.svg"
                         alt="Area36 Logo"
                         width={120}
                         height={60}
                         className="object-contain"
                     />
+                        <SantaHat />
+                    </span>
                 </Link>
 
                 <HeaderNav />

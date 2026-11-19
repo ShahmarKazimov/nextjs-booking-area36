@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import { useTranslations, useLocale } from 'next-intl';
 import { useRouter } from '@/i18n/routing';
+import FrostFrame from '../Winter/FrostFrame';
 
 // Explicit static month dictionaries to prevent browser ICU locale bugs (e.g. "M11 2026")
 const AZ_MONTHS = [
@@ -465,10 +466,11 @@ Please provide more information and current availability for this property.`;
       )}
 
       <div
-        className={`bg-white px-6 pt-6 pb-6 border border-gray-100 max-lg:fixed max-lg:inset-0 max-lg:z-[1000] max-lg:h-dvh max-lg:overflow-y-auto max-lg:rounded-none max-lg:border-0 max-lg:pb-0 ${
+        className={`isolate bg-white px-6 pt-6 pb-6 border border-gray-100 max-lg:fixed max-lg:inset-0 max-lg:z-[1000] max-lg:h-dvh max-lg:overflow-y-auto max-lg:rounded-none max-lg:border-0 max-lg:pb-0 ${
           sheetOpen ? 'max-lg:block' : 'max-lg:hidden'
         } lg:rounded-3xl lg:shadow-sm lg:sticky lg:top-8`}
       >
+      <FrostFrame />
       {/* Single header: dates once chosen, otherwise a short prompt (+ close on mobile) */}
       <div className="flex items-start justify-between mb-4">
         <div className="min-w-0">
