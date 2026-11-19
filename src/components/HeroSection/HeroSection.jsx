@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import { heroBackgroundImage } from '../data/carouselImages';
+import { Suspense } from 'react';
 import { useTranslations } from 'next-intl';
+import HeroSearch from './HeroSearch';
 import HeroGarland from '../Winter/HeroGarland';
 import { isWinter } from '@/config/winterEffects';
 
@@ -9,7 +11,7 @@ const HeroSection = () => {
 
     return (
         <section
-            className="relative sm:-top-[5.1rem] max-sm:-mt-[9rem] left-0 w-full h-[550px] sm:h-[737px] z-[-1] bg-black"
+            className="relative sm:-top-[5.1rem] max-sm:-mt-[9rem] left-0 w-full h-[660px] sm:h-[737px] z-20 bg-black"
             aria-label="Luxury villas and chalets in Gabala"        >
             <div
                 className="relative w-full h-full sm:h-[735px] bg-black"
@@ -68,6 +70,12 @@ const HeroSection = () => {
                     <p className="text-xl max-w-2xl mx-auto sm:text-2xl drop-shadow-lg opacity-90 animate-fade-in-up animation-delay-300">
                         {t('subtitle')}
                     </p>
+
+                    <div className="pt-4 animate-fade-in-up animation-delay-300">
+                        <Suspense fallback={null}>
+                            <HeroSearch />
+                        </Suspense>
+                    </div>
 
                 </div>
             </div>

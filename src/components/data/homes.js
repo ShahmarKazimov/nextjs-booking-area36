@@ -330,6 +330,8 @@ const homes = [
         geo: "40.96906280517578,47.848506927490234",
         location: "Gabala, Azerbaijan",
         owner: "Ramil Mammadov",
+        beds24PropId: "369458",
+        beds24RoomId: "760583",
         features: [
             "4 Bedrooms",
             "3 Bathrooms",

@@ -311,6 +311,35 @@ export default function BookingSidebar({
   }, [hasBeds24, hasCalendar, isLoadingCalendar, bookedDates, minStays, today, slug]);
 
   const guestLimit = maxPeople || 10;
+
+  // Dates chosen in the home-page search arrive as ?arrival&departure&adults&children: pre-fill once
+  const prefilled = useRef(false);
+  useEffect(() => {
+    if (prefilled.current || isLoadingCalendar || !hasCalendar || typeof window === 'undefined') return;
+    prefilled.current = true;
+    const sp = new URLSearchParams(window.location.search);
+    const a = sp.get('arrival');
+    const d = sp.get('departure');
+    const re = /^\d{4}-\d{2}-\d{2}$/;
+    if (!re.test(a || '') || !re.test(d || '') || a < toDateString(today) || d <= a) return;
+    const n = Math.round((parseDateStr(d) - parseDateStr(a)) / 86400000);
+    for (let k = 0; k < n; k++) {
+      const night = parseDateStr(a);
+      night.setDate(night.getDate() + k);
+      if (bookedDates.has(toDateString(night))) return;
+    }
+    if ((minStays[a] || 1) > n) return;
+    const ad = Math.max(1, parseInt(sp.get('adults') || '2', 10) || 2);
+    const ch = Math.max(0, parseInt(sp.get('children') || '0', 10) || 0);
+    setCheckIn(a);
+    setCheckOut(d);
+    setSelectingStep('checkIn');
+    setAdults(Math.min(ad, guestLimit));
+    setChildren(Math.min(ch, Math.max(0, guestLimit - Math.min(ad, guestLimit))));
+    const v = parseDateStr(a);
+    setViewYear(v.getFullYear());
+    setViewMonth(v.getMonth());
+  }, [isLoadingCalendar, hasCalendar, bookedDates, minStays, today, guestLimit]);
   const totalGuests = adults + children;
 
   // Calendar Month Navigation Limits
