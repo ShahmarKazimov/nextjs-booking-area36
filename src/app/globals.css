@@ -125,3 +125,10 @@ html {
 @media (prefers-reduced-motion: reduce) {
   .xmas-glow { animation: none; opacity: 0.7; }
 }
+
+/* Mobile: room for the fixed booking bar on property pages */
+@media (max-width: 1023px) {
+  body.has-mobile-book-bar {
+    padding-bottom: calc(76px + env(safe-area-inset-bottom));
+  }
+}

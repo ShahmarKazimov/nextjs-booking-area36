@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import {
+  ChevronDown,
   ChevronLeft,
   ChevronRight,
   X,
@@ -66,11 +67,34 @@ function formatDisplayDate(dateStr, locale) {
   return `${day} ${monthName} ${year}`;
 }
 
+// dd.mm.yyyy for the compact desktop date fields
+function formatNumericDate(dateStr) {
+  const d = parseDateStr(dateStr);
+  if (!d) return '';
+  return `${String(d.getDate()).padStart(2, '0')}.${String(d.getMonth() + 1).padStart(2, '0')}.${d.getFullYear()}`;
+}
+
 function formatShortDate(dateStr, locale) {
   const d = parseDateStr(dateStr);
   if (!d) return '';
   const monthName = locale === 'az' ? AZ_MONTHS[d.getMonth()] : EN_MONTHS[d.getMonth()];
   return `${d.getDate()} ${monthName.toLowerCase()}`;
+}
+
+function WhatsAppIcon({ size = 18 }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width={size}
+      height={size}
+      fill="currentColor"
+      aria-hidden="true"
+      focusable="false"
+      className="flex-shrink-0"
+    >
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+    </svg>
+  );
 }
 
 export default function BookingSidebar({
@@ -79,6 +103,7 @@ export default function BookingSidebar({
   slug,
   airbnbUrl,
   hasBeds24 = false,
+  pricePerNight = null,
 }) {
   const router = useRouter();
   const tDetails = useTranslations('Details');
@@ -95,7 +120,13 @@ export default function BookingSidebar({
   const [sheetOpen, setSheetOpen] = useState(false);
   const [offerPrice, setOfferPrice] = useState(null);
   const [offerStatus, setOfferStatus] = useState('idle'); // idle | loading | ok | unavailable | error
+  // Per-night price shown at the top before dates are chosen: Beds24 offer for the next free stay
+  const [samplePrice, setSamplePrice] = useState(null);
   const [calendarError, setCalendarError] = useState(false);
+  // Desktop only: the calendar and guests picker open as popovers under the date fields
+  const [calOpen, setCalOpen] = useState(false);
+  const [guestsOpen, setGuestsOpen] = useState(false);
+  const popRef = useRef(null);
 
   const [checkIn, setCheckIn] = useState(null);
   const [checkOut, setCheckOut] = useState(null);
@@ -121,6 +152,36 @@ export default function BookingSidebar({
       document.body.style.overflow = prev;
     };
   }, [sheetOpen]);
+
+  // Mobile: reserve space under the page for the fixed booking bar
+  useEffect(() => {
+    document.body.classList.add('has-mobile-book-bar');
+    return () => document.body.classList.remove('has-mobile-book-bar');
+  }, []);
+
+  // Desktop popovers: close on outside click / Escape
+  useEffect(() => {
+    if (!calOpen && !guestsOpen) return;
+    function onDown(e) {
+      if (typeof window === 'undefined' || window.innerWidth < 1024) return;
+      if (popRef.current && !popRef.current.contains(e.target)) {
+        setCalOpen(false);
+        setGuestsOpen(false);
+      }
+    }
+    function onKey(e) {
+      if (e.key === 'Escape') {
+        setCalOpen(false);
+        setGuestsOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', onDown);
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('mousedown', onDown);
+      document.removeEventListener('keydown', onKey);
+    };
+  }, [calOpen, guestsOpen]);
 
   // Fetch Beds24 availability from our API
   useEffect(() => {
@@ -202,6 +263,52 @@ export default function BookingSidebar({
       cancelled = true;
     };
   }, [hasBeds24, hasCalendar, slug, checkIn, checkOut, nights, adults, children]);
+
+  // No dates yet: ask Beds24 for the price of the next free stay (its min-stay nights), per night
+  useEffect(() => {
+    if (!hasBeds24 || !hasCalendar || isLoadingCalendar) return;
+    const free = (d) => !bookedDates.has(toDateString(d));
+    const start = new Date(today);
+    let found = null;
+    for (let i = 0; i < 365 && !found; i++) {
+      const d = new Date(start);
+      d.setDate(d.getDate() + i);
+      const need = minStays[toDateString(d)] || 1;
+      let ok = true;
+      for (let k = 0; k < need; k++) {
+        const n = new Date(d);
+        n.setDate(n.getDate() + k);
+        if (!free(n)) {
+          ok = false;
+          break;
+        }
+      }
+      if (ok) found = { arrival: d, nightsCount: need };
+    }
+    if (!found) return;
+    const dep = new Date(found.arrival);
+    dep.setDate(dep.getDate() + found.nightsCount);
+    let cancelled = false;
+    const qs = new URLSearchParams({
+      slug,
+      arrival: toDateString(found.arrival),
+      departure: toDateString(dep),
+      adults: '2',
+      children: '0',
+    });
+    fetch(`/api/offer?${qs.toString()}`)
+      .then((r) => r.json())
+      .then((data) => {
+        if (cancelled) return;
+        if (data.success && data.available && data.price > 0) {
+          setSamplePrice(data.price / found.nightsCount);
+        }
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [hasBeds24, hasCalendar, isLoadingCalendar, bookedDates, minStays, today, slug]);
 
   const guestLimit = maxPeople || 10;
   const totalGuests = adults + children;
@@ -360,6 +467,7 @@ export default function BookingSidebar({
       setCheckOut(clickedStr);
       setSelectingStep('checkIn');
       setErrorMsg(null);
+      setCalOpen(false);
     }
   }
 
@@ -455,6 +563,83 @@ Please provide more information and current availability for this property.`;
         : nightsLabel;
   const waHref = `https://wa.me/994552904045?text=${encodeURIComponent(waText)}`;
 
+  const isAz = locale === 'az';
+  const showGuests = hasBeds24 && hasCalendar;
+
+  // Top price comes from Beds24 only (never the static homes.js price) for Beds24 homes:
+  // chosen dates -> the offer total / nights; otherwise the next free stay's per-night price.
+  const fmtMoney = (n) => (Number.isInteger(n) ? String(n) : n.toFixed(2));
+  let topPrice = null;
+  if (!hasBeds24) topPrice = pricePerNight;
+  else if (hasDates && offerStatus === 'ok' && offerPrice > 0) topPrice = offerPrice / nights;
+  else if (!hasDates) topPrice = samplePrice;
+  const topPriceLoading = hasBeds24 && hasDates && offerStatus === 'loading';
+
+  // Adults / children steppers (shared by the mobile sheet and the desktop popover)
+  function renderGuests() {
+    return (
+      <div className="space-y-2">
+        {[
+          { key: 'adults', label: tDetails('adults'), value: adults, min: 1, set: setAdults },
+          { key: 'children', label: tDetails('children'), value: children, min: 0, set: setChildren },
+        ].map((g) => (
+          <div key={g.key} className="flex items-center justify-between text-sm">
+            <span className="font-semibold text-gray-900">{g.label}</span>
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={() => g.set(Math.max(g.min, g.value - 1))}
+                disabled={g.value <= g.min}
+                className="w-8 h-8 rounded-full border border-gray-300 text-gray-800 disabled:opacity-30 cursor-pointer disabled:cursor-not-allowed"
+                aria-label={`- ${g.label}`}
+              >
+                −
+              </button>
+              <span className="w-5 text-center font-semibold">{g.value}</span>
+              <button
+                type="button"
+                onClick={() => g.set(g.value + 1)}
+                disabled={totalGuests >= guestLimit}
+                className="w-8 h-8 rounded-full border border-gray-300 text-gray-800 disabled:opacity-30 cursor-pointer disabled:cursor-not-allowed"
+                aria-label={`+ ${g.label}`}
+              >
+                +
+              </button>
+            </div>
+          </div>
+        ))}
+        {maxPeople && (
+          <p className="text-xs text-gray-500">
+            {isAz ? `Maksimum ${maxPeople} qonaq` : `Maximum ${maxPeople} guests`}
+          </p>
+        )}
+      </div>
+    );
+  }
+
+  function openCheckIn() {
+    setSelectingStep('checkIn');
+    setGuestsOpen(false);
+    setCalOpen(true);
+  }
+
+  function openCheckOut() {
+    if (checkIn) {
+      setCheckOut(null);
+      setSelectingStep('checkOut');
+    } else {
+      setSelectingStep('checkIn');
+    }
+    setGuestsOpen(false);
+    setCalOpen(true);
+  }
+
+  const fieldBase =
+    'text-left px-4 py-2.5 cursor-pointer transition-colors hover:bg-[#f6f4ee] focus:outline-none focus-visible:bg-[#f6f4ee]';
+  const fieldLabel = 'block text-[10px] font-bold uppercase tracking-wide text-gray-900';
+  const fieldValue = (v) =>
+    v ? 'block text-sm text-gray-900 mt-0.5' : 'block text-sm text-gray-400 mt-0.5';
+
   return (
     <>
       {sheetOpen && (
@@ -472,7 +657,7 @@ Please provide more information and current availability for this property.`;
       >
       <FrostFrame />
       {/* Single header: dates once chosen, otherwise a short prompt (+ close on mobile) */}
-      <div className="flex items-start justify-between mb-4">
+      <div className="flex items-start justify-between mb-4 lg:hidden">
         <div className="min-w-0">
           <h2 className="text-xl font-bold text-gray-900 truncate">
             {hasDates ? rangeLabel : locale === 'az' ? 'Tarixləri seçin' : 'Select dates'}
@@ -502,10 +687,102 @@ Please provide more information and current availability for this property.`;
           <p className="text-sm text-gray-700 mt-1">{tDetails('noCalendarText')}</p>
         </div>
       )}
-      <div className="mb-6">
+      {/* DESKTOP: price, compact date + guest fields, popovers */}
+      {(topPrice != null || topPriceLoading) && (
+        <div className="max-lg:hidden mb-4 flex items-baseline gap-1.5">
+          <span className="text-2xl font-bold tracking-tight text-gray-900">
+            ₼ {topPrice != null && !topPriceLoading ? fmtMoney(topPrice) : '…'}
+          </span>
+          <span className="text-sm text-gray-500">/ {isAz ? 'gecə' : 'night'}</span>
+        </div>
+      )}
+      {calendarError && (
+        <div className="max-lg:hidden mb-3 p-2 rounded-lg bg-amber-50 border border-amber-200 text-amber-800 text-xs" role="alert">
+          {tDetails('calendarUnavailable')}
+        </div>
+      )}
+
+      <div ref={popRef} className="lg:relative">
+        {!noCalendar && (
+          <div className="max-lg:hidden mb-4 rounded-2xl border border-[#d9d4c8] bg-white">
+            <div className="grid grid-cols-2">
+              <button
+                type="button"
+                onClick={openCheckIn}
+                className={`${fieldBase} rounded-tl-2xl border-r border-[#d9d4c8] ${calOpen && selectingStep === 'checkIn' ? 'bg-[#f1efe7] shadow-[inset_0_0_0_2px_#2d4a2b]' : ''}`}
+                aria-haspopup="dialog"
+                aria-expanded={calOpen}
+              >
+                <span className={fieldLabel}>{isAz ? 'Giriş' : 'Check-in'}</span>
+                <span className={fieldValue(checkIn)}>
+                  {checkIn ? formatNumericDate(checkIn) : isAz ? 'Tarix əlavə edin' : 'Add date'}
+                </span>
+              </button>
+              <button
+                type="button"
+                onClick={openCheckOut}
+                className={`${fieldBase} rounded-tr-2xl ${calOpen && selectingStep === 'checkOut' ? 'bg-[#f1efe7] shadow-[inset_0_0_0_2px_#2d4a2b]' : ''}`}
+                aria-haspopup="dialog"
+                aria-expanded={calOpen}
+              >
+                <span className={fieldLabel}>{isAz ? 'Çıxış' : 'Check-out'}</span>
+                <span className={fieldValue(checkOut)}>
+                  {checkOut ? formatNumericDate(checkOut) : isAz ? 'Tarix əlavə edin' : 'Add date'}
+                </span>
+              </button>
+            </div>
+            {showGuests && (
+              <div className="relative border-t border-[#d9d4c8]">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setCalOpen(false);
+                    setGuestsOpen((v) => !v);
+                  }}
+                  className={`${fieldBase} flex w-full items-center justify-between rounded-b-2xl ${guestsOpen ? 'bg-[#f1efe7] shadow-[inset_0_0_0_2px_#2d4a2b]' : ''}`}
+                  aria-haspopup="dialog"
+                  aria-expanded={guestsOpen}
+                >
+                  <span>
+                    <span className={fieldLabel}>{isAz ? 'Qonaqlar' : 'Guests'}</span>
+                    <span className="block text-sm text-gray-900 mt-0.5">
+                      {isAz
+                        ? `${totalGuests} qonaq`
+                        : `${totalGuests} ${totalGuests === 1 ? 'guest' : 'guests'}`}
+                    </span>
+                  </span>
+                  <ChevronDown
+                    size={18}
+                    className={`text-gray-700 transition-transform ${guestsOpen ? 'rotate-180' : ''}`}
+                  />
+                </button>
+                {guestsOpen && (
+                  <div className="absolute left-0 right-0 top-full z-30 mt-2 rounded-2xl border border-[#d9d4c8] bg-white p-4 shadow-xl">
+                    {renderGuests()}
+                    <div className="mt-3 text-right">
+                      <button
+                        type="button"
+                        onClick={() => setGuestsOpen(false)}
+                        className="text-sm font-semibold text-gray-900 underline cursor-pointer"
+                      >
+                        {isAz ? 'Bağla' : 'Close'}
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        )}
+
+      <div
+        className={`mb-6 lg:mb-0 ${calOpen ? '' : 'lg:hidden'} lg:absolute lg:left-0 lg:right-0 lg:top-[72px] lg:z-30 lg:rounded-2xl lg:border lg:border-[#d9d4c8] lg:bg-white lg:p-4 lg:shadow-xl`}
+        role="dialog"
+        aria-label={isAz ? 'Tarix seçimi' : 'Select dates'}
+      >
         {/* Selected Dates Summary Badge */}
         {checkIn && (
-          <div className="mb-3 p-2.5 rounded-xl bg-[#2d4a2b] text-white flex items-center justify-between text-xs font-medium animate-in fade-in duration-150">
+          <div className="lg:hidden mb-3 p-2.5 rounded-xl bg-[#2d4a2b] text-white flex items-center justify-between text-xs font-medium animate-in fade-in duration-150">
             <div className="flex items-center gap-2 truncate">
               <span className="truncate">
                 {checkOut
@@ -553,7 +830,7 @@ Please provide more information and current availability for this property.`;
           </div>
 
           {calendarError && (
-            <div className="mb-2 p-2 rounded-lg bg-amber-50 border border-amber-200 text-amber-800 text-xs" role="alert">
+            <div className="lg:hidden mb-2 p-2 rounded-lg bg-amber-50 border border-amber-200 text-amber-800 text-xs" role="alert">
               {tDetails('calendarUnavailable')}
             </div>
           )}
@@ -688,57 +965,30 @@ Please provide more information and current availability for this property.`;
               </span>
             </div>
 
-            {(checkIn || checkOut) && (
+            <div className="flex items-center gap-4">
+              {(checkIn || checkOut) && (
+                <button
+                  type="button"
+                  onClick={handleClearDates}
+                  className="text-xs font-semibold text-gray-900 underline hover:text-black cursor-pointer"
+                >
+                  {locale === 'az' ? 'Tarixləri təmizlə' : 'Clear dates'}
+                </button>
+              )}
               <button
                 type="button"
-                onClick={handleClearDates}
-                className="text-xs font-semibold text-gray-900 underline hover:text-black cursor-pointer"
+                onClick={() => setCalOpen(false)}
+                className="max-lg:hidden text-xs font-semibold text-gray-900 underline hover:text-black cursor-pointer"
               >
-                {locale === 'az' ? 'Tarixləri təmizlə' : 'Clear dates'}
+                {isAz ? 'Bağla' : 'Close'}
               </button>
-            )}
+            </div>
           </div>
         </div>
       </div>
+      </div>
 
-      {hasBeds24 && hasCalendar && (
-        <div className="mb-5 space-y-2">
-          {[
-            { key: 'adults', label: tDetails('adults'), value: adults, min: 1, set: setAdults },
-            { key: 'children', label: tDetails('children'), value: children, min: 0, set: setChildren },
-          ].map((g) => (
-            <div key={g.key} className="flex items-center justify-between text-sm">
-              <span className="font-semibold text-gray-900">{g.label}</span>
-              <div className="flex items-center gap-3">
-                <button
-                  type="button"
-                  onClick={() => g.set(Math.max(g.min, g.value - 1))}
-                  disabled={g.value <= g.min}
-                  className="w-8 h-8 rounded-full border border-gray-300 text-gray-800 disabled:opacity-30 cursor-pointer disabled:cursor-not-allowed"
-                  aria-label={`- ${g.label}`}
-                >
-                  −
-                </button>
-                <span className="w-5 text-center font-semibold">{g.value}</span>
-                <button
-                  type="button"
-                  onClick={() => g.set(g.value + 1)}
-                  disabled={totalGuests >= guestLimit}
-                  className="w-8 h-8 rounded-full border border-gray-300 text-gray-800 disabled:opacity-30 cursor-pointer disabled:cursor-not-allowed"
-                  aria-label={`+ ${g.label}`}
-                >
-                  +
-                </button>
-              </div>
-            </div>
-          ))}
-          {maxPeople && (
-            <p className="text-xs text-gray-500">
-              {locale === 'az' ? `Maksimum ${maxPeople} qonaq` : `Maximum ${maxPeople} guests`}
-            </p>
-          )}
-        </div>
-      )}
+      {showGuests && <div className="mb-5 lg:hidden">{renderGuests()}</div>}
 
       <div className="max-lg:sticky max-lg:bottom-0 max-lg:-mx-6 max-lg:px-6 max-lg:pt-3 max-lg:pb-4 max-lg:bg-white max-lg:border-t max-lg:border-gray-100">
       {/* ── ACTION BUTTONS ─────────────────────────────────────────── */}
@@ -775,17 +1025,18 @@ Please provide more information and current availability for this property.`;
         rel="noopener noreferrer"
         className={
           hasBeds24
-            ? 'block text-center py-1 text-sm font-medium text-gray-600 underline underline-offset-4 hover:text-gray-900 cursor-pointer'
-            : 'block w-full mb-3 cursor-pointer rounded-xl bg-[#2d4a2b] border border-[#2d4a2b] text-white hover:bg-[#233a22] hover:border-[#233a22] duration-200 py-3.5 px-6 text-sm sm:text-base font-semibold transition-all text-center'
+            ? 'flex items-center justify-center gap-2 py-1 text-sm font-medium text-gray-600 underline underline-offset-4 hover:text-gray-900 cursor-pointer'
+            : 'flex w-full items-center justify-center gap-2 mb-3 cursor-pointer rounded-xl bg-[#2d4a2b] border border-[#2d4a2b] text-white hover:bg-[#233a22] hover:border-[#233a22] duration-200 py-3.5 px-6 text-sm sm:text-base font-semibold transition-all text-center'
         }
       >
+        <WhatsAppIcon size={hasBeds24 ? 16 : 18} />
         {tDetails('askOnWhatsApp')}
       </a>
       </div>
       </div>
 
-      {/* Mobile booking block (sits in the page flow, right after the amenities) */}
-      <div className="lg:hidden bg-white rounded-2xl shadow-sm border border-gray-100 p-4 flex items-center justify-between gap-3">
+      {/* Mobile booking bar: fixed to the bottom of the screen (page gets bottom padding, see globals.css) */}
+      <div className="lg:hidden fixed inset-x-0 bottom-0 z-40 bg-white border-t border-gray-200 shadow-[0_-6px_20px_rgba(0,0,0,0.08)] px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] flex items-center justify-between gap-3">
         <div className="min-w-0">
           {hasDates ? (
             <>
