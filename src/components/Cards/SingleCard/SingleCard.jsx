@@ -9,7 +9,8 @@ import WishlistButton from "../../Wishlist/WishlistButton";
 import { useTranslations, useLocale } from "next-intl";
 import { MessageCircle, BedDouble, Bath, Users, Loader2 } from "lucide-react";
 
-const SingleCard = ({ property, search = null, searchQuery = '' }) => {
+// fromPrice: undefined = Beds24 price still loading, null = unavailable, number = lowest nightly rate (AZN)
+const SingleCard = ({ property, search = null, searchQuery = '', fromPrice = null }) => {
     const tHome = useTranslations(`Homes.${property.slug}`);
     const tCards = useTranslations("Cards");
     const tDetails = useTranslations("Details");
@@ -190,10 +191,20 @@ const SingleCard = ({ property, search = null, searchQuery = '' }) => {
                             <span className="text-[11px] text-gray-400 block font-medium uppercase tracking-wider">
                                 {isAz ? "Qiymət" : "Price"}
                             </span>
-                            <div className="flex items-baseline gap-1 text-gray-900">
-                                <span className="text-xl font-bold tracking-tight">₼ {property.price}</span>
-                                <span className="text-xs text-gray-500 font-normal">/ {tCards("perNight")}</span>
-                            </div>
+                            {fromPrice === undefined ? (
+                                <div className="h-7 w-24 rounded-md bg-gray-100 animate-pulse" aria-hidden="true" />
+                            ) : fromPrice ? (
+                                <div className="flex items-baseline gap-1 text-gray-900">
+                                    <span className="text-xl font-bold tracking-tight">
+                                        {!isAz && <span className="text-sm font-medium text-gray-500 mr-1">From</span>}
+                                        ₼ {Number.isInteger(fromPrice) ? fromPrice : fromPrice.toFixed(2)}
+                                        {isAz ? "-dən" : ""}
+                                    </span>
+                                    <span className="text-xs text-gray-500 font-normal">/ {tCards("perNight")}</span>
+                                </div>
+                            ) : (
+                                <span className="text-xs text-gray-700 font-semibold">{tCards("viewDetails")}</span>
+                            )}
                         </div>
                         <Link
                             href={`/${property.slug}`}

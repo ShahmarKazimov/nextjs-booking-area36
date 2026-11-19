@@ -28,6 +28,23 @@ export default function Cards() {
         const [, m, d] = str.split('-').map(Number);
         return `${d} ${MONTHS[m - 1]}`;
     };
+    // "From" nightly price per Beds24 home (lowest upcoming rate): rates differ by weekday/weekend/holiday
+    const [fromPrices, setFromPrices] = useState(null); // null = loading, {} = unavailable
+    useEffect(() => {
+        let cancelled = false;
+        fetch('/api/prices')
+            .then((r) => r.json())
+            .then((data) => {
+                if (!cancelled) setFromPrices(data.success ? data.prices || {} : {});
+            })
+            .catch(() => {
+                if (!cancelled) setFromPrices({});
+            });
+        return () => {
+            cancelled = true;
+        };
+    }, []);
+
     const [results, setResults] = useState({});
     const [searchState, setSearchState] = useState('idle'); // idle | loading | done | error
 
@@ -103,7 +120,7 @@ export default function Cards() {
                 >
                     {allHomes.map((property) => (
                         <li key={property.id}>
-                            <SingleCard property={property} search={results[property.slug] || null} searchQuery={searchQuery} />
+                            <SingleCard property={property} search={results[property.slug] || null} searchQuery={searchQuery} fromPrice={fromPrices ? fromPrices[property.slug] ?? null : undefined} />
                         </li>
                     ))}
                 </ul>
