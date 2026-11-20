@@ -300,22 +300,6 @@
         "Wi-Fi": "Wi-Fi",
         "Cozy Fireplace": "Cozy Fireplace"
       }
-    },
-    "qafqaz-rolling-bungalow": {
-      "title": "Qafqaz Rolling Bungalow",
-      "type": "Bungalow",
-      "location": "Gabala",
-      "description": "Spacious and comfortable chalet with 4 bedrooms and 4 bathrooms. Features both indoor and outdoor pools for a unique experience.",
-      "features": {
-        "4 Bedrooms": "4 Bedrooms",
-        "4 Bathrooms": "4 Bathrooms",
-        "Indoor Pool": "Indoor Pool",
-        "Outdoor Pool": "Outdoor Pool",
-        "Spacious Layout": "Spacious Layout",
-        "Free Parking": "Free Parking",
-        "Wi-Fi": "Wi-Fi",
-        "Unique Experience": "Unique Experience"
-      }
     }
   }
 }

@@ -301,22 +301,6 @@
         "Wi-Fi": "Wi-Fi",
         "Cozy Fireplace": "Rahat Kamin"
       }
-    },
-    "qafqaz-rolling-bungalow": {
-      "title": "Qafqaz Rolling Bungalow",
-      "type": "Bungalov",
-      "location": "Qəbələ",
-      "description": "4 yataq otağı və 4 vanna otağı olan geniş və rahat dağ evi. Unikal təcrübə üçün həm qapalı, həm də açıq hovuzları mövcuddur.",
-      "features": {
-        "4 Bedrooms": "4 Yataq otağı",
-        "4 Bathrooms": "4 Vanna otağı",
-        "Indoor Pool": "Qapalı Hovuz",
-        "Outdoor Pool": "Açıq Hovuz",
-        "Spacious Layout": "Geniş Planlaşdırma",
-        "Free Parking": "Pulsuz Parkinq",
-        "Wi-Fi": "Wi-Fi",
-        "Unique Experience": "Unikal Təcrübə"
-      }
     }
   }
 }

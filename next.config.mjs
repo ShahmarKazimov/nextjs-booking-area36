@@ -23,7 +23,6 @@ const nextConfig = {
       // area36- → qafqaz- olanlar
       { source: "/area36-wooden-chalet",    destination: "/qafqaz-wooden-chalet",    permanent: true },
       { source: "/area36-falcon-chalet",    destination: "/qafqaz-falcon-chalet",    permanent: true },
-      { source: "/area36-rolling-bungalow", destination: "/qafqaz-rolling-bungalow", permanent: true },
 
       // qafqaz- → area36- olanlar
       { source: "/qafqaz-luxury-chalet",    destination: "/area36-luxury-chalet",    permanent: true },

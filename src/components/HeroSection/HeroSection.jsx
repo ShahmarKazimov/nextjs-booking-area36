@@ -11,7 +11,7 @@ const HeroSection = () => {
 
     return (
         <section
-            className="relative sm:-top-[5.1rem] max-sm:-mt-[9rem] left-0 w-full h-[660px] sm:h-[737px] z-20 bg-black"
+            className="relative sm:-mt-[5.1rem] max-sm:-mt-[9rem] left-0 w-full h-[660px] sm:h-[737px] z-20 bg-black"
             aria-label="Luxury villas and chalets in Gabala"        >
             <div
                 className="relative w-full h-full sm:h-[735px] bg-black"

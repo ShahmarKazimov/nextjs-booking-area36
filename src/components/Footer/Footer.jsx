@@ -46,7 +46,7 @@ export default function Footer() {
 
     return (
         <footer
-            className="relative isolate bg-[#1c1a17] text-[#ebe7d8] border-t border-white/10 mt-10"
+            className="relative isolate bg-[#1c1a17] text-[#ebe7d8] border-t border-white/10 mt-12"
             role="contentinfo"
             aria-label="Site Footer"
         >

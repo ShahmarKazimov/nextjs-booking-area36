@@ -14,7 +14,7 @@ export const winterEffects = {
   // papaq yalnız bu kartlarda; partners:true olsa bütün partnyor evlərdə də görünər
   cardHats: {
     enabled: false,
-    slugs: ["area36-royal-chalet", "area36-golden-loft", "qafqaz-riverside-chalet", "qafqaz-rolling-bungalow"],
+    slugs: ["area36-royal-chalet", "area36-golden-loft", "qafqaz-riverside-chalet"],
     partners: false,
   },
   fairyLights: { enabled: false }, // Header-in alt kənarında incə isti ağ işıqlar
