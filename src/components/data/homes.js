@@ -203,6 +203,8 @@ const homes = [
         geo: "41.0001564,47.8717995",
         location: "Gabala, Azerbaijan",
         owner: "Ramil Mammadov",
+        beds24PropId: "369715",
+        beds24RoomId: "761073",
         features: [
             "5 Bedrooms",
             "4 Bathrooms",
@@ -240,6 +242,8 @@ const homes = [
         geo: "40.995262145996094,47.85492706298828",
         location: "Gabala, Azerbaijan",
         owner: "Ramil Mammadov",
+        beds24PropId: "369718",
+        beds24RoomId: "761078",
         features: [
             "4 Bedrooms",
             "4 Bathrooms",
@@ -286,6 +290,8 @@ const homes = [
         geo: "40.9891891,47.8627586",
         location: "Gabala, Azerbaijan",
         owner: "Ramil Mammadov",
+        beds24PropId: "369708",
+        beds24RoomId: "761049",
         features: [
             "3 Bedrooms",
             "1 Bathroom",
@@ -381,6 +387,8 @@ const homes = [
         geo: "40.9991569519043,47.86448287963867",
         location: "Gabala, Azerbaijan",
         owner: "Ramil Mammadov",
+        beds24PropId: "369747",
+        beds24RoomId: "761137",
         features: [
             "3 Bedrooms",
             "3 Bathrooms",
@@ -419,6 +427,8 @@ const homes = [
         geo: "40.9901370,47.8542583",
         location: "Gabala, Azerbaijan",
         owner: "Ramil Mammadov",
+        beds24PropId: "369750",
+        beds24RoomId: "761145",
         features: [
             "3 Bedrooms",
             "2 Bathrooms",
