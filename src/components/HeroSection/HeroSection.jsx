@@ -22,7 +22,7 @@ const HeroSection = () => {
                     alt="Luxury chalets and villas in Gabala, Azerbaijan — Area36"
                     fill
                     priority
-                    className="object-cover brightness-50"
+                    className="object-cover max-sm:object-[10%_50%] brightness-50"
                     sizes="100vw"
                     quality={85}
                     style={{ backgroundColor: '#000000' }}
@@ -31,7 +31,6 @@ const HeroSection = () => {
 
             {/* Multi-layer Gradient */}
             <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/70" aria-hidden="true" />
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 via-transparent to-purple-900/20" aria-hidden="true" />
 
             {/* Winter accent: soft warm-white glow along the bottom edge */}
             {isWinter('accents') && (
@@ -53,8 +52,8 @@ const HeroSection = () => {
 
             {/* Overlay Content */}
             <div className="absolute inset-0 flex flex-col justify-center items-center text-white z-10">
-                <div className="text-center mt-20 space-y-6 max-w-4xl px-4">
-                    <h1 className="text-4xl sm:text-6xl font-bold mb-6 drop-shadow-2xl animate-fade-in-up">
+                <div className="text-center sm:mt-20 space-y-4 sm:space-y-6 max-w-4xl w-full px-4">
+                    <h1 className="text-3xl sm:text-6xl font-bold mb-2 sm:mb-6 drop-shadow-2xl animate-fade-in-up">
                         {/* SEO üçün açar söz-yönümlü mətn — vizual olaraq görünmür, Google və screen reader oxuyur */}
                         <span className="sr-only">{t('seoTitle')}</span>
 
@@ -67,11 +66,11 @@ const HeroSection = () => {
                         </span>
                     </h1>
 
-                    <p className="text-xl max-w-2xl mx-auto sm:text-2xl drop-shadow-lg opacity-90 animate-fade-in-up animation-delay-300">
+                    <p className="text-base max-w-2xl mx-auto sm:text-2xl drop-shadow-lg opacity-90 animate-fade-in-up animation-delay-300">
                         {t('subtitle')}
                     </p>
 
-                    <div className="pt-4 animate-fade-in-up animation-delay-300">
+                    <div className="sm:pt-4 max-sm:absolute max-sm:inset-x-4 max-sm:bottom-12 animate-fade-in-up animation-delay-300">
                         <Suspense fallback={null}>
                             <HeroSearch />
                         </Suspense>

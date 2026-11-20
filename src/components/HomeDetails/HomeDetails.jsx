@@ -19,9 +19,12 @@ export default function HomeDetails({
         : `${title} – ${villaRentalLabel}`;
 
     const [selectedIndex, setSelectedIndex] = useState(null);
-    const [touchStart, setTouchStart] = useState(0);
-    const [touchEnd, setTouchEnd] = useState(0);
     const thumbnailRefs = useRef([]);
+    const [slide, setSlide] = useState(0);
+    const handleSlideScroll = (e) => {
+        const el = e.currentTarget;
+        setSlide(Math.round(el.scrollLeft / el.clientWidth));
+    };
 
     const isOpen = selectedIndex !== null;
 
@@ -66,26 +69,39 @@ export default function HomeDetails({
         };
     }, [isOpen, navigate, closeModal]);
 
-    // Touch / swipe handlers
-    const handleTouchStart = (e) => setTouchStart(e.touches[0].clientX);
-    const handleTouchMove = (e) => setTouchEnd(e.touches[0].clientX);
-    const handleTouchEnd = () => {
-        if (!touchStart || !touchEnd) return;
-        const distance = touchStart - touchEnd;
-        if (Math.abs(distance) >= 50) {
-            navigate(distance > 0 ? 'next' : 'prev');
-        }
-        setTouchStart(0);
-        setTouchEnd(0);
-    };
-
     if (!images || images.length === 0) return null;
 
     return (
         <>
-            {/* ── Photo Grid ─────────────────────────────────────────── */}
+            {/* ── Mobile: swipeable carousel (Airbnb-style) ──────────── */}
+            <section className="sm:hidden relative mb-8" aria-label={`${title} photo gallery`}>
+                <div
+                    onScroll={handleSlideScroll}
+                    className="flex overflow-x-auto snap-x snap-mandatory rounded-xl [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                >
+                    {images.map((img, i) => (
+                        <div key={i} className="relative w-full h-72 shrink-0 snap-center">
+                            <Image
+                                src={img}
+                                alt={photoAlt}
+                                fill
+                                priority={i === 0}
+                                loading={i === 0 ? undefined : 'lazy'}
+                                sizes="100vw"
+                                className="object-cover select-none"
+                                draggable={false}
+                            />
+                        </div>
+                    ))}
+                </div>
+                <div className="absolute bottom-3 right-3 rounded-full bg-black/60 px-2.5 py-1 text-xs font-medium text-white pointer-events-none">
+                    {slide + 1} / {images.length}
+                </div>
+            </section>
+
+            {/* ── Photo Grid (sm and up) ─────────────────────────────── */}
             <section
-                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-8"
+                className="hidden sm:grid grid-cols-2 md:grid-cols-4 gap-4 mb-8"
                 aria-label={`${title} photo gallery`}
             >
                 {/* Ana şəkil — LCP üçün priority */}
@@ -162,9 +178,6 @@ export default function HomeDetails({
                     {/* Şəkil sahəsi */}
                     <div
                         className="relative w-full h-full max-w-4xl max-h-[80vh] flex items-center justify-center"
-                        onTouchStart={handleTouchStart}
-                        onTouchMove={handleTouchMove}
-                        onTouchEnd={handleTouchEnd}
                     >
                         <Image
                             src={images[selectedIndex]}

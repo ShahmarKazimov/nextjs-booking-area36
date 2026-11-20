@@ -176,8 +176,8 @@ export default function HeroSearch() {
     router.replace({ pathname: '/', query: {} }, { scroll: false });
   };
 
-  const field = 'flex-1 min-w-0 text-left px-5 py-3 cursor-pointer hover:bg-black/[0.04] transition-colors max-sm:border-b border-[#e0dcd4]';
-  const label = 'block text-[11px] font-semibold uppercase tracking-wider text-gray-500';
+  const field = 'flex-1 min-w-0 text-left px-3 sm:px-5 py-3 cursor-pointer hover:bg-black/[0.04] transition-colors max-sm:border-b border-[#e0dcd4]';
+  const label = 'block text-[10px] sm:text-[11px] font-semibold uppercase tracking-normal sm:tracking-wider truncate text-gray-500';
   const value = (has) => `block truncate text-sm sm:text-base ${has ? 'font-semibold text-gray-900' : 'text-gray-500'}`;
 
   const stepper = (title, val, set, min) => (
@@ -197,20 +197,20 @@ export default function HeroSearch() {
 
   return (
     <div ref={ref} className="relative w-full max-w-3xl mx-auto text-left">
-      <div className="grid grid-cols-2 sm:flex sm:flex-row sm:items-stretch rounded-2xl sm:rounded-full bg-white/95 backdrop-blur shadow-2xl sm:divide-x divide-[#e0dcd4]">
+      <div className="grid grid-cols-3 sm:flex sm:flex-row sm:items-stretch rounded-2xl sm:rounded-full bg-white/95 backdrop-blur shadow-2xl sm:divide-x divide-[#e0dcd4]">
         <button type="button" className={`${field} max-sm:rounded-tl-2xl max-sm:border-r sm:rounded-l-full`} onClick={() => { setOpen('cal'); setStep('in'); }}>
           <span className={label}>{L.checkIn}</span>
           <span className={value(checkIn)}>{checkIn ? fmt(checkIn) : L.add}</span>
         </button>
-        <button type="button" className={`${field} max-sm:rounded-tr-2xl`} onClick={() => { setOpen('cal'); setStep(checkIn ? 'out' : 'in'); }}>
+        <button type="button" className={`${field} max-sm:border-r`} onClick={() => { setOpen('cal'); setStep(checkIn ? 'out' : 'in'); }}>
           <span className={label}>{L.checkOut}</span>
           <span className={value(checkOut)}>{checkOut ? fmt(checkOut) : L.add}</span>
         </button>
-        <button type="button" className={`${field} max-sm:col-span-2`} onClick={() => setOpen(open === 'guests' ? null : 'guests')}>
+        <button type="button" className={`${field} max-sm:rounded-tr-2xl`} onClick={() => setOpen(open === 'guests' ? null : 'guests')}>
           <span className={label}>{L.guests}</span>
           <span className={value(true)}>{L.guestWord(adults + children)}</span>
         </button>
-        <div className="p-2 flex items-center gap-2 max-sm:col-span-2">
+        <div className="p-2 flex items-center gap-2 max-sm:col-span-3">
           {checkIn && (
             <button type="button" onClick={clear} className="h-11 w-11 rounded-full grid place-items-center text-gray-500 hover:bg-black/5 cursor-pointer" aria-label={L.clear}>
               <X size={18} />

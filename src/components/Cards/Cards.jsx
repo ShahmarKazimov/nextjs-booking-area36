@@ -86,11 +86,11 @@ export default function Cards() {
         <section
             id="villas"
             aria-labelledby="featured-properties-title"
-            className="px-4 lg:px-0 min-h-screen pb-0 pt-5 sm:pt-8 scroll-mt-24"
+            className="px-4 lg:px-0 min-h-screen pb-0 pt-6 sm:pt-8 scroll-mt-24"
         >
             <div className="max-w-7xl mx-auto w-full">
                 {/* Main Header */}
-                <header className="text-center mb-8">
+                <header className="text-center mb-6">
                     <h2
                         id="featured-properties-title"
                         className="text-2xl md:text-5xl font-bold text-black relative"

@@ -11,13 +11,13 @@ export default function ExpandableFeatures({ items, limit = 8 }) {
 
   return (
     <>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">{visible}</div>
+      <div className="grid grid-cols-2 gap-2 sm:gap-4">{visible}</div>
       {items.length > limit && (
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
-          className="mt-5 w-full rounded-xl border border-gray-900 py-3 px-6 text-sm sm:text-base font-semibold text-gray-900 hover:bg-gray-50 cursor-pointer transition-colors"
+          className="mt-3 sm:mt-5 w-full rounded-xl border border-gray-900 py-2.5 sm:py-3 px-6 text-sm sm:text-base font-semibold text-gray-900 hover:bg-gray-50 cursor-pointer transition-colors"
         >
           {open ? t('showLessFeatures') : t('showAllFeatures', { count: items.length })}
         </button>

@@ -29,7 +29,7 @@ export default function Header() {
                                     alt="Area36 Logo"
                                     width={120}
                                     height={60}
-                                    className="object-contain"
+                                    className="object-contain w-[100px] sm:w-[120px] h-auto"
                                 />
                                 <SantaHat />
                                 <figcaption className="sr-only">Area36 Brand Logo</figcaption>

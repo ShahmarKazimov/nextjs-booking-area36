@@ -286,18 +286,9 @@ export default async function HomeDetailPage({ params }) {
         }}
       />
 
-      <div className="min-h-screen text-gray-900 bg-gray-50/50 pt-8 pb-0 lg:py-8">
-        <div className="max-w-7xl mx-auto p-4">
-          <header className="mb-8 bg-white rounded-2xl shadow-sm p-6 border border-gray-100">
-            <h1 className="text-xl sm:text-3xl font-bold text-gray-900 mb-2 sm:mb-4">
-              {tHome("title")}
-            </h1>
-
-            <p className="text-sm sm:text-lg text-gray-600">
-              {tHome("type") && `${tHome("type")} ${t("in") ? t("in") + " " : ""}`}
-              {tHome("location")}, {t("azerbaijan")}
-            </p>
-          </header>
+      <div className="min-h-screen text-gray-900 pt-4 pb-0 lg:py-8">
+        <div className="max-w-7xl mx-auto pt-4 pr-4 pl-4 pb-2">
+          <h1 className="sr-only">{tHome("title")}</h1>
 
           <HomeDetails
             images={home.images}
@@ -306,34 +297,33 @@ export default async function HomeDetailPage({ params }) {
             villaRentalLabel={t("villaRental")}
           />
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
-            <section className="lg:col-span-2 space-y-8">
-              <article className="bg-white rounded-2xl shadow-sm p-5 sm:p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-8 mt-4 sm:mt-8">
+            <section className="lg:col-span-2 space-y-4 sm:space-y-8">
+              <article className="bg-white rounded-2xl shadow-sm p-4 sm:p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-4 text-start">
                   {tHome("title")}
-                  <span className="font-normal text-gray-500 italic lowercase pl-2">{t("about")}</span>{" "}
                 </h2>
-                <ExpandableText text={tHome("description")} />
+                <ExpandableText text={tHome("description")} lines={4} linesDesktop={5} />
               </article>
 
               {home.features && (
-                <section className="bg-white rounded-2xl shadow-sm p-6 sm:p-8 border border-gray-100">
-                  <h2 className="text-xl font-bold text-gray-900 mb-6">
+                <section className="bg-white rounded-2xl shadow-sm p-4 sm:p-8 border border-gray-100">
+                  <h2 className="text-xl font-bold text-gray-900 mb-3 sm:mb-6">
                     {t("propertyDetails")}
                   </h2>
                   <ExpandableFeatures
                     items={home.features.map((feature, i) => (
                       <div
                         key={i}
-                        className="group flex items-center gap-3.5 p-3.5 bg-gray-50/70 hover:bg-gray-100/70 border border-gray-200/70 rounded-xl hover:border-black/20 hover:shadow-xs transition-all"
+                        className="group flex items-center gap-2.5 sm:gap-3.5 p-2.5 sm:p-3.5 bg-gray-50/70 hover:bg-gray-100/70 border border-gray-200/70 rounded-xl hover:border-black/20 hover:shadow-xs transition-all"
                       >
                         <div
-                          className="w-9 h-9 rounded-lg bg-white border border-gray-200 shadow-xs flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform"
+                          className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-white border border-gray-200 shadow-xs flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform"
                           aria-hidden="true"
                         >
                           {getFeatureIcon(feature)}
                         </div>
-                        <span className="text-gray-800 font-medium text-sm sm:text-base leading-snug">
+                        <span className="text-gray-800 font-medium text-[13px] sm:text-base leading-snug">
                           {tHome(`features.${feature}`)}
                         </span>
                       </div>

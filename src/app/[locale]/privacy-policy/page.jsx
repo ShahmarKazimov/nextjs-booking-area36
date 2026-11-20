@@ -25,7 +25,7 @@ export default async function PrivacyPolicyPage({ params }) {
   const isAz = locale === "az";
 
   return (
-    <div className="min-h-screen bg-gray-50 py-16 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
         <div className="bg-gradient-to-r from-gray-900 to-gray-800 px-8 py-12 text-white text-center">
           <h1 className="text-3xl md:text-4xl font-bold tracking-tight">

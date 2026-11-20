@@ -52,7 +52,7 @@ export default function StickyHeader() {
                         alt="Area36 Logo"
                         width={120}
                         height={60}
-                        className="object-contain"
+                        className="object-contain w-[100px] sm:w-[120px] h-auto"
                     />
                         <SantaHat />
                     </span>

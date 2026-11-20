@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { Menu, X } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { Link, usePathname, useRouter } from "@/i18n/routing";
+import SantaHat from "../Winter/SantaHat";
 import { useWishlist } from "../Wishlist/WishlistProvider";
 
 const WA_URL =
@@ -27,14 +29,13 @@ export default function MobileMenu() {
     useEffect(() => {
         if (!open) return;
         const onKey = (e) => e.key === "Escape" && setOpen(false);
-        const onPointer = (e) => {
-            if (rootRef.current && !rootRef.current.contains(e.target)) setOpen(false);
-        };
         window.addEventListener("keydown", onKey);
-        document.addEventListener("pointerdown", onPointer);
+        // Lock page scroll while the full-screen menu is open
+        const prevOverflow = document.body.style.overflow;
+        document.body.style.overflow = "hidden";
         return () => {
             window.removeEventListener("keydown", onKey);
-            document.removeEventListener("pointerdown", onPointer);
+            document.body.style.overflow = prevOverflow;
         };
     }, [open]);
 
@@ -56,14 +57,36 @@ export default function MobileMenu() {
                 {open ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
             </button>
 
-            {open && (
+            {open && createPortal(
                 <>
                     <nav
                         id="mobile-menu"
                         aria-label="Mobile"
-                        className="absolute left-0 right-0 top-full z-50 border-b border-white/10 bg-[#1c1a17]/95 backdrop-blur-md shadow-lg"
+                        className="fixed inset-0 z-[100] flex flex-col overflow-hidden bg-[#1c1a17]"
                     >
-                        <div className="max-w-7xl mx-auto">
+                        <div className="flex items-center justify-between px-4 min-h-[81px] shrink-0 border-b border-white/10">
+                            <Link href="/" onClick={close} aria-label="Area36 - Luxury Chalets & Villas" title="Area36">
+                                <span className="relative block">
+                                    <img
+                                        src="/images/ui/logo.svg"
+                                        alt="Area36 Logo"
+                                        width={120}
+                                        height={60}
+                                        className="object-contain w-[100px] h-auto"
+                                    />
+                                    <SantaHat />
+                                </span>
+                            </Link>
+                            <button
+                                type="button"
+                                onClick={close}
+                                aria-label={t("closeMenu")}
+                                className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/15 text-[#ebe7d8] hover:bg-white/10 hover:text-white transition-all cursor-pointer"
+                            >
+                                <X size={20} aria-hidden="true" />
+                            </button>
+                        </div>
+                        <div className="w-full max-w-7xl mx-auto flex-1 flex flex-col">
                             <Link href="/" onClick={close} className={`${item} ${active("/")}`}>
                                 {t("home")}
                             </Link>
@@ -91,7 +114,7 @@ export default function MobileMenu() {
                             >
                                 {t("contact")}
                             </a>
-                            <div className="flex items-center justify-between px-4 py-3.5">
+                            <div className="mt-auto mb-3 flex items-center justify-between px-4 py-3.5 border-t border-white/10">
                                 <span className="text-base font-medium text-[#ebe7d8]">{t("language")}</span>
                                 <div className="flex gap-1 rounded-xl border border-white/15 p-1" role="group" aria-label={t("language")}>
                                     {["en", "az"].map((code) => (
@@ -114,7 +137,8 @@ export default function MobileMenu() {
                             </div>
                         </div>
                     </nav>
-                </>
+                </>,
+                document.body
             )}
         </div>
     );

@@ -1,6 +1,7 @@
 import { Link } from "@/i18n/routing";
 import { socialLinks } from "@/components/data/socialLinks";
 import Image from "next/image";
+import SantaHat from "@/components/Winter/SantaHat";
 import FooterGarland from "@/components/Winter/FooterGarland";
 import { useTranslations, useLocale } from "next-intl";
 
@@ -46,7 +47,7 @@ export default function Footer() {
 
     return (
         <footer
-            className="relative isolate bg-[#1c1a17] text-[#ebe7d8] border-t border-white/10 mt-12"
+            className="relative isolate bg-[#1c1a17] text-[#ebe7d8] border-t border-white/10 mt-6 lg:mt-12"
             role="contentinfo"
             aria-label="Site Footer"
         >
@@ -57,17 +58,18 @@ export default function Footer() {
                     <div className="lg:col-span-1">
                         <Link
                             href="/"
-                            className="flex items-center -ml-1.5 -mt-2.5 group gap-x-2"
+                            className="flex items-center -mt-2.5 group gap-x-2"
                             aria-label="Area36 Home Page"
                             title="Area36 - Premium Travel Destinations"
                         >
-                            <figure className="relative w-[120px] h-[60px]">
+                            <figure className="relative w-[100px] sm:w-[120px] aspect-[179/60] my-2">
                                 <Image
                                     src="/images/ui/logo.svg"
                                     alt="Area36 Logo"
                                     fill={true}
                                     className="object-contain"
                                 />
+                                <SantaHat />
                             </figure>
                         </Link>
 
