@@ -133,4 +133,8 @@ body {
   body.has-mobile-book-bar footer[role="contentinfo"] {
     padding-bottom: calc(76px + env(safe-area-inset-bottom));
   }
+  /* Keep the WhatsApp button above the fixed booking bar */
+  body.has-mobile-book-bar .whatsapp-float {
+    bottom: calc(92px + env(safe-area-inset-bottom));
+  }
 }

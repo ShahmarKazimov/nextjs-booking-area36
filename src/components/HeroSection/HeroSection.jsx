@@ -59,7 +59,7 @@ const HeroSection = () => {
 
                         {/* Vizual brendinq mətni — dizaynı qoruyur */}
                         <span
-                            className="bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent"
+                            className="text-white"
                             aria-hidden="true"
                         >
                             {t('welcome')}

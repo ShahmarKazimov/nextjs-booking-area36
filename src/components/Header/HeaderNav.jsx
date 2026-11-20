@@ -3,9 +3,6 @@
 import { Link, usePathname } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 
-const WA_URL =
-    "https://wa.me/994552904045?text=Hi, I'm interested in renting a place. Can you assist me with the options?";
-
 export default function HeaderNav() {
     const t = useTranslations("Header");
     const pathname = usePathname();
@@ -30,15 +27,6 @@ export default function HeaderNav() {
             >
                 {t("about")}
             </Link>
-            <a
-                href={WA_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={t("contactWhatsapp")}
-                className={cls(false)}
-            >
-                {t("contact")}
-            </a>
         </nav>
     );
 }

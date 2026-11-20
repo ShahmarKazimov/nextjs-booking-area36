@@ -8,9 +8,6 @@ import { Link, usePathname, useRouter } from "@/i18n/routing";
 import SantaHat from "../Winter/SantaHat";
 import { useWishlist } from "../Wishlist/WishlistProvider";
 
-const WA_URL =
-    "https://wa.me/994552904045?text=Hi, I'm interested in renting a place. Can you assist me with the options?";
-
 // Rendered inside a positioned <header>; the panel drops down under it (md:hidden)
 export default function MobileMenu() {
     const t = useTranslations("Header");
@@ -104,16 +101,6 @@ export default function MobileMenu() {
                             <Link href="/about" onClick={close} className={`${item} ${active("/about")}`}>
                                 {t("about")}
                             </Link>
-                            <a
-                                href={WA_URL}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                onClick={close}
-                                aria-label={t("contactWhatsapp")}
-                                className={`${item} text-[#ebe7d8] hover:bg-white/5 hover:text-white`}
-                            >
-                                {t("contact")}
-                            </a>
                             <div className="mt-auto mb-3 flex items-center justify-between px-4 py-3.5 border-t border-white/10">
                                 <span className="text-base font-medium text-[#ebe7d8]">{t("language")}</span>
                                 <div className="flex gap-1 rounded-xl border border-white/15 p-1" role="group" aria-label={t("language")}>

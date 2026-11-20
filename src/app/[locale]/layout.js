@@ -2,6 +2,7 @@ import { Geist } from "next/font/google";
 import "../globals.css";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
+import WhatsAppFloat from "../../components/WhatsAppFloat/WhatsAppFloat";
 import { WishlistProvider } from "../../components/Wishlist/WishlistProvider";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
@@ -246,6 +247,7 @@ export default async function RootLayout({ children, params }) {
             <Header />
             <main role="main">{children}</main>
             <Footer />
+            <WhatsAppFloat />
           </WishlistProvider>
           <Snowfall />
         </NextIntlClientProvider>
