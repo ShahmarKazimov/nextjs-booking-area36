@@ -10,9 +10,9 @@ html {
   }
 }
 @custom-variant dark (&:where(.dark, .dark *));
-/* body {
-  @apply bg-[#ebe7d8];
-} */
+body {
+  background-color: #f5f0e6;
+}
 
 /* Animation Classes */
 .animate-fade-in-up {
