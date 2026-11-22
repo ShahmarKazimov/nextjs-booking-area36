@@ -7,7 +7,7 @@ const WA_NUMBER = "994552904045";
 const VEHICLES = [
   { key: "sedan", name: "Sedan", Icon: Car, min: 1, max: 4, transfer: 160, pickup: 20, night: 75, shaki: 50 },
   { key: "vito", name: "Mercedes Vito", Icon: Bus, min: 1, max: 7, transfer: 205, pickup: 30, night: 85, shaki: 85 },
-  { key: "sprinter", name: "Sprinter", Icon: Bus, min: 13, max: 17, transfer: 360, pickup: 50, night: 145, shaki: 100 },
+  { key: "sprinter", name: "Sprinter", Icon: Bus, min: 1, max: 18, transfer: 360, pickup: 50, night: 145, shaki: 100 },
 ];
 
 const T = {
