@@ -50,7 +50,6 @@ const SingleCard = ({ property, search = null, searchQuery = '', fromPrice = nul
 
     const title = tHome("title");
     const type = tHome("type");
-    const description = tHome("description");
     const location = tHome("location");
 
     // Bedrooms / bathrooms are derived from the English feature keys (e.g. "4 Bedrooms")
@@ -118,9 +117,6 @@ const SingleCard = ({ property, search = null, searchQuery = '', fromPrice = nul
                                 <span>{property.rating}</span>
                             </p>
                         </div>
-                        <p className="text-sm text-gray-600 line-clamp-2 leading-relaxed">
-                            {description}
-                        </p>
                         {stats.length > 0 && (
                             <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-1.5 text-xs font-medium text-gray-700">
                                 {stats.map(({ Icon, label }) => (
@@ -185,7 +181,7 @@ const SingleCard = ({ property, search = null, searchQuery = '', fromPrice = nul
                             </div>
                         )}
                     </div>
-                ) : !property.isPartner ? (
+                ) : (!property.isPartner || property.beds24PropId) ? (
                     <>
                         <div>
                             <span className="text-[11px] text-gray-400 block font-medium uppercase tracking-wider">

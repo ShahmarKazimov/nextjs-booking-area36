@@ -1,6 +1,5 @@
 import { Link } from "@/i18n/routing";
 import { socialLinks } from "@/components/data/socialLinks";
-import Image from "next/image";
 import SantaHat from "@/components/Winter/SantaHat";
 import FooterGarland from "@/components/Winter/FooterGarland";
 import { useTranslations, useLocale } from "next-intl";
@@ -62,12 +61,13 @@ export default function Footer() {
                             aria-label="Area36 Home Page"
                             title="Area36 - Premium Travel Destinations"
                         >
-                            <figure className="relative w-[100px] sm:w-[120px] aspect-[179/60] my-2">
-                                <Image
+                            <figure className="relative">
+                                <img
                                     src="/images/ui/logo.svg"
                                     alt="Area36 Logo"
-                                    fill={true}
-                                    className="object-contain"
+                                    width={120}
+                                    height={60}
+                                    className="object-contain w-[100px] sm:w-[120px] h-auto"
                                 />
                                 <SantaHat />
                             </figure>

@@ -83,7 +83,7 @@ export default async function Home({ params }) {
 
         <section
           aria-label={isAz ? "Lüks Dağ Evləri və Villalar Kolleksiyası" : "Luxury Chalets and Villas Collection"}
-          className="max-w-7xl mx-auto"
+          className="max-w-7xl mx-auto w-full"
         >
           <h2 className="sr-only">
             {isAz ? "Qəbələdə lüks dağ evləri və villalar" : "Luxury Chalets, Cabins and Villas in Azerbaijan"}
