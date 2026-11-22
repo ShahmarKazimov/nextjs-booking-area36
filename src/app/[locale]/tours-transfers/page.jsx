@@ -1,13 +1,63 @@
-import { Car, Bus, Plane, MapPin, Check, MessageCircle, Lightbulb, Clock } from "lucide-react";
+import { Car, MapPin, Check, MessageCircle, Lightbulb, Clock } from "lucide-react";
 import { buildAlternates, localizedUrl, ogLocale, OG_IMAGE } from "@/lib/seo";
 
 const PATH = "/tours-transfers";
 const WA_NUMBER = "994552904045";
 
+// Vehicle icons (SVG supplied by the team), drawn on a 48x48 grid
+const svgProps = (size) => ({
+  xmlns: "http://www.w3.org/2000/svg",
+  viewBox: "0 0 48 48",
+  width: size,
+  height: size,
+  fill: "none",
+  stroke: "#34492e",
+  strokeWidth: 2,
+  strokeLinecap: "round",
+  strokeLinejoin: "round",
+  "aria-hidden": true,
+});
+
+// Sedan keeps the original Lucide car icon
+function SedanIcon() {
+  return <Car size={34} strokeWidth={1} aria-hidden="true" />;
+}
+
+function VitoIcon({ size = 32 }) {
+  return (
+    <svg {...svgProps(size)}>
+      <path d="M39.5 31H44V24.5Q44 21.6 41.6 20.6L36.6 13.8Q35.4 12 33 12H7.5Q4 12 4 15.5V31H8.5M17.5 31H30.5" />
+      <path d="M7.5 15.5H15V21.5H7.5ZM18 15.5H25.5V21.5H18ZM28.5 15.5H34.2L38.6 21.5H28.5Z" strokeWidth="1.5" />
+      <path d="M27 15.5V28" strokeWidth="1.5" />
+      <path d="M41.5 24H43.2" stroke="#b8864b" />
+      <circle cx="13" cy="32" r="3.5" />
+      <circle cx="35" cy="32" r="3.5" />
+      <circle cx="13" cy="32" r="1.2" fill="#b8864b" stroke="none" />
+      <circle cx="35" cy="32" r="1.2" fill="#b8864b" stroke="none" />
+    </svg>
+  );
+}
+
+function SprinterIcon({ size = 32 }) {
+  return (
+    <svg {...svgProps(size)}>
+      <path d="M40.5 31H45V25Q45 22.6 43 21.6L40.2 19.5L37.8 9.6Q37.2 7 34.5 7H6.5Q3 7 3 10.5V31H6.5M15.5 31H31.5" />
+      <path d="M6.5 11H11.5V18H6.5ZM14.5 11H19.5V18H14.5ZM22.5 11H27.5V18H22.5ZM30.5 11H35L36.6 18H30.5Z" strokeWidth="1.5" />
+      <path d="M29 11V28" strokeWidth="1.5" />
+      <path d="M3 23H29" stroke="#b8864b" strokeWidth="1.5" />
+      <path d="M42.3 24.5H44" stroke="#b8864b" />
+      <circle cx="11" cy="32" r="3.5" />
+      <circle cx="36" cy="32" r="3.5" />
+      <circle cx="11" cy="32" r="1.2" fill="#b8864b" stroke="none" />
+      <circle cx="36" cy="32" r="1.2" fill="#b8864b" stroke="none" />
+    </svg>
+  );
+}
+
 const VEHICLES = [
-  { key: "sedan", name: "Sedan", Icon: Car, min: 1, max: 4, transfer: 160, pickup: 20, night: 75, shaki: 50 },
-  { key: "vito", name: "Mercedes Vito", Icon: Bus, min: 1, max: 7, transfer: 205, pickup: 30, night: 85, shaki: 85 },
-  { key: "sprinter", name: "Sprinter", Icon: Bus, min: 1, max: 18, transfer: 360, pickup: 50, night: 145, shaki: 100 },
+  { key: "sedan", name: "Sedan", Icon: SedanIcon, min: 1, max: 4, transfer: 160, pickup: 20, night: 75, shaki: 50 },
+  { key: "vito", name: "Mercedes Vito", Icon: VitoIcon, min: 1, max: 7, transfer: 210, pickup: 30, night: 85, shaki: 85 },
+  { key: "sprinter", name: "Mercedes Sprinter", Icon: SprinterIcon, min: 1, max: 18, transfer: 360, pickup: 50, night: 145, shaki: 100 },
 ];
 
 const T = {
@@ -123,7 +173,7 @@ function VehicleHead({ v, t }) {
   return (
     <div className="mb-4 max-sm:mb-0 flex items-center gap-3">
       <span className={iconBox}>
-        <v.Icon size={22} aria-hidden="true" />
+        <v.Icon size={34} />
       </span>
       <div>
         <h3 className="font-bold leading-tight text-gray-900">{v.name}</h3>
@@ -189,12 +239,7 @@ export default async function ToursTransfersPage({ params }) {
           <ul className="grid gap-4 sm:grid-cols-3">
             {VEHICLES.map((v) => (
               <li key={v.key} className={card}>
-                <div className="mb-4 max-sm:mb-0 flex items-center gap-3">
-                  <span className={iconBox}>
-                    <Plane size={22} aria-hidden="true" />
-                  </span>
-                  <h3 className="font-bold text-gray-900">{v.name}</h3>
-                </div>
+                <VehicleHead v={v} t={t} />
                 <div className="mt-auto border-t border-gray-100 pt-4 max-sm:mt-0 max-sm:border-t-0 max-sm:pt-0 max-sm:text-right">
                   <Price value={v.pickup} />
                   <p className="text-xs text-gray-500">{t.s2.unit}</p>
