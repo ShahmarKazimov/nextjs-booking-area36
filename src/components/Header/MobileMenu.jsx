@@ -98,6 +98,9 @@ export default function MobileMenu() {
                                     </span>
                                 )}
                             </Link>
+                            <Link href="/tours-transfers" onClick={close} className={`${item} ${active("/tours-transfers")}`}>
+                                {t("transfers")}
+                            </Link>
                             <Link href="/about" onClick={close} className={`${item} ${active("/about")}`}>
                                 {t("about")}
                             </Link>

@@ -21,6 +21,13 @@ export default function HeaderNav() {
                 {t("villas")}
             </Link>
             <Link
+                href="/tours-transfers"
+                className={cls(pathname === "/tours-transfers")}
+                aria-current={pathname === "/tours-transfers" ? "page" : undefined}
+            >
+                {t("transfers")}
+            </Link>
+            <Link
                 href="/about"
                 className={cls(pathname === "/about")}
                 aria-current={pathname === "/about" ? "page" : undefined}

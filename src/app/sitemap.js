@@ -21,6 +21,7 @@ export default function sitemap() {
   return [
     ...entry("", 1),
     ...homes.flatMap((home) => entry(`/${home.slug}`, 0.8)),
+    ...entry("/tours-transfers", 0.6),
     ...entry("/about", 0.3),
     ...entry("/privacy-policy", 0.3),
   ];
