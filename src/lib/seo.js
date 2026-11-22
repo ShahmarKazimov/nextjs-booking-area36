@@ -8,7 +8,7 @@ export const DEFAULT_LOCALE = "en";
 
 export const CONTACT = {
   phone: "+994552904045",
-  email: "gabaladeluxe@gmail.com",
+  email: "info@area36.az",
 };
 
 // area36-winter-hero.webp is 1600x900

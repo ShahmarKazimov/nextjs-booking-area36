@@ -153,7 +153,7 @@ export default async function ToursTransfersPage({ params }) {
   );
 
   return (
-    <div className="pb-4">
+    <div>
       {/* Hero band */}
       <section className="bg-[#1c1a17] text-[#ebe7d8]">
         <div className="mx-auto max-w-7xl px-4 py-14 text-center sm:py-20 xl:px-0">
@@ -166,7 +166,7 @@ export default async function ToursTransfersPage({ params }) {
         </div>
       </section>
 
-      <div className="mx-auto max-w-7xl space-y-12 px-4 py-10 sm:space-y-16 sm:py-14 xl:px-0">
+      <div className="mx-auto max-w-7xl space-y-12 px-4 pt-12 sm:space-y-16 xl:px-0">
         {/* 1. Transfer */}
         <section>
           <SectionHead tag={t.s1.tag} title={t.s1.title} text={t.s1.text} />

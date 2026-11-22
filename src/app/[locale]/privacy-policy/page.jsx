@@ -25,9 +25,9 @@ export default async function PrivacyPolicyPage({ params }) {
   const isAz = locale === "az";
 
   return (
-    <div className="min-h-screen py-16 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen pt-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-        <div className="bg-gradient-to-r from-gray-900 to-gray-800 px-8 py-12 text-white text-center">
+        <div className="bg-[#1c1a17] px-8 py-12 text-white text-center">
           <h1 className="text-3xl md:text-4xl font-bold tracking-tight">
             {isAz ? "Məxfilik Siyasəti" : "Privacy Policy"}
           </h1>
@@ -116,8 +116,8 @@ export default async function PrivacyPolicyPage({ params }) {
               </p>
               <p className="flex items-center">
                 <span className="font-medium w-24 text-gray-900">{isAz ? "E-poçt:" : "Email:"}</span>
-                <a href="mailto:gabaladeluxe@gmail.com" className="text-gray-900 hover:text-black font-semibold underline underline-offset-4 decoration-gray-300 hover:decoration-black transition-colors">
-                  gabaladeluxe@gmail.com
+                <a href="mailto:info@area36.az" className="text-gray-900 hover:text-black font-semibold underline underline-offset-4 decoration-gray-300 hover:decoration-black transition-colors">
+                  info@area36.az
                 </a>
               </p>
               <p className="flex items-center">

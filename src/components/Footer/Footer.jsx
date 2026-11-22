@@ -27,7 +27,7 @@ export default function Footer() {
             "@type": "ContactPoint",
             "telephone": "+994552904045",
             "contactType": "customer support",
-            "email": "gabaladeluxe@gmail.com"
+            "email": "info@area36.az"
         },
         "address": {
             "@type": "PostalAddress",
@@ -111,11 +111,11 @@ export default function Footer() {
                                     <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                                 </svg>
                                 <Link
-                                    href="mailto:gabaladeluxe@gmail.com"
+                                    href="mailto:info@area36.az"
                                     className="hover:text-white transition-colors"
-                                    aria-label="Email us at gabaladeluxe@gmail.com"
+                                    aria-label="Email us at info@area36.az"
                                 >
-                                    gabaladeluxe@gmail.com
+                                    info@area36.az
                                 </Link>
                             </div>
                             <div className="flex items-center">
