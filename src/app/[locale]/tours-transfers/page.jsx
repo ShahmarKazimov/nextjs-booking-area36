@@ -1,4 +1,5 @@
 import { Car, MapPin, Check, MessageCircle, Lightbulb, Clock } from "lucide-react";
+import Image from "next/image";
 import { buildAlternates, localizedUrl, ogLocale, OG_IMAGE } from "@/lib/seo";
 
 const PATH = "/tours-transfers";
@@ -65,7 +66,7 @@ const T = {
     metaTitle: "Tur və Transfer | Bakı ↔ Qəbələ | Area36",
     metaDesc:
       "Bakı–Qəbələ transfer, hava limanı və dəmir yolu stansiyasından qarşılama, şəxsi sürücü və əlavə turlar. Sabit qiymətlər, əlavə ödəniş yoxdur.",
-    heroTag: "Area36 xidmətləri",
+    heroAlt: "Qəbələ dağları fonunda Sedan, Mercedes Vito və Mercedes Sprinter nəqliyyat vasitələri",
     title: "Tur və Transfer",
     lead: "Qəbələyə səyahətinizi rahat edin: sizi qarşılayırıq, evə çatdırırıq, istəsəniz bütün qalış müddətində sürücü sizinlə olur.",
     cta: "WhatsApp-dan sifariş et",
@@ -96,7 +97,7 @@ const T = {
     metaTitle: "Tours & Transfers | Baku ↔ Gabala | Area36",
     metaDesc:
       "Baku–Gabala transfers, airport and train station pickup in Gabala, a private driver for your stay and extra tours. Fixed prices, no extra charges.",
-    heroTag: "Area36 services",
+    heroAlt: "Sedan, Mercedes Vito and Mercedes Sprinter vehicles against the Gabala mountains",
     title: "Tours & Transfers",
     lead: "Make your trip to Gabala easy: we meet you, take you to your home, and if you wish, a driver stays with you for your whole stay.",
     cta: "Order on WhatsApp",
@@ -205,10 +206,18 @@ export default async function ToursTransfersPage({ params }) {
   return (
     <div>
       {/* Hero band */}
-      <section className="bg-[#1c1a17] text-[#ebe7d8]">
-        <div className="mx-auto max-w-7xl px-4 py-14 text-center sm:py-20 xl:px-0">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#d8c58f] sm:text-sm">{t.heroTag}</p>
-          <h1 className="mt-3 text-3xl font-bold text-white sm:text-5xl">{t.title}</h1>
+      <section className="relative isolate overflow-hidden bg-[#1c1a17] text-[#ebe7d8]">
+        <Image
+          src="/images/ui/tours-transfers-hero.webp"
+          alt={t.heroAlt}
+          fill
+          priority
+          sizes="100vw"
+          className="-z-20 object-cover object-[60%_85%] sm:object-[50%_85%]"
+        />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/75 via-black/55 to-black/25" aria-hidden="true" />
+        <div className="relative mx-auto max-w-7xl px-4 py-14 text-center sm:py-20 xl:px-0">
+          <h1 className="text-3xl font-bold text-white sm:text-5xl">{t.title}</h1>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-[#ebe7d8]/80 sm:text-lg">{t.lead}</p>
           <div className="mt-8">
             <Cta light />
