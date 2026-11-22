@@ -213,12 +213,11 @@ export default async function ToursTransfersPage({ params }) {
           fill
           priority
           sizes="100vw"
-          className="-z-20 object-cover object-[60%_85%] sm:object-[50%_85%]"
+          className="-z-20 object-cover object-[50%_70%] sm:object-[50%_85%]"
         />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/75 via-black/55 to-black/25" aria-hidden="true" />
         <div className="relative mx-auto max-w-7xl px-4 py-14 text-center sm:py-20 xl:px-0">
-          <h1 className="text-3xl font-bold text-white sm:text-5xl">{t.title}</h1>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-[#ebe7d8]/80 sm:text-lg">{t.lead}</p>
+          <h1 className="text-3xl font-bold text-white sm:text-5xl [text-shadow:0_2px_8px_rgba(0,0,0,0.7)]">{t.title}</h1>
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white sm:text-lg [text-shadow:0_2px_8px_rgba(0,0,0,0.7)]">{t.lead}</p>
           <div className="mt-8">
             <Cta light />
           </div>
