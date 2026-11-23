@@ -109,7 +109,9 @@ export async function generateMetadata({ params }) {
   }
 
   const description = truncateAtWord(rawDescription, 155);
-  const ogTitle = `${title} | Area36`;
+  // Absolute title: skips the layout's "%s | Area36" template so titles stay under ~60 chars
+  const fullTitle = tHome.has("metaTitle") ? title : `${title} | Area36`;
+  const ogTitle = fullTitle;
   const image = home.images?.[0]
     ? `${SITE_URL}${home.images[0]}`
     : OG_IMAGE.url;
@@ -117,13 +119,12 @@ export async function generateMetadata({ params }) {
   const pageUrl = localizedUrl(locale, `/${slug}`);
 
   return {
-    title,
+    title: { absolute: fullTitle },
     description,
 
     keywords: [
       tHome("title"),
 
-      `${locationStr} villa rental`,
       `${locationStr} luxury villa`,
       `${locationStr} chalet rental`,
       `${locationStr} holiday home`,
@@ -213,6 +214,7 @@ export default async function HomeDetailPage({ params }) {
       addressLocality: tHome("location"),
       addressRegion: "Qafqaz",
       addressCountry: "AZ",
+      ...(home.address || {}),
     },
 
     ...(lat && lng && {

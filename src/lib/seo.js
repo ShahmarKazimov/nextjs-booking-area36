@@ -11,6 +11,17 @@ export const CONTACT = {
   email: "info@area36.az",
 };
 
+// Google requires a full address for VacationRental rich results.
+// Fill these in (e.g. "Nic küçəsi 12", "AZ3600"); empty values are left out of the JSON-LD.
+export const ADDRESS = {
+  streetAddress: "",
+  postalCode: "",
+};
+
+export function addressExtras() {
+  return Object.fromEntries(Object.entries(ADDRESS).filter(([, v]) => v));
+}
+
 // area36-winter-hero.webp is 1600x900
 export const OG_IMAGE = {
   url: `${SITE_URL}/images/ui/area36-winter-hero.webp`,

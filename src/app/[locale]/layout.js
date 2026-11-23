@@ -7,7 +7,7 @@ import { WishlistProvider } from "../../components/Wishlist/WishlistProvider";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import Snowfall from "../../components/Winter/Snowfall";
-import { SITE_URL, CONTACT, OG_IMAGE, localizedUrl, ogLocale } from "@/lib/seo";
+import { SITE_URL, CONTACT, OG_IMAGE, localizedUrl, ogLocale, addressExtras } from "@/lib/seo";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -222,6 +222,7 @@ function getLodgingSchema(locale) {
       "@type": "PostalAddress",
       addressLocality: isAz ? "Qəbələ" : "Gabala",
       addressCountry: "AZ",
+      ...addressExtras(),
     },
     amenityFeature: [
       { "@type": "LocationFeatureSpecification", name: isAz ? "Hovuz" : "Pool", value: true },

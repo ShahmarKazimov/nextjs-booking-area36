@@ -1,0 +1,30 @@
+# Area36
+
+> Area36 offers daily and weekly rentals of chalets, mountain houses and villas with pools in Gabala (Qəbələ), Azerbaijan, in the Caucasus mountains. Languages: English and Azerbaijani. Prices are in AZN per night.
+
+Website: https://area36.az
+Phone / WhatsApp: +994552904045
+Email: info@area36.az
+
+## Pages
+- [English home](https://area36.az/en): all properties
+- [Azərbaycan dilində ana səhifə](https://area36.az/az): bütün evlər
+- [Tours & transfers](https://area36.az/en/tours-transfers)
+- [About](https://area36.az/en/about)
+- [Sitemap](https://area36.az/sitemap.xml)
+
+## Properties (all in Gabala, Azerbaijan)
+Each property page exists in English (/en/<slug>) and Azerbaijani (/az/<slug>).
+
+- [Area36 Royal Chalet](https://area36.az/en/area36-royal-chalet): 4 bedrooms, up to 9 guests, seasonal pool, from 180 AZN/night. Address: Mirəli Qaşqay küçəsi, Gabala, AZ3600.
+- [Area36 Family Chalet](https://area36.az/en/area36-family-chalet): 3 bedrooms, up to 7 guests, heated pool, from 180 AZN/night. Address: Mirəli Qaşqay küçəsi, Gabala, AZ3600.
+- [Area36 Golden Loft](https://area36.az/en/area36-golden-loft): 2 bedrooms, up to 5 guests, heated pool, from 180 AZN/night. Address: Mirəli Qaşqay küçəsi, Gabala, AZ3600.
+- [Area36 Milano Deluxe](https://area36.az/en/area36-milano-deluxe): 4 bedrooms, up to 9 guests, pool, from 140 AZN/night.
+- [Area36 Luxury Chalet](https://area36.az/en/area36-luxury-chalet): 5 bedrooms, up to 13 guests, heated indoor pool and outdoor pool.
+- [Area36 Magnolia Harmony](https://area36.az/en/area36-magnolia-harmony): 3 bedrooms, up to 7 guests, seasonal pool.
+- [Qafqaz Riverside Chalet](https://area36.az/en/qafqaz-riverside-chalet): 4 bedrooms, up to 8 guests, heated pool.
+- [Qafqaz Falcon Chalet](https://area36.az/en/qafqaz-falcon-chalet): 3 bedrooms, up to 6 guests, heated pool.
+- [Qafqaz Wooden Chalet](https://area36.az/en/qafqaz-wooden-chalet): 3 bedrooms, up to 7 guests, heated pool, A-frame.
+
+## Booking
+Availability and the final price for chosen dates are shown live on each property page. Reservations are made through the booking form on the property page; the owner then confirms the deposit via WhatsApp. Prices may vary by season and dates.

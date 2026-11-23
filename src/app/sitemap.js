@@ -8,14 +8,11 @@ function entry(path, priority) {
   languages["x-default"] = localizedUrl(DEFAULT_LOCALE, path);
   return LOCALES.map((locale) => ({
     url: localizedUrl(locale, path),
-    lastModified: BUILD_DATE,
     changeFrequency: priority >= 0.8 ? "weekly" : "monthly",
     priority,
     alternates: { languages },
   }));
 }
-
-const BUILD_DATE = new Date();
 
 export default function sitemap() {
   return [

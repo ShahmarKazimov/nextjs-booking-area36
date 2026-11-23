@@ -2,6 +2,21 @@ import createNextIntlPlugin from 'next-intl/plugin';
 
 const withNextIntl = createNextIntlPlugin();
 
+// [köhnə slug, yeni slug] — yeni slug əlavə edəndə buraya yazın
+const slugRedirects = [
+  // area36- → qafqaz-
+  ["area36-wooden-chalet", "qafqaz-wooden-chalet"],
+  ["area36-falcon-chalet", "qafqaz-falcon-chalet"],
+  // qafqaz- → area36-
+  ["qafqaz-luxury-chalet", "area36-luxury-chalet"],
+  ["qafqaz-family-chalet", "area36-family-chalet"],
+  ["qafqaz-golden-loft", "area36-golden-loft"],
+  ["qafqaz-royal-chalet", "area36-royal-chalet"],
+  ["qafqaz-magnolia-harmony", "area36-magnolia-harmony"],
+  // Məzmunu dəyişən səhifə → ən yaxın alternativ
+  ["qafqaz-modern-harmony", "qafqaz-riverside-chalet"],
+];
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -20,19 +35,11 @@ const nextConfig = {
         has: [{ type: "host", value: "www.area36.az" }],
       },
 
-      // area36- → qafqaz- olanlar
-      { source: "/area36-wooden-chalet",    destination: "/qafqaz-wooden-chalet",    permanent: true },
-      { source: "/area36-falcon-chalet",    destination: "/qafqaz-falcon-chalet",    permanent: true },
-
-      // qafqaz- → area36- olanlar
-      { source: "/qafqaz-luxury-chalet",    destination: "/area36-luxury-chalet",    permanent: true },
-      { source: "/qafqaz-family-chalet",    destination: "/area36-family-chalet",    permanent: true },
-      { source: "/qafqaz-golden-loft",      destination: "/area36-golden-loft",      permanent: true },
-      { source: "/qafqaz-royal-chalet",     destination: "/area36-royal-chalet",     permanent: true },
-      { source: "/qafqaz-magnolia-harmony", destination: "/area36-magnolia-harmony", permanent: true },
-
-      // Məzmunu dəyişən səhifə → ən yaxın alternativ
-      { source: "/qafqaz-modern-harmony",   destination: "/qafqaz-riverside-chalet", permanent: true },
+      // Köhnə slug → yeni slug (həm prefikssiz, həm /en|/az prefiksli köhnə URL-lər üçün)
+      ...slugRedirects.flatMap(([from, to]) => [
+        { source: `/${from}`, destination: `/${to}`, permanent: true },
+        { source: `/:locale(en|az)/${from}`, destination: `/:locale/${to}`, permanent: true },
+      ]),
     ];
   },
 
