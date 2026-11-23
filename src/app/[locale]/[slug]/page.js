@@ -225,7 +225,8 @@ export default async function HomeDetailPage({ params }) {
       },
     }),
 
-    ...(!home.isPartner && home.price && {
+    // Beds24 homes have seasonal live prices; a static priceRange would be stale
+    ...(!home.isPartner && !home.beds24PropId && home.price && {
       priceRange: `${home.price} AZN / ${isAz ? "gecə" : "night"}`,
     }),
 
