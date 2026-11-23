@@ -20,12 +20,12 @@ Each property page exists in English (/en/<slug>) and Azerbaijani (/az/<slug>).
 - [Area36 Royal Chalet](https://area36.az/en/area36-royal-chalet): 4 bedrooms, up to 9 guests, seasonal pool. Address: Mirəli Qaşqay küçəsi, Gabala, AZ3600.
 - [Area36 Family Chalet](https://area36.az/en/area36-family-chalet): 3 bedrooms, up to 7 guests, heated pool. Address: Mirəli Qaşqay küçəsi, Gabala, AZ3600.
 - [Area36 Golden Loft](https://area36.az/en/area36-golden-loft): 2 bedrooms, up to 5 guests, heated pool. Address: Mirəli Qaşqay küçəsi, Gabala, AZ3600.
-- [Area36 Milano Deluxe](https://area36.az/en/area36-milano-deluxe): 4 bedrooms, up to 9 guests, pool.
-- [Area36 Luxury Chalet](https://area36.az/en/area36-luxury-chalet): 5 bedrooms, up to 13 guests, heated indoor pool and outdoor pool.
-- [Area36 Magnolia Harmony](https://area36.az/en/area36-magnolia-harmony): 3 bedrooms, up to 7 guests, seasonal pool.
-- [Qafqaz Riverside Chalet](https://area36.az/en/qafqaz-riverside-chalet): 4 bedrooms, up to 8 guests, heated pool.
-- [Qafqaz Falcon Chalet](https://area36.az/en/qafqaz-falcon-chalet): 3 bedrooms, up to 6 guests, heated pool.
-- [Qafqaz Wooden Chalet](https://area36.az/en/qafqaz-wooden-chalet): 3 bedrooms, up to 7 guests, heated pool, A-frame.
+- [Area36 Milano Deluxe](https://area36.az/en/area36-milano-deluxe): 4 bedrooms, up to 9 guests, pool. Address: Nəsimi küçəsi, Gabala, AZ3600.
+- [Area36 Luxury Chalet](https://area36.az/en/area36-luxury-chalet): 5 bedrooms, up to 13 guests, heated indoor pool and outdoor pool. Address: Qalib Həmişov küçəsi, Gabala, AZ3600.
+- [Area36 Magnolia Harmony](https://area36.az/en/area36-magnolia-harmony): 3 bedrooms, up to 7 guests, seasonal pool. Address: Adəm Heydərov küçəsi, Gabala, AZ3600.
+- [Qafqaz Riverside Chalet](https://area36.az/en/qafqaz-riverside-chalet): 4 bedrooms, up to 8 guests, heated pool. Address: Mirzə Fətəli Axundov küçəsi, Gabala, AZ3600.
+- [Qafqaz Falcon Chalet](https://area36.az/en/qafqaz-falcon-chalet): 3 bedrooms, up to 6 guests, heated pool. Address: Qara Qarayev küçəsi, Gabala, AZ3600.
+- [Qafqaz Wooden Chalet](https://area36.az/en/qafqaz-wooden-chalet): 3 bedrooms, up to 7 guests, heated pool, A-frame. Address: Mirzə Fətəli Axundov küçəsi, Gabala, AZ3600.
 
 ## Booking
 Availability and the final price for chosen dates are shown live on each property page. Reservations are made through the booking form on the property page; the owner then confirms the deposit via WhatsApp. Prices are seasonal and synced automatically from Beds24 to the website, Airbnb and Booking.com; the exact price for your dates is shown on the property page.
