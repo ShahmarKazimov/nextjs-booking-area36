@@ -4,6 +4,8 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import WhatsAppFloat from "../../components/WhatsAppFloat/WhatsAppFloat";
 import { WishlistProvider } from "../../components/Wishlist/WishlistProvider";
+import { notFound } from "next/navigation";
+import { routing } from "@/i18n/routing";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import Snowfall from "../../components/Winter/Snowfall";
@@ -236,6 +238,8 @@ function getLodgingSchema(locale) {
 
 export default async function RootLayout({ children, params }) {
   const { locale } = await params;
+  // Dotted paths skip the middleware, so unknown "locales" (e.g. /foo.txt) must 404, not render the home page
+  if (!routing.locales.includes(locale)) notFound();
   const messages = await getMessages();
 
   return (
