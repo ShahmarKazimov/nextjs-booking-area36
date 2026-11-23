@@ -61,6 +61,14 @@ export default function Footer() {
                             </div>
                             <div className="flex items-center">
                                 <Link
+                                    href="/guides"
+                                    className="hover:text-white transition-colors"
+                                >
+                                    {locale === "az" ? "Qəbələ bələdçisi" : "Gabala guides"}
+                                </Link>
+                            </div>
+                            <div className="flex items-center">
+                                <Link
                                     href="/privacy-policy"
                                     className="hover:text-white transition-colors"
                                 >

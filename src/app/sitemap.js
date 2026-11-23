@@ -1,4 +1,5 @@
 import homes from "../components/data/homes";
+import guides from "../components/data/guides";
 import { SITE_URL, LOCALES, DEFAULT_LOCALE, localizedUrl } from "@/lib/seo";
 
 // Every entry points at the final /en or /az URL (never a redirecting path) and
@@ -26,6 +27,8 @@ export default function sitemap() {
       )
     ),
     ...entry("/tours-transfers", 0.6),
+    ...entry("/guides", 0.6),
+    ...guides.flatMap((g) => entry(`/guides/${g.slug}`, 0.6)),
     ...entry("/about", 0.3),
     ...entry("/privacy-policy", 0.3),
   ];
