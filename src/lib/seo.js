@@ -6,6 +6,11 @@ export const SITE_URL = "https://area36.az";
 export const LOCALES = ["en", "az"];
 export const DEFAULT_LOCALE = "en";
 
+export const SOCIAL_LINKS = [
+  "https://instagram.com/area36stay",
+  "https://tiktok.com/@area36stay",
+];
+
 export const CONTACT = {
   phone: "+994552904045",
   email: "info@area36.az",

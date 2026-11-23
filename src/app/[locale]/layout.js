@@ -7,7 +7,7 @@ import { WishlistProvider } from "../../components/Wishlist/WishlistProvider";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import Snowfall from "../../components/Winter/Snowfall";
-import { SITE_URL, CONTACT, OG_IMAGE, localizedUrl, ogLocale, addressExtras } from "@/lib/seo";
+import { SITE_URL, CONTACT, SOCIAL_LINKS, OG_IMAGE, localizedUrl, ogLocale, addressExtras } from "@/lib/seo";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -174,6 +174,7 @@ function getOrganizationSchema(locale) {
     },
     email: CONTACT.email,
     telephone: CONTACT.phone,
+    sameAs: SOCIAL_LINKS,
     contactPoint: {
       "@type": "ContactPoint",
       telephone: CONTACT.phone,

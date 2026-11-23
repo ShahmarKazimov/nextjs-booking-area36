@@ -4,15 +4,21 @@ export async function generateMetadata({ params }) {
   const { locale } = await params;
   const isAz = locale === "az";
 
+  const title = isAz ? "Area36 Haqqında | Premium Villalar" : "About Area36 | Premium Villas";
+  const description = isAz
+    ? "AREA36 Azərbaycanda premium villa və istirahət evlərinin təqdimatı və rezervasiyası sahəsində fəaliyyət göstərən platformadır."
+    : "AREA36 is a platform operating in the presentation and reservation of premium villas and holiday homes in Azerbaijan.";
+
   return {
-    title: isAz ? "Area36 Haqqında | Premium Villalar" : "About Area36 | Premium Villas",
-    description: isAz 
-      ? "AREA36 Azərbaycanda premium villa və istirahət evlərinin təqdimatı və rezervasiyası sahəsində fəaliyyət göstərən platformadır."
-      : "AREA36 is a platform operating in the presentation and reservation of premium villas and holiday homes in Azerbaijan.",
+    title,
+    description,
     alternates: buildAlternates(locale, "/about"),
+    twitter: { card: "summary_large_image", title, description, images: [OG_IMAGE.url] },
     openGraph: {
       type: "website",
       siteName: "Area36",
+      title,
+      description,
       url: localizedUrl(locale, "/about"),
       locale: ogLocale(locale),
       images: [OG_IMAGE],

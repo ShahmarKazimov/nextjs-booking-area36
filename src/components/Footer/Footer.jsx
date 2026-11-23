@@ -13,37 +13,6 @@ export default function Footer() {
     const t = useTranslations("Footer");
     const locale = useLocale();
 
-    // Structured data for SEO
-    const structuredData = {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Area36",
-        "description": locale === "az"
-            ? "Area36 ilə Qafqazın seçilmiş lüks villalarında rahatlıq və unudulmaz istirahət sizi gözləyir."
-            : "Find your ideal rental home with Area36. We offer comfortable properties and a smooth renting experience.",
-        "url": "https://area36.az/",
-        "logo": "https://area36.az/images/ui/logo-area.svg",
-        "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+994552904045",
-            "contactType": "customer support",
-            "email": "info@area36.az"
-        },
-        "address": {
-            "@type": "PostalAddress",
-            "addressLocality": locale === "az" ? "Qəbələ" : "Gabala",
-            "addressRegion": locale === "az" ? "Azərbaycan" : "Azerbaijan",
-            "addressCountry": "AZ"
-        },
-        "sameAs": [
-            "https://instagram.com/area36stay",
-            "https://tiktok.com/@area36stay"
-            // "https://facebook.com/area36stay",
-            // "https://twitter.com/area36stay",
-            // "https://youtube.com/area36stay",
-        ]
-    }
-
     return (
         <footer
             className="relative isolate bg-[#1c1a17] text-[#ebe7d8] border-t border-white/10 mt-6 lg:mt-12"
@@ -167,12 +136,6 @@ export default function Footer() {
             </div>
 
             <FooterGarland />
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                    __html: JSON.stringify(structuredData)
-                }}
-            />
         </footer>
     );
 }

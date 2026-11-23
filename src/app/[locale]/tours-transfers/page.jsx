@@ -133,6 +133,7 @@ export async function generateMetadata({ params }) {
     title: t.metaTitle,
     description: t.metaDesc,
     alternates: buildAlternates(locale, PATH),
+    twitter: { card: "summary_large_image", title: t.metaTitle, description: t.metaDesc, images: [OG_IMAGE.url] },
     openGraph: {
       type: "website",
       siteName: "Area36",

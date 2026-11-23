@@ -4,15 +4,21 @@ export async function generateMetadata({ params }) {
   const { locale } = await params;
   const isAz = locale === "az";
 
+  const title = isAz ? "Məxfilik Siyasəti | Area36" : "Privacy Policy | Area36";
+  const description = isAz
+    ? "AREA36 istifadəçilərinin şəxsi məlumatlarının qorunmasına xüsusi önəm verir. Bu Məxfilik Siyasəti saytımızdan istifadə zamanı məlumatların necə qorunduğunu izah edir."
+    : "AREA36 attaches special importance to the protection of users' personal data. This Privacy Policy explains how information is protected when using our site.";
+
   return {
-    title: isAz ? "Məxfilik Siyasəti | Area36" : "Privacy Policy | Area36",
-    description: isAz
-      ? "AREA36 istifadəçilərinin şəxsi məlumatlarının qorunmasına xüsusi önəm verir. Bu Məxfilik Siyasəti saytımızdan istifadə zamanı məlumatların necə qorunduğunu izah edir."
-      : "AREA36 attaches special importance to the protection of users' personal data. This Privacy Policy explains how information is protected when using our site.",
+    title: { absolute: title },
+    description,
     alternates: buildAlternates(locale, "/privacy-policy"),
+    twitter: { card: "summary_large_image", title, description, images: [OG_IMAGE.url] },
     openGraph: {
       type: "website",
       siteName: "Area36",
+      title,
+      description,
       url: localizedUrl(locale, "/privacy-policy"),
       locale: ogLocale(locale),
       images: [OG_IMAGE],
