@@ -107,7 +107,7 @@ export default function MobileMenu() {
                             <div className="mt-auto mb-3 flex items-center justify-between px-4 py-3.5 border-t border-white/10">
                                 <span className="text-base font-medium text-[#ebe7d8]">{t("language")}</span>
                                 <div className="flex gap-1 rounded-xl border border-white/15 p-1" role="group" aria-label={t("language")}>
-                                    {["en", "az"].map((code) => (
+                                    {["en", "az", "ru"].map((code) => (
                                         <button
                                             key={code}
                                             type="button"

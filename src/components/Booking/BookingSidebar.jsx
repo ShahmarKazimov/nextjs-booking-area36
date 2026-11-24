@@ -27,6 +27,27 @@ const AZ_MONTHS = [
   'Dekabr',
 ];
 
+const RU_MONTHS = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+const RU_MONTHS_GEN = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+
+// Russian plural: 1 ночь, 2-4 ночи, 5+ ночей
+function ruPlural(n, one, few, many) {
+  const a = Math.abs(n) % 100;
+  const b = a % 10;
+  if (a > 10 && a < 20) return many;
+  if (b > 1 && b < 5) return few;
+  if (b === 1) return one;
+  return many;
+}
+function nightsWord(n, locale) {
+  if (locale === 'az') return 'gecə';
+  if (locale === 'ru') return ruPlural(n, 'ночь', 'ночи', 'ночей');
+  return n === 1 ? 'night' : 'nights';
+}
+function monthName(locale, idx) {
+  return (locale === 'az' ? AZ_MONTHS : locale === 'ru' ? RU_MONTHS : EN_MONTHS)[idx];
+}
+
 const EN_MONTHS = [
   'January',
   'February',
@@ -63,8 +84,8 @@ function formatDisplayDate(dateStr, locale) {
   const day = d.getDate();
   const monthIdx = d.getMonth();
   const year = d.getFullYear();
-  const monthName = locale === 'az' ? AZ_MONTHS[monthIdx] : EN_MONTHS[monthIdx];
-  return `${day} ${monthName} ${year}`;
+  const name = locale === 'ru' ? RU_MONTHS_GEN[monthIdx] : monthName(locale, monthIdx);
+  return `${day} ${name} ${year}`;
 }
 
 // dd.mm.yyyy for the compact desktop date fields
@@ -77,8 +98,8 @@ function formatNumericDate(dateStr) {
 function formatShortDate(dateStr, locale) {
   const d = parseDateStr(dateStr);
   if (!d) return '';
-  const monthName = locale === 'az' ? AZ_MONTHS[d.getMonth()] : EN_MONTHS[d.getMonth()];
-  return `${d.getDate()} ${monthName.toLowerCase()}`;
+  const name = locale === 'ru' ? RU_MONTHS_GEN[d.getMonth()] : monthName(locale, d.getMonth());
+  return `${d.getDate()} ${name.toLowerCase()}`;
 }
 
 function WhatsAppIcon({ size = 18 }) {
@@ -475,7 +496,9 @@ export default function BookingSidebar({
         setErrorMsg(
           locale === 'az'
             ? 'Seçilmiş aralıqda artıq dolu tarixlər var. Zəhmət olmasa başqa aralıq seçin.'
-            : 'Selected range includes already booked dates. Please choose another range.'
+            : locale === 'ru'
+              ? 'В выбранный период входят занятые даты. Пожалуйста, выберите другой период.'
+              : 'Selected range includes already booked dates. Please choose another range.'
         );
         return;
       }
@@ -487,7 +510,9 @@ export default function BookingSidebar({
         setErrorMsg(
           locale === 'az'
             ? `Bu tarix üçün minimum qalma müddəti ${minNights} gecədir.`
-            : `Minimum stay for this date is ${minNights} nights.`
+            : locale === 'ru'
+              ? `Минимальный срок проживания на эту дату: ${minNights} ${ruPlural(minNights, 'ночь', 'ночи', 'ночей')}.`
+              : `Minimum stay for this date is ${minNights} nights.`
         );
         return;
       }
@@ -510,20 +535,41 @@ export default function BookingSidebar({
 
   // Month header label (e.g. "Noyabr 2026", "Dekabr 2026")
   const currentMonthLabel = useMemo(() => {
-    const monthName = locale === 'az' ? AZ_MONTHS[viewMonth] : EN_MONTHS[viewMonth];
-    return `${monthName} ${viewYear}`;
+    return `${monthName(locale, viewMonth)} ${viewYear}`;
   }, [viewYear, viewMonth, locale]);
 
   // Weekday initials matching Airbnb (Monday to Sunday)
   const weekDays = locale === 'az'
     ? ['B.e', 'Ç.a', 'Ç', 'C.a', 'C', 'Ş', 'B']
-    : ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
+    : locale === 'ru'
+      ? ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
+      : ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
 
   // Structured WhatsApp Message Composer
   const waText = useMemo(() => {
     const isAz = locale === 'az';
     const checkInDisplay = checkIn ? formatDisplayDate(checkIn, locale) : null;
     const checkOutDisplay = checkOut ? formatDisplayDate(checkOut, locale) : null;
+
+    if (locale === 'ru') {
+      if (checkInDisplay && checkOutDisplay) {
+        return `Здравствуйте, пишу с сайта Area36.az.
+
+🏡 Вилла: ${homeTitle}
+📍 Расположение: ${location}
+📅 Заезд: ${checkInDisplay}
+📅 Выезд: ${checkOutDisplay}
+🌙 Срок: ${nights} ${ruPlural(nights, 'ночь', 'ночи', 'ночей')}
+
+Пожалуйста, подтвердите доступность и цену на эти даты.`;
+      }
+      return `Здравствуйте, пишу с сайта Area36.az.
+
+🏡 Вилла: ${homeTitle}
+📍 Расположение: ${location}
+
+Пожалуйста, пришлите подробную информацию о вилле и свободных датах.`;
+    }
 
     if (isAz) {
       if (checkInDisplay && checkOutDisplay) {
@@ -583,7 +629,7 @@ Please provide more information and current availability for this property.`;
   const rangeLabel = hasDates
     ? `${formatShortDate(checkIn, locale)} – ${formatShortDate(checkOut, locale)}`
     : '';
-  const nightsLabel = `${nights} ${locale === 'az' ? 'gecə' : nights === 1 ? 'night' : 'nights'}`;
+  const nightsLabel = `${nights} ${nightsWord(nights, locale)}`;
   const barPrice =
     hasBeds24 && offerStatus === 'ok'
       ? `₼ ${offerPrice}`
@@ -639,7 +685,7 @@ Please provide more information and current availability for this property.`;
         ))}
         {maxPeople && (
           <p className="text-xs text-gray-500">
-            {isAz ? `Maksimum ${maxPeople} qonaq` : `Maximum ${maxPeople} guests`}
+            {isAz ? `Maksimum ${maxPeople} qonaq` : locale === 'ru' ? `Максимум ${maxPeople} ${ruPlural(maxPeople, 'гость', 'гостя', 'гостей')}` : `Maximum ${maxPeople} guests`}
           </p>
         )}
       </div>
@@ -689,21 +735,23 @@ Please provide more information and current availability for this property.`;
       <div className="flex items-start justify-between mb-4 lg:hidden">
         <div className="min-w-0">
           <h2 className="text-xl font-bold text-gray-900 truncate">
-            {hasDates ? rangeLabel : locale === 'az' ? 'Tarixləri seçin' : 'Select dates'}
+            {hasDates ? rangeLabel : (locale === 'az' ? 'Tarixləri seçin' : locale === 'ru' ? 'Выберите даты' : 'Select dates')}
           </h2>
           <p className="text-sm text-gray-500 mt-0.5">
             {hasDates
               ? `${nightsLabel} · ${homeTitle}`
               : locale === 'az'
                 ? 'Dəqiq rezervasiya üçün tarixlərinizi seçin'
-                : 'Add your travel dates for exact availability'}
+                : locale === 'ru'
+                  ? 'Укажите даты поездки, чтобы увидеть точную доступность'
+                  : 'Add your travel dates for exact availability'}
           </p>
         </div>
         <button
           type="button"
           onClick={() => setSheetOpen(false)}
           className="lg:hidden w-10 h-10 rounded-full bg-[#efede8] hover:bg-[#e6e2da] text-gray-900 flex items-center justify-center flex-shrink-0 ml-3 cursor-pointer"
-          aria-label={locale === 'az' ? 'Bağla' : 'Close'}
+          aria-label={(locale === 'az' ? 'Bağla' : locale === 'ru' ? 'Закрыть' : 'Close')}
         >
           <X size={18} />
         </button>
@@ -722,7 +770,7 @@ Please provide more information and current availability for this property.`;
           <span className="text-2xl font-bold tracking-tight text-gray-900">
             ₼ {topPrice != null && !topPriceLoading ? fmtMoney(topPrice) : '…'}
           </span>
-          <span className="text-sm text-gray-500">/ {isAz ? 'gecə' : 'night'}</span>
+          <span className="text-sm text-gray-500">/ {(isAz ? 'gecə' : locale === 'ru' ? 'ночь' : 'night')}</span>
         </div>
       )}
       {calendarError && (
@@ -742,9 +790,9 @@ Please provide more information and current availability for this property.`;
                 aria-haspopup="dialog"
                 aria-expanded={calOpen}
               >
-                <span className={fieldLabel}>{isAz ? 'Giriş' : 'Check-in'}</span>
+                <span className={fieldLabel}>{(isAz ? 'Giriş' : locale === 'ru' ? 'Заезд' : 'Check-in')}</span>
                 <span className={fieldValue(checkIn)}>
-                  {checkIn ? formatNumericDate(checkIn) : isAz ? 'Tarix əlavə edin' : 'Add date'}
+                  {checkIn ? formatNumericDate(checkIn) : (isAz ? 'Tarix əlavə edin' : locale === 'ru' ? 'Добавьте дату' : 'Add date')}
                 </span>
               </button>
               <button
@@ -754,9 +802,9 @@ Please provide more information and current availability for this property.`;
                 aria-haspopup="dialog"
                 aria-expanded={calOpen}
               >
-                <span className={fieldLabel}>{isAz ? 'Çıxış' : 'Check-out'}</span>
+                <span className={fieldLabel}>{(isAz ? 'Çıxış' : locale === 'ru' ? 'Выезд' : 'Check-out')}</span>
                 <span className={fieldValue(checkOut)}>
-                  {checkOut ? formatNumericDate(checkOut) : isAz ? 'Tarix əlavə edin' : 'Add date'}
+                  {checkOut ? formatNumericDate(checkOut) : (isAz ? 'Tarix əlavə edin' : locale === 'ru' ? 'Добавьте дату' : 'Add date')}
                 </span>
               </button>
             </div>
@@ -773,11 +821,13 @@ Please provide more information and current availability for this property.`;
                   aria-expanded={guestsOpen}
                 >
                   <span>
-                    <span className={fieldLabel}>{isAz ? 'Qonaqlar' : 'Guests'}</span>
+                    <span className={fieldLabel}>{(isAz ? 'Qonaqlar' : locale === 'ru' ? 'Гости' : 'Guests')}</span>
                     <span className="block text-sm text-gray-900 mt-0.5">
                       {isAz
                         ? `${totalGuests} qonaq`
-                        : `${totalGuests} ${totalGuests === 1 ? 'guest' : 'guests'}`}
+                        : locale === 'ru'
+                          ? `${totalGuests} ${ruPlural(totalGuests, 'гость', 'гостя', 'гостей')}`
+                          : `${totalGuests} ${totalGuests === 1 ? 'guest' : 'guests'}`}
                     </span>
                   </span>
                   <ChevronDown
@@ -794,7 +844,7 @@ Please provide more information and current availability for this property.`;
                         onClick={() => setGuestsOpen(false)}
                         className="text-sm font-semibold text-gray-900 underline cursor-pointer"
                       >
-                        {isAz ? 'Bağla' : 'Close'}
+                        {(isAz ? 'Bağla' : locale === 'ru' ? 'Закрыть' : 'Close')}
                       </button>
                     </div>
                   </div>
@@ -807,7 +857,7 @@ Please provide more information and current availability for this property.`;
       <div
         className={`mb-6 lg:mb-0 ${calOpen ? '' : 'lg:hidden'} lg:absolute lg:left-0 lg:right-0 lg:top-[72px] lg:z-30 lg:rounded-2xl lg:border lg:border-[#d9d4c8] lg:bg-white lg:p-4 lg:shadow-xl`}
         role="dialog"
-        aria-label={isAz ? 'Tarix seçimi' : 'Select dates'}
+        aria-label={(isAz ? 'Tarix seçimi' : locale === 'ru' ? 'Выберите даты' : 'Select dates')}
       >
         {/* Selected Dates Summary Badge */}
         {checkIn && (
@@ -815,8 +865,8 @@ Please provide more information and current availability for this property.`;
             <div className="flex items-center gap-2 truncate">
               <span className="truncate">
                 {checkOut
-                  ? `${formatDisplayDate(checkIn, locale)} — ${formatDisplayDate(checkOut, locale)} (${nights} ${locale === 'az' ? 'gecə' : 'nights'})`
-                  : `${locale === 'az' ? 'Giriş:' : 'Check-in:'} ${formatDisplayDate(checkIn, locale)} • ${locale === 'az' ? 'Çıxış tarixini seçin' : 'Select check-out date'}`}
+                  ? `${formatDisplayDate(checkIn, locale)} — ${formatDisplayDate(checkOut, locale)} (${nights} ${nightsWord(nights, locale)})`
+                  : `${(locale === 'az' ? 'Giriş:' : locale === 'ru' ? 'Заезд:' : 'Check-in:')} ${formatDisplayDate(checkIn, locale)} • ${(locale === 'az' ? 'Çıxış tarixini seçin' : locale === 'ru' ? 'Выберите дату выезда' : 'Select check-out date')}`}
               </span>
             </div>
             <button
@@ -933,7 +983,7 @@ Please provide more information and current availability for this property.`;
                     <button
                       type="button"
                       onClick={() => handleDayClick(day)}
-                      title={locale === 'az' ? 'Çıxış günü kimi seçilə bilər' : 'Can be selected as check-out'}
+                      title={(locale === 'az' ? 'Çıxış günü kimi seçilə bilər' : locale === 'ru' ? 'Можно выбрать как день выезда' : 'Can be selected as check-out')}
                       className="h-9 w-9 rounded-full text-gray-500 text-sm font-normal hover:border hover:border-[#2d4a2b] cursor-pointer transition-colors flex items-center justify-center"
                     >
                       {day.dayNumber}
@@ -946,7 +996,7 @@ Please provide more information and current availability for this property.`;
                 return (
                   <div key={day.id} className="flex items-center justify-center">
                     <span
-                      title={locale === 'az' ? 'Airbnb ilə bron edilmişdir (Dolu)' : 'Booked via Airbnb'}
+                      title={(locale === 'az' ? 'Airbnb ilə bron edilmişdir (Dolu)' : locale === 'ru' ? 'Забронировано через Airbnb' : 'Booked via Airbnb')}
                       className="h-9 w-9 text-gray-400 text-sm font-normal line-through flex items-center justify-center cursor-not-allowed select-none"
                     >
                       {day.dayNumber}
@@ -1001,7 +1051,7 @@ Please provide more information and current availability for this property.`;
                   onClick={handleClearDates}
                   className="text-xs font-semibold text-gray-900 underline hover:text-black cursor-pointer"
                 >
-                  {locale === 'az' ? 'Tarixləri təmizlə' : 'Clear dates'}
+                  {(locale === 'az' ? 'Tarixləri təmizlə' : locale === 'ru' ? 'Сбросить даты' : 'Clear dates')}
                 </button>
               )}
               <button
@@ -1009,7 +1059,7 @@ Please provide more information and current availability for this property.`;
                 onClick={() => setCalOpen(false)}
                 className="max-lg:hidden text-xs font-semibold text-gray-900 underline hover:text-black cursor-pointer"
               >
-                {isAz ? 'Bağla' : 'Close'}
+                {(isAz ? 'Bağla' : locale === 'ru' ? 'Закрыть' : 'Close')}
               </button>
             </div>
           </div>
@@ -1024,13 +1074,13 @@ Please provide more information and current availability for this property.`;
       {hasBeds24 && checkIn && checkOut && nights > 0 && (
       <div className="mb-3 flex items-center justify-between rounded-xl bg-[#edeae4] border border-[#e0dcd4] px-4 py-3 text-sm">
         <span className="text-gray-600">
-          {nights} {locale === 'az' ? 'gecə' : nights === 1 ? 'night' : 'nights'}
+          {nights} {nightsWord(nights, locale)}
         </span>
         <span className="font-bold text-gray-900">
           {offerStatus === 'loading' && '…'}
-          {offerStatus === 'ok' && `${locale === 'az' ? 'Cəmi' : 'Total'}: ₼ ${offerPrice}`}
+          {offerStatus === 'ok' && `${(locale === 'az' ? 'Cəmi' : locale === 'ru' ? 'Итого' : 'Total')}: ₼ ${offerPrice}`}
           {offerStatus === 'unavailable' &&
-            (locale === 'az' ? 'Bu tarixlər üçün qiymət yoxdur' : 'No price for these dates')}
+            ((locale === 'az' ? 'Bu tarixlər üçün qiymət yoxdur' : locale === 'ru' ? 'На эти даты цены нет' : 'No price for these dates'))}
           {offerStatus === 'error' && tDetails('calendarUnavailable')}
         </span>
       </div>

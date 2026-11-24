@@ -1,5 +1,5 @@
 import homes from "../../components/data/homes";
-import { SITE_URL, OG_IMAGE, buildAlternates, localizedUrl, ogLocale } from "@/lib/seo";
+import { SITE_URL, OG_IMAGE, buildAlternates, localizedUrl, ogLocale, pick } from "@/lib/seo";
 import { Suspense } from "react";
 import Cards from "../../components/Cards/Cards";
 import HeroSection from "../../components/HeroSection/HeroSection";
@@ -8,13 +8,17 @@ export async function generateMetadata({ params }) {
   const { locale } = await params;
   const isAz = locale === "az";
 
-  const title = isAz
-    ? "Qəbələdə Villa və Chalet Kirayəsi | Area36"
-    : "Villa & Chalet Rentals in Gabala, Azerbaijan | Area36";
+  const title = pick(locale, {
+    en: "Villa & Chalet Rentals in Gabala, Azerbaijan | Area36",
+    az: "Qəbələdə Villa və Chalet Kirayəsi | Area36",
+    ru: "Аренда вилл и шале в Габале, Азербайджан | Area36",
+  });
 
-  const description = isAz
-    ? "Qəbələdə hovuzlu, dağ mənzərəli villa və chalet-lərin günlük kirayəsi. Area36 ilə Royal Chalet, Family Chalet, Golden Loft və digər evləri seçin, WhatsApp ilə rezerv edin."
-    : "Book heated-pool villas and mountain-view chalets for rent in Gabala, Azerbaijan. Choose Royal Chalet, Family Chalet, Golden Loft and more with Area36.";
+  const description = pick(locale, {
+    en: "Book heated-pool villas and mountain-view chalets for rent in Gabala, Azerbaijan. Choose Royal Chalet, Family Chalet, Golden Loft and more with Area36.",
+    az: "Qəbələdə hovuzlu, dağ mənzərəli villa və chalet-lərin günlük kirayəsi. Area36 ilə Royal Chalet, Family Chalet, Golden Loft və digər evləri seçin, WhatsApp ilə rezerv edin.",
+    ru: "Аренда вилл с подогреваемым бассейном и шале с видом на горы в Габале, Азербайджан. Royal Chalet, Family Chalet, Golden Loft и другие дома Area36. Бронирование онлайн и через WhatsApp.",
+  });
 
   return {
     title: { absolute: title },
@@ -30,7 +34,11 @@ export async function generateMetadata({ params }) {
       images: [
         {
           ...OG_IMAGE,
-          alt: isAz ? "Area36 lüks dağ evləri və villalar" : "Area36 luxury chalets and villas in Azerbaijan",
+          alt: pick(locale, {
+            en: "Area36 luxury chalets and villas in Azerbaijan",
+            az: "Area36 lüks dağ evləri və villalar",
+            ru: "Роскошные шале и виллы Area36 в Азербайджане",
+          }),
         },
       ],
     },
@@ -49,10 +57,16 @@ function getListingPageSchema(locale) {
     "@context": "https://schema.org",
     "@type": "ItemList",
     "@id": `${localizedUrl(locale)}#listings`,
-    name: isAz ? "Area36 tərəfindən Lüks Dağ Evləri və Villalar" : "Luxury Chalets & Villas by Area36",
-    description: isAz
-      ? "Qəbələdə günlük və həftəlik kirayə verilən premium dağ evləri və villaların seçilmiş kolleksiyası."
-      : "Curated collection of luxury chalets, cabins and villas available for rent in Azerbaijan.",
+    name: pick(locale, {
+      en: "Luxury Chalets & Villas by Area36",
+      az: "Area36 tərəfindən Lüks Dağ Evləri və Villalar",
+      ru: "Роскошные шале и виллы Area36",
+    }),
+    description: pick(locale, {
+      en: "Curated collection of luxury chalets, cabins and villas available for rent in Azerbaijan.",
+      az: "Qəbələdə günlük və həftəlik kirayə verilən premium dağ evləri və villaların seçilmiş kolleksiyası.",
+      ru: "Подборка роскошных шале, горных домов и вилл в аренду в Габале, Азербайджан.",
+    }),
     url: localizedUrl(locale),
     publisher: { "@id": `${SITE_URL}/#organization` },
     numberOfItems: homes.length,
@@ -82,11 +96,11 @@ export default async function Home({ params }) {
         <HeroSection />
 
         <section
-          aria-label={isAz ? "Lüks Dağ Evləri və Villalar Kolleksiyası" : "Luxury Chalets and Villas Collection"}
+          aria-label={pick(locale, { en: "Luxury Chalets and Villas Collection", az: "Lüks Dağ Evləri və Villalar Kolleksiyası", ru: "Коллекция роскошных шале и вилл" })}
           className="max-w-7xl mx-auto w-full"
         >
           <h2 className="sr-only">
-            {isAz ? "Qəbələdə lüks dağ evləri və villalar" : "Luxury Chalets, Cabins and Villas in Azerbaijan"}
+            {pick(locale, { en: "Luxury Chalets, Cabins and Villas in Azerbaijan", az: "Qəbələdə lüks dağ evləri və villalar", ru: "Роскошные шале, горные дома и виллы в Габале" })}
           </h2>
           <Suspense fallback={null}>
             <Cards />

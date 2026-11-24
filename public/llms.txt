@@ -1,6 +1,6 @@
 # Area36
 
-> Area36 offers daily and weekly rentals of chalets, mountain houses and villas with pools in Gabala (Qəbələ), Azerbaijan, in the Caucasus mountains. Languages: English and Azerbaijani. Prices are in AZN per night and change by season.
+> Area36 offers daily and weekly rentals of chalets, mountain houses and villas with pools in Gabala (Qəbələ), Azerbaijan, in the Caucasus mountains. Languages: English, Azerbaijani and Russian. Prices are in AZN per night and change by season.
 
 Website: https://area36.az
 Phone / WhatsApp: +994552904045
@@ -9,13 +9,14 @@ Email: info@area36.az
 ## Pages
 - [English home](https://area36.az/en): all properties
 - [Azərbaycan dilində ana səhifə](https://area36.az/az): bütün evlər
+- [Русский: аренда вилл и шале в Габале](https://area36.az/ru): все дома на русском языке
 - [Tours & transfers](https://area36.az/en/tours-transfers)
 - [About](https://area36.az/en/about)
 - [Gabala travel guides](https://area36.az/en/guides): things to do, how to choose a villa, Baku to Gabala
 - [Sitemap](https://area36.az/sitemap.xml)
 
 ## Properties (all in Gabala, Azerbaijan)
-Each property page exists in English (/en/<slug>) and Azerbaijani (/az/<slug>).
+Each property page exists in English (/en/<slug>), Azerbaijani (/az/<slug>) and Russian (/ru/<slug>).
 
 - [Area36 Royal Chalet](https://area36.az/en/area36-royal-chalet): 4 bedrooms, up to 9 guests, seasonal pool. Address: Mirəli Qaşqay küçəsi, Gabala, AZ3600.
 - [Area36 Family Chalet](https://area36.az/en/area36-family-chalet): 3 bedrooms, up to 7 guests, heated pool. Address: Mirəli Qaşqay küçəsi, Gabala, AZ3600.

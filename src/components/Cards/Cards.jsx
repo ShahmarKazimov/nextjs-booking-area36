@@ -21,9 +21,10 @@ export default function Cards() {
     const searchQuery = searchActive
         ? new URLSearchParams({ arrival, departure, adults, children }).toString()
         : '';
-    const MONTHS = isAz
-        ? ['yan', 'fev', 'mar', 'apr', 'may', 'iyn', 'iyl', 'avq', 'sen', 'okt', 'noy', 'dek']
-        : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const MONTHS = {
+        az: ['yan', 'fev', 'mar', 'apr', 'may', 'iyn', 'iyl', 'avq', 'sen', 'okt', 'noy', 'dek'],
+        ru: ['янв', 'фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'],
+    }[locale] || ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     const niceDay = (str) => {
         const [, m, d] = str.split('-').map(Number);
         return `${d} ${MONTHS[m - 1]}`;
@@ -105,12 +106,13 @@ export default function Cards() {
                         className="mb-8 -mt-2 text-center text-sm text-gray-600"
                     >
                         {searchState === 'loading'
-                            ? isAz ? 'Mövcudluq yoxlanılır…' : 'Checking availability…'
+                            ? ({ az: 'Mövcudluq yoxlanılır…', ru: 'Проверяем доступность…' }[locale] || 'Checking availability…')
                             : searchState === 'error'
-                                ? isAz ? 'Mövcudluğu yoxlamaq mümkün olmadı, bir azdan yenidən cəhd edin.' : 'Could not check availability right now. Please try again shortly.'
-                                : isAz
-                                    ? `${niceDay(arrival)} – ${niceDay(departure)} tarixləri üçün mövcudluq göstərilir`
-                                    : `Showing availability for ${niceDay(arrival)} – ${niceDay(departure)}`}
+                                ? ({ az: 'Mövcudluğu yoxlamaq mümkün olmadı, bir azdan yenidən cəhd edin.', ru: 'Не удалось проверить доступность. Попробуйте чуть позже.' }[locale] || 'Could not check availability right now. Please try again shortly.')
+                                : ({
+                                    az: `${niceDay(arrival)} – ${niceDay(departure)} tarixləri üçün mövcudluq göstərilir`,
+                                    ru: `Доступность на даты ${niceDay(arrival)} – ${niceDay(departure)}`,
+                                }[locale] || `Showing availability for ${niceDay(arrival)} – ${niceDay(departure)}`)}
                     </p>
                 )}
 

@@ -3,7 +3,7 @@
 // those final URLs (never at a path that redirects).
 
 export const SITE_URL = "https://area36.az";
-export const LOCALES = ["en", "az"];
+export const LOCALES = ["en", "az", "ru"];
 export const DEFAULT_LOCALE = "en";
 
 export const SOCIAL_LINKS = [
@@ -47,11 +47,17 @@ export function buildAlternates(locale, path = "") {
     languages: {
       en: localizedUrl("en", path),
       az: localizedUrl("az", path),
+      ru: localizedUrl("ru", path),
       "x-default": localizedUrl(DEFAULT_LOCALE, path),
     },
   };
 }
 
+/** Pick the text for a locale: pick(locale, { en, az, ru }). Falls back to English. */
+export function pick(locale, texts) {
+  return texts[locale] ?? texts.en;
+}
+
 export function ogLocale(locale) {
-  return locale === "az" ? "az_AZ" : "en_US";
+  return { az: "az_AZ", ru: "ru_RU" }[locale] || "en_US";
 }

@@ -19,6 +19,7 @@ const guides = loadDefault("src/components/data/guides.js");
 const messages = {
   en: JSON.parse(read("messages/en.json")),
   az: JSON.parse(read("messages/az.json")),
+  ru: JSON.parse(read("messages/ru.json")),
 };
 
 const errors = [];
@@ -37,7 +38,7 @@ for (const h of homes) {
   if (!h.address?.streetAddress || !h.address?.postalCode) err(`${id}: missing address.streetAddress / postalCode (needed for VacationRental rich results)`);
   if (!h.features?.length) warn(`${id}: no features`);
 
-  for (const loc of ["en", "az"]) {
+  for (const loc of ["en", "az", "ru"]) {
     const m = messages[loc]?.Homes?.[h.slug];
     if (!m) { err(`${id}: no Homes.${h.slug} block in messages/${loc}.json`); continue; }
     for (const k of ["title", "description", "location", "type"]) {
@@ -60,7 +61,7 @@ for (const g of guides) {
   if (!g.slug) { err("a guide has no slug"); continue; }
   if (gslugs.has(g.slug)) err(`${id}: duplicate slug`);
   gslugs.add(g.slug);
-  for (const loc of ["en", "az"]) {
+  for (const loc of ["en", "az", "ru"]) {
     const c = g[loc];
     if (!c) { err(`${id}: missing "${loc}" text`); continue; }
     for (const k of ["title", "metaTitle", "description", "intro", "cta"]) if (!c[k]) err(`${id} [${loc}]: missing "${k}"`);

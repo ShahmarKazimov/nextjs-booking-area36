@@ -13,7 +13,7 @@ export default function HomeDetails({
     villaRentalLabel = '', // page.js-dən gələcək, tərcümə olunmuş "luxury villa rental" / "lüks villa kirayəsi"
 }) {
     const locale = useLocale();
-    const photoWord = locale === 'az' ? 'şəkil' : 'photo';
+    const photoWord = { az: 'şəkil', ru: 'фото' }[locale] || 'photo';
     const photoAlt = location
         ? `${title} – ${location} ${villaRentalLabel}`
         : `${title} – ${villaRentalLabel}`;

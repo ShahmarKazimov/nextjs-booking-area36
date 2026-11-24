@@ -4,7 +4,7 @@ import WishlistContent from "@/components/Wishlist/WishlistContent";
 export async function generateMetadata({ params }) {
   const { locale } = await params;
   return {
-    title: locale === "az" ? "Sevimlilər" : "Wishlist",
+    title: { az: "Sevimlilər", ru: "Избранное" }[locale] || "Wishlist",
     robots: { index: false, follow: true },
   };
 }

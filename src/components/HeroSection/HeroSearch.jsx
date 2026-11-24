@@ -29,6 +29,28 @@ const TXT = {
     guestWord: (n) => `${n} qonaq`,
     nights: (n) => `${n} gecə`,
   },
+  ru: {
+    checkIn: 'Заезд',
+    checkOut: 'Выезд',
+    guests: 'Гости',
+    add: 'Выберите дату',
+    search: 'Найти',
+    clear: 'Сбросить',
+    adults: 'Взрослые',
+    children: 'Дети',
+    months: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+    days: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
+    guestWord: (n) => {
+      const a = n % 100, b = a % 10;
+      const w = a > 10 && a < 20 ? 'гостей' : b > 1 && b < 5 ? 'гостя' : b === 1 ? 'гость' : 'гостей';
+      return `${n} ${w}`;
+    },
+    nights: (n) => {
+      const a = n % 100, b = a % 10;
+      const w = a > 10 && a < 20 ? 'ночей' : b > 1 && b < 5 ? 'ночи' : b === 1 ? 'ночь' : 'ночей';
+      return `${n} ${w}`;
+    },
+  },
   en: {
     checkIn: 'Check-in',
     checkOut: 'Check-out',
@@ -47,7 +69,7 @@ const TXT = {
 
 export default function HeroSearch() {
   const locale = useLocale();
-  const L = TXT[locale === 'az' ? 'az' : 'en'];
+  const L = TXT[locale === 'az' || locale === 'ru' ? locale : 'en'];
   const router = useRouter();
   const sp = useSearchParams();
 

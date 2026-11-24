@@ -1,14 +1,12 @@
 import { Link } from "@/i18n/routing";
 import guides from "@/components/data/guides";
-import { buildAlternates, localizedUrl, ogLocale, OG_IMAGE } from "@/lib/seo";
+import { buildAlternates, localizedUrl, ogLocale, OG_IMAGE, pick } from "@/lib/seo";
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
   const isAz = locale === "az";
-  const title = isAz ? "Qəbələ Bələdçisi | Area36" : "Gabala Travel Guides | Area36";
-  const description = isAz
-    ? "Qəbələdə nə etməli, villa necə seçilir və Bakıdan Qəbələyə necə getmək olar: Area36 səyahət bələdçiləri."
-    : "What to do in Gabala, how to choose a villa and how to get from Baku to Gabala: Area36 travel guides.";
+  const title = pick(locale, { en: "Gabala Travel Guides | Area36", az: "Qəbələ Bələdçisi | Area36", ru: "Путеводитель по Габале | Area36" });
+  const description = pick(locale, { en: "What to do in Gabala, how to choose a villa and how to get from Baku to Gabala: Area36 travel guides.", az: "Qəbələdə nə etməli, villa necə seçilir və Bakıdan Qəbələyə necə getmək olar: Area36 səyahət bələdçiləri.", ru: "Чем заняться в Габале, как выбрать виллу и как добраться из Баку в Габалу: путеводители Area36." });
   return {
     title: { absolute: title },
     description,
@@ -35,7 +33,7 @@ export default async function GuidesPage({ params }) {
       <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
         <div className="bg-[#1c1a17] px-8 py-12 text-white text-center">
           <h1 className="text-3xl md:text-4xl font-bold tracking-tight">
-            {isAz ? "Qəbələ bələdçisi" : "Gabala travel guides"}
+            {pick(locale, { en: "Gabala travel guides", az: "Qəbələ bələdçisi", ru: "Путеводитель по Габале" })}
           </h1>
         </div>
         <ul className="p-8 md:p-12 space-y-6">

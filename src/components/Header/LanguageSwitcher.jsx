@@ -27,6 +27,14 @@ const AZFlag = () => (
   </svg>
 );
 
+const RUFlag = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 30" className="w-5 h-3.5 rounded-sm shadow-sm inline-block shrink-0">
+    <rect width="50" height="10" fill="#FFFFFF" />
+    <rect y="10" width="50" height="10" fill="#0039A6" />
+    <rect y="20" width="50" height="10" fill="#D52B1E" />
+  </svg>
+);
+
 export default function LanguageSwitcher({ variant = "dark" }) {
   const light = variant === "light";
   const locale = useLocale();
@@ -52,7 +60,8 @@ export default function LanguageSwitcher({ variant = "dark" }) {
 
   const languages = [
     { code: "en", name: "EN", flag: <UKFlag /> },
-    { code: "az", name: "AZ", flag: <AZFlag /> }
+    { code: "az", name: "AZ", flag: <AZFlag /> },
+    { code: "ru", name: "RU", flag: <RUFlag /> }
   ];
 
   const currentLang = languages.find((lang) => lang.code === locale) || languages[0];

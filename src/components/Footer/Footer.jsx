@@ -64,7 +64,7 @@ export default function Footer() {
                                     href="/guides"
                                     className="hover:text-white transition-colors"
                                 >
-                                    {locale === "az" ? "Qəbələ bələdçisi" : "Gabala guides"}
+                                    {{ az: "Qəbələ bələdçisi", ru: "Путеводитель по Габале" }[locale] || "Gabala guides"}
                                 </Link>
                             </div>
                             <div className="flex items-center">
@@ -111,7 +111,7 @@ export default function Footer() {
                                 <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                                     <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                                 </svg>
-                                <span>{locale === "az" ? "Qəbələ, Azərbaycan" : "Gabala, Azerbaijan"}</span>
+                                <span>{{ az: "Qəbələ, Azərbaycan", ru: "Габала, Азербайджан" }[locale] || "Gabala, Azerbaijan"}</span>
                             </div>
                         </div>
                     </div>

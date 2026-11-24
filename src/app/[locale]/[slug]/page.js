@@ -1,5 +1,5 @@
 import homes from "../../../components/data/homes";
-import { SITE_URL, OG_IMAGE, buildAlternates, localizedUrl, ogLocale } from "@/lib/seo";
+import { SITE_URL, OG_IMAGE, buildAlternates, localizedUrl, ogLocale, pick } from "@/lib/seo";
 import { notFound } from "next/navigation";
 import HomeDetails from "../../../components/HomeDetails/HomeDetails";
 import {
@@ -65,7 +65,7 @@ function getFeatureIcon(feature) {
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  const locales = ['en', 'az'];
+  const locales = ['en', 'az', 'ru'];
   return locales.flatMap((locale) =>
     homes.map((home) => ({
       locale,
@@ -130,13 +130,17 @@ export async function generateMetadata({ params }) {
       `${locationStr} holiday home`,
       `${locationStr} vacation rental`,
 
-      locale === "az"
-        ? `${locationStr} villa kirayəsi`
-        : `${locationStr} villa rental`,
+      pick(locale, {
+        en: `${locationStr} villa rental`,
+        az: `${locationStr} villa kirayəsi`,
+        ru: `аренда виллы ${locationStr}`,
+      }),
 
-      locale === "az"
-        ? `${locationStr} günlük kirayə ev`
-        : `${locationStr} daily rental house`,
+      pick(locale, {
+        en: `${locationStr} daily rental house`,
+        az: `${locationStr} günlük kirayə ev`,
+        ru: `посуточная аренда дома ${locationStr}`,
+      }),
     ],
 
     alternates: buildAlternates(locale, `/${slug}`),
@@ -265,7 +269,7 @@ export default async function HomeDetailPage({ params }) {
       {
         "@type": "ListItem",
         position: 1,
-        name: isAz ? "Ana səhifə" : "Home",
+        name: pick(locale, { en: "Home", az: "Ana səhifə", ru: "Главная" }),
         item: localizedUrl(locale),
       },
       {

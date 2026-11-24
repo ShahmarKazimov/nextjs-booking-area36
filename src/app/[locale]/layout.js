@@ -9,7 +9,7 @@ import { routing } from "@/i18n/routing";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import Snowfall from "../../components/Winter/Snowfall";
-import { SITE_URL, CONTACT, SOCIAL_LINKS, OG_IMAGE, localizedUrl, ogLocale, addressExtras } from "@/lib/seo";
+import { SITE_URL, CONTACT, SOCIAL_LINKS, OG_IMAGE, localizedUrl, ogLocale, addressExtras, pick } from "@/lib/seo";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,13 +21,32 @@ export async function generateMetadata({ params }) {
   const { locale } = await params;
   const isAz = locale === "az";
 
-  const titleDefault = isAz
-    ? "Area36 | Qəbələdə Lüks Chalet və Villa Kirayəsi"
-    : "Area36 | Luxury Chalet & Villa Rentals in Gabala";
+  const titleDefault = pick(locale, {
+    en: "Area36 | Luxury Chalet & Villa Rentals in Gabala",
+    az: "Area36 | Qəbələdə Lüks Chalet və Villa Kirayəsi",
+    ru: "Area36 | Аренда роскошных шале и вилл в Габале",
+  });
 
-  const description = isAz
-    ? "Qəbələdə günlük və həftəlik lüks chalet, dağ evi və villa kirayəsi. Hovuz, barbekü sahəsi və Qafqaz dağ mənzərəsi ilə unudulmaz istirahət. Area36 ilə Qəbələdə premium istirahət."
-    : "Daily and weekly luxury chalet, mountain cabin, and villa rentals in Gabala. Pool, BBQ area, and Caucasus mountain views. Premium vacation with Area36.";
+  const description = pick(locale, {
+    en: "Daily and weekly luxury chalet, mountain cabin, and villa rentals in Gabala. Pool, BBQ area, and Caucasus mountain views. Premium vacation with Area36.",
+    az: "Qəbələdə günlük və həftəlik lüks chalet, dağ evi və villa kirayəsi. Hovuz, barbekü sahəsi və Qafqaz dağ mənzərəsi ilə unudulmaz istirahət. Area36 ilə Qəbələdə premium istirahət.",
+    ru: "Посуточная и недельная аренда роскошных шале, горных домов и вилл в Габале. Бассейн, зона барбекю и вид на Кавказские горы. Премиальный отдых с Area36.",
+  });
+
+  const ruKeywords = [
+    "аренда виллы в Габале",
+    "аренда дома в Габале",
+    "виллы в Габале с бассейном",
+    "шале в Габале",
+    "посуточная аренда Габала",
+    "отдых в Габале",
+    "где отдохнуть в Азербайджане",
+    "аренда вилл в Азербайджане",
+    "дом с бассейном Габала",
+    "отдых в горах Азербайджана",
+    "Габала жильё",
+    "снять виллу в Азербайджане",
+  ];
 
   const keywords = isAz ?
     [
@@ -105,7 +124,7 @@ export async function generateMetadata({ params }) {
 
     description,
     applicationName: "Area36",
-    keywords,
+    keywords: locale === "ru" ? ruKeywords : keywords,
 
     authors: [{ name: "Area36", url: "https://area36.az" }],
     creator: "Area36",
@@ -135,7 +154,11 @@ export async function generateMetadata({ params }) {
           url: OG_IMAGE.url,
           width: OG_IMAGE.width,
           height: OG_IMAGE.height,
-          alt: isAz ? "Area36 — Qəbələdə lüks chalet və villa kirayəsi" : "Area36 — luxury chalet and villa rentals in Gabala",
+          alt: pick(locale, {
+            en: "Area36 — luxury chalet and villa rentals in Gabala",
+            az: "Area36 — Qəbələdə lüks chalet və villa kirayəsi",
+            ru: "Area36 — аренда роскошных шале и вилл в Габале",
+          }),
         },
       ],
     },
@@ -183,14 +206,16 @@ function getOrganizationSchema(locale) {
       email: CONTACT.email,
       contactType: "reservations",
       areaServed: "AZ",
-      availableLanguage: ["az", "en"],
+      availableLanguage: ["az", "en", "ru"],
     },
-    description: locale === "az"
-      ? "Qəbələdə günlük və həftəlik lüks chalet, dağ evi və villa kirayəsi."
-      : "Daily and weekly luxury chalet, mountain cabin, and villa rentals in Gabala.",
+    description: pick(locale, {
+      en: "Daily and weekly luxury chalet, mountain cabin, and villa rentals in Gabala.",
+      az: "Qəbələdə günlük və həftəlik lüks chalet, dağ evi və villa kirayəsi.",
+      ru: "Посуточная и недельная аренда роскошных шале, горных домов и вилл в Габале.",
+    }),
     areaServed: {
       "@type": "City",
-      name: locale === "az" ? "Qəbələ" : "Gabala",
+      name: pick(locale, { en: "Gabala", az: "Qəbələ", ru: "Габала" }),
       addressCountry: "AZ",
     },
   };
@@ -216,20 +241,22 @@ function getLodgingSchema(locale) {
     "@id": `${SITE_URL}/#lodging`,
     name: "Area36",
     url: localizedUrl(locale),
-    description: isAz
-      ? "Qəbələdə hovuz və Qafqaz dağ mənzərəsi olan lüks chalet və villa kirayəsi."
-      : "Luxury chalet and villa rentals in Gabala with pools and Caucasus mountain views.",
+    description: pick(locale, {
+      en: "Luxury chalet and villa rentals in Gabala with pools and Caucasus mountain views.",
+      az: "Qəbələdə hovuz və Qafqaz dağ mənzərəsi olan lüks chalet və villa kirayəsi.",
+      ru: "Аренда роскошных шале и вилл в Габале с бассейнами и видом на Кавказские горы.",
+    }),
     telephone: CONTACT.phone,
     email: CONTACT.email,
     address: {
       "@type": "PostalAddress",
-      addressLocality: isAz ? "Qəbələ" : "Gabala",
+      addressLocality: pick(locale, { en: "Gabala", az: "Qəbələ", ru: "Габала" }),
       addressCountry: "AZ",
       ...addressExtras(),
     },
     amenityFeature: [
-      { "@type": "LocationFeatureSpecification", name: isAz ? "Hovuz" : "Pool", value: true },
-      { "@type": "LocationFeatureSpecification", name: isAz ? "Dağ mənzərəsi" : "Mountain views", value: true },
+      { "@type": "LocationFeatureSpecification", name: pick(locale, { en: "Pool", az: "Hovuz", ru: "Бассейн" }), value: true },
+      { "@type": "LocationFeatureSpecification", name: pick(locale, { en: "Mountain views", az: "Dağ mənzərəsi", ru: "Вид на горы" }), value: true },
     ],
     currenciesAccepted: "AZN",
     image: OG_IMAGE.url,

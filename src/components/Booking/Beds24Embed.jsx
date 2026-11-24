@@ -15,7 +15,7 @@ export default function Beds24Embed({
     hideheader: "yes",
     hidefooter: "yes",
     referer: "area36.az",
-    lang: locale === "az" ? "tr" : "en",
+    lang: locale === "az" ? "tr" : locale === "ru" ? "ru" : "en",
   });
   if (checkin && numnight) {
     params.set("checkin", checkin);

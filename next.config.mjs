@@ -38,7 +38,7 @@ const nextConfig = {
       // Köhnə slug → yeni slug (həm prefikssiz, həm /en|/az prefiksli köhnə URL-lər üçün)
       ...slugRedirects.flatMap(([from, to]) => [
         { source: `/${from}`, destination: `/${to}`, permanent: true },
-        { source: `/:locale(en|az)/${from}`, destination: `/:locale/${to}`, permanent: true },
+        { source: `/:locale(en|az|ru)/${from}`, destination: `/:locale/${to}`, permanent: true },
       ]),
     ];
   },

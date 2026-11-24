@@ -4,12 +4,12 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/routing";
 import guides, { GUIDE_HOMES } from "@/components/data/guides";
 import homes from "@/components/data/homes";
-import { SITE_URL, OG_IMAGE, buildAlternates, localizedUrl, ogLocale } from "@/lib/seo";
+import { SITE_URL, OG_IMAGE, buildAlternates, localizedUrl, ogLocale, pick } from "@/lib/seo";
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return ["en", "az"].flatMap((locale) => guides.map((g) => ({ locale, slug: g.slug })));
+  return ["en", "az", "ru"].flatMap((locale) => guides.map((g) => ({ locale, slug: g.slug })));
 }
 
 export async function generateMetadata({ params }) {
@@ -66,8 +66,8 @@ export default async function GuidePage({ params }) {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: isAz ? "Ana səhifə" : "Home", item: localizedUrl(locale) },
-        { "@type": "ListItem", position: 2, name: isAz ? "Bələdçi" : "Guides", item: localizedUrl(locale, "/guides") },
+        { "@type": "ListItem", position: 1, name: pick(locale, { en: "Home", az: "Ana səhifə", ru: "Главная" }), item: localizedUrl(locale) },
+        { "@type": "ListItem", position: 2, name: pick(locale, { en: "Guides", az: "Bələdçi", ru: "Путеводители" }), item: localizedUrl(locale, "/guides") },
         { "@type": "ListItem", position: 3, name: c.title, item: url },
       ],
     },
@@ -118,11 +118,11 @@ export default async function GuidePage({ params }) {
             </ul>
             <p className="mt-6 text-base">
               <Link href="/tours-transfers" className="underline">
-                {isAz ? "Tur və transferlər" : "Tours & transfers"}
+                {pick(locale, { en: "Tours & transfers", az: "Tur və transferlər", ru: "Туры и трансферы" })}
               </Link>
               {" · "}
               <Link href="/guides" className="underline">
-                {isAz ? "Bütün bələdçilər" : "All guides"}
+                {pick(locale, { en: "All guides", az: "Bütün bələdçilər", ru: "Все путеводители" })}
               </Link>
             </p>
           </section>

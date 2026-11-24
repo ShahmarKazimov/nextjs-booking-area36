@@ -27,9 +27,10 @@ const SingleCard = ({ property, search = null, searchQuery = '', fromPrice = nul
     // Date search result (Beds24 homes only): 'available' | 'unavailable' | 'unknown' | null
     const dim = search?.status === 'unavailable';
     const free = search?.status === 'available';
-    const MONTHS = isAz
-        ? ['yan', 'fev', 'mar', 'apr', 'may', 'iyn', 'iyl', 'avq', 'sen', 'okt', 'noy', 'dek']
-        : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const MONTHS = {
+        az: ['yan', 'fev', 'mar', 'apr', 'may', 'iyn', 'iyl', 'avq', 'sen', 'okt', 'noy', 'dek'],
+        ru: ['янв', 'фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'],
+    }[locale] || ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     const shortDay = (str) => {
         const [, m, d] = str.split('-').map(Number);
         return `${d} ${MONTHS[m - 1]}`;
@@ -40,12 +41,20 @@ const SingleCard = ({ property, search = null, searchQuery = '', fromPrice = nul
         sp.set('departure', departure);
         return `/${property.slug}?${sp.toString()}`;
     };
+    // Russian plural: 1 ночь, 2-4 ночи, 5+ ночей
+    const ruPlural = (n, one, few, many) => {
+        const a = Math.abs(n) % 100, b = a % 10;
+        if (a > 10 && a < 20) return many;
+        if (b > 1 && b < 5) return few;
+        if (b === 1) return one;
+        return many;
+    };
     const reasonText = () => {
         if (search?.reason === 'minStay' && search.minNights)
-            return isAz ? `Minimum ${search.minNights} gecə` : `Minimum ${search.minNights} nights`;
+            return { az: `Minimum ${search.minNights} gecə`, ru: `Минимум ${search.minNights} ${ruPlural(search.minNights, 'ночь', 'ночи', 'ночей')}` }[locale] || `Minimum ${search.minNights} nights`;
         if (search?.reason === 'capacity')
-            return isAz ? `Maksimum ${search.maxPeople} qonaq` : `Max ${search.maxPeople} guests`;
-        return isAz ? 'Bu tarixlərdə doludur' : 'Booked for these dates';
+            return { az: `Maksimum ${search.maxPeople} qonaq`, ru: `Максимум ${search.maxPeople} ${ruPlural(search.maxPeople, 'гость', 'гостя', 'гостей')}` }[locale] || `Max ${search.maxPeople} guests`;
+        return { az: 'Bu tarixlərdə doludur', ru: 'На эти даты занято' }[locale] || 'Booked for these dates';
     };
 
     const title = tHome("title");
@@ -76,9 +85,10 @@ const SingleCard = ({ property, search = null, searchQuery = '', fromPrice = nul
 
     // WhatsApp Inquiry URL for Partner Homes
     const waInquiryUrl = `https://wa.me/994552904045?text=${encodeURIComponent(
-        isAz
-            ? `Salam, Area36 vasitəsilə "${title}" üçün qiymət öyrənmək istəyirəm.`
-            : `Hello, I would like to inquire about the price for "${title}" via Area36.`
+        {
+            az: `Salam, Area36 vasitəsilə "${title}" üçün qiymət öyrənmək istəyirəm.`,
+            ru: `Здравствуйте, хочу узнать цену на «${title}» через Area36.`,
+        }[locale] || `Hello, I would like to inquire about the price for "${title}" via Area36.`
     )}`;
 
     return (
@@ -137,13 +147,13 @@ const SingleCard = ({ property, search = null, searchQuery = '', fromPrice = nul
                     <>
                         <div>
                             <span className="text-[11px] text-[#2d4a2b] block font-semibold uppercase tracking-wider">
-                                {isAz ? "Bu tarixlərdə boşdur" : "Available for your dates"}
+                                {{ az: "Bu tarixlərdə boşdur", ru: "Свободно на ваши даты" }[locale] || "Available for your dates"}
                             </span>
                             {search.price ? (
                                 <div className="flex items-baseline gap-1 text-gray-900">
                                     <span className="text-xl font-bold tracking-tight">₼ {Math.round(search.price)}</span>
                                     <span className="text-xs text-gray-500 font-normal">
-                                        / {search.nights} {isAz ? "gecə" : search.nights === 1 ? "night" : "nights"}
+                                        / {search.nights} {locale === "az" ? "gecə" : locale === "ru" ? ruPlural(search.nights, "ночь", "ночи", "ночей") : search.nights === 1 ? "night" : "nights"}
                                     </span>
                                 </div>
                             ) : (
@@ -155,7 +165,7 @@ const SingleCard = ({ property, search = null, searchQuery = '', fromPrice = nul
                             onClick={handleNavigate}
                             className="inline-flex items-center justify-center rounded-xl bg-[#2d4a2b] border border-[#2d4a2b] text-white hover:bg-[#233a22] hover:border-[#233a22] py-2.5 px-4 text-sm font-semibold transition-all text-center cursor-pointer"
                         >
-                            {isAz ? "Rezerv et" : "Reserve"}
+                            {{ az: "Rezerv et", ru: "Забронировать" }[locale] || "Reserve"}
                         </Link>
                     </>
                 ) : dim ? (
@@ -164,7 +174,7 @@ const SingleCard = ({ property, search = null, searchQuery = '', fromPrice = nul
                         {search.nearest?.length > 0 && (
                             <div className="mt-2">
                                 <span className="text-[11px] text-gray-400 block font-medium uppercase tracking-wider mb-1.5">
-                                    {isAz ? "Ən yaxın boş tarixlər" : "Nearest free dates"}
+                                    {{ az: "Ən yaxın boş tarixlər", ru: "Ближайшие свободные даты" }[locale] || "Nearest free dates"}
                                 </span>
                                 <div className="flex flex-wrap gap-2">
                                     {search.nearest.map((w) => (
@@ -185,14 +195,14 @@ const SingleCard = ({ property, search = null, searchQuery = '', fromPrice = nul
                     <>
                         <div>
                             <span className="text-[11px] text-gray-400 block font-medium uppercase tracking-wider">
-                                {isAz ? "Qiymət" : "Price"}
+                                {{ az: "Qiymət", ru: "Цена" }[locale] || "Price"}
                             </span>
                             {fromPrice === undefined ? (
                                 <div className="h-7 w-24 rounded-md bg-gray-100 animate-pulse" aria-hidden="true" />
                             ) : fromPrice ? (
                                 <div className="flex items-baseline gap-1 text-gray-900">
                                     <span className="text-xl font-bold tracking-tight">
-                                        {!isAz && <span className="text-sm font-medium text-gray-500 mr-1">From</span>}
+                                        {locale !== "az" && <span className="text-sm font-medium text-gray-500 mr-1">{locale === "ru" ? "От" : "From"}</span>}
                                         ₼ {Number.isInteger(fromPrice) ? fromPrice : fromPrice.toFixed(2)}
                                         {isAz ? "-dən" : ""}
                                     </span>
