@@ -173,12 +173,12 @@ const guides = [
       description:
         "How to travel from Baku to Gabala by car, taxi or private transfer, how long it takes and what to plan for.",
       intro:
-        "Gabala is in the north-west of Azerbaijan, a long day trip or an easy weekend from Baku. Here are the main ways to get there.",
+        "Gabala is in the north of Azerbaijan, a long day trip or an easy weekend from Baku. Here are the main ways to get there.",
       sections: [
         {
           h: "By car",
           p: [
-            "The drive from Baku takes roughly three and a half to four hours depending on traffic, the route and stops. Fuel up before the last stretch, start early on weekends, and allow extra time in winter, when mountain roads can be slower.",
+            "The drive from Baku takes roughly 215 km and about three to four hours depending on traffic, the route and stops. Fuel up before the last stretch, start early on weekends, and allow extra time in winter, when mountain roads can be slower.",
           ],
         },
         {
@@ -208,12 +208,12 @@ const guides = [
       description:
         "Bakıdan Qəbələyə avtomobil, taksi və ya şəxsi transferlə necə getmək, yol nə qədər çəkir və nələri planlamaq lazımdır.",
       intro:
-        "Qəbələ Azərbaycanın şimal-qərbindədir, Bakıdan uzun günlük səfər və ya rahat həftəsonu məsafəsidir. Ora çatmağın əsas yolları bunlardır.",
+        "Qəbələ Azərbaycanın şimalındadır, Bakıdan uzun günlük səfər və ya rahat həftəsonu məsafəsidir. Ora çatmağın əsas yolları bunlardır.",
       sections: [
         {
           h: "Avtomobillə",
           p: [
-            "Bakıdan yol tıxac, marşrut və dayanacaqlardan asılı olaraq təxminən üç yarım ilə dörd saat çəkir. Son hissədən əvvəl yanacaq doldurun, həftəsonları tez çıxın, qışda isə dağ yolları yavaş ola bildiyi üçün əlavə vaxt ayırın.",
+            "Bakıdan yol tıxac, marşrut və dayanacaqlardan asılı olaraq təxminən 215 km və üç ilə dörd saat çəkir. Son hissədən əvvəl yanacaq doldurun, həftəsonları tez çıxın, qışda isə dağ yolları yavaş ola bildiyi üçün əlavə vaxt ayırın.",
           ],
         },
         {
@@ -325,12 +325,12 @@ const ru = {
     description:
       "Как добраться из Баку в Габалу на машине, такси или частным трансфером, сколько занимает дорога и что стоит спланировать.",
     intro:
-      "Габала находится на северо-западе Азербайджана: из Баку это долгая поездка на день или удобные выходные. Вот основные способы добраться.",
+      "Габала находится на севере Азербайджана: из Баку это долгая поездка на день или удобные выходные. Вот основные способы добраться.",
     sections: [
       {
         h: "На машине",
         p: [
-          "Дорога из Баку занимает примерно три с половиной — четыре часа в зависимости от пробок, маршрута и остановок. Заправьтесь перед последним участком, в выходные выезжайте пораньше, а зимой закладывайте дополнительное время: горные дороги могут быть медленнее.",
+          "Дорога из Баку составляет около 215 км и занимает примерно три-четыре часа в зависимости от пробок, маршрута и остановок. Заправьтесь перед последним участком, в выходные выезжайте пораньше, а зимой закладывайте дополнительное время: горные дороги могут быть медленнее.",
         ],
       },
       {
@@ -384,7 +384,7 @@ guides.push(
           h: "Old towns and culture: Sheki and Ismayilli villages",
           p: [
             "Sheki is known for the Palace of the Sheki Khans and its old streets, and is a good fit for a culture-focused trip. Villages in the Ismayilli area such as Lahij and Basqal are known for traditional crafts.",
-            "Sheki is often combined with Gabala in one trip, since the two regions are neighbours in the north-west.",
+            "Sheki is often combined with Gabala in one trip, since the two districts border each other.",
           ],
         },
         {
@@ -428,7 +428,7 @@ guides.push(
           h: "Qədim şəhərlər və mədəniyyət: Şəki və İsmayıllı kəndləri",
           p: [
             "Şəki Şəki Xan Sarayı və köhnə küçələri ilə tanınır, mədəni səfər üçün uyğundur. İsmayıllı ərazisindəki Lahıc və Basqal kimi kəndlər ənənəvi sənətkarlığı ilə məşhurdur.",
-            "Şəki tez-tez Qəbələ ilə bir səfərdə birləşdirilir, çünki bu iki bölgə şimal-qərbdə qonşudur.",
+            "Şəki tez-tez Qəbələ ilə bir səfərdə birləşdirilir, çünki bu iki rayon bir-biri ilə həmsərhəddir.",
           ],
         },
         {
@@ -472,7 +472,7 @@ guides.push(
           h: "Старинные города и культура: Шеки и сёла Исмаиллы",
           p: [
             "Шеки известен Дворцом шекинских ханов и старыми улицами и хорошо подходит для культурной поездки. Сёла Исмаиллинского района, такие как Лахидж и Басгал, известны традиционными ремёслами.",
-            "Шеки часто совмещают с Габалой в одной поездке: эти два региона соседствуют на северо-западе страны.",
+            "Шеки часто совмещают с Габалой в одной поездке: эти два района граничат друг с другом.",
           ],
         },
         {
