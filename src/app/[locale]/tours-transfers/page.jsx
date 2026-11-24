@@ -161,7 +161,7 @@ export async function generateMetadata({ params }) {
   const { locale } = await params;
   const t = T[locale] || T.en;
   return {
-    title: t.metaTitle,
+    title: { absolute: t.metaTitle },
     description: t.metaDesc,
     alternates: buildAlternates(locale, PATH),
     twitter: { card: "summary_large_image", title: t.metaTitle, description: t.metaDesc, images: [OG_IMAGE.url] },

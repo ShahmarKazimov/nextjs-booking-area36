@@ -8,7 +8,7 @@ export async function generateMetadata({ params }) {
   const description = pick(locale, { en: "AREA36 is a platform operating in the presentation and reservation of premium villas and holiday homes in Azerbaijan.", az: "AREA36 Azərbaycanda premium villa və istirahət evlərinin təqdimatı və rezervasiyası sahəsində fəaliyyət göstərən platformadır.", ru: "AREA36 — платформа по представлению и бронированию премиальных вилл и домов для отдыха в Азербайджане." });
 
   return {
-    title,
+    title: { absolute: title },
     description,
     alternates: buildAlternates(locale, "/about"),
     twitter: { card: "summary_large_image", title, description, images: [OG_IMAGE.url] },
