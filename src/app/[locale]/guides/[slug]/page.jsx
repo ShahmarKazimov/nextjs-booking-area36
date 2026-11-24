@@ -42,7 +42,7 @@ export default async function GuidePage({ params }) {
   const c = guide[locale] || guide.en;
   const url = localizedUrl(locale, `/guides/${slug}`);
 
-  const featured = GUIDE_HOMES.map((s) => homes.find((h) => h.slug === s)).filter(Boolean);
+  const featured = (guide.homes || GUIDE_HOMES).map((s) => homes.find((h) => h.slug === s)).filter(Boolean);
   const titles = {};
   for (const h of featured) {
     const tHome = await getTranslations({ locale, namespace: `Homes.${h.slug}` });

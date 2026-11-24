@@ -359,4 +359,502 @@ guides.forEach((g) => {
   g.ru = ru[g.slug];
 });
 
+// Articles aimed at broader search intents (where to relax, best season, pool villas, big groups).
+// `homes` picks the three homes shown at the bottom of the article.
+guides.push(
+  {
+    slug: "where-to-relax-in-azerbaijan",
+    homes: ["area36-royal-chalet", "area36-family-chalet", "area36-luxury-chalet"],
+    en: {
+      title: "Where to Relax in Azerbaijan: Mountains, Old Towns and the Sea",
+      metaTitle: "Where to Relax in Azerbaijan: Best Places | Area36",
+      description:
+        "Gabala, Sheki, Guba, Ismayilli and Lankaran compared: where to relax in Azerbaijan, who each place suits best and how to choose.",
+      intro:
+        "Azerbaijan is small enough to explore by road, yet varied enough that the right region depends on what kind of holiday you want. This is a plain comparison of the places most visitors consider, so you can decide before you book.",
+      sections: [
+        {
+          h: "Mountains and forests: Gabala and Ismayilli",
+          p: [
+            "Gabala (Qəbələ) and the neighbouring Ismayilli district are the classic choice for a green, cool mountain holiday: forested slopes, rivers, waterfalls and fresh air. Gabala also has a cable-car mountain resort, so it works in summer and in winter.",
+            "It suits families, groups of friends and anyone who wants private houses with pools and gardens rather than a hotel.",
+          ],
+        },
+        {
+          h: "Old towns and culture: Sheki and Ismayilli villages",
+          p: [
+            "Sheki is known for the Palace of the Sheki Khans and its old streets, and is a good fit for a culture-focused trip. Villages in the Ismayilli area such as Lahij and Basqal are known for traditional crafts.",
+            "Sheki is often combined with Gabala in one trip, since the two regions are neighbours in the north-west.",
+          ],
+        },
+        {
+          h: "The north: Guba and Khinalug",
+          p: [
+            "Guba is known for its orchards and forests, and Khinalug is one of the highest mountain villages in the Caucasus. This direction is for people who want high-mountain scenery and a quieter, more rugged atmosphere.",
+          ],
+        },
+        {
+          h: "Sea and subtropics: Lankaran, Astara and the Caspian coast",
+          p: [
+            "The south of Azerbaijan is subtropical, with tea and citrus growing in the Lankaran area. On the Caspian coast, resorts such as Nabran attract guests who mainly want a beach and sea holiday in summer.",
+          ],
+        },
+        {
+          h: "How to choose",
+          p: [
+            "Choose mountains and forest (Gabala) for cooler summers, pools, family stays and year-round trips. Choose Sheki for history and culture. Choose the coast for beach days in the warm months. If you are travelling with a large family or a group, the number of bedrooms and the type of house matter more than the exact town.",
+            "Area36's homes are in Gabala. Each home page shows live availability and the price for your dates.",
+          ],
+        },
+      ],
+      cta: "See our homes in Gabala",
+    },
+    az: {
+      title: "Azərbaycanda harada dincəlmək olar: dağlar, qədim şəhərlər və dəniz",
+      metaTitle: "Azərbaycanda Harada Dincəlmək Olar | Area36 Bələdçi",
+      description:
+        "Qəbələ, Şəki, Quba, İsmayıllı və Lənkəran müqayisəsi: Azərbaycanda harada dincəlmək, hər yer kimə uyğundur və necə seçmək olar.",
+      intro:
+        "Azərbaycan yolla gəzmək üçün kifayət qədər kiçikdir, amma elə müxtəlifdir ki, düzgün bölgə istədiyiniz istirahətdən asılıdır. Bu, əksər qonaqların nəzərdən keçirdiyi yerlərin sadə müqayisəsidir, rezervasiyadan əvvəl qərar verməyə kömək edir.",
+      sections: [
+        {
+          h: "Dağlar və meşələr: Qəbələ və İsmayıllı",
+          p: [
+            "Qəbələ və qonşu İsmayıllı rayonu yaşıl və sərin dağ istirahəti üçün klassik seçimdir: meşəlik yamaclar, çaylar, şəlalələr və təmiz hava. Qəbələdə kabel yolu olan dağ kurortu da var, ona görə həm yayda, həm qışda uyğundur.",
+            "Ailələr, dost qrupları və otel yerinə hovuzlu, bağlı xüsusi ev istəyənlər üçün idealdır.",
+          ],
+        },
+        {
+          h: "Qədim şəhərlər və mədəniyyət: Şəki və İsmayıllı kəndləri",
+          p: [
+            "Şəki Şəki Xan Sarayı və köhnə küçələri ilə tanınır, mədəni səfər üçün uyğundur. İsmayıllı ərazisindəki Lahıc və Basqal kimi kəndlər ənənəvi sənətkarlığı ilə məşhurdur.",
+            "Şəki tez-tez Qəbələ ilə bir səfərdə birləşdirilir, çünki bu iki bölgə şimal-qərbdə qonşudur.",
+          ],
+        },
+        {
+          h: "Şimal: Quba və Xınalıq",
+          p: [
+            "Quba bağları və meşələri ilə, Xınalıq isə Qafqazın ən hündür dağ kəndlərindən biri kimi tanınır. Bu istiqamət yüksək dağ mənzərəsi və daha sakit, daha sərt mühit istəyənlər üçündür.",
+          ],
+        },
+        {
+          h: "Dəniz və subtropik: Lənkəran, Astara və Xəzər sahili",
+          p: [
+            "Azərbaycanın cənubu subtropikdir, Lənkəran ərazisində çay və sitrus yetişdirilir. Xəzər sahilində Nabran kimi kurortlar yayda əsasən çimərlik və dəniz istirahəti istəyənləri cəlb edir.",
+          ],
+        },
+        {
+          h: "Necə seçmək olar",
+          p: [
+            "Daha sərin yay, hovuz, ailə istirahəti və il boyu səfərlər üçün dağ və meşə (Qəbələ) seçin. Tarix və mədəniyyət üçün Şəki, isti aylarda çimərlik üçün sahil bölgəsi seçin. Böyük ailə və ya qrupla gedirsinizsə, dəqiq şəhərdən çox yataq otaqlarının sayı və evin növü vacibdir.",
+            "Area36-nın evləri Qəbələdədir. Hər ev səhifəsində seçdiyiniz tarixlər üçün canlı boş günlər və qiymət göstərilir.",
+          ],
+        },
+      ],
+      cta: "Qəbələdəki evlərimizə baxın",
+    },
+    ru: {
+      title: "Где отдохнуть в Азербайджане: горы, старинные города и море",
+      metaTitle: "Где отдохнуть в Азербайджане: лучшие места | Area36",
+      description:
+        "Габала, Шеки, Губа, Исмаиллы и Ленкорань: сравнение мест для отдыха в Азербайджане, кому что подходит и как выбрать.",
+      intro:
+        "Азербайджан достаточно небольшой, чтобы объезжать его на машине, но настолько разнообразный, что подходящий регион зависит от того, какой отпуск вы хотите. Это простое сравнение мест, которые чаще всего рассматривают туристы, чтобы вы могли определиться до бронирования.",
+      sections: [
+        {
+          h: "Горы и леса: Габала и Исмаиллы",
+          p: [
+            "Габала и соседний Исмаиллинский район — классический выбор для зелёного и прохладного горного отдыха: лесистые склоны, реки, водопады и свежий воздух. В Габале есть и горный курорт с канатной дорогой, поэтому сюда приезжают и летом, и зимой.",
+            "Подходит семьям, компаниям друзей и тем, кто хочет вместо отеля частный дом с бассейном и садом.",
+          ],
+        },
+        {
+          h: "Старинные города и культура: Шеки и сёла Исмаиллы",
+          p: [
+            "Шеки известен Дворцом шекинских ханов и старыми улицами и хорошо подходит для культурной поездки. Сёла Исмаиллинского района, такие как Лахидж и Басгал, известны традиционными ремёслами.",
+            "Шеки часто совмещают с Габалой в одной поездке: эти два региона соседствуют на северо-западе страны.",
+          ],
+        },
+        {
+          h: "Север: Губа и Хыналыг",
+          p: [
+            "Губа известна садами и лесами, а Хыналыг — одно из самых высокогорных сёл Кавказа. Это направление для тех, кто хочет высокогорных пейзажей и более тихой, суровой атмосферы.",
+          ],
+        },
+        {
+          h: "Море и субтропики: Ленкорань, Астара и побережье Каспия",
+          p: [
+            "Юг Азербайджана субтропический: в районе Ленкорани выращивают чай и цитрусовые. На побережье Каспия такие курорты, как Набрань, привлекают тех, кто летом хочет прежде всего пляжного и морского отдыха.",
+          ],
+        },
+        {
+          h: "Как выбрать",
+          p: [
+            "Горы и лес (Габала) выбирайте ради прохладного лета, бассейна, семейного отдыха и поездок в любое время года. Шеки — ради истории и культуры. Побережье — ради пляжных дней в тёплые месяцы. Если вы едете большой семьёй или компанией, число спален и тип дома важнее, чем конкретный город.",
+            "Дома Area36 находятся в Габале. На странице каждого дома показаны актуальные свободные даты и цена на выбранный период.",
+          ],
+        },
+      ],
+      cta: "Посмотрите наши дома в Габале",
+    },
+  },
+
+  {
+    slug: "best-time-to-visit-gabala",
+    homes: ["area36-family-chalet", "area36-golden-loft", "qafqaz-wooden-chalet"],
+    en: {
+      title: "Best Time to Visit Gabala: Summer, Autumn, Winter and Spring",
+      metaTitle: "Best Time to Visit Gabala, Azerbaijan | Area36",
+      description:
+        "When to go to Gabala: what each season offers, from summer pools and cooler mountain air to winter skiing and spring waterfalls.",
+      intro:
+        "Gabala works all year, but each season is a different kind of holiday. Here is what to expect so you can pick the time that matches your plans.",
+      sections: [
+        {
+          h: "Summer: pools and cooler mountain air",
+          p: [
+            "Summer is the high season. Mountain air is usually cooler than in Baku and the lowlands, and outdoor pools, gardens and barbecue evenings are at their best. Book early for popular dates and weekends.",
+          ],
+        },
+        {
+          h: "Autumn: quiet and colourful",
+          p: [
+            "Autumn brings changing colours in the forests, fewer crowds and comfortable weather for walks and day trips. A house with heated floors and a heated pool is pleasant in the cooler evenings.",
+          ],
+        },
+        {
+          h: "Winter: snow and the mountain resort",
+          p: [
+            "In winter the region's mountain resort offers skiing, and the landscape turns white. A heated pool lets you swim even on cold days, so check which homes have one. Mountain roads can be slower in winter, so allow extra travel time.",
+          ],
+        },
+        {
+          h: "Spring: green hills and waterfalls",
+          p: [
+            "Spring is green and fresh, and rivers and waterfalls are often at their fullest after the snow melts. It is a good season for hiking and photography, with changeable weather, so pack layers.",
+          ],
+        },
+        {
+          h: "Choosing your dates",
+          p: [
+            "Prices change by season, and holiday weekends fill up first. Check the live calendar on each home page: it shows booked nights and the total for your dates.",
+          ],
+        },
+      ],
+      cta: "Choose a home for your dates",
+    },
+    az: {
+      title: "Qəbələyə nə vaxt getmək yaxşıdır: yay, payız, qış və yaz",
+      metaTitle: "Qəbələyə Nə Vaxt Getmək Yaxşıdır | Area36 Bələdçi",
+      description:
+        "Qəbələyə nə vaxt getmək: yayda hovuz və sərin dağ havasından qışda xizək və yazda şəlalələrə qədər hər fəslin təklifləri.",
+      intro:
+        "Qəbələ il boyu işləyir, amma hər fəsil fərqli istirahətdir. Planlarınıza uyğun vaxtı seçmək üçün nələri gözləmək lazım olduğunu burada görürsünüz.",
+      sections: [
+        {
+          h: "Yay: hovuz və sərin dağ havası",
+          p: [
+            "Yay əsas mövsümdür. Dağ havası adətən Bakı və düzənliklərdən sərin olur, açıq hovuz, bağ və barbekü axşamları ən yaxşı vaxtındadır. Məşhur tarixlər və həftəsonları üçün əvvəlcədən rezerv edin.",
+          ],
+        },
+        {
+          h: "Payız: sakit və rəngarəng",
+          p: [
+            "Payızda meşələr rəng dəyişir, qələbəlik az olur, gəzinti və günlük səfərlər üçün hava rahatdır. Sərin axşamlarda isidilən döşəməsi və isitməli hovuzu olan ev xüsusilə xoşdur.",
+          ],
+        },
+        {
+          h: "Qış: qar və dağ kurortu",
+          p: [
+            "Qışda bölgənin dağ kurortunda xizək sürmək olur, mənzərə ağ rəngə bürünür. İsitməli hovuz soyuq günlərdə də üzməyə imkan verir, ona görə hansı evlərdə olduğuna baxın. Qışda dağ yolları yavaş ola bilər, yola əlavə vaxt ayırın.",
+          ],
+        },
+        {
+          h: "Yaz: yaşıl təpələr və şəlalələr",
+          p: [
+            "Yaz yaşıl və təravətlidir, qar əriyəndən sonra çaylar və şəlalələr çox vaxt ən dolu olur. Piyada gəzinti və foto üçün yaxşı fəsildir, hava dəyişkən olduğuna görə qat-qat geyim götürün.",
+          ],
+        },
+        {
+          h: "Tarixlərinizi seçmək",
+          p: [
+            "Qiymətlər mövsümə görə dəyişir, bayram həftəsonları ilk dolur. Hər ev səhifəsindəki canlı təqvimə baxın: dolu gecələri və seçdiyiniz tarixlər üçün yekun məbləği göstərir.",
+          ],
+        },
+      ],
+      cta: "Tarixləriniz üçün ev seçin",
+    },
+    ru: {
+      title: "Когда лучше ехать в Габалу: лето, осень, зима и весна",
+      metaTitle: "Когда лучше ехать в Габалу, Азербайджан | Area36",
+      description:
+        "Когда ехать в Габалу: что предлагает каждый сезон, от летних бассейнов и прохладного горного воздуха до зимних лыж и весенних водопадов.",
+      intro:
+        "Габала хороша круглый год, но каждый сезон — это разный отпуск. Вот чего ждать, чтобы выбрать время, подходящее для ваших планов.",
+      sections: [
+        {
+          h: "Лето: бассейны и прохладный горный воздух",
+          p: [
+            "Лето — высокий сезон. Горный воздух обычно прохладнее, чем в Баку и на равнине, а открытые бассейны, сады и вечера у барбекю в лучшей форме. Популярные даты и выходные лучше бронировать заранее.",
+          ],
+        },
+        {
+          h: "Осень: тихо и красочно",
+          p: [
+            "Осенью в лесах меняются краски, людей меньше, а погода удобна для прогулок и поездок на день. В прохладные вечера особенно приятен дом с тёплыми полами и бассейном с подогревом.",
+          ],
+        },
+        {
+          h: "Зима: снег и горный курорт",
+          p: [
+            "Зимой на горном курорте региона можно кататься на лыжах, а пейзаж становится белым. Бассейн с подогревом позволяет купаться даже в холодные дни, поэтому уточняйте, в каких домах он есть. Горные дороги зимой могут быть медленнее, заложите дополнительное время на дорогу.",
+          ],
+        },
+        {
+          h: "Весна: зелёные холмы и водопады",
+          p: [
+            "Весной всё зелёное и свежее, а реки и водопады после таяния снега часто наиболее полноводны. Это хороший сезон для походов и фотографии, но погода переменчива, поэтому берите одежду на разную погоду.",
+          ],
+        },
+        {
+          h: "Выбор дат",
+          p: [
+            "Цены меняются по сезонам, а праздничные выходные заполняются в первую очередь. Проверяйте актуальный календарь на странице каждого дома: он показывает занятые ночи и итоговую сумму на ваши даты.",
+          ],
+        },
+      ],
+      cta: "Выберите дом на ваши даты",
+    },
+  },
+
+  {
+    slug: "villa-with-pool-in-gabala",
+    homes: ["area36-family-chalet", "area36-golden-loft", "qafqaz-wooden-chalet"],
+    en: {
+      title: "Villas with a Pool in Gabala: Heated or Seasonal?",
+      metaTitle: "Villas with a Pool in Gabala, Azerbaijan | Area36",
+      description:
+        "Which Gabala villas have a heated pool and which have a seasonal one, how to choose, and what to check before you book.",
+      intro:
+        "A pool is the reason many guests choose a villa in Gabala. Not all pools are the same, so here is how the Area36 homes differ and what to check.",
+      sections: [
+        {
+          h: "Heated pool: swim in cooler months too",
+          p: [
+            "Family Chalet, Golden Loft, Riverside Chalet, Falcon Chalet and Wooden Chalet have a heated pool, so you can swim on cooler days and outside the peak summer months. Luxury Chalet has a heated indoor pool as well as an outdoor pool, which makes it usable all year.",
+          ],
+        },
+        {
+          h: "Seasonal pool: best in warm weather",
+          p: [
+            "Royal Chalet, Magnolia Harmony and Milano Deluxe have a seasonal outdoor pool, intended for the warm months. Milano Deluxe's pool has a shallow section for children and a deeper one for adults.",
+          ],
+        },
+        {
+          h: "What to check before you book",
+          p: [
+            "Confirm the pool type for your travel dates, the number of guests the house sleeps, and whether you need a children's section. If you are visiting outside summer, prefer a heated or indoor pool.",
+            "Each property page lists the pool type in its amenities, and shows live availability and the total price for your dates.",
+          ],
+        },
+        {
+          h: "Beyond the pool",
+          p: [
+            "Most homes also have a garden, a barbecue area, a fully equipped kitchen, Wi-Fi and private parking, so you can spend whole days at the house.",
+          ],
+        },
+      ],
+      cta: "Heated-pool homes to start with",
+    },
+    az: {
+      title: "Qəbələdə hovuzlu villalar: isitməli, yoxsa mövsümi?",
+      metaTitle: "Qəbələdə Hovuzlu Villa və Ev Kirayəsi | Area36",
+      description:
+        "Qəbələdə hansı villalarda isitməli, hansılarda mövsümi hovuz var, necə seçmək olar və rezervasiyadan əvvəl nəyi yoxlamaq lazımdır.",
+      intro:
+        "Hovuz çox qonağın Qəbələdə villa seçməsinin səbəbidir. Hovuzlar eyni deyil, ona görə Area36 evlərinin necə fərqləndiyini və nəyi yoxlamağı burada görürsünüz.",
+      sections: [
+        {
+          h: "İsitməli hovuz: sərin aylarda da üzmək",
+          p: [
+            "Family Chalet, Golden Loft, Riverside Chalet, Falcon Chalet və Wooden Chalet-də isitməli hovuz var, ona görə sərin günlərdə və yay zirvəsindən kənarda da üzmək olur. Luxury Chalet-də isitməli qapalı hovuz və açıq hovuz var, bu da evdən il boyu istifadə etməyə imkan verir.",
+          ],
+        },
+        {
+          h: "Mövsümi hovuz: isti havada ən yaxşısı",
+          p: [
+            "Royal Chalet, Magnolia Harmony və Milano Deluxe-də isti aylar üçün nəzərdə tutulmuş mövsümi açıq hovuz var. Milano Deluxe-in hovuzunda uşaqlar üçün dayaz, böyüklər üçün dərin hissə var.",
+          ],
+        },
+        {
+          h: "Rezervasiyadan əvvəl nəyi yoxlamaq lazımdır",
+          p: [
+            "Səfər tarixləriniz üçün hovuzun növünü, evin neçə qonaq tutduğunu və uşaq bölməsinin lazım olub-olmadığını dəqiqləşdirin. Yaydan kənar gəlirsinizsə, isitməli və ya qapalı hovuza üstünlük verin.",
+            "Hər ev səhifəsində imkanlar siyahısında hovuzun növü yazılıb, seçdiyiniz tarixlər üçün canlı boş günlər və yekun qiymət göstərilir.",
+          ],
+        },
+        {
+          h: "Hovuzdan başqa",
+          p: [
+            "Evlərin əksəriyyətində bağ, barbekü sahəsi, tam təchiz olunmuş mətbəx, Wi-Fi və şəxsi dayanacaq da var, ona görə bütün günü evdə keçirmək olar.",
+          ],
+        },
+      ],
+      cta: "Başlamaq üçün isitməli hovuzlu evlər",
+    },
+    ru: {
+      title: "Виллы с бассейном в Габале: с подогревом или сезонный?",
+      metaTitle: "Виллы с бассейном в Габале, Азербайджан | Area36",
+      description:
+        "В каких виллах Габалы бассейн с подогревом, а в каких сезонный, как выбрать и что проверить перед бронированием.",
+      intro:
+        "Бассейн — причина, по которой многие выбирают виллу в Габале. Бассейны бывают разными, поэтому вот чем различаются дома Area36 и что стоит проверить.",
+      sections: [
+        {
+          h: "Бассейн с подогревом: можно купаться и в прохладные месяцы",
+          p: [
+            "В Family Chalet, Golden Loft, Riverside Chalet, Falcon Chalet и Wooden Chalet бассейн с подогревом, поэтому купаться можно в прохладные дни и вне пика лета. В Luxury Chalet есть крытый бассейн с подогревом и открытый бассейн, так что домом можно пользоваться круглый год.",
+          ],
+        },
+        {
+          h: "Сезонный бассейн: лучше всего в тёплую погоду",
+          p: [
+            "В Royal Chalet, Magnolia Harmony и Milano Deluxe сезонный открытый бассейн, рассчитанный на тёплые месяцы. В бассейне Milano Deluxe есть мелкая часть для детей и более глубокая для взрослых.",
+          ],
+        },
+        {
+          h: "Что проверить перед бронированием",
+          p: [
+            "Уточните тип бассейна на ваши даты, сколько гостей вмещает дом и нужна ли детская часть. Если вы едете не летом, выбирайте бассейн с подогревом или крытый.",
+            "На странице каждого дома тип бассейна указан в списке удобств, а также показаны актуальные свободные даты и итоговая цена на ваши даты.",
+          ],
+        },
+        {
+          h: "Кроме бассейна",
+          p: [
+            "В большинстве домов также есть сад, зона барбекю, полностью оборудованная кухня, Wi-Fi и собственная парковка, поэтому целые дни можно проводить на территории дома.",
+          ],
+        },
+      ],
+      cta: "Дома с подогреваемым бассейном для начала",
+    },
+  },
+
+  {
+    slug: "villa-for-large-group-in-gabala",
+    homes: ["area36-luxury-chalet", "area36-royal-chalet", "qafqaz-falcon-chalet"],
+    en: {
+      title: "Villas for Large Groups and Families in Gabala",
+      metaTitle: "Large Group & Family Villas in Gabala | Area36",
+      description:
+        "Where a big family or group can stay in Gabala: a home for up to 13 guests, and neighbouring chalets you can book side by side.",
+      intro:
+        "Travelling with a large family, several families or a group of friends is easier when everyone is close but has their own space. Here are the options in Gabala.",
+      sections: [
+        {
+          h: "One big house: up to 13 guests",
+          p: [
+            "Luxury Chalet has 5 bedrooms, 4 bathrooms and space for up to 13 guests, with a heated indoor pool, an outdoor pool, a terrace, a gazebo and a barbecue area. It is the largest option for a group that wants to stay under one roof.",
+            "Milano Deluxe (4 bedrooms, up to 9 guests) and Royal Chalet (4 bedrooms, up to 9 guests) suit a slightly smaller group.",
+          ],
+        },
+        {
+          h: "Neighbouring chalets: separate homes, one holiday",
+          p: [
+            "Family Chalet, Royal Chalet and Golden Loft stand next to each other, so a large family or group can book them together: everyone gets their own home and you still spend the holiday side by side.",
+            "Falcon Chalet is one of seven chalets standing side by side, which also works well for large groups, friends and corporate guests who want to stay together.",
+          ],
+        },
+        {
+          h: "Bedrooms and bathrooms matter",
+          p: [
+            "For several families, look for homes with a bathroom for each bedroom, such as Riverside Chalet (4 bedrooms, each with its own bathroom), or choose neighbouring chalets so each family has its own bathroom and kitchen.",
+          ],
+        },
+        {
+          h: "How to book several homes",
+          p: [
+            "Check the live calendar on each home page for the same dates, then contact us on WhatsApp to confirm side-by-side booking. If you need transport for the whole group from Baku, ask about a Mercedes Sprinter transfer.",
+          ],
+        },
+      ],
+      cta: "Homes for big groups",
+    },
+    az: {
+      title: "Qəbələdə böyük qrup və ailələr üçün villalar",
+      metaTitle: "Qəbələdə Böyük Qrup və Ailə Üçün Villa | Area36",
+      description:
+        "Böyük ailə və ya qrup Qəbələdə harada qala bilər: 13 nəfərə qədər ev və yan-yana bron edə biləcəyiniz qonşu chalet-lər.",
+      intro:
+        "Böyük ailə, bir neçə ailə və ya dost qrupu ilə səyahət hamının yaxın, amma öz məkanı olanda daha rahatdır. Qəbələdəki seçimlər bunlardır.",
+      sections: [
+        {
+          h: "Bir böyük ev: 13 nəfərə qədər",
+          p: [
+            "Luxury Chalet-də 5 yataq otağı, 4 hamam və 13 nəfərə qədər yer var, isitməli qapalı hovuz, açıq hovuz, terras, çardaq və barbekü sahəsi ilə. Bir damın altında qalmaq istəyən qrup üçün ən böyük seçimdir.",
+            "Milano Deluxe (4 yataq otağı, 9 nəfərə qədər) və Royal Chalet (4 yataq otağı, 9 nəfərə qədər) bir qədər kiçik qrup üçün uyğundur.",
+          ],
+        },
+        {
+          h: "Qonşu chalet-lər: ayrı evlər, bir istirahət",
+          p: [
+            "Family Chalet, Royal Chalet və Golden Loft yan-yanadır, ona görə böyük ailə və ya qrup onları birlikdə bron edə bilər: hər kəsin öz evi olur, istirahət isə yenə də yan-yana keçir.",
+            "Falcon Chalet yan-yana duran yeddi chalet-dən biridir, bu da böyük qruplar, dostlar və birlikdə qalmaq istəyən korporativ qonaqlar üçün yaxşı işləyir.",
+          ],
+        },
+        {
+          h: "Yataq otaqları və hamamlar vacibdir",
+          p: [
+            "Bir neçə ailə üçün hər yataq otağına hamamı olan evlərə baxın, məsələn Riverside Chalet (hər biri öz hamamı olan 4 yataq otağı), yaxud qonşu chalet-lər seçin ki, hər ailənin öz hamamı və mətbəxi olsun.",
+          ],
+        },
+        {
+          h: "Bir neçə evi necə bron etmək olar",
+          p: [
+            "Eyni tarixlər üçün hər ev səhifəsindəki canlı təqvimə baxın, sonra yan-yana rezervi təsdiqləmək üçün WhatsApp-da bizimlə əlaqə saxlayın. Bakıdan bütün qrup üçün nəqliyyat lazımdırsa, Mercedes Sprinter transferi barədə soruşun.",
+          ],
+        },
+      ],
+      cta: "Böyük qruplar üçün evlər",
+    },
+    ru: {
+      title: "Виллы для больших компаний и семей в Габале",
+      metaTitle: "Виллы для большой компании и семьи в Габале | Area36",
+      description:
+        "Где в Габале разместить большую семью или компанию: дом на 13 гостей и соседние шале, которые можно забронировать рядом.",
+      intro:
+        "Ехать большой семьёй, несколькими семьями или компанией друзей проще, когда все рядом, но у каждого есть своё пространство. Вот какие варианты есть в Габале.",
+      sections: [
+        {
+          h: "Один большой дом: до 13 гостей",
+          p: [
+            "В Luxury Chalet 5 спален, 4 ванные и места для 13 гостей, есть крытый бассейн с подогревом, открытый бассейн, терраса, беседка и зона барбекю. Это самый вместительный вариант для компании, которая хочет жить под одной крышей.",
+            "Milano Deluxe (4 спальни, до 9 гостей) и Royal Chalet (4 спальни, до 9 гостей) подойдут для компании чуть поменьше.",
+          ],
+        },
+        {
+          h: "Соседние шале: отдельные дома, один отпуск",
+          p: [
+            "Family Chalet, Royal Chalet и Golden Loft стоят рядом, поэтому большая семья или компания может забронировать их вместе: у каждого свой дом, а отдых проходит по соседству.",
+            "Falcon Chalet — одно из семи шале, стоящих рядом, что также удобно для больших компаний, друзей и корпоративных гостей, которые хотят жить вместе.",
+          ],
+        },
+        {
+          h: "Спальни и ванные важны",
+          p: [
+            "Для нескольких семей ищите дома с ванной при каждой спальне, например Riverside Chalet (4 спальни, у каждой своя ванная), или выбирайте соседние шале, чтобы у каждой семьи были своя ванная и кухня.",
+          ],
+        },
+        {
+          h: "Как забронировать несколько домов",
+          p: [
+            "Проверьте на странице каждого дома календарь на одни и те же даты, затем напишите нам в WhatsApp, чтобы подтвердить бронирование рядом. Если нужен транспорт для всей компании из Баку, спросите о трансфере на Mercedes Sprinter.",
+          ],
+        },
+      ],
+      cta: "Дома для больших компаний",
+    },
+  }
+);
+
 export default guides;
