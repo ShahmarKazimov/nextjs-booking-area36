@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
+    "check:seo": "node scripts/check-seo.mjs",
+    "prebuild": "node scripts/check-seo.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
